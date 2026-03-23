@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeoFlow Agency — Applications sur mesure & NeoFlow BOS</title>
+  <meta name="description" content="Neoflow Agency crée des applications web et mobiles sur mesure pour les entreprises. Découvrez NeoFlow BOS, notre logiciel de gestion pour magasins de literie et de mobilier." />
+  <meta property="og:title" content="NeoFlow Agency" />
+  <meta property="og:description" content="Applications sur mesure & logiciel de gestion pour commerçants." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#313ADF',
+            navy: '#040741',
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, body { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+
+    /* ── Gradient utilities ── */
+    .g-text {
+      background: linear-gradient(135deg, #313ADF 0%, #6B73FF 50%, #040741 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .g-bg { background: linear-gradient(135deg, #313ADF 0%, #040741 100%); }
+    .g-bar { background: linear-gradient(90deg, #313ADF 0%, #6B73FF 50%, #040741 100%); }
+
+    /* ── Nav ── */
+    nav {
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(255,255,255,0.92);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(4,7,65,0.09); }
+
+    /* ── Animations ── */
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes floatY   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    @keyframes pulse-glow { 0%,100%{box-shadow:0 0 0 0 rgba(49,58,223,.3)} 50%{box-shadow:0 0 0 14px rgba(49,58,223,0)} }
+
+    .anim-fade-up { animation: fadeUp .65s ease both; }
+    .delay-1 { animation-delay: .1s; }
+    .delay-2 { animation-delay: .22s; }
+    .delay-3 { animation-delay: .34s; }
+    .float { animation: floatY 5s ease-in-out infinite; }
+
+    /* scroll reveal */
+    .reveal { opacity:0; transform:translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+    .reveal.d1 { transition-delay:.1s; }
+    .reveal.d2 { transition-delay:.2s; }
+    .reveal.d3 { transition-delay:.3s; }
+    .reveal.d4 { transition-delay:.4s; }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      background: linear-gradient(135deg,#313ADF,#040741);
+      color:#fff; font-weight:600; border-radius:12px;
+      padding:14px 28px; display:inline-flex; align-items:center; gap:8px;
+      box-shadow: 0 4px 16px rgba(49,58,223,.35);
+      transition: all .25s ease; cursor:pointer;
+    }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(49,58,223,.5); }
+
+    .btn-outline {
+      border: 2px solid #e5e7eb; background:white; color:#040741; font-weight:600;
+      border-radius:12px; padding:12px 26px; display:inline-flex; align-items:center; gap:8px;
+      transition:all .25s ease; cursor:pointer;
+    }
+    .btn-outline:hover { border-color:#313ADF; color:#313ADF; }
+
+    /* ── Feature cards ── */
+    .feat-card {
+      background:#fff; border:1.5px solid #eef0fe; border-radius:20px;
+      padding:28px; transition: all .3s ease;
+    }
+    .feat-card:hover { transform:translateY(-5px); box-shadow:0 20px 48px rgba(49,58,223,.1); border-color:#c7caf8; }
+
+    /* ── Dashboard mockup ── */
+    .mockup-wrap {
+      background: linear-gradient(135deg,#f0f3ff 0%,#e8ecff 100%);
+      border-radius:24px; padding:20px; overflow:hidden;
+    }
+    .mockup-inner {
+      background:#fff; border-radius:16px; overflow:hidden;
+      box-shadow:0 20px 60px rgba(4,7,65,.15);
+    }
+    .mockup-bar { height:36px; background:#040741; display:flex; align-items:center; padding:0 16px; gap:6px; }
+    .mockup-dot { width:10px; height:10px; border-radius:50%; }
+    .mockup-sidebar { width:56px; background:#040741; }
+    .kpi-card { background:#f8f9ff; border:1px solid #eef0fe; border-radius:10px; padding:12px 14px; }
+    .bar-fill { height:100%; border-radius:4px; background:linear-gradient(135deg,#313ADF,#6B73FF); }
+
+    /* ── Kanban ── */
+    .kanban-col { background:#f8f9ff; border:1.5px solid #eef0fe; border-radius:14px; padding:14px; flex:1; min-width:0; }
+    .kanban-card { background:#fff; border:1px solid #eef0fe; border-radius:8px; padding:10px 12px; font-size:12px; margin-bottom:8px; }
+
+    /* ── Pricing ── */
+    .pricing-card { background:#fff; border:2px solid #eef0fe; border-radius:24px; padding:36px; transition:all .3s; }
+    .pricing-card.featured { border-color:#313ADF; box-shadow:0 20px 60px rgba(49,58,223,.15); position:relative; }
+    .pricing-badge {
+      position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+      background:linear-gradient(135deg,#313ADF,#040741); color:#fff;
+      font-size:11px; font-weight:700; padding:4px 14px; border-radius:99px;
+      white-space:nowrap; letter-spacing:.5px;
+    }
+
+    /* ── Accordion ── */
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height .35s ease, padding .35s ease; }
+    .faq-item.open .faq-answer { max-height:300px; padding-top:12px; }
+    .faq-icon { transition:transform .3s ease; }
+    .faq-item.open .faq-icon { transform:rotate(45deg); }
+
+    /* ── Service card ── */
+    .service-card { background:#fff; border:1.5px solid #eef0fe; border-radius:20px; padding:32px; transition:all .3s; }
+    .service-card:hover { border-color:#313ADF; box-shadow:0 12px 40px rgba(49,58,223,.1); }
+
+    /* ── Sticky nav highlight ── */
+    .nav-link { color:#374151; font-weight:500; font-size:14px; transition:color .2s; }
+    .nav-link:hover { color:#313ADF; }
+
+    /* Mobile */
+    #mobile-nav { display:none; }
+    #mobile-nav.open { display:block; }
+
+    /* chat bubble */
+    .chat-bubble { background:#f0f3ff; border-radius:16px 16px 16px 4px; padding:10px 14px; font-size:13px; color:#040741; max-width:85%; }
+    .chat-bubble.right { background:linear-gradient(135deg,#313ADF,#040741); color:#fff; border-radius:16px 16px 4px 16px; margin-left:auto; }
+    .typing-dot { width:7px; height:7px; border-radius:50%; background:#9CA3AF; animation:blink 1.2s infinite; }
+    .typing-dot:nth-child(2) { animation-delay:.2s; }
+    .typing-dot:nth-child(3) { animation-delay:.4s; }
+    @keyframes blink { 0%,80%,100%{opacity:.25} 40%{opacity:1} }
+  </style>
+</head>
+
+<body class="bg-white text-navy antialiased overflow-x-hidden">
+
+<!-- ═══════════════════════════════════════
+     GRADIENT TOP BAR
+═══════════════════════════════════════ -->
+<div class="h-1 w-full g-bar"></div>
+
+<!-- ═══════════════════════════════════════
+     NAV
+═══════════════════════════════════════ -->
+<nav class="fixed top-1 left-0 right-0 z-50 px-6" id="navbar">
+  <div class="max-w-6xl mx-auto flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2">
+      <div class="w-8 h-8 g-bg rounded-lg flex items-center justify-center">
+        <span class="text-white font-bold text-sm">N</span>
+      </div>
+      <span class="font-bold text-navy text-lg">Neoflow<span class="text-primary"> Agency</span></span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#services" class="nav-link">Services</a>
+      <a href="neoflow-bos.html" class="nav-link">NeoFlow BOS</a>
+      <a href="#tarifs" class="nav-link">Tarifs</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="hidden md:flex items-center gap-3">
+      <a href="neoflow-bos.html" class="btn-primary text-sm py-2.5 px-5">
+        Essai gratuit NeoFlow BOS
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button id="menu-btn" class="md:hidden p-2 rounded-lg text-navy" onclick="toggleMenu()">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-nav" class="bg-white border-t border-gray-100 py-4 px-2 rounded-b-2xl shadow-xl">
+    <a href="#services" class="block px-4 py-3 nav-link rounded-lg hover:bg-gray-50" onclick="toggleMenu()">Services</a>
+    <a href="neoflow-bos.html" class="block px-4 py-3 nav-link rounded-lg hover:bg-gray-50" onclick="toggleMenu()">NeoFlow BOS</a>
+    <a href="#tarifs" class="block px-4 py-3 nav-link rounded-lg hover:bg-gray-50" onclick="toggleMenu()">Tarifs</a>
+    <a href="#contact" class="block px-4 py-3 nav-link rounded-lg hover:bg-gray-50" onclick="toggleMenu()">Contact</a>
+    <div class="px-4 pt-3">
+      <a href="neoflow-bos.html" class="btn-primary w-full justify-center text-sm">Essai gratuit NeoFlow BOS</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HERO — AGENCY
+═══════════════════════════════════════ -->
+<section class="pt-32 pb-20 px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-3xl mx-auto text-center">
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-8 anim-fade-up">
+        <span class="w-2 h-2 bg-primary rounded-full"></span>
+        Agence de développement d'applications
+      </div>
+
+      <h1 class="text-5xl md:text-6xl font-black text-navy leading-tight mb-6 anim-fade-up delay-1">
+        On crée les outils<br/>
+        <span class="g-text">qui font grandir</span><br/>
+        votre business.
+      </h1>
+
+      <p class="text-lg text-gray-500 leading-relaxed mb-10 anim-fade-up delay-2 max-w-xl mx-auto">
+        Applications SaaS, apps mobiles, intégration IA, automatisation.
+        On transforme vos idées en produits digitaux qui fonctionnent vraiment.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center anim-fade-up delay-3">
+        <a href="#contact" class="btn-primary">
+          Discutons de votre projet
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+        <a href="neoflow-bos.html" class="btn-outline">
+          Voir NeoFlow BOS
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="text-center reveal">
+        <div class="text-3xl font-black g-text">1</div>
+        <div class="text-sm text-gray-500 mt-1">Produit SaaS live</div>
+      </div>
+      <div class="text-center reveal d1">
+        <div class="text-3xl font-black g-text">49€</div>
+        <div class="text-sm text-gray-500 mt-1">Par mois tout compris</div>
+      </div>
+      <div class="text-center reveal d2">
+        <div class="text-3xl font-black g-text">7j</div>
+        <div class="text-sm text-gray-500 mt-1">d'essai gratuit</div>
+      </div>
+      <div class="text-center reveal d3">
+        <div class="text-3xl font-black g-text">100%</div>
+        <div class="text-sm text-gray-500 mt-1">Fait en France</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════ -->
+<section id="services" class="py-24 px-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4 reveal">
+        Nos services
+      </div>
+      <h2 class="text-4xl md:text-5xl font-black text-navy mb-4 reveal">
+        Ce que nous<br/><span class="g-text">construisons pour vous</span>
+      </h2>
+      <p class="text-gray-500 max-w-xl mx-auto reveal d1">
+        Du cahier des charges au déploiement, on gère tout. Vous obtenez un produit fini, testé et prêt à l'emploi.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- Card 1 -->
+      <div class="service-card reveal">
+        <div class="w-12 h-12 g-bg rounded-xl flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-navy mb-2">Applications SaaS sur mesure</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          Logiciels de gestion, plateformes métier, outils internes. On conçoit votre SaaS de A à Z avec React, Supabase et les dernières technologies web.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="bg-primary/8 text-primary text-xs font-semibold px-3 py-1 rounded-full">React</span>
+          <span class="bg-primary/8 text-primary text-xs font-semibold px-3 py-1 rounded-full">Supabase</span>
+          <span class="bg-primary/8 text-primary text-xs font-semibold px-3 py-1 rounded-full">Stripe</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card reveal d1">
+        <div class="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-navy mb-2">Applications mobiles (PWA)</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          Des apps installables sur iPhone et Android, sans passer par l'App Store. Notification push, accès hors-ligne, interface native — sans le coût d'une app native.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="bg-green-50 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">PWA</span>
+          <span class="bg-green-50 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">iOS</span>
+          <span class="bg-green-50 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">Android</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card reveal d2">
+        <div class="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-navy mb-2">Intégration IA & assistants</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          Chatbots contextuels, assistants métier, analyse de données par IA. On intègre des modèles LLM directement dans vos outils existants.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="bg-purple-50 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full">LLM</span>
+          <span class="bg-purple-50 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full">Ollama</span>
+          <span class="bg-purple-50 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full">Claude API</span>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="service-card reveal d3">
+        <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center mb-5">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-navy mb-2">Automatisation métier</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">
+          Workflows automatisés, connexion d'APIs tierces, pipelines de données. On élimine les tâches répétitives pour que vous vous concentriez sur l'essentiel.
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="bg-orange-50 text-orange-700 text-xs font-semibold px-3 py-1 rounded-full">n8n</span>
+          <span class="bg-orange-50 text-orange-700 text-xs font-semibold px-3 py-1 rounded-full">Webhooks</span>
+          <span class="bg-orange-50 text-orange-700 text-xs font-semibold px-3 py-1 rounded-full">APIs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     NEOFLOW BOS SPOTLIGHT
+═══════════════════════════════════════ -->
+<section class="py-24 px-6" style="background:linear-gradient(160deg,#040741 0%,#0a1260 100%);">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+
+      <!-- Text -->
+      <div>
+        <div class="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 reveal">
+          <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+          Notre produit phare
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6 reveal d1">
+          NeoFlow BOS
+        </h2>
+        <p class="text-white/70 text-lg leading-relaxed mb-8 reveal d2">
+          Le logiciel de gestion pensé spécialement pour les <strong class="text-white">magasins de literie et de mobilier</strong>. Commandes, livraisons avec créneaux, stock, facturation — et un assistant IA qui connaît votre magasin.
+        </p>
+
+        <ul class="space-y-3 mb-10 reveal d3">
+          <li class="flex items-center gap-3 text-white/80 text-sm">
+            <span class="w-5 h-5 bg-primary/40 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </span>
+            Commande prise en magasin → livraison planifiée avec créneau
+          </li>
+          <li class="flex items-center gap-3 text-white/80 text-sm">
+            <span class="w-5 h-5 bg-primary/40 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </span>
+            Livreur encaisse le solde depuis son téléphone
+          </li>
+          <li class="flex items-center gap-3 text-white/80 text-sm">
+            <span class="w-5 h-5 bg-primary/40 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </span>
+            IA Neo répond à vos questions sur votre activité en temps réel
+          </li>
+          <li class="flex items-center gap-3 text-white/80 text-sm">
+            <span class="w-5 h-5 bg-primary/40 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </span>
+            49€/mois tout compris — moins d'un matelas par an
+          </li>
+        </ul>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="neoflow-bos.html" class="btn-primary">
+            Découvrir NeoFlow BOS
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </a>
+          <a href="neoflow-bos.html#tarifs" class="btn-outline" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.07);color:white;">
+            Voir les tarifs
+          </a>
+        </div>
+      </div>
+
+      <!-- Mockup dashboard -->
+      <div class="float reveal d2">
+        <div class="mockup-wrap shadow-2xl">
+          <div class="mockup-inner">
+            <!-- Top bar -->
+            <div class="mockup-bar">
+              <div class="mockup-dot" style="background:#ef4444"></div>
+              <div class="mockup-dot" style="background:#f59e0b"></div>
+              <div class="mockup-dot" style="background:#22c55e"></div>
+              <div class="ml-4 flex-1 h-5 bg-white/10 rounded-full"></div>
+            </div>
+
+            <!-- App content -->
+            <div class="flex" style="height:280px;">
+              <!-- Sidebar -->
+              <div class="mockup-sidebar flex flex-col items-center py-4 gap-4 flex-shrink-0">
+                <div class="w-7 h-7 bg-primary/30 rounded-lg"></div>
+                <div class="w-5 h-5 bg-white/20 rounded"></div>
+                <div class="w-5 h-5 bg-white/20 rounded"></div>
+                <div class="w-5 h-5 bg-white/20 rounded"></div>
+                <div class="w-5 h-5 bg-white/20 rounded"></div>
+                <div class="w-5 h-5 bg-primary rounded"></div>
+                <div class="w-5 h-5 bg-white/20 rounded"></div>
+              </div>
+
+              <!-- Main content -->
+              <div class="flex-1 p-4 bg-gray-50 overflow-hidden">
+                <div class="text-xs font-bold text-navy mb-3">Tableau de bord</div>
+
+                <!-- KPI row -->
+                <div class="grid grid-cols-3 gap-2 mb-4">
+                  <div class="kpi-card">
+                    <div class="text-xs text-gray-400 mb-1">CA du mois</div>
+                    <div class="text-sm font-bold text-navy">24 850 €</div>
+                    <div class="text-xs text-green-500">+12%</div>
+                  </div>
+                  <div class="kpi-card">
+                    <div class="text-xs text-gray-400 mb-1">Commandes</div>
+                    <div class="text-sm font-bold text-navy">18</div>
+                    <div class="text-xs text-primary">actives</div>
+                  </div>
+                  <div class="kpi-card">
+                    <div class="text-xs text-gray-400 mb-1">Livraisons</div>
+                    <div class="text-sm font-bold text-navy">7</div>
+                    <div class="text-xs text-orange-500">à faire</div>
+                  </div>
+                </div>
+
+                <!-- Mini chart -->
+                <div class="bg-white border border-gray-100 rounded-lg p-3 mb-3">
+                  <div class="text-xs text-gray-400 mb-2">CA semaine</div>
+                  <div class="flex items-end gap-1.5 h-14">
+                    <div class="flex-1 flex flex-col justify-end">
+                      <div class="bar-fill rounded" style="height:40%"></div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end">
+                      <div class="bar-fill rounded" style="height:65%"></div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end">
+                      <div class="bar-fill rounded" style="height:50%"></div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end">
+                      <div class="bar-fill rounded" style="height:80%"></div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end">
+                      <div class="bar-fill rounded" style="height:55%"></div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end">
+                      <div class="bar-fill rounded opacity-30" style="height:35%"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Recent order -->
+                <div class="flex items-center gap-2 bg-white border border-gray-100 rounded-lg p-2.5">
+                  <div class="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></div>
+                  <div class="flex-1 min-w-0">
+                    <div class="text-xs font-medium text-navy truncate">CMD-0042 · Martin Dupont</div>
+                    <div class="text-xs text-gray-400">Matelas + sommier · 1 480€</div>
+                  </div>
+                  <span class="text-xs bg-green-50 text-green-700 font-semibold px-2 py-0.5 rounded-full flex-shrink-0">Confirmé</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     PROCESS
+═══════════════════════════════════════ -->
+<section class="py-24 px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4 reveal">
+        Comment ça marche
+      </div>
+      <h2 class="text-4xl font-black text-navy mb-4 reveal d1">
+        De l'idée au produit<br/><span class="g-text">en 3 étapes</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center reveal">
+        <div class="w-16 h-16 g-bg rounded-2xl flex items-center justify-center mx-auto mb-5 text-white text-2xl font-black">1</div>
+        <h3 class="text-xl font-bold text-navy mb-3">On discute de votre projet</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Vous nous présentez votre idée, vos contraintes, votre budget. On évalue la faisabilité et on vous propose une architecture.</p>
+      </div>
+      <div class="text-center reveal d1">
+        <div class="w-16 h-16 g-bg rounded-2xl flex items-center justify-center mx-auto mb-5 text-white text-2xl font-black">2</div>
+        <h3 class="text-xl font-bold text-navy mb-3">On développe votre solution</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Développement itératif avec des livrables réguliers. Vous validez à chaque étape. Pas de surprise à la livraison finale.</p>
+      </div>
+      <div class="text-center reveal d2">
+        <div class="w-16 h-16 g-bg rounded-2xl flex items-center justify-center mx-auto mb-5 text-white text-2xl font-black">3</div>
+        <h3 class="text-xl font-bold text-navy mb-3">On vous accompagne</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Déploiement, formation, maintenance. On reste disponibles pour les évolutions et les corrections post-lancement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     TARIFS NeoFlow BOS
+═══════════════════════════════════════ -->
+<section id="tarifs" class="py-24 px-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4 reveal">
+        NeoFlow BOS — Tarifs
+      </div>
+      <h2 class="text-4xl font-black text-navy mb-4 reveal d1">
+        Simple, transparent,<br/><span class="g-text">sans mauvaise surprise</span>
+      </h2>
+      <p class="text-gray-500 reveal d2">7 jours d'essai gratuit — carte bancaire requise, aucun débit pendant l'essai.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+
+      <!-- Monthly -->
+      <div class="pricing-card reveal">
+        <div class="text-lg font-bold text-navy mb-1">Mensuel</div>
+        <div class="text-gray-400 text-sm mb-6">Résiliable à tout moment</div>
+        <div class="flex items-end gap-2 mb-6">
+          <span class="text-5xl font-black text-navy">49€</span>
+          <span class="text-gray-400 mb-2">/mois TTC</span>
+        </div>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-3 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Utilisateurs illimités
+          </li>
+          <li class="flex items-center gap-3 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Toutes les fonctionnalités
+          </li>
+          <li class="flex items-center gap-3 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            IA Neo incluse
+          </li>
+          <li class="flex items-center gap-3 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Mises à jour incluses
+          </li>
+        </ul>
+        <a href="neoflow-bos.html#essai" class="btn-outline w-full justify-center">Démarrer l'essai gratuit</a>
+      </div>
+
+      <!-- Annual -->
+      <div class="pricing-card featured reveal d1">
+        <div class="pricing-badge">MEILLEURE OFFRE</div>
+        <div class="text-lg font-bold text-navy mb-1">Annuel</div>
+        <div class="text-gray-400 text-sm mb-6">Économisez 98€ par an</div>
+        <div class="flex items-end gap-2 mb-2">
+          <span class="text-5xl font-black text-navy">490€</span>
+          <span class="text-gray-400 mb-2">/an TTC</span>
+        </div>
+        <div class="text-sm text-green-600 font-semibold mb-6">≈ 40,8€/mois · 2 mois offerts</div>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-3 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Tout le plan Mensuel inclus
+          </li>
+          <li class="flex items-center gap-3 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Priorité support
+          </li>
+          <li class="flex items-center gap-3 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Onboarding personnalisé
+          </li>
+          <li class="flex items-center gap-3 text-sm text-gray-600">
+            <svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Tarif verrouillé 1 an
+          </li>
+        </ul>
+        <a href="neoflow-bos.html#essai" class="btn-primary w-full justify-center">
+          Commencer maintenant
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════ -->
+<section id="contact" class="py-24 px-6" style="background:linear-gradient(160deg,#040741 0%,#0a1260 100%);">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 reveal">
+      Parlons de votre projet
+    </div>
+    <h2 class="text-4xl md:text-5xl font-black text-white mb-6 reveal d1">
+      Vous avez un projet<br/>en tête ?
+    </h2>
+    <p class="text-white/70 text-lg mb-10 reveal d2">
+      Que ce soit pour NeoFlow BOS ou une application sur mesure,<br/>on est disponibles pour en discuter.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center reveal d3">
+      <a href="mailto:contacte.neoflowagency@gmail.com" class="btn-primary">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        contacte.neoflowagency@gmail.com
+      </a>
+      <a href="neoflow-bos.html" class="btn-outline" style="border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.07);color:white;">
+        Voir NeoFlow BOS
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer class="bg-navy py-12 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-8 pb-10 border-b border-white/10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 g-bg rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-sm">N</span>
+          </div>
+          <span class="text-white font-bold text-lg">Neoflow Agency</span>
+        </div>
+        <p class="text-white/50 text-sm leading-relaxed max-w-xs">
+          Agence de développement d'applications web et mobiles sur mesure.
+          Notre produit phare : NeoFlow BOS.
+        </p>
+      </div>
+      <div>
+        <div class="text-white/30 text-xs font-semibold uppercase tracking-wider mb-4">Produits</div>
+        <ul class="space-y-2">
+          <li><a href="neoflow-bos.html" class="text-white/60 hover:text-white text-sm transition-colors">NeoFlow BOS</a></li>
+          <li><a href="neoflow-bos.html#tarifs" class="text-white/60 hover:text-white text-sm transition-colors">Tarifs</a></li>
+          <li><a href="neoflow-bos.html#fonctionnalites" class="text-white/60 hover:text-white text-sm transition-colors">Fonctionnalités</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-white/30 text-xs font-semibold uppercase tracking-wider mb-4">Légal</div>
+        <ul class="space-y-2">
+          <li><a href="/mentions-legales" class="text-white/60 hover:text-white text-sm transition-colors">Mentions légales</a></li>
+          <li><a href="/cgu" class="text-white/60 hover:text-white text-sm transition-colors">CGU / CGV</a></li>
+          <li><a href="/cgu#confidentialite" class="text-white/60 hover:text-white text-sm transition-colors">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-white/30 text-sm">© 2025 Neoflow Agency. Tous droits réservés.</p>
+      <p class="text-white/30 text-sm">Fait avec ❤️ en France</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════
+     JS
+═══════════════════════════════════════ -->
+<script>
+  // Nav scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobile-nav').classList.toggle('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

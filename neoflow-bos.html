@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeoFlow BOS — Le logiciel de gestion pour magasins de literie</title>
+  <meta name="description" content="NeoFlow BOS gère vos commandes, livraisons, stock et facturation. Assistant IA intégré. Essai gratuit 7 jours. 49€/mois."/>
+  <meta property="og:title" content="NeoFlow BOS — Logiciel de gestion pour magasins" />
+  <meta property="og:description" content="Commandes, livraisons avec créneaux, IA intégrée. 49€/mois." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#313ADF', navy: '#040741' },
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, body { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+
+    .g-text { background:linear-gradient(135deg,#313ADF 0%,#6B73FF 50%,#040741 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .g-bg   { background:linear-gradient(135deg,#313ADF 0%,#040741 100%); }
+    .g-bar  { background:linear-gradient(90deg,#313ADF 0%,#6B73FF 50%,#040741 100%); }
+
+    nav { backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); background:rgba(255,255,255,.92); transition:box-shadow .3s; }
+    nav.scrolled { box-shadow:0 2px 24px rgba(4,7,65,.09); }
+
+    @keyframes fadeUp  { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes floatY  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+
+    .anim-fade-up { animation:fadeUp .65s ease both; }
+    .delay-1{animation-delay:.1s} .delay-2{animation-delay:.22s} .delay-3{animation-delay:.34s} .delay-4{animation-delay:.46s}
+    .float { animation:floatY 5s ease-in-out infinite; }
+
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+    .reveal.d1{transition-delay:.1s} .reveal.d2{transition-delay:.2s} .reveal.d3{transition-delay:.3s} .reveal.d4{transition-delay:.4s} .reveal.d5{transition-delay:.5s}
+
+    .btn-primary { background:linear-gradient(135deg,#313ADF,#040741); color:#fff; font-weight:600; border-radius:12px; padding:14px 28px; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 16px rgba(49,58,223,.35); transition:all .25s ease; cursor:pointer; }
+    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(49,58,223,.5); }
+
+    .btn-outline { border:2px solid #e5e7eb; background:white; color:#040741; font-weight:600; border-radius:12px; padding:12px 26px; display:inline-flex; align-items:center; gap:8px; transition:all .25s ease; cursor:pointer; }
+    .btn-outline:hover { border-color:#313ADF; color:#313ADF; }
+
+    .feat-card { background:#fff; border:1.5px solid #eef0fe; border-radius:20px; padding:28px; transition:all .3s ease; }
+    .feat-card:hover { transform:translateY(-5px); box-shadow:0 20px 48px rgba(49,58,223,.1); border-color:#c7caf8; }
+
+    /* screenshot placeholder */
+    .screenshot-placeholder { background:linear-gradient(135deg,#eef0fe,#e8ecff); border-radius:16px; overflow:hidden; border:1.5px solid #c7caf8; }
+
+    /* App mockup */
+    .mockup-wrap { background:linear-gradient(135deg,#f0f3ff,#e8ecff); border-radius:24px; padding:16px; }
+    .mockup-inner { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 20px 60px rgba(4,7,65,.15); }
+    .mockup-bar { height:32px; background:#040741; display:flex; align-items:center; padding:0 14px; gap:5px; }
+    .mockup-dot { width:9px; height:9px; border-radius:50%; }
+    .kpi-chip { background:#f0f3ff; border:1px solid #dde1fb; border-radius:8px; padding:8px 12px; }
+
+    /* Kanban */
+    .kanban-col { background:#f8f9ff; border:1.5px solid #eef0fe; border-radius:14px; padding:12px; flex:1; min-width:120px; }
+    .kanban-card { background:#fff; border:1px solid #eef0fe; border-radius:8px; padding:8px 10px; font-size:11.5px; margin-bottom:6px; box-shadow:0 1px 4px rgba(0,0,0,.04); }
+    .kanban-header { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; padding:4px 8px; border-radius:6px; margin-bottom:10px; }
+
+    /* Pricing */
+    .pricing-card { background:#fff; border:2px solid #eef0fe; border-radius:24px; padding:36px; transition:all .3s; }
+    .pricing-card.featured { border-color:#313ADF; box-shadow:0 20px 60px rgba(49,58,223,.15); position:relative; }
+    .pricing-badge { position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,#313ADF,#040741); color:#fff; font-size:11px; font-weight:700; padding:4px 14px; border-radius:99px; white-space:nowrap; letter-spacing:.5px; }
+
+    /* FAQ */
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height .35s ease, padding .35s ease; }
+    .faq-item.open .faq-answer { max-height:300px; padding-top:12px; }
+    .faq-icon { transition:transform .3s ease; }
+    .faq-item.open .faq-icon { transform:rotate(45deg); }
+
+    /* role badge */
+    .role-badge { border-radius:99px; font-size:11px; font-weight:700; padding:3px 10px; }
+
+    /* chat UI */
+    .chat-msg { padding:10px 14px; border-radius:16px; font-size:13px; max-width:82%; line-height:1.5; }
+    .chat-msg.in  { background:#f0f3ff; color:#040741; border-radius:16px 16px 16px 4px; }
+    .chat-msg.out { background:linear-gradient(135deg,#313ADF,#040741); color:#fff; border-radius:16px 16px 4px 16px; margin-left:auto; }
+
+    /* bar fill */
+    .bar { height:100%; border-radius:4px; background:linear-gradient(135deg,#313ADF,#6B73FF); }
+
+    #mobile-nav { display:none; }
+    #mobile-nav.open { display:block; }
+  </style>
+</head>
+
+<body class="bg-white text-navy antialiased overflow-x-hidden">
+
+<div class="h-1 w-full g-bar"></div>
+
+<!-- ═══════════════════════════════════════ NAV ═══ -->
+<nav class="fixed top-1 left-0 right-0 z-50 px-6" id="navbar">
+  <div class="max-w-6xl mx-auto flex items-center justify-between h-16">
+    <a href="/" class="flex items-center gap-2">
+      <div class="w-8 h-8 g-bg rounded-lg flex items-center justify-center">
+        <span class="text-white font-bold text-sm">N</span>
+      </div>
+      <span class="font-bold text-navy">NeoFlow<span class="text-primary"> BOS</span></span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#fonctionnalites" class="text-gray-600 hover:text-primary font-medium text-sm transition-colors">Fonctionnalités</a>
+      <a href="#comment-ca-marche" class="text-gray-600 hover:text-primary font-medium text-sm transition-colors">Comment ça marche</a>
+      <a href="#tarifs" class="text-gray-600 hover:text-primary font-medium text-sm transition-colors">Tarifs</a>
+      <a href="#faq" class="text-gray-600 hover:text-primary font-medium text-sm transition-colors">FAQ</a>
+    </div>
+
+    <div class="hidden md:flex items-center gap-3">
+      <a href="index.html" class="text-gray-500 hover:text-navy text-sm font-medium transition-colors">← Neoflow Agency</a>
+      <a href="#essai" class="btn-primary text-sm py-2.5 px-5">
+        Essai gratuit 7 jours
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <button class="md:hidden p-2 rounded-lg text-navy" onclick="toggleMenu()">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobile-nav" class="bg-white border-t border-gray-100 py-4 px-2 rounded-b-2xl shadow-xl">
+    <a href="#fonctionnalites" class="block px-4 py-3 text-gray-600 font-medium text-sm rounded-lg hover:bg-gray-50" onclick="toggleMenu()">Fonctionnalités</a>
+    <a href="#tarifs" class="block px-4 py-3 text-gray-600 font-medium text-sm rounded-lg hover:bg-gray-50" onclick="toggleMenu()">Tarifs</a>
+    <a href="#faq" class="block px-4 py-3 text-gray-600 font-medium text-sm rounded-lg hover:bg-gray-50" onclick="toggleMenu()">FAQ</a>
+    <div class="px-4 pt-3">
+      <a href="#essai" class="btn-primary w-full justify-center text-sm">Essai gratuit 7 jours</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ HERO ═══ -->
+<section class="pt-32 pb-20 px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+
+      <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-8 anim-fade-up">
+        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+        Logiciel de gestion pour commerçants
+      </div>
+
+      <h1 class="text-5xl md:text-6xl font-black text-navy leading-[1.1] mb-6 anim-fade-up delay-1">
+        Gérez votre magasin<br/>
+        <span class="g-text">de literie en 5 min.</span>
+      </h1>
+
+      <p class="text-xl text-gray-500 leading-relaxed mb-10 anim-fade-up delay-2">
+        Commandes, livraisons avec créneaux, stock, facturation PDF et assistant IA — tout dans une seule app. Conçu pour le flux exact des magasins de literie et de mobilier.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center anim-fade-up delay-3">
+        <a href="#essai" class="btn-primary text-lg py-4 px-8">
+          Démarrer l'essai gratuit
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#fonctionnalites" class="btn-outline text-lg py-4 px-8">
+          Voir les fonctionnalités
+        </a>
+      </div>
+
+      <p class="mt-4 text-sm text-gray-400 anim-fade-up delay-4">7 jours gratuits · Aucun engagement · CB requise, aucun débit pendant l'essai</p>
+    </div>
+
+    <!-- ── Dashboard hero mockup ── -->
+    <div class="float anim-fade-up delay-2">
+      <div class="mockup-wrap shadow-2xl max-w-4xl mx-auto">
+        <div class="mockup-inner">
+          <!-- Bar -->
+          <div class="mockup-bar">
+            <div class="mockup-dot" style="background:#ef4444"></div>
+            <div class="mockup-dot" style="background:#f59e0b"></div>
+            <div class="mockup-dot" style="background:#22c55e"></div>
+            <div class="ml-auto flex items-center gap-2">
+              <div class="h-4 w-24 bg-white/10 rounded-full"></div>
+              <div class="h-4 w-8 bg-white/10 rounded-full"></div>
+            </div>
+          </div>
+
+          <!-- Layout -->
+          <div class="flex" style="min-height:320px;">
+            <!-- Sidebar -->
+            <div style="width:60px;background:#040741;" class="flex flex-col items-center py-5 gap-4 flex-shrink-0">
+              <div class="w-8 h-8 g-bg rounded-lg flex items-center justify-center text-white text-xs font-bold">N</div>
+              <div class="w-5 h-5 bg-white/20 rounded mt-2"></div>
+              <div class="w-5 h-5 bg-primary rounded"></div>
+              <div class="w-5 h-5 bg-white/20 rounded"></div>
+              <div class="w-5 h-5 bg-white/20 rounded"></div>
+              <div class="w-5 h-5 bg-white/20 rounded"></div>
+              <div class="w-5 h-5 bg-white/20 rounded"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 bg-gray-50 p-5 overflow-hidden">
+              <!-- Header -->
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <div class="text-sm font-bold text-navy">Tableau de bord</div>
+                  <div class="text-xs text-gray-400">Mardi 18 mars 2025</div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="h-7 w-24 bg-primary/10 rounded-lg"></div>
+                  <div class="w-7 h-7 g-bg rounded-lg"></div>
+                </div>
+              </div>
+
+              <!-- KPI row -->
+              <div class="grid grid-cols-4 gap-3 mb-4">
+                <div class="kpi-chip">
+                  <div class="text-xs text-gray-400 mb-1">CA mois</div>
+                  <div class="text-base font-black text-navy">24 850€</div>
+                  <div class="flex items-center gap-1 mt-1"><span class="text-xs text-green-500 font-semibold">↑ +12%</span></div>
+                </div>
+                <div class="kpi-chip">
+                  <div class="text-xs text-gray-400 mb-1">Commandes</div>
+                  <div class="text-base font-black text-navy">18</div>
+                  <div class="text-xs text-primary mt-1">actives</div>
+                </div>
+                <div class="kpi-chip">
+                  <div class="text-xs text-gray-400 mb-1">Livraisons</div>
+                  <div class="text-base font-black text-navy">7</div>
+                  <div class="text-xs text-orange-500 mt-1">planifiées</div>
+                </div>
+                <div class="kpi-chip">
+                  <div class="text-xs text-gray-400 mb-1">Soldes</div>
+                  <div class="text-base font-black text-navy">3 240€</div>
+                  <div class="text-xs text-red-500 mt-1">à encaisser</div>
+                </div>
+              </div>
+
+              <!-- Chart + Orders split -->
+              <div class="grid grid-cols-5 gap-3">
+                <!-- Chart -->
+                <div class="col-span-3 bg-white border border-gray-100 rounded-xl p-3">
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="text-xs font-semibold text-navy">CA des 7 derniers jours</div>
+                    <div class="text-xs text-gray-400">Cette semaine</div>
+                  </div>
+                  <div class="flex items-end gap-2 h-20">
+                    <div class="flex-1 flex flex-col justify-end gap-1">
+                      <div class="bar rounded" style="height:45%"></div>
+                      <div class="text-xs text-gray-300 text-center">L</div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end gap-1">
+                      <div class="bar rounded" style="height:70%"></div>
+                      <div class="text-xs text-gray-300 text-center">M</div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end gap-1">
+                      <div class="bar rounded" style="height:55%"></div>
+                      <div class="text-xs text-gray-300 text-center">M</div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end gap-1">
+                      <div class="bar rounded" style="height:85%"></div>
+                      <div class="text-xs text-gray-300 text-center">J</div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end gap-1">
+                      <div class="bar rounded" style="height:60%"></div>
+                      <div class="text-xs text-gray-300 text-center">V</div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end gap-1">
+                      <div class="bar rounded" style="height:90%"></div>
+                      <div class="text-xs text-gray-300 text-center">S</div>
+                    </div>
+                    <div class="flex-1 flex flex-col justify-end gap-1">
+                      <div class="bar rounded opacity-25" style="height:30%"></div>
+                      <div class="text-xs text-gray-300 text-center">D</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Orders -->
+                <div class="col-span-2 bg-white border border-gray-100 rounded-xl p-3">
+                  <div class="text-xs font-semibold text-navy mb-3">Commandes récentes</div>
+                  <div class="space-y-2">
+                    <div class="flex items-center gap-2">
+                      <div class="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                      <div class="flex-1 min-w-0">
+                        <div class="text-xs font-medium text-navy truncate">Martin D.</div>
+                        <div class="text-xs text-gray-400">1 480€</div>
+                      </div>
+                      <span style="font-size:10px;background:#dcfce7;color:#16a34a;font-weight:700;padding:2px 6px;border-radius:99px">Confirmé</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
+                      <div class="flex-1 min-w-0">
+                        <div class="text-xs font-medium text-navy truncate">Sophie M.</div>
+                        <div class="text-xs text-gray-400">2 200€</div>
+                      </div>
+                      <span style="font-size:10px;background:#ffedd5;color:#c2410c;font-weight:700;padding:2px 6px;border-radius:99px">En cours</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <div class="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                      <div class="flex-1 min-w-0">
+                        <div class="text-xs font-medium text-navy truncate">Pierre L.</div>
+                        <div class="text-xs text-gray-400">890€</div>
+                      </div>
+                      <span style="font-size:10px;background:#dbeafe;color:#1d4ed8;font-weight:700;padding:2px 6px;border-radius:99px">Livré</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ CIBLES ═══ -->
+<section class="py-12 px-6 bg-gray-50 border-y border-gray-100">
+  <div class="max-w-5xl mx-auto">
+    <p class="text-center text-gray-400 text-sm font-medium mb-6 reveal">Conçu pour les commerçants qui livrent à domicile</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 reveal">
+        <span class="text-2xl">🛏️</span>
+        <span class="text-sm font-semibold text-navy">Literie</span>
+      </div>
+      <div class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 reveal d1">
+        <span class="text-2xl">🛋️</span>
+        <span class="text-sm font-semibold text-navy">Mobilier</span>
+      </div>
+      <div class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 reveal d2">
+        <span class="text-2xl">🍳</span>
+        <span class="text-sm font-semibold text-navy">Électroménager</span>
+      </div>
+      <div class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 reveal d3">
+        <span class="text-2xl">🔧</span>
+        <span class="text-sm font-semibold text-navy">Bricolage</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ FEATURES ═══ -->
+<section id="fonctionnalites" class="py-24 px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4 reveal">
+        Fonctionnalités
+      </div>
+      <h2 class="text-4xl md:text-5xl font-black text-navy mb-4 reveal d1">
+        Tout ce dont votre magasin<br/><span class="g-text">a besoin dans une seule app</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <div class="feat-card reveal">
+        <div class="w-11 h-11 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-navy mb-2">Vente rapide (Caisse)</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Caisse tactile avec recherche produits, panier, remises, paiement multi-modes et facture générée automatiquement.</p>
+      </div>
+
+      <div class="feat-card reveal d1">
+        <div class="w-11 h-11 bg-orange-50 rounded-xl flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-navy mb-2">Commandes & devis</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Workflow complet : devis → commande → acompte → livraison → solde. Remises par ligne, frais de livraison, TVA automatique.</p>
+      </div>
+
+      <div class="feat-card reveal d2">
+        <div class="w-11 h-11 bg-green-50 rounded-xl flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-navy mb-2">Livraisons (Kanban)</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Planification avec créneaux horaires, assignation du livreur, vue mobile pour le livreur, encaissement du solde sur place.</p>
+      </div>
+
+      <div class="feat-card reveal d3">
+        <div class="w-11 h-11 bg-purple-50 rounded-xl flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-navy mb-2">Factures PDF</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Génération PDF côté serveur, envoi par email automatique, logo et mentions légales personnalisés. Conformes aux exigences fiscales.</p>
+      </div>
+
+      <div class="feat-card reveal d4">
+        <div class="w-11 h-11 bg-pink-50 rounded-xl flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-navy mb-2">CRM Clients</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Fiche client, historique achats, statut automatique (prospect / actif / prioritaire), clients pro (SIRET), alerte clients inactifs.</p>
+      </div>
+
+      <div class="feat-card reveal d5">
+        <div class="w-11 h-11 bg-yellow-50 rounded-xl flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold text-navy mb-2">Stock multi-emplacements</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Niveaux par emplacement, alertes rupture, transferts, historique des mouvements. Débit automatique à chaque vente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ LIVRAISONS KANBAN ═══ -->
+<section class="py-24 px-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6 reveal">
+          Module Livraisons
+        </div>
+        <h2 class="text-4xl font-black text-navy mb-6 reveal d1">
+          Du magasin<br/><span class="g-text">à la porte du client.</span>
+        </h2>
+        <p class="text-gray-500 leading-relaxed mb-8 reveal d2">
+          Votre livreur voit ses livraisons du jour sur son téléphone. Il encaisse le solde sur place, marque la livraison comme terminée. Vous voyez tout en temps réel.
+        </p>
+        <div class="space-y-4 reveal d3">
+          <div class="flex items-start gap-3">
+            <div class="w-7 h-7 g-bg rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-white text-xs font-bold">1</span>
+            </div>
+            <div>
+              <p class="font-semibold text-navy text-sm">Commande créée en magasin</p>
+              <p class="text-gray-400 text-sm">Acompte encaissé, reste à payer noté</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-7 h-7 g-bg rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-white text-xs font-bold">2</span>
+            </div>
+            <div>
+              <p class="font-semibold text-navy text-sm">Livraison planifiée avec créneau</p>
+              <p class="text-gray-400 text-sm">Matin 8h-12h, après-midi 14h-18h, journée entière…</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-7 h-7 g-bg rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="text-white text-xs font-bold">3</span>
+            </div>
+            <div>
+              <p class="font-semibold text-navy text-sm">Livreur encaisse depuis son téléphone</p>
+              <p class="text-gray-400 text-sm">CB, espèces, chèque — le compte est automatiquement soldé</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kanban visual -->
+      <div class="reveal d2">
+        <div class="mockup-wrap">
+          <div class="bg-white rounded-xl p-4 shadow-lg">
+            <div class="flex items-center justify-between mb-4">
+              <div class="font-bold text-sm text-navy">Livraisons — Mardi 18 mars</div>
+              <span class="text-xs bg-primary/10 text-primary font-semibold px-3 py-1 rounded-full">7 planifiées</span>
+            </div>
+            <div class="flex gap-3 overflow-x-auto pb-2">
+              <div class="kanban-col">
+                <div class="kanban-header bg-gray-100 text-gray-600">À planifier</div>
+                <div class="kanban-card">
+                  <div class="font-semibold text-navy">Leroy M.</div>
+                  <div class="text-gray-400 mt-0.5">Canapé 3 places</div>
+                  <div class="text-primary font-bold mt-1">1 200€ restant</div>
+                </div>
+              </div>
+              <div class="kanban-col">
+                <div class="kanban-header bg-blue-50 text-blue-700">Planifiée</div>
+                <div class="kanban-card">
+                  <div class="font-semibold text-navy">Martin D.</div>
+                  <div class="text-gray-400 mt-0.5">Matelas 160×200</div>
+                  <div class="text-gray-500 mt-1 text-xs">14h – 16h</div>
+                  <div class="text-primary font-bold">480€ restant</div>
+                </div>
+                <div class="kanban-card">
+                  <div class="font-semibold text-navy">Sophie B.</div>
+                  <div class="text-gray-400 mt-0.5">Sommier + matelas</div>
+                  <div class="text-gray-500 mt-1 text-xs">Matin 8h-12h</div>
+                  <div class="text-primary font-bold">720€ restant</div>
+                </div>
+              </div>
+              <div class="kanban-col">
+                <div class="kanban-header bg-green-50 text-green-700">Livrée ✓</div>
+                <div class="kanban-card opacity-60">
+                  <div class="font-semibold text-navy">Dupont A.</div>
+                  <div class="text-gray-400 mt-0.5">Lit complet</div>
+                  <div class="text-green-600 font-bold mt-1">Soldé ✓</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ IA NEO ═══ -->
+<section class="py-24 px-6" style="background:linear-gradient(160deg,#040741 0%,#0a1260 100%);">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+
+      <!-- Chat mockup -->
+      <div class="reveal">
+        <div class="mockup-wrap" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);">
+          <div class="rounded-xl overflow-hidden" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);">
+            <div style="background:rgba(255,255,255,.1);padding:14px 18px;display:flex;align-items:center;gap:10px;">
+              <div class="w-8 h-8 g-bg rounded-lg flex items-center justify-center">
+                <span class="text-white text-xs font-bold">N</span>
+              </div>
+              <div>
+                <div class="text-white text-sm font-semibold">Neo — Assistant IA</div>
+                <div class="text-white/50 text-xs">Connecté à votre magasin</div>
+              </div>
+              <div class="ml-auto w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            </div>
+
+            <div class="p-4 space-y-3" style="min-height:220px;">
+              <div class="chat-msg in">Quel est mon CA de ce mois par rapport au mois dernier ?</div>
+              <div class="chat-msg out">
+                Ce mois : <strong>24 850€</strong> contre 22 180€ le mois dernier.<br/>
+                Soit <strong>+12% de progression</strong>. 🎯<br/>
+                Vos 3 meilleures ventes : Matelas Sérénité (×4), Ensemble Queen (×3), Sommier 160 (×5).
+              </div>
+              <div class="chat-msg in">Quelles livraisons j'ai demain matin ?</div>
+              <div class="chat-msg out">
+                2 livraisons demain matin :<br/>
+                • Sophie Bouchard — 8h-12h — 720€ solde<br/>
+                • Pierre Lecomte — Matin — Retrait magasin
+              </div>
+            </div>
+
+            <div style="padding:12px;border-top:1px solid rgba(255,255,255,.08);">
+              <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;font-size:13px;color:rgba(255,255,255,.4);">
+                Posez une question sur votre activité…
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div>
+        <div class="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 reveal">
+          <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
+          IA intégrée
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6 reveal d1">
+          Neo sait tout<br/>sur votre magasin.
+        </h2>
+        <p class="text-white/70 text-lg leading-relaxed mb-8 reveal d2">
+          L'assistant IA Neo lit vos données en temps réel et répond en français à toutes vos questions métier. Pas besoin d'être expert en Excel.
+        </p>
+        <div class="space-y-3 reveal d3">
+          <div class="flex items-center gap-3 text-white/80 text-sm">
+            <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+            "Quel est mon CA de ce mois ?"
+          </div>
+          <div class="flex items-center gap-3 text-white/80 text-sm">
+            <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+            "Quelles commandes n'ont pas encore été livrées ?"
+          </div>
+          <div class="flex items-center gap-3 text-white/80 text-sm">
+            <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+            "Quels sont mes produits les plus vendus ce trimestre ?"
+          </div>
+          <div class="flex items-center gap-3 text-white/80 text-sm">
+            <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
+            "Quel solde me reste à encaisser cette semaine ?"
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ RÔLES ═══ -->
+<section id="comment-ca-marche" class="py-24 px-6 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4 reveal">
+        Adapté à chaque rôle
+      </div>
+      <h2 class="text-4xl font-black text-navy mb-4 reveal d1">
+        Une app,<br/><span class="g-text">quatre profils différents</span>
+      </h2>
+      <p class="text-gray-500 max-w-xl mx-auto reveal d2">Chaque utilisateur voit exactement ce dont il a besoin. Pas plus, pas moins.</p>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-6">
+      <div class="feat-card text-center reveal">
+        <div class="text-3xl mb-3">👑</div>
+        <span class="role-badge bg-purple-100 text-purple-700 mb-3 inline-block">Propriétaire</span>
+        <p class="text-gray-500 text-sm">Accès complet : marges, statistiques, abonnement Stripe, gestion des membres.</p>
+      </div>
+      <div class="feat-card text-center reveal d1">
+        <div class="text-3xl mb-3">📊</div>
+        <span class="role-badge bg-blue-100 text-blue-700 mb-3 inline-block">Manager</span>
+        <p class="text-gray-500 text-sm">Gestion des équipes, statistiques, invitations. Voit les marges produits.</p>
+      </div>
+      <div class="feat-card text-center reveal d2">
+        <div class="text-3xl mb-3">🛒</div>
+        <span class="role-badge bg-green-100 text-green-700 mb-3 inline-block">Vendeur</span>
+        <p class="text-gray-500 text-sm">Crée commandes, devis, factures, gère clients et produits. Ne voit pas les coûts.</p>
+      </div>
+      <div class="feat-card text-center reveal d3">
+        <div class="text-3xl mb-3">🚚</div>
+        <span class="role-badge bg-orange-100 text-orange-700 mb-3 inline-block">Livreur</span>
+        <p class="text-gray-500 text-sm">Vue mobile simplifiée : livraisons du jour, encaissement du solde, mise à jour du statut.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ TARIFS ═══ -->
+<section id="tarifs" class="py-24 px-6 bg-gray-50">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14">
+      <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4 reveal">
+        Tarifs
+      </div>
+      <h2 class="text-4xl font-black text-navy mb-4 reveal d1">
+        Un prix simple,<br/><span class="g-text">tout compris</span>
+      </h2>
+      <p class="text-gray-500 reveal d2">Moins d'un matelas vendu = abonnement rentabilisé pour l'année.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+      <!-- Monthly -->
+      <div class="pricing-card reveal">
+        <div class="text-xl font-bold text-navy mb-1">Mensuel</div>
+        <p class="text-gray-400 text-sm mb-6">Flexible, résiliable à tout moment</p>
+        <div class="flex items-end gap-2 mb-6">
+          <span class="text-5xl font-black text-navy">49€</span>
+          <span class="text-gray-400 mb-2 text-lg">/mois TTC</span>
+        </div>
+        <ul class="space-y-3 mb-8 text-sm text-gray-600">
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Utilisateurs illimités</li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Toutes les fonctionnalités</li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>IA Neo incluse</li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Mises à jour automatiques</li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Support par email</li>
+        </ul>
+        <a href="#essai" class="btn-outline w-full justify-center">Commencer l'essai gratuit</a>
+      </div>
+
+      <!-- Annual -->
+      <div class="pricing-card featured reveal d1">
+        <div class="pricing-badge">MEILLEURE OFFRE</div>
+        <div class="text-xl font-bold text-navy mb-1">Annuel</div>
+        <p class="text-gray-400 text-sm mb-6">Économisez 98€ · 2 mois offerts</p>
+        <div class="flex items-end gap-2 mb-2">
+          <span class="text-5xl font-black text-navy">490€</span>
+          <span class="text-gray-400 mb-2 text-lg">/an TTC</span>
+        </div>
+        <div class="text-sm font-semibold text-green-600 mb-6">≡ 40,8€/mois — soit 2 mois gratuits</div>
+        <ul class="space-y-3 mb-8 text-sm text-gray-600">
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Tout le plan Mensuel</li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Support prioritaire</li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Onboarding personnalisé</li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Tarif garanti 12 mois</li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Facturation annuelle simplifiée</li>
+        </ul>
+        <a href="#essai" class="btn-primary w-full justify-center">
+          Commencer maintenant
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Guarantee -->
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-gray-400 reveal d3">
+      <span class="flex items-center gap-2">🔒 Paiement sécurisé Stripe</span>
+      <span class="flex items-center gap-2">🆓 7 jours d'essai gratuit</span>
+      <span class="flex items-center gap-2">❌ Sans engagement</span>
+      <span class="flex items-center gap-2">🇫🇷 Données hébergées en Europe</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ FAQ ═══ -->
+<section id="faq" class="py-24 px-6 bg-white">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-14">
+      <h2 class="text-4xl font-black text-navy mb-4 reveal">Questions fréquentes</h2>
+    </div>
+    <div class="space-y-4" id="faq-list">
+
+      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden reveal">
+        <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+          <span class="font-semibold text-navy">NeoFlow BOS est-il adapté à mon magasin de literie ?</span>
+          <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-answer px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+          Oui. NeoFlow BOS a été conçu spécifiquement pour le flux des magasins de literie et de mobilier : commande prise en magasin, livraison domicile avec créneau horaire, solde encaissé à la livraison. Toutes les fonctionnalités (acomptes, créneaux, rôle livreur) répondent à ce workflow.
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden reveal d1">
+        <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+          <span class="font-semibold text-navy">Combien d'utilisateurs peut-on ajouter ?</span>
+          <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-answer px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+          Les utilisateurs sont illimités sur les deux plans (Mensuel et Annuel). Vous pouvez inviter tous vos vendeurs, managers et livreurs sans surcoût. Chaque membre reçoit une invitation par email.
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden reveal d2">
+        <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+          <span class="font-semibold text-navy">L'application fonctionne-t-elle sur iPhone et tablette ?</span>
+          <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-answer px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+          Oui. NeoFlow BOS est une PWA (Progressive Web App) : elle s'installe sur iPhone et Android comme une app native, sans passer par l'App Store. Le livreur peut l'utiliser sur son smartphone, le vendeur sur une tablette en magasin.
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden reveal d3">
+        <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+          <span class="font-semibold text-navy">Est-ce que mes données sont sécurisées ?</span>
+          <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-answer px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+          Oui. Les données sont chiffrées en transit (TLS) et au repos. L'accès est strictement cloisonné : chaque magasin ne voit que ses propres données (isolation multi-tenant par Row Level Security). L'hébergement est en Europe via Supabase.
+        </div>
+      </div>
+
+      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden reveal d4">
+        <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
+          <span class="font-semibold text-navy">Puis-je résilier à tout moment ?</span>
+          <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        </button>
+        <div class="faq-answer px-6 pb-5 text-gray-500 text-sm leading-relaxed">
+          Oui pour le plan mensuel — résiliation en 2 clics depuis les paramètres, effective à la fin de la période en cours. Pour le plan annuel, la résiliation est possible mais sans remboursement prorata. Dans les deux cas, vous gardez accès jusqu'à la fin de la période payée.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ CTA ESSAI ═══ -->
+<section id="essai" class="py-24 px-6" style="background:linear-gradient(160deg,#040741 0%,#0a1260 100%);">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-8 reveal">
+      <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+      Essai gratuit — Sans engagement
+    </div>
+    <h2 class="text-4xl md:text-5xl font-black text-white mb-6 reveal d1">
+      Prêt à moderniser<br/>votre magasin ?
+    </h2>
+    <p class="text-white/70 text-xl mb-10 reveal d2">
+      7 jours gratuits. Configuration en 5 minutes.<br/>Aucune formation nécessaire.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center reveal d3">
+      <a href="/signup" class="btn-primary text-lg py-4 px-10">
+        Démarrer l'essai gratuit
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="mt-6 flex flex-wrap justify-center gap-6 text-white/50 text-sm reveal d4">
+      <span>✓ 7 jours gratuits</span>
+      <span>✓ Aucun engagement</span>
+      <span>✓ Installation immédiate</span>
+      <span>✓ Support inclus</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ FOOTER ═══ -->
+<footer class="bg-navy py-12 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-8 pb-10 border-b border-white/10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 g-bg rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-sm">N</span>
+          </div>
+          <span class="text-white font-bold text-lg">NeoFlow <span class="text-primary">BOS</span></span>
+        </div>
+        <p class="text-white/50 text-sm leading-relaxed max-w-xs">Le logiciel de gestion conçu pour les magasins de literie et de mobilier. Par Neoflow Agency.</p>
+      </div>
+      <div>
+        <div class="text-white/30 text-xs font-semibold uppercase tracking-wider mb-4">Produit</div>
+        <ul class="space-y-2">
+          <li><a href="#fonctionnalites" class="text-white/60 hover:text-white text-sm transition-colors">Fonctionnalités</a></li>
+          <li><a href="#tarifs" class="text-white/60 hover:text-white text-sm transition-colors">Tarifs</a></li>
+          <li><a href="#faq" class="text-white/60 hover:text-white text-sm transition-colors">FAQ</a></li>
+          <li><a href="index.html" class="text-white/60 hover:text-white text-sm transition-colors">Neoflow Agency</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-white/30 text-xs font-semibold uppercase tracking-wider mb-4">Légal</div>
+        <ul class="space-y-2">
+          <li><a href="/mentions-legales" class="text-white/60 hover:text-white text-sm transition-colors">Mentions légales</a></li>
+          <li><a href="/cgu" class="text-white/60 hover:text-white text-sm transition-colors">CGU / CGV</a></li>
+          <li><a href="/cgu" class="text-white/60 hover:text-white text-sm transition-colors">Confidentialité</a></li>
+          <li><a href="mailto:contacte.neoflowagency@gmail.com" class="text-white/60 hover:text-white text-sm transition-colors">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-white/30 text-sm">© 2025 Neoflow Agency. Tous droits réservés.</p>
+      <p class="text-white/30 text-sm">Fait avec ❤️ en France</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+
+  function toggleMenu() {
+    document.getElementById('mobile-nav').classList.toggle('open');
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

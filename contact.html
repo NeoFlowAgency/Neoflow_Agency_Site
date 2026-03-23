@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — NeoFlow Agency</title>
+  <meta name="description" content="Contactez NeoFlow Agency pour démarrer votre projet d'application web ou mobile. Réponse sous 24h, premier échange gratuit.">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner" id="navbarInner">
+    <a href="/" class="nav-logo">
+      <img src="./logos/NFagency_bleu.png" alt="NeoFlow Agency"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <span class="nav-logo-fallback" style="display:none">N</span>
+      <span class="nav-wordmark">Neo<span>Flow</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Accueil</a>
+      <a href="/services.html" class="nav-link">Services</a>
+      <a href="/neoflow-bos.html" class="nav-link">NeoFlow BOS</a>
+      <a href="/contact.html" class="nav-link active">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="/neoflow-bos.html" class="btn btn-ghost" style="font-size:13px;padding:9px 18px">NeoFlow BOS</a>
+      <a href="/contact.html" class="btn btn-primary" style="font-size:13px;padding:9px 18px">
+        Démarrer un projet
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <button class="nav-burger" id="burgerBtn" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div id="mobileNav" style="position:fixed;inset:0;z-index:200;background:rgba(4,7,65,.97);backdrop-filter:blur(16px);padding:24px;display:none;flex-direction:column">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px">
+    <span class="nav-wordmark" style="color:white;font-size:18px">Neo<span style="color:#6B73FF">Flow</span></span>
+    <button id="closeNav" style="color:white;background:rgba(255,255,255,.1);border-radius:10px;padding:8px;cursor:pointer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:4px;flex:1">
+    <a href="/" style="color:rgba(255,255,255,.6);font-size:20px;font-weight:700;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)">Accueil</a>
+    <a href="/services.html" style="color:rgba(255,255,255,.6);font-size:20px;font-weight:700;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)">Services</a>
+    <a href="/neoflow-bos.html" style="color:rgba(255,255,255,.6);font-size:20px;font-weight:700;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)">NeoFlow BOS</a>
+    <a href="/contact.html" style="color:white;font-size:20px;font-weight:700;padding:14px 0">Contact</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero-mesh grid-bg" style="padding:160px 24px 80px;text-align:center;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(49,58,223,.1),transparent 70%);pointer-events:none"></div>
+  <div style="max-width:680px;margin:0 auto;position:relative;z-index:1">
+    <div class="pill-gradient-border anim-up" style="margin-bottom:24px">
+      <span>Premier échange 100% gratuit</span>
+    </div>
+    <h1 class="anim-up d1" style="margin-bottom:20px">
+      Parlons de votre <span class="g-text">projet</span>
+    </h1>
+    <p class="anim-up d2" style="font-size:18px;color:var(--gray-500);line-height:1.7;max-width:520px;margin:0 auto">
+      Décrivez-nous votre idée. On vous répond sous 24h avec une estimation gratuite et sans engagement.
+    </p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<section style="padding:0 24px 100px">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:56px;align-items:start">
+
+    <!-- LEFT — Info -->
+    <div>
+      <!-- Info cards -->
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px">
+        <div class="card anim-up d1" style="display:flex;gap:16px;align-items:flex-start;padding:22px">
+          <div class="icon-box" style="background:rgba(49,58,223,.08);flex-shrink:0">
+            <svg width="18" height="18" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:4px">Email</div>
+            <a href="mailto:contact@neoflow-agency.cloud" style="font-size:14px;color:var(--primary)">contact@neoflow-agency.cloud</a>
+            <div style="font-size:12px;color:var(--gray-400);margin-top:3px">Réponse sous 24h</div>
+          </div>
+        </div>
+
+        <div class="card anim-up d2" style="display:flex;gap:16px;align-items:flex-start;padding:22px">
+          <div class="icon-box" style="background:rgba(34,197,94,.08);flex-shrink:0">
+            <svg width="18" height="18" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path d="M21 2H3v16h5l4 4 4-4h5V2z"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:4px">Instagram</div>
+            <a href="#" style="font-size:14px;color:var(--primary)">@neoflow.agency</a>
+            <div style="font-size:12px;color:var(--gray-400);margin-top:3px">DM ouverts</div>
+          </div>
+        </div>
+
+        <div class="card anim-up d3" style="display:flex;gap:16px;align-items:flex-start;padding:22px">
+          <div class="icon-box" style="background:rgba(245,158,11,.08);flex-shrink:0">
+            <svg width="18" height="18" fill="none" stroke="#d97706" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:4px">Délai de réponse</div>
+            <div style="font-size:14px;color:var(--gray-700)">Sous 24h en semaine</div>
+            <div style="font-size:12px;color:var(--gray-400);margin-top:3px">Du lundi au vendredi</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What to expect -->
+      <div class="card anim-up d4" style="background:var(--gray-50);border-color:var(--gray-100)">
+        <div style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:16px">Ce qui se passe après votre message</div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#313ADF,#040741);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:800;color:white">1</div>
+            <div>
+              <div style="font-weight:600;font-size:13px;color:var(--navy)">Accusé de réception</div>
+              <div style="font-size:12px;color:var(--gray-400);margin-top:2px">Email automatique immédiat pour confirmer la réception.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#313ADF,#040741);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:800;color:white">2</div>
+            <div>
+              <div style="font-weight:600;font-size:13px;color:var(--navy)">Premier échange sous 24h</div>
+              <div style="font-size:12px;color:var(--gray-400);margin-top:2px">On vous répond avec quelques questions pour mieux comprendre votre projet.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#313ADF,#040741);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px;font-weight:800;color:white">3</div>
+            <div>
+              <div style="font-weight:600;font-size:13px;color:var(--navy)">Estimation gratuite</div>
+              <div style="font-size:12px;color:var(--gray-400);margin-top:2px">Délais et fourchette de prix sans engagement. Appel découverte si nécessaire.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NeoFlow BOS teaser -->
+      <div class="card anim-up d5" style="background:linear-gradient(135deg,#040741,#0a1260);border-color:transparent;margin-top:14px;padding:22px">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <div class="icon-box" style="background:rgba(255,255,255,.08);flex-shrink:0">
+            <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:14px;color:white;margin-bottom:4px">Vous cherchez NeoFlow BOS ?</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.5;margin-bottom:12px">L'essai gratuit de 7 jours est disponible directement en ligne — pas besoin de nous contacter.</div>
+            <a href="/neoflow-bos.html" class="btn btn-outline-white" style="font-size:12px;padding:8px 16px">Découvrir NeoFlow BOS</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — Form -->
+    <div class="card anim-up d1" style="padding:40px;box-shadow:var(--shadow-lg)">
+      <h2 style="font-size:1.5rem;margin-bottom:6px">Décrivez votre projet</h2>
+      <p style="color:var(--gray-400);font-size:14px;margin-bottom:32px">Tous les champs sont obligatoires.</p>
+
+      <form id="contactForm" style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="form-group">
+            <label class="form-label" for="firstName">Prénom</label>
+            <input class="form-input" type="text" id="firstName" name="firstName" placeholder="Lucas" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lastName">Nom</label>
+            <input class="form-input" type="text" id="lastName" name="lastName" placeholder="Martin" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email professionnel</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="vous@votre-entreprise.fr" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="company">Entreprise / Projet</label>
+          <input class="form-input" type="text" id="company" name="company" placeholder="Nom de votre entreprise ou projet" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="projectType">Type de projet</label>
+          <select class="form-input form-select" id="projectType" name="projectType" required>
+            <option value="" disabled selected>Sélectionnez un type</option>
+            <option value="saas">Application SaaS (abonnement)</option>
+            <option value="pwa">App mobile / PWA</option>
+            <option value="backoffice">Back-office / Outil interne</option>
+            <option value="integration">Intégration API / Connexion outils</option>
+            <option value="bos">NeoFlow BOS sur-mesure</option>
+            <option value="autre">Autre</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="budget">Budget estimé</label>
+          <select class="form-input form-select" id="budget" name="budget" required>
+            <option value="" disabled selected>Votre fourchette de budget</option>
+            <option value="< 2k">Moins de 2 000€</option>
+            <option value="2k-5k">2 000€ — 5 000€</option>
+            <option value="5k-15k">5 000€ — 15 000€</option>
+            <option value="15k-50k">15 000€ — 50 000€</option>
+            <option value="> 50k">Plus de 50 000€</option>
+            <option value="abonnement">Abonnement NeoFlow BOS (49€/mois)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">Décrivez votre projet</label>
+          <textarea class="form-input form-textarea" id="message" name="message" placeholder="Décrivez votre idée, vos besoins principaux, votre secteur d'activité, et ce que vous souhaitez accomplir avec cette application..." required style="min-height:140px"></textarea>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <input type="checkbox" id="rgpd" name="rgpd" required style="margin-top:2px;width:15px;height:15px;accent-color:var(--primary);flex-shrink:0">
+          <label for="rgpd" style="font-size:12px;color:var(--gray-500);line-height:1.6;cursor:pointer">
+            J'accepte que NeoFlow Agency utilise mes données pour répondre à ma demande, conformément à la <a href="/cgu.html" style="color:var(--primary)">politique de confidentialité</a>.
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;font-size:15px" id="submitBtn">
+          Envoyer ma demande
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <p style="font-size:12px;color:var(--gray-400);text-align:center">
+          En soumettant ce formulaire, vous acceptez nos <a href="/cgu.html" style="color:var(--primary)">CGU</a>. Aucun démarchage commercial.
+        </p>
+      </form>
+
+      <!-- Success message (hidden by default) -->
+      <div id="successMsg" style="display:none;text-align:center;padding:40px 20px">
+        <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
+          <svg width="28" height="28" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h3 style="margin-bottom:10px;color:var(--navy)">Message envoyé !</h3>
+        <p style="color:var(--gray-500);font-size:14px;line-height:1.7">Merci pour votre message. On vous répond sous 24h en semaine avec un premier retour sur votre projet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ RAPIDE -->
+<section style="background:var(--gray-50);padding:80px 24px">
+  <div style="max-width:700px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:40px">
+      <h2 class="reveal" style="font-size:1.8rem">Questions fréquentes</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px" class="reveal d1">
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <h3>Vous travaillez avec des petites structures ?</h3>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Absolument. Nous travaillons aussi bien avec des entrepreneurs solo qu'avec des PME ou des startups. L'important est d'avoir un projet clair et la volonté de le réaliser.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <h3>Quel est le délai pour livrer une application ?</h3>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Cela dépend de la complexité. Un MVP fonctionnel peut être livré en 3-6 semaines. Une application complète comme NeoFlow BOS représente plusieurs mois de développement. Nous établissons un planning précis lors du brief.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <h3>Est-ce que je reçois le code source ?</h3>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Oui, toujours. Le code source complet vous appartient à la livraison. Nous vous le transmettons via un repository GitHub privé avec toute la documentation technique.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <h3>Proposez-vous de la maintenance après livraison ?</h3>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Oui. Nous proposons des contrats de maintenance mensuelle optionnels pour assurer les mises à jour de sécurité, corriger les bugs et faire évoluer l'application selon vos besoins.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <img src="./logos/NFagency_blanc.png" alt="NeoFlow Agency"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span style="display:none;color:white;font-weight:800;font-size:18px">NeoFlow Agency</span>
+      </div>
+      <p class="footer-tagline">Développement d'applications web et mobiles sur-mesure pour les entrepreneurs et PME ambitieux.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Produit</div>
+      <ul class="footer-links">
+        <li><a href="/neoflow-bos.html">NeoFlow BOS</a></li>
+        <li><a href="/neoflow-bos.html#features">Fonctionnalités</a></li>
+        <li><a href="/neoflow-bos.html#pricing">Tarifs</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Agence</div>
+      <ul class="footer-links">
+        <li><a href="/services.html">Services</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/contact.html">Devis gratuit</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Légal</div>
+      <ul class="footer-links">
+        <li><a href="/mentions-legales.html">Mentions légales</a></li>
+        <li><a href="/cgu.html">CGU / CGV</a></li>
+        <li><a href="/cgu.html">Confidentialité</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 NeoFlow Agency. Tous droits réservés.</p>
+    <p>neoflow-agency.cloud</p>
+  </div>
+</footer>
+
+<script>
+  const navbarInner = document.getElementById('navbarInner');
+  window.addEventListener('scroll', () => navbarInner.classList.toggle('scrolled', window.scrollY > 20));
+  document.getElementById('burgerBtn').addEventListener('click', () => {
+    document.getElementById('mobileNav').style.display = 'flex';
+  });
+  document.getElementById('closeNav').addEventListener('click', () => {
+    document.getElementById('mobileNav').style.display = 'none';
+  });
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Form submit (simulation — à brancher sur un vrai endpoint)
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Envoi en cours...';
+    btn.disabled = true;
+    // Simulate async send
+    setTimeout(() => {
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    }, 1200);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

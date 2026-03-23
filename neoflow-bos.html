@@ -1,311 +1,204 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NeoFlow BOS — Le logiciel de gestion pour magasins de literie</title>
-  <meta name="description" content="NeoFlow BOS gère vos commandes, livraisons, stock et facturation. Assistant IA intégré. Essai gratuit 7 jours. 49€/mois."/>
-  <meta property="og:title" content="NeoFlow BOS — Logiciel de gestion pour magasins" />
-  <meta property="og:description" content="Commandes, livraisons avec créneaux, IA intégrée. 49€/mois." />
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: { primary: '#313ADF', navy: '#040741' },
-          fontFamily: { sans: ['Inter', 'sans-serif'] }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    *, body { font-family: 'Inter', sans-serif; }
-    html { scroll-behavior: smooth; }
-
-    .g-text { background:linear-gradient(135deg,#313ADF 0%,#6B73FF 50%,#040741 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .g-bg   { background:linear-gradient(135deg,#313ADF 0%,#040741 100%); }
-    .g-bar  { background:linear-gradient(90deg,#313ADF 0%,#6B73FF 50%,#040741 100%); }
-
-    nav { backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); background:rgba(255,255,255,.92); transition:box-shadow .3s; }
-    nav.scrolled { box-shadow:0 2px 24px rgba(4,7,65,.09); }
-
-    @keyframes fadeUp  { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes floatY  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-    @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
-
-    .anim-fade-up { animation:fadeUp .65s ease both; }
-    .delay-1{animation-delay:.1s} .delay-2{animation-delay:.22s} .delay-3{animation-delay:.34s} .delay-4{animation-delay:.46s}
-    .float { animation:floatY 5s ease-in-out infinite; }
-
-    .reveal { opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .6s ease; }
-    .reveal.visible { opacity:1; transform:none; }
-    .reveal.d1{transition-delay:.1s} .reveal.d2{transition-delay:.2s} .reveal.d3{transition-delay:.3s} .reveal.d4{transition-delay:.4s} .reveal.d5{transition-delay:.5s}
-
-    .btn-primary { background:linear-gradient(135deg,#313ADF,#040741); color:#fff; font-weight:600; border-radius:12px; padding:14px 28px; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 16px rgba(49,58,223,.35); transition:all .25s ease; cursor:pointer; }
-    .btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(49,58,223,.5); }
-
-    .btn-outline { border:2px solid #e5e7eb; background:white; color:#040741; font-weight:600; border-radius:12px; padding:12px 26px; display:inline-flex; align-items:center; gap:8px; transition:all .25s ease; cursor:pointer; }
-    .btn-outline:hover { border-color:#313ADF; color:#313ADF; }
-
-    .feat-card { background:#fff; border:1.5px solid #eef0fe; border-radius:20px; padding:28px; transition:all .3s ease; }
-    .feat-card:hover { transform:translateY(-5px); box-shadow:0 20px 48px rgba(49,58,223,.1); border-color:#c7caf8; }
-
-    /* screenshot placeholder */
-    .screenshot-placeholder { background:linear-gradient(135deg,#eef0fe,#e8ecff); border-radius:16px; overflow:hidden; border:1.5px solid #c7caf8; }
-
-    /* App mockup */
-    .mockup-wrap { background:linear-gradient(135deg,#f0f3ff,#e8ecff); border-radius:24px; padding:16px; }
-    .mockup-inner { background:#fff; border-radius:14px; overflow:hidden; box-shadow:0 20px 60px rgba(4,7,65,.15); }
-    .mockup-bar { height:32px; background:#040741; display:flex; align-items:center; padding:0 14px; gap:5px; }
-    .mockup-dot { width:9px; height:9px; border-radius:50%; }
-    .kpi-chip { background:#f0f3ff; border:1px solid #dde1fb; border-radius:8px; padding:8px 12px; }
-
-    /* Kanban */
-    .kanban-col { background:#f8f9ff; border:1.5px solid #eef0fe; border-radius:14px; padding:12px; flex:1; min-width:120px; }
-    .kanban-card { background:#fff; border:1px solid #eef0fe; border-radius:8px; padding:8px 10px; font-size:11.5px; margin-bottom:6px; box-shadow:0 1px 4px rgba(0,0,0,.04); }
-    .kanban-header { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.6px; padding:4px 8px; border-radius:6px; margin-bottom:10px; }
-
-    /* Pricing */
-    .pricing-card { background:#fff; border:2px solid #eef0fe; border-radius:24px; padding:36px; transition:all .3s; }
-    .pricing-card.featured { border-color:#313ADF; box-shadow:0 20px 60px rgba(49,58,223,.15); position:relative; }
-    .pricing-badge { position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,#313ADF,#040741); color:#fff; font-size:11px; font-weight:700; padding:4px 14px; border-radius:99px; white-space:nowrap; letter-spacing:.5px; }
-
-    /* FAQ */
-    .faq-answer { max-height:0; overflow:hidden; transition:max-height .35s ease, padding .35s ease; }
-    .faq-item.open .faq-answer { max-height:300px; padding-top:12px; }
-    .faq-icon { transition:transform .3s ease; }
-    .faq-item.open .faq-icon { transform:rotate(45deg); }
-
-    /* role badge */
-    .role-badge { border-radius:99px; font-size:11px; font-weight:700; padding:3px 10px; }
-
-    /* chat UI */
-    .chat-msg { padding:10px 14px; border-radius:16px; font-size:13px; max-width:82%; line-height:1.5; }
-    .chat-msg.in  { background:#f0f3ff; color:#040741; border-radius:16px 16px 16px 4px; }
-    .chat-msg.out { background:linear-gradient(135deg,#313ADF,#040741); color:#fff; border-radius:16px 16px 4px 16px; margin-left:auto; }
-
-    /* bar fill */
-    .bar { height:100%; border-radius:4px; background:linear-gradient(135deg,#313ADF,#6B73FF); }
-
-    #mobile-nav { display:none; }
-    #mobile-nav.open { display:block; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeoFlow BOS — Business Operating System pour commerçants et PME</title>
+  <meta name="description" content="NeoFlow BOS centralise commandes, factures, stock, livraisons, CRM et IA dans une seule app. 49€/mois, 7 jours d'essai gratuit.">
+  <link rel="stylesheet" href="./styles.css">
 </head>
+<body>
 
-<body class="bg-white text-navy antialiased overflow-x-hidden">
-
-<div class="h-1 w-full g-bar"></div>
-
-<!-- ═══════════════════════════════════════ NAV ═══ -->
-<nav class="fixed top-1 left-0 right-0 z-50 px-6" id="navbar">
-  <div class="max-w-6xl mx-auto flex items-center justify-between h-16">
-    <a href="/" class="flex items-center gap-2">
-      <div class="w-8 h-8 g-bg rounded-lg flex items-center justify-center">
-        <span class="text-white font-bold text-sm">N</span>
-      </div>
-      <span class="font-bold text-navy">NeoFlow<span class="text-primary"> BOS</span></span>
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark" id="navbar">
+  <div class="navbar-inner nav-dark" id="navbarInner">
+    <a href="/" class="nav-logo">
+      <img src="./logos/NFbos_blanc.png" alt="NeoFlow BOS"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <span class="nav-logo-fallback" style="display:none">B</span>
+      <span class="nav-wordmark" style="color:white">Neo<span>Flow</span> <span style="color:rgba(255,255,255,.4);font-weight:400">BOS</span></span>
     </a>
-
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#fonctionnalites" class="text-gray-600 hover:text-primary font-medium text-sm transition-colors">Fonctionnalités</a>
-      <a href="#comment-ca-marche" class="text-gray-600 hover:text-primary font-medium text-sm transition-colors">Comment ça marche</a>
-      <a href="#tarifs" class="text-gray-600 hover:text-primary font-medium text-sm transition-colors">Tarifs</a>
-      <a href="#faq" class="text-gray-600 hover:text-primary font-medium text-sm transition-colors">FAQ</a>
+    <div class="nav-links">
+      <a href="/" class="nav-link">Accueil</a>
+      <a href="#features" class="nav-link">Fonctionnalités</a>
+      <a href="#pricing" class="nav-link">Tarifs</a>
+      <a href="#faq" class="nav-link">FAQ</a>
     </div>
-
-    <div class="hidden md:flex items-center gap-3">
-      <a href="index.html" class="text-gray-500 hover:text-navy text-sm font-medium transition-colors">← Neoflow Agency</a>
-      <a href="#essai" class="btn-primary text-sm py-2.5 px-5">
-        Essai gratuit 7 jours
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    <div class="nav-actions">
+      <a href="#pricing" class="btn btn-outline-white" style="font-size:13px;padding:9px 18px">Voir les tarifs</a>
+      <a href="https://app.neoflow.io/signup" class="btn btn-primary" style="font-size:13px;padding:9px 18px">
+        Essai gratuit 7j
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
-
-    <button class="md:hidden p-2 rounded-lg text-navy" onclick="toggleMenu()">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    <button class="nav-burger" id="burgerBtn" aria-label="Menu" style="color:white">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
     </button>
-  </div>
-  <div id="mobile-nav" class="bg-white border-t border-gray-100 py-4 px-2 rounded-b-2xl shadow-xl">
-    <a href="#fonctionnalites" class="block px-4 py-3 text-gray-600 font-medium text-sm rounded-lg hover:bg-gray-50" onclick="toggleMenu()">Fonctionnalités</a>
-    <a href="#tarifs" class="block px-4 py-3 text-gray-600 font-medium text-sm rounded-lg hover:bg-gray-50" onclick="toggleMenu()">Tarifs</a>
-    <a href="#faq" class="block px-4 py-3 text-gray-600 font-medium text-sm rounded-lg hover:bg-gray-50" onclick="toggleMenu()">FAQ</a>
-    <div class="px-4 pt-3">
-      <a href="#essai" class="btn-primary w-full justify-center text-sm">Essai gratuit 7 jours</a>
-    </div>
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════ HERO ═══ -->
-<section class="pt-32 pb-20 px-6 bg-white">
-  <div class="max-w-6xl mx-auto">
-    <div class="max-w-3xl mx-auto text-center mb-16">
+<!-- Mobile nav -->
+<div id="mobileNav" style="position:fixed;inset:0;z-index:200;background:rgba(4,7,65,.97);backdrop-filter:blur(16px);padding:24px;display:none;flex-direction:column">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px">
+    <span style="color:white;font-weight:800;font-size:18px">NeoFlow <span style="color:#6B73FF">BOS</span></span>
+    <button id="closeNav" style="color:white;background:rgba(255,255,255,.1);border-radius:10px;padding:8px;cursor:pointer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:4px;flex:1">
+    <a href="#features" style="color:rgba(255,255,255,.6);font-size:20px;font-weight:700;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)">Fonctionnalités</a>
+    <a href="#pricing" style="color:rgba(255,255,255,.6);font-size:20px;font-weight:700;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)">Tarifs</a>
+    <a href="#faq" style="color:rgba(255,255,255,.6);font-size:20px;font-weight:700;padding:14px 0">FAQ</a>
+  </div>
+  <a href="https://app.neoflow.io/signup" class="btn btn-primary btn-lg" style="justify-content:center;margin-top:24px">Essai gratuit 7 jours</a>
+</div>
 
-      <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-8 anim-fade-up">
-        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-        Logiciel de gestion pour commerçants
+<!-- HERO -->
+<section style="background:linear-gradient(160deg,#040741 0%,#0a1260 50%,#040741 100%);padding:160px 24px 0;overflow:hidden;position:relative">
+  <div style="position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(49,58,223,.25),transparent 70%);pointer-events:none"></div>
+  <div style="position:absolute;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none"></div>
+
+  <div style="max-width:1160px;margin:0 auto;text-align:center;position:relative;z-index:1">
+    <div class="eyebrow anim-up" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);margin-bottom:24px;display:inline-flex">
+      <span class="eyebrow-dot green"></span>
+      Disponible maintenant — 7 jours d'essai gratuit
+    </div>
+    <h1 class="anim-up d1" style="color:white;max-width:800px;margin:0 auto 24px">
+      Le back-office tout-en-un pour les commerçants qui veulent <span style="background:linear-gradient(135deg,#6B73FF,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">aller vite</span>
+    </h1>
+    <p class="anim-up d2" style="color:rgba(255,255,255,.65);font-size:18px;line-height:1.7;max-width:560px;margin:0 auto 40px">
+      Commandes, factures, devis, stock, livraisons, CRM clients et assistant IA — tout en une seule app, accessible depuis n'importe quel appareil.
+    </p>
+    <div class="anim-up d3" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:60px">
+      <a href="https://app.neoflow.io/signup" class="btn btn-primary btn-lg" style="box-shadow:0 12px 40px rgba(49,58,223,.5)">
+        Commencer l'essai gratuit
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#features" class="btn btn-outline-white btn-lg">Voir les fonctionnalités</a>
+    </div>
+    <div class="anim-up d4" style="display:flex;justify-content:center;gap:32px;margin-bottom:60px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:13px">
+        <svg width="14" height="14" fill="none" stroke="#22c55e" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        Aucune CB requise
       </div>
-
-      <h1 class="text-5xl md:text-6xl font-black text-navy leading-[1.1] mb-6 anim-fade-up delay-1">
-        Gérez votre magasin<br/>
-        <span class="g-text">de literie en 5 min.</span>
-      </h1>
-
-      <p class="text-xl text-gray-500 leading-relaxed mb-10 anim-fade-up delay-2">
-        Commandes, livraisons avec créneaux, stock, facturation PDF et assistant IA — tout dans une seule app. Conçu pour le flux exact des magasins de literie et de mobilier.
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center anim-fade-up delay-3">
-        <a href="#essai" class="btn-primary text-lg py-4 px-8">
-          Démarrer l'essai gratuit
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#fonctionnalites" class="btn-outline text-lg py-4 px-8">
-          Voir les fonctionnalités
-        </a>
+      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:13px">
+        <svg width="14" height="14" fill="none" stroke="#22c55e" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        Installation instantanée
       </div>
-
-      <p class="mt-4 text-sm text-gray-400 anim-fade-up delay-4">7 jours gratuits · Aucun engagement · CB requise, aucun débit pendant l'essai</p>
+      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:13px">
+        <svg width="14" height="14" fill="none" stroke="#22c55e" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        Résiliable à tout moment
+      </div>
     </div>
 
-    <!-- ── Dashboard hero mockup ── -->
-    <div class="float anim-fade-up delay-2">
-      <div class="mockup-wrap shadow-2xl max-w-4xl mx-auto">
-        <div class="mockup-inner">
-          <!-- Bar -->
-          <div class="mockup-bar">
-            <div class="mockup-dot" style="background:#ef4444"></div>
-            <div class="mockup-dot" style="background:#f59e0b"></div>
-            <div class="mockup-dot" style="background:#22c55e"></div>
-            <div class="ml-auto flex items-center gap-2">
-              <div class="h-4 w-24 bg-white/10 rounded-full"></div>
-              <div class="h-4 w-8 bg-white/10 rounded-full"></div>
-            </div>
+    <!-- Hero dashboard screenshot -->
+    <div style="position:relative;max-width:900px;margin:0 auto">
+      <div class="mockup-outer" style="box-shadow:0 40px 120px rgba(0,0,0,.5)">
+        <div class="mockup-window">
+          <div class="mockup-titlebar">
+            <span class="mockup-dot" style="background:#ff5f57"></span>
+            <span class="mockup-dot" style="background:#ffbd2e"></span>
+            <span class="mockup-dot" style="background:#28c940"></span>
+            <span style="flex:1;text-align:center;font-size:11px;color:rgba(255,255,255,.3)">app.neoflow.io — NeoFlow BOS</span>
           </div>
-
-          <!-- Layout -->
-          <div class="flex" style="min-height:320px;">
-            <!-- Sidebar -->
-            <div style="width:60px;background:#040741;" class="flex flex-col items-center py-5 gap-4 flex-shrink-0">
-              <div class="w-8 h-8 g-bg rounded-lg flex items-center justify-center text-white text-xs font-bold">N</div>
-              <div class="w-5 h-5 bg-white/20 rounded mt-2"></div>
-              <div class="w-5 h-5 bg-primary rounded"></div>
-              <div class="w-5 h-5 bg-white/20 rounded"></div>
-              <div class="w-5 h-5 bg-white/20 rounded"></div>
-              <div class="w-5 h-5 bg-white/20 rounded"></div>
-              <div class="w-5 h-5 bg-white/20 rounded"></div>
+          <div style="display:flex;height:380px">
+            <div class="mockup-sidebar" style="width:68px;gap:14px">
+              <div style="color:rgba(255,255,255,.3);font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;writing-mode:horizontal-tb;width:44px;text-align:center;margin-bottom:4px">BOS</div>
+              <div class="mock-icon active" style="width:36px;height:36px;border-radius:10px"></div>
+              <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
+              <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
+              <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
+              <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
+              <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
+              <div style="margin-top:auto"></div>
+              <div class="mock-icon" style="width:36px;height:36px;border-radius:50%"></div>
             </div>
-
-            <!-- Content -->
-            <div class="flex-1 bg-gray-50 p-5 overflow-hidden">
-              <!-- Header -->
-              <div class="flex items-center justify-between mb-4">
+            <div style="flex:1;padding:20px;background:#f8f9ff;display:flex;flex-direction:column;gap:14px;overflow:hidden">
+              <!-- Header row -->
+              <div style="display:flex;justify-content:space-between;align-items:center">
                 <div>
-                  <div class="text-sm font-bold text-navy">Tableau de bord</div>
-                  <div class="text-xs text-gray-400">Mardi 18 mars 2025</div>
+                  <div style="font-size:14px;font-weight:800;color:var(--navy)">Tableau de bord</div>
+                  <div style="font-size:11px;color:var(--gray-400)">Mars 2025</div>
                 </div>
-                <div class="flex items-center gap-2">
-                  <div class="h-7 w-24 bg-primary/10 rounded-lg"></div>
-                  <div class="w-7 h-7 g-bg rounded-lg"></div>
-                </div>
-              </div>
-
-              <!-- KPI row -->
-              <div class="grid grid-cols-4 gap-3 mb-4">
-                <div class="kpi-chip">
-                  <div class="text-xs text-gray-400 mb-1">CA mois</div>
-                  <div class="text-base font-black text-navy">24 850€</div>
-                  <div class="flex items-center gap-1 mt-1"><span class="text-xs text-green-500 font-semibold">↑ +12%</span></div>
-                </div>
-                <div class="kpi-chip">
-                  <div class="text-xs text-gray-400 mb-1">Commandes</div>
-                  <div class="text-base font-black text-navy">18</div>
-                  <div class="text-xs text-primary mt-1">actives</div>
-                </div>
-                <div class="kpi-chip">
-                  <div class="text-xs text-gray-400 mb-1">Livraisons</div>
-                  <div class="text-base font-black text-navy">7</div>
-                  <div class="text-xs text-orange-500 mt-1">planifiées</div>
-                </div>
-                <div class="kpi-chip">
-                  <div class="text-xs text-gray-400 mb-1">Soldes</div>
-                  <div class="text-base font-black text-navy">3 240€</div>
-                  <div class="text-xs text-red-500 mt-1">à encaisser</div>
+                <div style="display:flex;gap:8px">
+                  <div style="background:white;border:1px solid var(--gray-100);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;color:var(--navy)">Exporter</div>
+                  <div style="background:var(--primary);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;color:white">+ Commande</div>
                 </div>
               </div>
-
-              <!-- Chart + Orders split -->
-              <div class="grid grid-cols-5 gap-3">
-                <!-- Chart -->
-                <div class="col-span-3 bg-white border border-gray-100 rounded-xl p-3">
-                  <div class="flex items-center justify-between mb-3">
-                    <div class="text-xs font-semibold text-navy">CA des 7 derniers jours</div>
-                    <div class="text-xs text-gray-400">Cette semaine</div>
+              <!-- KPIs -->
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+                <div class="kpi-mini">
+                  <div style="font-size:9px;color:var(--gray-400);margin-bottom:4px">CA du mois</div>
+                  <div style="font-size:16px;font-weight:800;color:var(--navy)">12 490€</div>
+                  <div style="font-size:10px;color:#16a34a;font-weight:600;margin-top:2px">▲ 18% vs M-1</div>
+                </div>
+                <div class="kpi-mini">
+                  <div style="font-size:9px;color:var(--gray-400);margin-bottom:4px">Commandes</div>
+                  <div style="font-size:16px;font-weight:800;color:var(--navy)">247</div>
+                  <div style="font-size:10px;color:#16a34a;font-weight:600;margin-top:2px">▲ 12%</div>
+                </div>
+                <div class="kpi-mini">
+                  <div style="font-size:9px;color:var(--gray-400);margin-bottom:4px">Clients actifs</div>
+                  <div style="font-size:16px;font-weight:800;color:var(--navy)">84</div>
+                  <div style="font-size:10px;color:#16a34a;font-weight:600;margin-top:2px">▲ 5%</div>
+                </div>
+                <div class="kpi-mini">
+                  <div style="font-size:9px;color:var(--gray-400);margin-bottom:4px">Marge nette</div>
+                  <div style="font-size:16px;font-weight:800;color:var(--navy)">38.2%</div>
+                  <div style="font-size:10px;color:#16a34a;font-weight:600;margin-top:2px">▲ 2.1pt</div>
+                </div>
+              </div>
+              <!-- Chart + table -->
+              <div style="display:grid;grid-template-columns:3fr 2fr;gap:12px;flex:1">
+                <div style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:14px;display:flex;flex-direction:column">
+                  <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:12px">Évolution du chiffre d'affaires</div>
+                  <div style="display:flex;align-items:flex-end;gap:6px;flex:1">
+                    <div class="mock-bar" style="flex:1;height:38%"></div>
+                    <div class="mock-bar" style="flex:1;height:55%"></div>
+                    <div class="mock-bar" style="flex:1;height:42%"></div>
+                    <div class="mock-bar" style="flex:1;height:72%"></div>
+                    <div class="mock-bar" style="flex:1;height:60%"></div>
+                    <div class="mock-bar" style="flex:1;height:88%"></div>
+                    <div class="mock-bar" style="flex:1;height:100%"></div>
+                    <div class="mock-bar" style="flex:1;height:78%;opacity:.35"></div>
                   </div>
-                  <div class="flex items-end gap-2 h-20">
-                    <div class="flex-1 flex flex-col justify-end gap-1">
-                      <div class="bar rounded" style="height:45%"></div>
-                      <div class="text-xs text-gray-300 text-center">L</div>
-                    </div>
-                    <div class="flex-1 flex flex-col justify-end gap-1">
-                      <div class="bar rounded" style="height:70%"></div>
-                      <div class="text-xs text-gray-300 text-center">M</div>
-                    </div>
-                    <div class="flex-1 flex flex-col justify-end gap-1">
-                      <div class="bar rounded" style="height:55%"></div>
-                      <div class="text-xs text-gray-300 text-center">M</div>
-                    </div>
-                    <div class="flex-1 flex flex-col justify-end gap-1">
-                      <div class="bar rounded" style="height:85%"></div>
-                      <div class="text-xs text-gray-300 text-center">J</div>
-                    </div>
-                    <div class="flex-1 flex flex-col justify-end gap-1">
-                      <div class="bar rounded" style="height:60%"></div>
-                      <div class="text-xs text-gray-300 text-center">V</div>
-                    </div>
-                    <div class="flex-1 flex flex-col justify-end gap-1">
-                      <div class="bar rounded" style="height:90%"></div>
-                      <div class="text-xs text-gray-300 text-center">S</div>
-                    </div>
-                    <div class="flex-1 flex flex-col justify-end gap-1">
-                      <div class="bar rounded opacity-25" style="height:30%"></div>
-                      <div class="text-xs text-gray-300 text-center">D</div>
-                    </div>
+                  <div style="display:flex;justify-content:space-between;margin-top:6px">
+                    <span style="font-size:9px;color:var(--gray-400)">Août</span>
+                    <span style="font-size:9px;color:var(--gray-400)">Sep</span>
+                    <span style="font-size:9px;color:var(--gray-400)">Oct</span>
+                    <span style="font-size:9px;color:var(--gray-400)">Nov</span>
+                    <span style="font-size:9px;color:var(--gray-400)">Déc</span>
+                    <span style="font-size:9px;color:var(--gray-400)">Jan</span>
+                    <span style="font-size:9px;color:var(--gray-400)">Fév</span>
+                    <span style="font-size:9px;color:var(--gray-400)">Mars</span>
                   </div>
                 </div>
-
-                <!-- Orders -->
-                <div class="col-span-2 bg-white border border-gray-100 rounded-xl p-3">
-                  <div class="text-xs font-semibold text-navy mb-3">Commandes récentes</div>
-                  <div class="space-y-2">
-                    <div class="flex items-center gap-2">
-                      <div class="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
-                      <div class="flex-1 min-w-0">
-                        <div class="text-xs font-medium text-navy truncate">Martin D.</div>
-                        <div class="text-xs text-gray-400">1 480€</div>
+                <div style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:14px">
+                  <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:10px">Dernières commandes</div>
+                  <div style="display:flex;flex-direction:column;gap:7px">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                      <div>
+                        <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0247</div>
+                        <div style="font-size:9px;color:var(--gray-400)">Dupont Jean</div>
                       </div>
-                      <span style="font-size:10px;background:#dcfce7;color:#16a34a;font-weight:700;padding:2px 6px;border-radius:99px">Confirmé</span>
+                      <span style="background:#dcfce7;color:#16a34a;font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px">Payé</span>
+                      <span style="font-size:10px;font-weight:700;color:var(--navy)">320€</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                      <div class="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
-                      <div class="flex-1 min-w-0">
-                        <div class="text-xs font-medium text-navy truncate">Sophie M.</div>
-                        <div class="text-xs text-gray-400">2 200€</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                      <div>
+                        <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0246</div>
+                        <div style="font-size:9px;color:var(--gray-400)">Martin Sarah</div>
                       </div>
-                      <span style="font-size:10px;background:#ffedd5;color:#c2410c;font-weight:700;padding:2px 6px;border-radius:99px">En cours</span>
+                      <span style="background:#ffedd5;color:#c2410c;font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px">Livraison</span>
+                      <span style="font-size:10px;font-weight:700;color:var(--navy)">185€</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                      <div class="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                      <div class="flex-1 min-w-0">
-                        <div class="text-xs font-medium text-navy truncate">Pierre L.</div>
-                        <div class="text-xs text-gray-400">890€</div>
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                      <div>
+                        <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0245</div>
+                        <div style="font-size:9px;color:var(--gray-400)">Bernard L.</div>
                       </div>
-                      <span style="font-size:10px;background:#dbeafe;color:#1d4ed8;font-weight:700;padding:2px 6px;border-radius:99px">Livré</span>
+                      <span style="background:#dbeafe;color:#1d4ed8;font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px">Préparation</span>
+                      <span style="font-size:10px;font-weight:700;color:var(--navy)">540€</span>
                     </div>
                   </div>
                 </div>
@@ -318,273 +211,223 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════ CIBLES ═══ -->
-<section class="py-12 px-6 bg-gray-50 border-y border-gray-100">
-  <div class="max-w-5xl mx-auto">
-    <p class="text-center text-gray-400 text-sm font-medium mb-6 reveal">Conçu pour les commerçants qui livrent à domicile</p>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 reveal">
-        <span class="text-2xl">🛏️</span>
-        <span class="text-sm font-semibold text-navy">Literie</span>
-      </div>
-      <div class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 reveal d1">
-        <span class="text-2xl">🛋️</span>
-        <span class="text-sm font-semibold text-navy">Mobilier</span>
-      </div>
-      <div class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 reveal d2">
-        <span class="text-2xl">🍳</span>
-        <span class="text-sm font-semibold text-navy">Électroménager</span>
-      </div>
-      <div class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 reveal d3">
-        <span class="text-2xl">🔧</span>
-        <span class="text-sm font-semibold text-navy">Bricolage</span>
-      </div>
+<!-- STATS STRIP -->
+<section style="background:white;padding:48px 24px;border-bottom:1px solid var(--gray-100)">
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center">
+    <div class="reveal d1">
+      <div style="font-size:2.4rem;font-weight:900;color:var(--navy);line-height:1">49€</div>
+      <div style="font-size:13px;color:var(--gray-500);margin-top:6px">par mois tout inclus</div>
+    </div>
+    <div class="reveal d2">
+      <div style="font-size:2.4rem;font-weight:900;line-height:1" class="g-text">7j</div>
+      <div style="font-size:13px;color:var(--gray-500);margin-top:6px">essai sans CB</div>
+    </div>
+    <div class="reveal d3">
+      <div style="font-size:2.4rem;font-weight:900;color:var(--navy);line-height:1">10+</div>
+      <div style="font-size:13px;color:var(--gray-500);margin-top:6px">modules intégrés</div>
+    </div>
+    <div class="reveal d4">
+      <div style="font-size:2.4rem;font-weight:900;color:var(--navy);line-height:1">∞</div>
+      <div style="font-size:13px;color:var(--gray-500);margin-top:6px">utilisateurs inclus</div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════ FEATURES ═══ -->
-<section id="fonctionnalites" class="py-24 px-6 bg-white">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-16">
-      <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4 reveal">
+<!-- FEATURES -->
+<section id="features" class="section" style="background:var(--gray-50)">
+  <div style="max-width:1160px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:64px">
+      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex">
+        <span class="eyebrow-dot"></span>
         Fonctionnalités
       </div>
-      <h2 class="text-4xl md:text-5xl font-black text-navy mb-4 reveal d1">
-        Tout ce dont votre magasin<br/><span class="g-text">a besoin dans une seule app</span>
-      </h2>
+      <h2 class="reveal d1">Tout ce dont votre business a besoin,<br>dans une seule app</h2>
+      <p class="reveal d2" style="margin-top:16px;color:var(--gray-500);font-size:17px;max-width:540px;margin-left:auto;margin-right:auto">
+        Fini les 6 outils différents qui ne se parlent pas. NeoFlow BOS centralise tout.
+      </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <div class="feat-card reveal">
-        <div class="w-11 h-11 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-          </svg>
+    <div class="bento bento-3" style="gap:16px">
+      <!-- Feature 1 -->
+      <div class="card card-hover reveal d1" style="display:flex;flex-direction:column;gap:16px">
+        <div class="icon-box icon-box-lg" style="background:rgba(49,58,223,.08)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#313ADF" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
         </div>
-        <h3 class="text-lg font-bold text-navy mb-2">Vente rapide (Caisse)</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Caisse tactile avec recherche produits, panier, remises, paiement multi-modes et facture générée automatiquement.</p>
-      </div>
-
-      <div class="feat-card reveal d1">
-        <div class="w-11 h-11 bg-orange-50 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-          </svg>
+        <div>
+          <h3 style="margin-bottom:8px">Commandes &amp; Vente rapide</h3>
+          <p style="font-size:14px;color:var(--gray-500);line-height:1.6">Créez des commandes en quelques secondes depuis le point de vente rapide ou le formulaire complet. Suivi de statut en temps réel.</p>
         </div>
-        <h3 class="text-lg font-bold text-navy mb-2">Commandes & devis</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Workflow complet : devis → commande → acompte → livraison → solde. Remises par ligne, frais de livraison, TVA automatique.</p>
-      </div>
-
-      <div class="feat-card reveal d2">
-        <div class="w-11 h-11 bg-green-50 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-          </svg>
-        </div>
-        <h3 class="text-lg font-bold text-navy mb-2">Livraisons (Kanban)</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Planification avec créneaux horaires, assignation du livreur, vue mobile pour le livreur, encaissement du solde sur place.</p>
-      </div>
-
-      <div class="feat-card reveal d3">
-        <div class="w-11 h-11 bg-purple-50 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-          </svg>
-        </div>
-        <h3 class="text-lg font-bold text-navy mb-2">Factures PDF</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Génération PDF côté serveur, envoi par email automatique, logo et mentions légales personnalisés. Conformes aux exigences fiscales.</p>
-      </div>
-
-      <div class="feat-card reveal d4">
-        <div class="w-11 h-11 bg-pink-50 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
-          </svg>
-        </div>
-        <h3 class="text-lg font-bold text-navy mb-2">CRM Clients</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Fiche client, historique achats, statut automatique (prospect / actif / prioritaire), clients pro (SIRET), alerte clients inactifs.</p>
-      </div>
-
-      <div class="feat-card reveal d5">
-        <div class="w-11 h-11 bg-yellow-50 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-          </svg>
-        </div>
-        <h3 class="text-lg font-bold text-navy mb-2">Stock multi-emplacements</h3>
-        <p class="text-gray-500 text-sm leading-relaxed">Niveaux par emplacement, alertes rupture, transferts, historique des mouvements. Débit automatique à chaque vente.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ LIVRAISONS KANBAN ═══ -->
-<section class="py-24 px-6 bg-gray-50">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-16 items-center">
-      <div>
-        <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6 reveal">
-          Module Livraisons
-        </div>
-        <h2 class="text-4xl font-black text-navy mb-6 reveal d1">
-          Du magasin<br/><span class="g-text">à la porte du client.</span>
-        </h2>
-        <p class="text-gray-500 leading-relaxed mb-8 reveal d2">
-          Votre livreur voit ses livraisons du jour sur son téléphone. Il encaisse le solde sur place, marque la livraison comme terminée. Vous voyez tout en temps réel.
-        </p>
-        <div class="space-y-4 reveal d3">
-          <div class="flex items-start gap-3">
-            <div class="w-7 h-7 g-bg rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-              <span class="text-white text-xs font-bold">1</span>
+        <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--gray-100)">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
+              <svg width="12" height="12" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              Point de vente rapide mobile
             </div>
-            <div>
-              <p class="font-semibold text-navy text-sm">Commande créée en magasin</p>
-              <p class="text-gray-400 text-sm">Acompte encaissé, reste à payer noté</p>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
+              <svg width="12" height="12" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              Suivi des statuts (en cours, livré, payé)
             </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-7 h-7 g-bg rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-              <span class="text-white text-xs font-bold">2</span>
-            </div>
-            <div>
-              <p class="font-semibold text-navy text-sm">Livraison planifiée avec créneau</p>
-              <p class="text-gray-400 text-sm">Matin 8h-12h, après-midi 14h-18h, journée entière…</p>
-            </div>
-          </div>
-          <div class="flex items-start gap-3">
-            <div class="w-7 h-7 g-bg rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
-              <span class="text-white text-xs font-bold">3</span>
-            </div>
-            <div>
-              <p class="font-semibold text-navy text-sm">Livreur encaisse depuis son téléphone</p>
-              <p class="text-gray-400 text-sm">CB, espèces, chèque — le compte est automatiquement soldé</p>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
+              <svg width="12" height="12" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              Remises et commentaires
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Kanban visual -->
-      <div class="reveal d2">
-        <div class="mockup-wrap">
-          <div class="bg-white rounded-xl p-4 shadow-lg">
-            <div class="flex items-center justify-between mb-4">
-              <div class="font-bold text-sm text-navy">Livraisons — Mardi 18 mars</div>
-              <span class="text-xs bg-primary/10 text-primary font-semibold px-3 py-1 rounded-full">7 planifiées</span>
-            </div>
-            <div class="flex gap-3 overflow-x-auto pb-2">
-              <div class="kanban-col">
-                <div class="kanban-header bg-gray-100 text-gray-600">À planifier</div>
-                <div class="kanban-card">
-                  <div class="font-semibold text-navy">Leroy M.</div>
-                  <div class="text-gray-400 mt-0.5">Canapé 3 places</div>
-                  <div class="text-primary font-bold mt-1">1 200€ restant</div>
-                </div>
-              </div>
-              <div class="kanban-col">
-                <div class="kanban-header bg-blue-50 text-blue-700">Planifiée</div>
-                <div class="kanban-card">
-                  <div class="font-semibold text-navy">Martin D.</div>
-                  <div class="text-gray-400 mt-0.5">Matelas 160×200</div>
-                  <div class="text-gray-500 mt-1 text-xs">14h – 16h</div>
-                  <div class="text-primary font-bold">480€ restant</div>
-                </div>
-                <div class="kanban-card">
-                  <div class="font-semibold text-navy">Sophie B.</div>
-                  <div class="text-gray-400 mt-0.5">Sommier + matelas</div>
-                  <div class="text-gray-500 mt-1 text-xs">Matin 8h-12h</div>
-                  <div class="text-primary font-bold">720€ restant</div>
-                </div>
-              </div>
-              <div class="kanban-col">
-                <div class="kanban-header bg-green-50 text-green-700">Livrée ✓</div>
-                <div class="kanban-card opacity-60">
-                  <div class="font-semibold text-navy">Dupont A.</div>
-                  <div class="text-gray-400 mt-0.5">Lit complet</div>
-                  <div class="text-green-600 font-bold mt-1">Soldé ✓</div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- Feature 2 -->
+      <div class="card card-hover reveal d2" style="display:flex;flex-direction:column;gap:16px">
+        <div class="icon-box icon-box-lg" style="background:rgba(22,163,74,.08)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ IA NEO ═══ -->
-<section class="py-24 px-6" style="background:linear-gradient(160deg,#040741 0%,#0a1260 100%);">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-16 items-center">
-
-      <!-- Chat mockup -->
-      <div class="reveal">
-        <div class="mockup-wrap" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);">
-          <div class="rounded-xl overflow-hidden" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);">
-            <div style="background:rgba(255,255,255,.1);padding:14px 18px;display:flex;align-items:center;gap:10px;">
-              <div class="w-8 h-8 g-bg rounded-lg flex items-center justify-center">
-                <span class="text-white text-xs font-bold">N</span>
-              </div>
-              <div>
-                <div class="text-white text-sm font-semibold">Neo — Assistant IA</div>
-                <div class="text-white/50 text-xs">Connecté à votre magasin</div>
-              </div>
-              <div class="ml-auto w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+        <div>
+          <h3 style="margin-bottom:8px">Factures &amp; Devis PDF</h3>
+          <p style="font-size:14px;color:var(--gray-500);line-height:1.6">Générez des factures et devis professionnels en PDF en un clic. Envoi par email automatique, suivi des paiements.</p>
+        </div>
+        <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--gray-100)">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
+              <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              PDF à votre logo généré côté serveur
             </div>
-
-            <div class="p-4 space-y-3" style="min-height:220px;">
-              <div class="chat-msg in">Quel est mon CA de ce mois par rapport au mois dernier ?</div>
-              <div class="chat-msg out">
-                Ce mois : <strong>24 850€</strong> contre 22 180€ le mois dernier.<br/>
-                Soit <strong>+12% de progression</strong>. 🎯<br/>
-                Vos 3 meilleures ventes : Matelas Sérénité (×4), Ensemble Queen (×3), Sommier 160 (×5).
-              </div>
-              <div class="chat-msg in">Quelles livraisons j'ai demain matin ?</div>
-              <div class="chat-msg out">
-                2 livraisons demain matin :<br/>
-                • Sophie Bouchard — 8h-12h — 720€ solde<br/>
-                • Pierre Lecomte — Matin — Retrait magasin
-              </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
+              <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              Conversion devis → facture en 1 clic
             </div>
-
-            <div style="padding:12px;border-top:1px solid rgba(255,255,255,.08);">
-              <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;font-size:13px;color:rgba(255,255,255,.4);">
-                Posez une question sur votre activité…
-              </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
+              <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              Suivi des impayés
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Text -->
-      <div>
-        <div class="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 reveal">
-          <span class="w-2 h-2 bg-purple-400 rounded-full"></span>
-          IA intégrée
+      <!-- Feature 3 -->
+      <div class="card card-hover reveal d3" style="display:flex;flex-direction:column;gap:16px">
+        <div class="icon-box icon-box-lg" style="background:rgba(124,58,237,.08)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
         </div>
-        <h2 class="text-4xl md:text-5xl font-black text-white mb-6 reveal d1">
-          Neo sait tout<br/>sur votre magasin.
-        </h2>
-        <p class="text-white/70 text-lg leading-relaxed mb-8 reveal d2">
-          L'assistant IA Neo lit vos données en temps réel et répond en français à toutes vos questions métier. Pas besoin d'être expert en Excel.
-        </p>
-        <div class="space-y-3 reveal d3">
-          <div class="flex items-center gap-3 text-white/80 text-sm">
-            <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-            "Quel est mon CA de ce mois ?"
+        <div>
+          <h3 style="margin-bottom:8px">Stock &amp; Emplacements</h3>
+          <p style="font-size:14px;color:var(--gray-500);line-height:1.6">Gérez votre inventaire avec alertes de stock bas, mouvements traçables, emplacements physiques et bons de commande fournisseurs.</p>
+        </div>
+        <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--gray-100)">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
+              <svg width="12" height="12" fill="none" stroke="#7c3aed" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              Alertes stock minimum configurables
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
+              <svg width="12" height="12" fill="none" stroke="#7c3aed" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              Gestion multi-emplacements
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
+              <svg width="12" height="12" fill="none" stroke="#7c3aed" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              Bons de commande fournisseurs
+            </div>
           </div>
-          <div class="flex items-center gap-3 text-white/80 text-sm">
-            <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-            "Quelles commandes n'ont pas encore été livrées ?"
+        </div>
+      </div>
+
+      <!-- Feature 4 — Livraisons (wide) -->
+      <div class="card bento-span-2 reveal d1" style="display:flex;gap:32px;align-items:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px">
+          <div class="icon-box icon-box-lg" style="background:rgba(245,158,11,.08);margin-bottom:16px">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
           </div>
-          <div class="flex items-center gap-3 text-white/80 text-sm">
-            <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-            "Quels sont mes produits les plus vendus ce trimestre ?"
+          <h3 style="margin-bottom:10px">Livraisons en kanban</h3>
+          <p style="font-size:14px;color:var(--gray-500);line-height:1.6;margin-bottom:16px">Vue kanban en temps réel pour piloter vos livraisons. Chaque livreur voit ses missions sur son téléphone. Enregistrement du paiement à la livraison inclus.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-orange">À préparer</span>
+            <span class="tag tag-orange">En route</span>
+            <span class="tag tag-green">Livré</span>
           </div>
-          <div class="flex items-center gap-3 text-white/80 text-sm">
-            <span class="w-1.5 h-1.5 bg-primary rounded-full"></span>
-            "Quel solde me reste à encaisser cette semaine ?"
+        </div>
+        <!-- Kanban mini mockup -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;min-width:280px">
+          <div style="background:var(--gray-50);border-radius:10px;padding:10px">
+            <div style="font-size:10px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">À préparer</div>
+            <div style="background:white;border:1px solid var(--gray-100);border-radius:8px;padding:8px;margin-bottom:6px">
+              <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0248</div>
+              <div style="font-size:9px;color:var(--gray-400)">Martin Sarah</div>
+              <div style="font-size:9px;color:var(--primary);margin-top:4px;font-weight:600">185€</div>
+            </div>
+            <div style="background:white;border:1px solid var(--gray-100);border-radius:8px;padding:8px">
+              <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0249</div>
+              <div style="font-size:9px;color:var(--gray-400)">Bernard Luc</div>
+              <div style="font-size:9px;color:var(--primary);margin-top:4px;font-weight:600">320€</div>
+            </div>
+          </div>
+          <div style="background:var(--gray-50);border-radius:10px;padding:10px">
+            <div style="font-size:10px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">En route</div>
+            <div style="background:white;border:1px solid #fed7aa;border-radius:8px;padding:8px">
+              <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0245</div>
+              <div style="font-size:9px;color:var(--gray-400)">Dupont Jean</div>
+              <div style="font-size:9px;font-weight:700;color:#d97706;margin-top:4px">En cours</div>
+            </div>
+          </div>
+          <div style="background:var(--gray-50);border-radius:10px;padding:10px">
+            <div style="font-size:10px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Livré</div>
+            <div style="background:white;border:1px solid #bbf7d0;border-radius:8px;padding:8px;margin-bottom:6px">
+              <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0244</div>
+              <div style="font-size:9px;color:var(--gray-400)">Leroy Anna</div>
+              <div style="font-size:9px;font-weight:700;color:#16a34a;margin-top:4px">Payé CB</div>
+            </div>
+            <div style="background:white;border:1px solid #bbf7d0;border-radius:8px;padding:8px">
+              <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0243</div>
+              <div style="font-size:9px;color:var(--gray-400)">Petit Marc</div>
+              <div style="font-size:9px;font-weight:700;color:#16a34a;margin-top:4px">Payé cash</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="card card-hover reveal d2" style="display:flex;flex-direction:column;gap:16px">
+        <div class="icon-box icon-box-lg" style="background:rgba(49,58,223,.08)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#313ADF" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div>
+          <h3 style="margin-bottom:8px">CRM Clients</h3>
+          <p style="font-size:14px;color:var(--gray-500);line-height:1.6">Fiche client complète avec historique d'achats, CA total, statut (prospect/actif/prioritaire) et contacts pros (SIRET).</p>
+        </div>
+        <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--gray-100)">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
+              <svg width="12" height="12" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              Statut client calculé automatiquement
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
+              <svg width="12" height="12" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              Historique de toutes les commandes
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
+              <svg width="12" height="12" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+              Gestion B2C et B2B (SIRET)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 6 — IA -->
+      <div class="card reveal d3" style="display:flex;flex-direction:column;gap:16px;background:linear-gradient(135deg,#040741,#0a1260);border-color:transparent">
+        <div class="icon-box icon-box-lg" style="background:rgba(255,255,255,.1)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2a7 7 0 017 7v1a3 3 0 11-6 0V9a1 1 0 00-2 0v1a3 3 0 11-6 0V9a7 7 0 017-7z"/><path d="M5 14a7 7 0 0014 0"/></svg>
+        </div>
+        <div>
+          <h3 style="color:white;margin-bottom:8px">Assistant IA Neo</h3>
+          <p style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.6">Posez vos questions en langage naturel. Neo analyse vos données en temps réel et vous répond avec précision.</p>
+        </div>
+        <!-- Chat preview -->
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;margin-top:auto">
+          <div style="display:flex;gap:8px;margin-bottom:8px;align-items:flex-start">
+            <div style="background:rgba(255,255,255,.1);border-radius:50%;width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center">
+              <svg width="10" height="10" fill="white" viewBox="0 0 24 24"><path d="M12 2a7 7 0 017 7v1a3 3 0 11-6 0V9a1 1 0 00-2 0v1a3 3 0 11-6 0V9a7 7 0 017-7z"/></svg>
+            </div>
+            <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:7px 10px;font-size:11px;color:rgba(255,255,255,.7);line-height:1.5">"Quel est mon produit le plus vendu ce mois ?"</div>
+          </div>
+          <div style="background:var(--primary);border-radius:10px;padding:8px 10px;font-size:11px;color:white;line-height:1.5;margin-left:30px">
+            "Le matelas 140×190 Confort+ : 47 unités vendues pour 12 690€ de CA, soit 34% de vos ventes. Stock restant : 8 unités."
           </div>
         </div>
       </div>
@@ -592,257 +435,397 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════ RÔLES ═══ -->
-<section id="comment-ca-marche" class="py-24 px-6 bg-white">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-14">
-      <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4 reveal">
-        Adapté à chaque rôle
+<!-- ROLES -->
+<section class="section" style="background:white">
+  <div style="max-width:1160px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:56px">
+      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex">
+        <span class="eyebrow-dot"></span>
+        Multi-équipe
       </div>
-      <h2 class="text-4xl font-black text-navy mb-4 reveal d1">
-        Une app,<br/><span class="g-text">quatre profils différents</span>
-      </h2>
-      <p class="text-gray-500 max-w-xl mx-auto reveal d2">Chaque utilisateur voit exactement ce dont il a besoin. Pas plus, pas moins.</p>
+      <h2 class="reveal d1">Un outil pour toute votre équipe</h2>
+      <p class="reveal d2" style="margin-top:12px;color:var(--gray-500);font-size:16px;max-width:500px;margin-left:auto;margin-right:auto">Chaque rôle accède exactement aux fonctionnalités dont il a besoin, ni plus ni moins.</p>
     </div>
-
-    <div class="grid md:grid-cols-4 gap-6">
-      <div class="feat-card text-center reveal">
-        <div class="text-3xl mb-3">👑</div>
-        <span class="role-badge bg-purple-100 text-purple-700 mb-3 inline-block">Propriétaire</span>
-        <p class="text-gray-500 text-sm">Accès complet : marges, statistiques, abonnement Stripe, gestion des membres.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+      <div class="card card-hover reveal d1" style="text-align:center;padding:32px 20px">
+        <div style="width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,#313ADF,#040741);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:var(--shadow-glow)">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a5 5 0 100 10A5 5 0 0012 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Propriétaire</div>
+        <h3 style="font-size:15px;margin-bottom:10px">Accès total</h3>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Gère abonnement, équipe, rôles, marges, statistiques complètes et paramètres workspace.</p>
       </div>
-      <div class="feat-card text-center reveal d1">
-        <div class="text-3xl mb-3">📊</div>
-        <span class="role-badge bg-blue-100 text-blue-700 mb-3 inline-block">Manager</span>
-        <p class="text-gray-500 text-sm">Gestion des équipes, statistiques, invitations. Voit les marges produits.</p>
+      <div class="card card-hover reveal d2" style="text-align:center;padding:32px 20px">
+        <div style="width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,#6B73FF,#313ADF);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Manager</div>
+        <h3 style="font-size:15px;margin-bottom:10px">Gestion complète</h3>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Gère l'équipe, les invitations, l'ensemble des opérations. Accès aux marges et statistiques.</p>
       </div>
-      <div class="feat-card text-center reveal d2">
-        <div class="text-3xl mb-3">🛒</div>
-        <span class="role-badge bg-green-100 text-green-700 mb-3 inline-block">Vendeur</span>
-        <p class="text-gray-500 text-sm">Crée commandes, devis, factures, gère clients et produits. Ne voit pas les coûts.</p>
+      <div class="card card-hover reveal d3" style="text-align:center;padding:32px 20px">
+        <div style="width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#16a34a;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Vendeur</div>
+        <h3 style="font-size:15px;margin-bottom:10px">Vente &amp; clients</h3>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Crée commandes, factures, devis. Gère clients et produits. Sans accès aux marges ou coûts.</p>
       </div>
-      <div class="feat-card text-center reveal d3">
-        <div class="text-3xl mb-3">🚚</div>
-        <span class="role-badge bg-orange-100 text-orange-700 mb-3 inline-block">Livreur</span>
-        <p class="text-gray-500 text-sm">Vue mobile simplifiée : livraisons du jour, encaissement du solde, mise à jour du statut.</p>
+      <div class="card card-hover reveal d4" style="text-align:center;padding:32px 20px">
+        <div style="width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,#f59e0b,#d97706);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:#d97706;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Livreur</div>
+        <h3 style="font-size:15px;margin-bottom:10px">Vue livraisons</h3>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Accès simplifié sur mobile : liste des livraisons, mise à jour statut, encaissement sur place.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════ TARIFS ═══ -->
-<section id="tarifs" class="py-24 px-6 bg-gray-50">
-  <div class="max-w-5xl mx-auto">
-    <div class="text-center mb-14">
-      <div class="inline-flex items-center gap-2 bg-primary/8 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4 reveal">
+<!-- COMPARISON TABLE -->
+<section class="section" style="background:var(--gray-50)">
+  <div style="max-width:900px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex">
+        <span class="eyebrow-dot"></span>
+        Comparaison
+      </div>
+      <h2 class="reveal d1">NeoFlow BOS vs les alternatives</h2>
+      <p class="reveal d2" style="margin-top:12px;color:var(--gray-500);font-size:16px">Pourquoi un outil spécialisé vaut infiniment mieux que plusieurs outils bricolés.</p>
+    </div>
+    <div class="card reveal" style="padding:0;overflow:hidden">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th style="width:35%">Fonctionnalité</th>
+            <th class="highlight" style="text-align:center">NeoFlow BOS</th>
+            <th style="text-align:center">Excel / Sheets</th>
+            <th style="text-align:center">Outils séparés</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Commandes &amp; factures PDF</td>
+            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
+            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
+            <td style="text-align:center;font-size:16px;color:#f59e0b">~</td>
+          </tr>
+          <tr>
+            <td>Gestion stock en temps réel</td>
+            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
+            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
+            <td style="text-align:center;font-size:16px;color:#f59e0b">~</td>
+          </tr>
+          <tr>
+            <td>Livraisons kanban mobile</td>
+            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
+            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
+            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
+          </tr>
+          <tr>
+            <td>CRM clients intégré</td>
+            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
+            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
+            <td style="text-align:center;font-size:16px;color:#f59e0b">~</td>
+          </tr>
+          <tr>
+            <td>Assistant IA sur vos données</td>
+            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
+            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
+            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
+          </tr>
+          <tr>
+            <td>Gestion des rôles / équipe</td>
+            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
+            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
+            <td style="text-align:center;font-size:16px;color:#f59e0b">~</td>
+          </tr>
+          <tr>
+            <td>Dashboard financier</td>
+            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
+            <td style="text-align:center;font-size:16px;color:#f59e0b">~</td>
+            <td style="text-align:center;font-size:16px;color:#f59e0b">~</td>
+          </tr>
+          <tr style="background:rgba(49,58,223,.02)">
+            <td style="font-weight:700">Prix mensuel</td>
+            <td class="highlight" style="text-align:center;font-weight:800;color:var(--primary)">49€</td>
+            <td style="text-align:center;font-weight:600">15-25€</td>
+            <td style="text-align:center;font-weight:600">150-300€+</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="text-align:center;font-size:12px;color:var(--gray-400);margin-top:12px">✓ Inclus · ~ Partiel ou limité · ✗ Non disponible</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section" style="background:white">
+  <div style="max-width:900px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:56px">
+      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex">
+        <span class="eyebrow-dot"></span>
         Tarifs
       </div>
-      <h2 class="text-4xl font-black text-navy mb-4 reveal d1">
-        Un prix simple,<br/><span class="g-text">tout compris</span>
-      </h2>
-      <p class="text-gray-500 reveal d2">Moins d'un matelas vendu = abonnement rentabilisé pour l'année.</p>
+      <h2 class="reveal d1">Simple et transparent</h2>
+      <p class="reveal d2" style="margin-top:12px;color:var(--gray-500);font-size:17px">Un seul plan. Tout inclus. Aucune surprise.</p>
     </div>
-
-    <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-      <!-- Monthly -->
-      <div class="pricing-card reveal">
-        <div class="text-xl font-bold text-navy mb-1">Mensuel</div>
-        <p class="text-gray-400 text-sm mb-6">Flexible, résiliable à tout moment</p>
-        <div class="flex items-end gap-2 mb-6">
-          <span class="text-5xl font-black text-navy">49€</span>
-          <span class="text-gray-400 mb-2 text-lg">/mois TTC</span>
-        </div>
-        <ul class="space-y-3 mb-8 text-sm text-gray-600">
-          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Utilisateurs illimités</li>
-          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Toutes les fonctionnalités</li>
-          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>IA Neo incluse</li>
-          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Mises à jour automatiques</li>
-          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Support par email</li>
-        </ul>
-        <a href="#essai" class="btn-outline w-full justify-center">Commencer l'essai gratuit</a>
-      </div>
-
-      <!-- Annual -->
-      <div class="pricing-card featured reveal d1">
-        <div class="pricing-badge">MEILLEURE OFFRE</div>
-        <div class="text-xl font-bold text-navy mb-1">Annuel</div>
-        <p class="text-gray-400 text-sm mb-6">Économisez 98€ · 2 mois offerts</p>
-        <div class="flex items-end gap-2 mb-2">
-          <span class="text-5xl font-black text-navy">490€</span>
-          <span class="text-gray-400 mb-2 text-lg">/an TTC</span>
-        </div>
-        <div class="text-sm font-semibold text-green-600 mb-6">≡ 40,8€/mois — soit 2 mois gratuits</div>
-        <ul class="space-y-3 mb-8 text-sm text-gray-600">
-          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Tout le plan Mensuel</li>
-          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Support prioritaire</li>
-          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Onboarding personnalisé</li>
-          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Tarif garanti 12 mois</li>
-          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Facturation annuelle simplifiée</li>
-        </ul>
-        <a href="#essai" class="btn-primary w-full justify-center">
-          Commencer maintenant
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <!-- Guarantee -->
-    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-gray-400 reveal d3">
-      <span class="flex items-center gap-2">🔒 Paiement sécurisé Stripe</span>
-      <span class="flex items-center gap-2">🆓 7 jours d'essai gratuit</span>
-      <span class="flex items-center gap-2">❌ Sans engagement</span>
-      <span class="flex items-center gap-2">🇫🇷 Données hébergées en Europe</span>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ FAQ ═══ -->
-<section id="faq" class="py-24 px-6 bg-white">
-  <div class="max-w-3xl mx-auto">
-    <div class="text-center mb-14">
-      <h2 class="text-4xl font-black text-navy mb-4 reveal">Questions fréquentes</h2>
-    </div>
-    <div class="space-y-4" id="faq-list">
-
-      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden reveal">
-        <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
-          <span class="font-semibold text-navy">NeoFlow BOS est-il adapté à mon magasin de literie ?</span>
-          <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-        </button>
-        <div class="faq-answer px-6 pb-5 text-gray-500 text-sm leading-relaxed">
-          Oui. NeoFlow BOS a été conçu spécifiquement pour le flux des magasins de literie et de mobilier : commande prise en magasin, livraison domicile avec créneau horaire, solde encaissé à la livraison. Toutes les fonctionnalités (acomptes, créneaux, rôle livreur) répondent à ce workflow.
-        </div>
-      </div>
-
-      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden reveal d1">
-        <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
-          <span class="font-semibold text-navy">Combien d'utilisateurs peut-on ajouter ?</span>
-          <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-        </button>
-        <div class="faq-answer px-6 pb-5 text-gray-500 text-sm leading-relaxed">
-          Les utilisateurs sont illimités sur les deux plans (Mensuel et Annuel). Vous pouvez inviter tous vos vendeurs, managers et livreurs sans surcoût. Chaque membre reçoit une invitation par email.
-        </div>
-      </div>
-
-      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden reveal d2">
-        <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
-          <span class="font-semibold text-navy">L'application fonctionne-t-elle sur iPhone et tablette ?</span>
-          <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-        </button>
-        <div class="faq-answer px-6 pb-5 text-gray-500 text-sm leading-relaxed">
-          Oui. NeoFlow BOS est une PWA (Progressive Web App) : elle s'installe sur iPhone et Android comme une app native, sans passer par l'App Store. Le livreur peut l'utiliser sur son smartphone, le vendeur sur une tablette en magasin.
-        </div>
-      </div>
-
-      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden reveal d3">
-        <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
-          <span class="font-semibold text-navy">Est-ce que mes données sont sécurisées ?</span>
-          <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-        </button>
-        <div class="faq-answer px-6 pb-5 text-gray-500 text-sm leading-relaxed">
-          Oui. Les données sont chiffrées en transit (TLS) et au repos. L'accès est strictement cloisonné : chaque magasin ne voit que ses propres données (isolation multi-tenant par Row Level Security). L'hébergement est en Europe via Supabase.
-        </div>
-      </div>
-
-      <div class="faq-item border border-gray-100 rounded-2xl overflow-hidden reveal d4">
-        <button class="w-full flex items-center justify-between px-6 py-5 text-left" onclick="toggleFaq(this)">
-          <span class="font-semibold text-navy">Puis-je résilier à tout moment ?</span>
-          <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-        </button>
-        <div class="faq-answer px-6 pb-5 text-gray-500 text-sm leading-relaxed">
-          Oui pour le plan mensuel — résiliation en 2 clics depuis les paramètres, effective à la fin de la période en cours. Pour le plan annuel, la résiliation est possible mais sans remboursement prorata. Dans les deux cas, vous gardez accès jusqu'à la fin de la période payée.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ CTA ESSAI ═══ -->
-<section id="essai" class="py-24 px-6" style="background:linear-gradient(160deg,#040741 0%,#0a1260 100%);">
-  <div class="max-w-3xl mx-auto text-center">
-    <div class="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-semibold mb-8 reveal">
-      <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-      Essai gratuit — Sans engagement
-    </div>
-    <h2 class="text-4xl md:text-5xl font-black text-white mb-6 reveal d1">
-      Prêt à moderniser<br/>votre magasin ?
-    </h2>
-    <p class="text-white/70 text-xl mb-10 reveal d2">
-      7 jours gratuits. Configuration en 5 minutes.<br/>Aucune formation nécessaire.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center reveal d3">
-      <a href="/signup" class="btn-primary text-lg py-4 px-10">
-        Démarrer l'essai gratuit
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-    <div class="mt-6 flex flex-wrap justify-center gap-6 text-white/50 text-sm reveal d4">
-      <span>✓ 7 jours gratuits</span>
-      <span>✓ Aucun engagement</span>
-      <span>✓ Installation immédiate</span>
-      <span>✓ Support inclus</span>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════ FOOTER ═══ -->
-<footer class="bg-navy py-12 px-6">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid md:grid-cols-4 gap-8 pb-10 border-b border-white/10">
-      <div class="md:col-span-2">
-        <div class="flex items-center gap-2 mb-4">
-          <div class="w-8 h-8 g-bg rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-sm">N</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
+      <!-- Mensuel -->
+      <div class="pricing-card reveal d1">
+        <div style="margin-bottom:24px">
+          <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:6px">Mensuel</div>
+          <div style="display:flex;align-items:baseline;gap:6px">
+            <span style="font-size:3rem;font-weight:900;color:var(--navy)">49€</span>
+            <span style="color:var(--gray-400);font-size:14px">/ mois</span>
           </div>
-          <span class="text-white font-bold text-lg">NeoFlow <span class="text-primary">BOS</span></span>
+          <div style="font-size:13px;color:var(--gray-400);margin-top:4px">Sans engagement — résiliable à tout moment</div>
         </div>
-        <p class="text-white/50 text-sm leading-relaxed max-w-xs">Le logiciel de gestion conçu pour les magasins de literie et de mobilier. Par Neoflow Agency.</p>
-      </div>
-      <div>
-        <div class="text-white/30 text-xs font-semibold uppercase tracking-wider mb-4">Produit</div>
-        <ul class="space-y-2">
-          <li><a href="#fonctionnalites" class="text-white/60 hover:text-white text-sm transition-colors">Fonctionnalités</a></li>
-          <li><a href="#tarifs" class="text-white/60 hover:text-white text-sm transition-colors">Tarifs</a></li>
-          <li><a href="#faq" class="text-white/60 hover:text-white text-sm transition-colors">FAQ</a></li>
-          <li><a href="index.html" class="text-white/60 hover:text-white text-sm transition-colors">Neoflow Agency</a></li>
+        <a href="https://app.neoflow.io/signup" class="btn btn-ghost btn-lg" style="width:100%;justify-content:center;margin-bottom:24px">
+          Commencer l'essai gratuit
+        </a>
+        <ul class="check-list">
+          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>7 jours d'essai offerts</li>
+          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Tous les modules inclus</li>
+          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Utilisateurs illimités</li>
+          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Support inclus</li>
+          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Mises à jour automatiques</li>
         </ul>
       </div>
-      <div>
-        <div class="text-white/30 text-xs font-semibold uppercase tracking-wider mb-4">Légal</div>
-        <ul class="space-y-2">
-          <li><a href="/mentions-legales" class="text-white/60 hover:text-white text-sm transition-colors">Mentions légales</a></li>
-          <li><a href="/cgu" class="text-white/60 hover:text-white text-sm transition-colors">CGU / CGV</a></li>
-          <li><a href="/cgu" class="text-white/60 hover:text-white text-sm transition-colors">Confidentialité</a></li>
-          <li><a href="mailto:contacte.neoflowagency@gmail.com" class="text-white/60 hover:text-white text-sm transition-colors">Contact</a></li>
+
+      <!-- Annuel -->
+      <div class="pricing-card featured reveal d2" style="position:relative">
+        <div class="pricing-badge-wrap" style="position:absolute;top:-14px;left:50%;transform:translateX(-50%)">
+          <span class="pricing-badge">Meilleure valeur — 2 mois offerts</span>
+        </div>
+        <div style="margin-bottom:24px">
+          <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:6px">Annuel</div>
+          <div style="display:flex;align-items:baseline;gap:6px">
+            <span style="font-size:3rem;font-weight:900;color:var(--navy)">490€</span>
+            <span style="color:var(--gray-400);font-size:14px">/ an</span>
+          </div>
+          <div style="font-size:13px;color:#16a34a;margin-top:4px;font-weight:600">Économisez 98€ par rapport au mensuel</div>
+        </div>
+        <a href="https://app.neoflow.io/signup" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;margin-bottom:24px">
+          Commencer l'essai gratuit
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <ul class="check-list">
+          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>7 jours d'essai offerts</li>
+          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Tous les modules inclus</li>
+          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Utilisateurs illimités</li>
+          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Support prioritaire</li>
+          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Mises à jour automatiques</li>
         </ul>
       </div>
     </div>
-    <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-white/30 text-sm">© 2025 Neoflow Agency. Tous droits réservés.</p>
-      <p class="text-white/30 text-sm">Fait avec ❤️ en France</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background:var(--gray-50)">
+  <div style="max-width:1160px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:48px">
+      <h2 class="reveal d1">Ils utilisent NeoFlow BOS</h2>
     </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+      <div class="testimonial-card card-hover reveal d1">
+        <div class="stars" style="margin-bottom:12px">
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.7;margin-bottom:16px">"Avant NeoFlow on utilisait Excel, WhatsApp et une caisse séparée. Maintenant tout est dans une seule app. Un gain de temps énorme."</p>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="testimonial-avatar" style="width:38px;height:38px;font-size:14px">T</div>
+          <div><div style="font-weight:600;font-size:13px">Thomas R.</div><div style="font-size:11px;color:var(--gray-400)">Propriétaire — Boulangerie artisanale</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card card-hover reveal d2">
+        <div class="stars" style="margin-bottom:12px">
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.7;margin-bottom:16px">"Mon gérant voit les stats en temps réel depuis son téléphone même quand il n'est pas sur place. Le dashboard financier est parfait."</p>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="testimonial-avatar" style="width:38px;height:38px;font-size:14px;background:linear-gradient(135deg,#6B73FF,#040741)">A</div>
+          <div><div style="font-weight:600;font-size:13px">Amira K.</div><div style="font-size:11px;color:var(--gray-400)">Gérante — Salon de coiffure (3 adresses)</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card card-hover reveal d3">
+        <div class="stars" style="margin-bottom:12px">
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.7;margin-bottom:16px">"Les devis en PDF avec mon logo envoyés directement par mail depuis l'app — mes clients sont impressionnés. Plus professionnel que jamais."</p>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="testimonial-avatar" style="width:38px;height:38px;font-size:14px;background:linear-gradient(135deg,#040741,#313ADF)">J</div>
+          <div><div style="font-weight:600;font-size:13px">Julien M.</div><div style="font-size:11px;color:var(--gray-400)">Artisan — Menuiserie sur-mesure</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section" style="background:white">
+  <div style="max-width:700px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:48px">
+      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex">
+        <span class="eyebrow-dot"></span>
+        Questions fréquentes
+      </div>
+      <h2 class="reveal d1">FAQ</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px" class="reveal d1">
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <h3>Est-ce que l'essai gratuit nécessite une carte bancaire ?</h3>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Non. L'essai gratuit de 7 jours est accessible sans CB. À la fin de l'essai, vous entrez votre carte pour continuer. Si vous ne le faites pas, votre compte est simplement désactivé sans aucun prélèvement.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <h3>Combien d'utilisateurs puis-je inviter ?</h3>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Illimité. Vous pouvez inviter autant de collaborateurs que nécessaire — vendeurs, livreurs, managers. Chacun dispose d'un compte distinct avec les accès correspondant à son rôle.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <h3>Mes données sont-elles sécurisées ?</h3>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Oui. Vos données sont isolées par workspace grâce à Row Level Security (RLS) côté base de données. Chaque workspace est totalement séparé des autres. Données hébergées sur Supabase (infrastructure AWS). Conforme RGPD.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <h3>Puis-je résilier à tout moment ?</h3>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Absolument. Pour le plan mensuel, résiliation à tout moment depuis votre espace client, effective en fin de période. Pour le plan annuel, la résiliation est possible mais le remboursement n'est pas prévu (conformément aux CGV).</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <h3>NeoFlow BOS est-il un logiciel de caisse certifié NF525 ?</h3>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Non. NeoFlow BOS est un logiciel de gestion de commandes et de back-office. Il n'est pas un logiciel de caisse certifié NF 525 (art. 286 bis CGI). Si votre activité est assujettie à TVA et reçoit des paiements de particuliers, vous pouvez avoir besoin d'un logiciel de caisse certifié en complément.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <h3>Puis-je utiliser NeoFlow BOS sur mobile ?</h3>
+          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
+        </button>
+        <div class="faq-body"><div class="faq-body-inner">Oui. NeoFlow BOS est une Progressive Web App (PWA) installable sur iPhone et Android directement depuis le navigateur. L'interface est entièrement responsive et optimisée pour les livreurs et vendeurs en déplacement.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section style="background:linear-gradient(135deg,#040741,#0a1260);padding:100px 24px" class="reveal">
+  <div style="max-width:700px;margin:0 auto;text-align:center">
+    <div class="eyebrow" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);margin-bottom:24px;display:inline-flex">
+      <span class="eyebrow-dot green"></span>
+      Prêt à démarrer ?
+    </div>
+    <h2 style="color:white;margin-bottom:16px">7 jours gratuits pour tout tester</h2>
+    <p style="color:rgba(255,255,255,.6);font-size:17px;line-height:1.7;margin-bottom:40px">Aucune CB requise. Annulation à tout moment. Démarrez en 2 minutes.</p>
+    <a href="https://app.neoflow.io/signup" class="btn btn-white btn-lg" style="font-size:16px;padding:18px 36px">
+      Commencer gratuitement
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <div style="display:flex;justify-content:center;gap:24px;margin-top:24px;flex-wrap:wrap">
+      <span style="font-size:13px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:6px">
+        <svg width="13" height="13" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        Sans carte bancaire
+      </span>
+      <span style="font-size:13px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:6px">
+        <svg width="13" height="13" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        Résiliable à tout moment
+      </span>
+      <span style="font-size:13px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:6px">
+        <svg width="13" height="13" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+        Support inclus
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <img src="./logos/NFbos_blanc.png" alt="NeoFlow BOS"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span style="display:none;color:white;font-weight:800;font-size:18px">NeoFlow BOS</span>
+      </div>
+      <p class="footer-tagline">Business Operating System pour commerçants et PME. Tout-en-un, accessible partout, dès 49€/mois.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Produit</div>
+      <ul class="footer-links">
+        <li><a href="#features">Fonctionnalités</a></li>
+        <li><a href="#pricing">Tarifs</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="https://app.neoflow.io/signup">Inscription</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Agence</div>
+      <ul class="footer-links">
+        <li><a href="/">NeoFlow Agency</a></li>
+        <li><a href="/services.html">Services sur-mesure</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Légal</div>
+      <ul class="footer-links">
+        <li><a href="/mentions-legales.html">Mentions légales</a></li>
+        <li><a href="/cgu.html">CGU / CGV</a></li>
+        <li><a href="/cgu.html">Confidentialité</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 NeoFlow Agency. Tous droits réservés.</p>
+    <p>neoflow-agency.cloud</p>
   </div>
 </footer>
 
 <script>
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
-
-  function toggleMenu() {
-    document.getElementById('mobile-nav').classList.toggle('open');
-  }
+  const navbarInner = document.getElementById('navbarInner');
+  window.addEventListener('scroll', () => navbarInner.classList.toggle('scrolled', window.scrollY > 20));
+  document.getElementById('burgerBtn').addEventListener('click', () => {
+    document.getElementById('mobileNav').style.display = 'flex';
+  });
+  document.getElementById('closeNav').addEventListener('click', () => {
+    document.getElementById('mobileNav').style.display = 'none';
+  });
 
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
   }
 
-  const observer = new IntersectionObserver(
-    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-    { threshold: 0.1 }
-  );
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>

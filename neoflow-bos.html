@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeoFlow BOS — Business Operating System pour commerçants et PME</title>
-  <meta name="description" content="NeoFlow BOS centralise commandes, factures, stock, livraisons, CRM et IA dans une seule app. 49€/mois, 7 jours d'essai gratuit.">
+  <title>NeoFlow BOS — Gérez tout votre commerce depuis une seule app</title>
+  <meta name="description" content="NeoFlow BOS centralise commandes, factures, stock, livraisons, clients et IA. 49€/mois, 7 jours d'essai gratuit sans CB.">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -16,191 +16,185 @@
       <img src="./logos/NFbos_blanc.png" alt="NeoFlow BOS"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <span class="nav-logo-fallback" style="display:none">B</span>
-      <span class="nav-wordmark" style="color:white">Neo<span>Flow</span> <span style="color:rgba(255,255,255,.4);font-weight:400">BOS</span></span>
+      <span class="nav-wordmark-white">Neo<span>Flow</span> BOS</span>
     </a>
     <div class="nav-links">
-      <a href="/" class="nav-link">Accueil</a>
-      <a href="#features" class="nav-link">Fonctionnalités</a>
-      <a href="#pricing" class="nav-link">Tarifs</a>
+      <a href="#fonctionnalites" class="nav-link">Fonctionnalités</a>
+      <a href="#pour-qui" class="nav-link">Pour qui</a>
+      <a href="#tarifs" class="nav-link">Tarifs</a>
       <a href="#faq" class="nav-link">FAQ</a>
     </div>
     <div class="nav-actions">
-      <a href="#pricing" class="btn btn-outline-white" style="font-size:13px;padding:9px 18px">Voir les tarifs</a>
+      <a href="#tarifs" class="btn btn-outline-white" style="font-size:13px;padding:9px 18px">Voir les tarifs</a>
       <a href="https://app.neoflow.io/signup" class="btn btn-primary" style="font-size:13px;padding:9px 18px">
         Essai gratuit 7j
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
-    <button class="nav-burger" id="burgerBtn" aria-label="Menu" style="color:white">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    <button class="nav-burger" id="burgerBtn" style="color:white" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12h18M3 6h18M3 18h12"/></svg>
     </button>
   </div>
 </nav>
 
 <!-- Mobile nav -->
-<div id="mobileNav" style="position:fixed;inset:0;z-index:200;background:rgba(4,7,65,.97);backdrop-filter:blur(16px);padding:24px;display:none;flex-direction:column">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px">
-    <span style="color:white;font-weight:800;font-size:18px">NeoFlow <span style="color:#6B73FF">BOS</span></span>
-    <button id="closeNav" style="color:white;background:rgba(255,255,255,.1);border-radius:10px;padding:8px;cursor:pointer">
+<div id="mobileNav" style="position:fixed;inset:0;z-index:200;background:rgba(4,7,65,.98);backdrop-filter:blur(20px);padding:28px;display:none;flex-direction:column">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:52px">
+    <span style="color:white;font-weight:800;font-size:20px">NeoFlow <span style="color:#6B73FF">BOS</span></span>
+    <button id="closeNav" style="color:white;background:rgba(255,255,255,.1);border-radius:10px;padding:10px;cursor:pointer">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
   </div>
-  <div style="display:flex;flex-direction:column;gap:4px;flex:1">
-    <a href="#features" style="color:rgba(255,255,255,.6);font-size:20px;font-weight:700;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)">Fonctionnalités</a>
-    <a href="#pricing" style="color:rgba(255,255,255,.6);font-size:20px;font-weight:700;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)">Tarifs</a>
-    <a href="#faq" style="color:rgba(255,255,255,.6);font-size:20px;font-weight:700;padding:14px 0">FAQ</a>
-  </div>
-  <a href="https://app.neoflow.io/signup" class="btn btn-primary btn-lg" style="justify-content:center;margin-top:24px">Essai gratuit 7 jours</a>
+  <nav style="display:flex;flex-direction:column;gap:4px;flex:1">
+    <a href="#fonctionnalites" style="color:rgba(255,255,255,.6);font-size:22px;font-weight:800;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)" onclick="document.getElementById('mobileNav').style.display='none'">Fonctionnalités</a>
+    <a href="#pour-qui" style="color:rgba(255,255,255,.6);font-size:22px;font-weight:800;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)" onclick="document.getElementById('mobileNav').style.display='none'">Pour qui</a>
+    <a href="#tarifs" style="color:rgba(255,255,255,.6);font-size:22px;font-weight:800;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)" onclick="document.getElementById('mobileNav').style.display='none'">Tarifs</a>
+    <a href="#faq" style="color:rgba(255,255,255,.6);font-size:22px;font-weight:800;padding:14px 0" onclick="document.getElementById('mobileNav').style.display='none'">FAQ</a>
+  </nav>
+  <a href="https://app.neoflow.io/signup" class="btn btn-primary btn-lg" style="justify-content:center;margin-top:28px;font-size:16px">Essai gratuit 7 jours — sans CB</a>
 </div>
 
-<!-- HERO -->
-<section style="background:linear-gradient(160deg,#040741 0%,#0a1260 50%,#040741 100%);padding:160px 24px 0;overflow:hidden;position:relative">
-  <div style="position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(49,58,223,.25),transparent 70%);pointer-events:none"></div>
-  <div style="position:absolute;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none"></div>
+<!-- ════════════════ HERO ════════════════ -->
+<section style="background:linear-gradient(155deg,#040741 0%,#0a1260 45%,#040741 100%);padding:160px 24px 80px;position:relative;overflow:hidden">
+  <!-- Effets -->
+  <div style="position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(49,58,223,.28),transparent 65%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-60px;left:0;width:350px;height:350px;background:radial-gradient(circle,rgba(107,115,255,.12),transparent 70%);pointer-events:none"></div>
+  <div style="position:absolute;top:80px;right:0;width:250px;height:250px;background:radial-gradient(circle,rgba(107,115,255,.1),transparent 70%);pointer-events:none"></div>
+  <div class="grid-overlay" style="opacity:.6"></div>
 
-  <div style="max-width:1160px;margin:0 auto;text-align:center;position:relative;z-index:1">
-    <div class="eyebrow anim-up" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);margin-bottom:24px;display:inline-flex">
-      <span class="eyebrow-dot green"></span>
-      Disponible maintenant — 7 jours d'essai gratuit
+  <div style="max-width:1100px;margin:0 auto;text-align:center;position:relative;z-index:1">
+    <div class="eyebrow anim-up" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.88);margin-bottom:24px;display:inline-flex">
+      <span class="eyebrow-dot green"></span>7 jours d'essai gratuit — aucune CB requise
     </div>
-    <h1 class="anim-up d1" style="color:white;max-width:800px;margin:0 auto 24px">
-      Le back-office tout-en-un pour les commerçants qui veulent <span style="background:linear-gradient(135deg,#6B73FF,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">aller vite</span>
+    <h1 class="anim-up d1" style="color:white;max-width:840px;margin:0 auto 24px">
+      Arrêtez de gérer votre commerce avec <span style="text-decoration:line-through;opacity:.4">5 outils différents</span><br>
+      <span style="background:linear-gradient(135deg,#6B73FF,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Tout est dans NeoFlow BOS</span>
     </h1>
-    <p class="anim-up d2" style="color:rgba(255,255,255,.65);font-size:18px;line-height:1.7;max-width:560px;margin:0 auto 40px">
-      Commandes, factures, devis, stock, livraisons, CRM clients et assistant IA — tout en une seule app, accessible depuis n'importe quel appareil.
+    <p class="anim-up d2" style="color:rgba(255,255,255,.62);font-size:18px;line-height:1.75;max-width:580px;margin:0 auto 44px">
+      Commandes, factures, stock, livraisons, clients et assistant IA — une seule app, accessible depuis n'importe quel appareil, à partir de 49€/mois.
     </p>
-    <div class="anim-up d3" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:60px">
-      <a href="https://app.neoflow.io/signup" class="btn btn-primary btn-lg" style="box-shadow:0 12px 40px rgba(49,58,223,.5)">
-        Commencer l'essai gratuit
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <div class="anim-up d3" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:48px">
+      <a href="https://app.neoflow.io/signup" class="btn btn-white btn-xl" style="font-size:16px">
+        Commencer gratuitement
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <a href="#features" class="btn btn-outline-white btn-lg">Voir les fonctionnalités</a>
+      <a href="#fonctionnalites" class="btn btn-outline-white btn-xl" style="font-size:16px">Voir comment ça marche</a>
     </div>
-    <div class="anim-up d4" style="display:flex;justify-content:center;gap:32px;margin-bottom:60px;flex-wrap:wrap">
-      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:13px">
-        <svg width="14" height="14" fill="none" stroke="#22c55e" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        Aucune CB requise
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:13px">
-        <svg width="14" height="14" fill="none" stroke="#22c55e" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        Installation instantanée
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:13px">
-        <svg width="14" height="14" fill="none" stroke="#22c55e" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        Résiliable à tout moment
-      </div>
+    <div class="anim-up d4" style="display:flex;justify-content:center;gap:28px;flex-wrap:wrap">
+      <span style="font-size:13px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:7px">
+        <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Sans carte bancaire
+      </span>
+      <span style="font-size:13px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:7px">
+        <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Résiliable à tout moment
+      </span>
+      <span style="font-size:13px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:7px">
+        <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Prêt en moins de 5 minutes
+      </span>
     </div>
+  </div>
 
-    <!-- Hero dashboard screenshot -->
-    <div style="position:relative;max-width:900px;margin:0 auto">
-      <div class="mockup-outer" style="box-shadow:0 40px 120px rgba(0,0,0,.5)">
-        <div class="mockup-window">
-          <div class="mockup-titlebar">
-            <span class="mockup-dot" style="background:#ff5f57"></span>
-            <span class="mockup-dot" style="background:#ffbd2e"></span>
-            <span class="mockup-dot" style="background:#28c940"></span>
-            <span style="flex:1;text-align:center;font-size:11px;color:rgba(255,255,255,.3)">app.neoflow.io — NeoFlow BOS</span>
+  <!-- Screenshot hero -->
+  <div class="anim-up d3" style="max-width:980px;margin:64px auto 0;position:relative;z-index:1">
+    <div style="border-radius:20px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.08)">
+      <!-- Slot screenshot réel -->
+      <img src="./screenshots/bos-hero.png" alt="NeoFlow BOS — interface principale" id="hero-screenshot"
+           style="width:100%;display:block"
+           onerror="this.style.display='none';document.getElementById('hero-fallback').style.display='flex'">
+      <!-- Fallback dashboard si pas de screenshot -->
+      <div id="hero-fallback" style="display:flex">
+        <div style="background:var(--navy);height:38px;display:flex;align-items:center;padding:0 16px;gap:6px;width:100%">
+          <span class="mdot" style="background:#ff5f57"></span>
+          <span class="mdot" style="background:#ffbd2e"></span>
+          <span class="mdot" style="background:#28c940"></span>
+          <span style="flex:1;text-align:center;font-size:11px;color:rgba(255,255,255,.25)">app.neoflow.io — Tableau de bord</span>
+        </div>
+      </div>
+      <div style="background:#f8f9ff;padding:24px;display:flex;gap:16px">
+        <!-- Sidebar -->
+        <div style="width:68px;background:var(--navy);border-radius:16px;padding:16px 0;display:flex;flex-direction:column;align-items:center;gap:14px;flex-shrink:0">
+          <div style="width:36px;height:36px;border-radius:10px;background:var(--primary);display:flex;align-items:center;justify-content:center">
+            <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           </div>
-          <div style="display:flex;height:380px">
-            <div class="mockup-sidebar" style="width:68px;gap:14px">
-              <div style="color:rgba(255,255,255,.3);font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;writing-mode:horizontal-tb;width:44px;text-align:center;margin-bottom:4px">BOS</div>
-              <div class="mock-icon active" style="width:36px;height:36px;border-radius:10px"></div>
-              <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
-              <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
-              <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
-              <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
-              <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
-              <div style="margin-top:auto"></div>
-              <div class="mock-icon" style="width:36px;height:36px;border-radius:50%"></div>
+          <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
+          <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
+          <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
+          <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
+          <div class="mock-icon" style="width:36px;height:36px;border-radius:10px"></div>
+          <div style="margin-top:auto"></div>
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#6B73FF,#313ADF);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white">L</div>
+        </div>
+        <!-- Content -->
+        <div style="flex:1;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:18px;font-weight:800;color:var(--navy)">Tableau de bord</div>
+              <div style="font-size:13px;color:var(--gray-400);margin-top:2px">Mars 2025 — Bonne journée, Lucas 👋</div>
             </div>
-            <div style="flex:1;padding:20px;background:#f8f9ff;display:flex;flex-direction:column;gap:14px;overflow:hidden">
-              <!-- Header row -->
-              <div style="display:flex;justify-content:space-between;align-items:center">
-                <div>
-                  <div style="font-size:14px;font-weight:800;color:var(--navy)">Tableau de bord</div>
-                  <div style="font-size:11px;color:var(--gray-400)">Mars 2025</div>
-                </div>
-                <div style="display:flex;gap:8px">
-                  <div style="background:white;border:1px solid var(--gray-100);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;color:var(--navy)">Exporter</div>
-                  <div style="background:var(--primary);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;color:white">+ Commande</div>
-                </div>
+            <div style="display:flex;gap:8px">
+              <div style="background:white;border:1px solid var(--gray-200);border-radius:9px;padding:8px 14px;font-size:12px;font-weight:600;color:var(--navy);cursor:pointer">Exporter</div>
+              <div style="background:var(--primary);border-radius:9px;padding:8px 14px;font-size:12px;font-weight:700;color:white;cursor:pointer">+ Nouvelle commande</div>
+            </div>
+          </div>
+          <!-- KPIs -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+            <div class="kpi-mini" style="border-radius:12px">
+              <div style="font-size:10px;color:var(--gray-400);margin-bottom:5px">CA du mois</div>
+              <div style="font-size:20px;font-weight:900;color:var(--navy)">12 490€</div>
+              <div style="font-size:11px;color:#16a34a;font-weight:600;margin-top:3px;display:flex;align-items:center;gap:4px">
+                <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>+18% vs février
               </div>
-              <!-- KPIs -->
-              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
-                <div class="kpi-mini">
-                  <div style="font-size:9px;color:var(--gray-400);margin-bottom:4px">CA du mois</div>
-                  <div style="font-size:16px;font-weight:800;color:var(--navy)">12 490€</div>
-                  <div style="font-size:10px;color:#16a34a;font-weight:600;margin-top:2px">▲ 18% vs M-1</div>
-                </div>
-                <div class="kpi-mini">
-                  <div style="font-size:9px;color:var(--gray-400);margin-bottom:4px">Commandes</div>
-                  <div style="font-size:16px;font-weight:800;color:var(--navy)">247</div>
-                  <div style="font-size:10px;color:#16a34a;font-weight:600;margin-top:2px">▲ 12%</div>
-                </div>
-                <div class="kpi-mini">
-                  <div style="font-size:9px;color:var(--gray-400);margin-bottom:4px">Clients actifs</div>
-                  <div style="font-size:16px;font-weight:800;color:var(--navy)">84</div>
-                  <div style="font-size:10px;color:#16a34a;font-weight:600;margin-top:2px">▲ 5%</div>
-                </div>
-                <div class="kpi-mini">
-                  <div style="font-size:9px;color:var(--gray-400);margin-bottom:4px">Marge nette</div>
-                  <div style="font-size:16px;font-weight:800;color:var(--navy)">38.2%</div>
-                  <div style="font-size:10px;color:#16a34a;font-weight:600;margin-top:2px">▲ 2.1pt</div>
-                </div>
+            </div>
+            <div class="kpi-mini" style="border-radius:12px">
+              <div style="font-size:10px;color:var(--gray-400);margin-bottom:5px">Commandes</div>
+              <div style="font-size:20px;font-weight:900;color:var(--navy)">247</div>
+              <div style="font-size:11px;color:#16a34a;font-weight:600;margin-top:3px">▲ +12%</div>
+            </div>
+            <div class="kpi-mini" style="border-radius:12px">
+              <div style="font-size:10px;color:var(--gray-400);margin-bottom:5px">Clients actifs</div>
+              <div style="font-size:20px;font-weight:900;color:var(--navy)">84</div>
+              <div style="font-size:11px;color:#16a34a;font-weight:600;margin-top:3px">▲ +5 ce mois</div>
+            </div>
+            <div class="kpi-mini" style="border-radius:12px">
+              <div style="font-size:10px;color:var(--gray-400);margin-bottom:5px">Marge nette</div>
+              <div style="font-size:20px;font-weight:900;color:var(--navy)">38.2%</div>
+              <div style="font-size:11px;color:#16a34a;font-weight:600;margin-top:3px">▲ +2.1pt</div>
+            </div>
+          </div>
+          <!-- Chart + table -->
+          <div style="display:grid;grid-template-columns:3fr 2fr;gap:12px">
+            <div style="background:white;border:1px solid var(--gray-100);border-radius:14px;padding:16px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+                <div style="font-size:13px;font-weight:700;color:var(--navy)">Chiffre d'affaires</div>
+                <div style="font-size:11px;color:var(--primary);font-weight:600;cursor:pointer">Ce mois ▾</div>
               </div>
-              <!-- Chart + table -->
-              <div style="display:grid;grid-template-columns:3fr 2fr;gap:12px;flex:1">
-                <div style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:14px;display:flex;flex-direction:column">
-                  <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:12px">Évolution du chiffre d'affaires</div>
-                  <div style="display:flex;align-items:flex-end;gap:6px;flex:1">
-                    <div class="mock-bar" style="flex:1;height:38%"></div>
-                    <div class="mock-bar" style="flex:1;height:55%"></div>
-                    <div class="mock-bar" style="flex:1;height:42%"></div>
-                    <div class="mock-bar" style="flex:1;height:72%"></div>
-                    <div class="mock-bar" style="flex:1;height:60%"></div>
-                    <div class="mock-bar" style="flex:1;height:88%"></div>
-                    <div class="mock-bar" style="flex:1;height:100%"></div>
-                    <div class="mock-bar" style="flex:1;height:78%;opacity:.35"></div>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;margin-top:6px">
-                    <span style="font-size:9px;color:var(--gray-400)">Août</span>
-                    <span style="font-size:9px;color:var(--gray-400)">Sep</span>
-                    <span style="font-size:9px;color:var(--gray-400)">Oct</span>
-                    <span style="font-size:9px;color:var(--gray-400)">Nov</span>
-                    <span style="font-size:9px;color:var(--gray-400)">Déc</span>
-                    <span style="font-size:9px;color:var(--gray-400)">Jan</span>
-                    <span style="font-size:9px;color:var(--gray-400)">Fév</span>
-                    <span style="font-size:9px;color:var(--gray-400)">Mars</span>
-                  </div>
+              <div style="display:flex;align-items:flex-end;gap:7px;height:100px">
+                <div class="bar-chart-bar" style="flex:1;height:35%"></div>
+                <div class="bar-chart-bar" style="flex:1;height:52%"></div>
+                <div class="bar-chart-bar" style="flex:1;height:44%"></div>
+                <div class="bar-chart-bar" style="flex:1;height:75%"></div>
+                <div class="bar-chart-bar" style="flex:1;height:62%"></div>
+                <div class="bar-chart-bar" style="flex:1;height:100%"></div>
+                <div class="bar-chart-bar" style="flex:1;height:88%"></div>
+                <div class="bar-chart-bar" style="flex:1;height:78%;opacity:.3"></div>
+              </div>
+            </div>
+            <div style="background:white;border:1px solid var(--gray-100);border-radius:14px;padding:16px">
+              <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px">Commandes récentes</div>
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div><div style="font-size:11px;font-weight:600;color:var(--navy)">Dupont Jean</div><div style="font-size:10px;color:var(--gray-400)">CMD-0247</div></div>
+                  <span style="background:#dcfce7;color:#16a34a;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px">Payé</span>
+                  <span style="font-size:12px;font-weight:700;color:var(--navy)">320€</span>
                 </div>
-                <div style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:14px">
-                  <div style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:10px">Dernières commandes</div>
-                  <div style="display:flex;flex-direction:column;gap:7px">
-                    <div style="display:flex;justify-content:space-between;align-items:center">
-                      <div>
-                        <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0247</div>
-                        <div style="font-size:9px;color:var(--gray-400)">Dupont Jean</div>
-                      </div>
-                      <span style="background:#dcfce7;color:#16a34a;font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px">Payé</span>
-                      <span style="font-size:10px;font-weight:700;color:var(--navy)">320€</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;align-items:center">
-                      <div>
-                        <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0246</div>
-                        <div style="font-size:9px;color:var(--gray-400)">Martin Sarah</div>
-                      </div>
-                      <span style="background:#ffedd5;color:#c2410c;font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px">Livraison</span>
-                      <span style="font-size:10px;font-weight:700;color:var(--navy)">185€</span>
-                    </div>
-                    <div style="display:flex;justify-content:space-between;align-items:center">
-                      <div>
-                        <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0245</div>
-                        <div style="font-size:9px;color:var(--gray-400)">Bernard L.</div>
-                      </div>
-                      <span style="background:#dbeafe;color:#1d4ed8;font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px">Préparation</span>
-                      <span style="font-size:10px;font-weight:700;color:var(--navy)">540€</span>
-                    </div>
-                  </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div><div style="font-size:11px;font-weight:600;color:var(--navy)">Martin Sarah</div><div style="font-size:10px;color:var(--gray-400)">CMD-0246</div></div>
+                  <span style="background:#ffedd5;color:#c2410c;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px">En route</span>
+                  <span style="font-size:12px;font-weight:700;color:var(--navy)">185€</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <div><div style="font-size:11px;font-weight:600;color:var(--navy)">Bernard Luc</div><div style="font-size:10px;color:var(--gray-400)">CMD-0245</div></div>
+                  <span style="background:#dbeafe;color:#1d4ed8;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px">En prépa</span>
+                  <span style="font-size:12px;font-weight:700;color:var(--navy)">540€</span>
                 </div>
               </div>
             </div>
@@ -211,555 +205,600 @@
   </div>
 </section>
 
-<!-- STATS STRIP -->
-<section style="background:white;padding:48px 24px;border-bottom:1px solid var(--gray-100)">
-  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center">
-    <div class="reveal d1">
-      <div style="font-size:2.4rem;font-weight:900;color:var(--navy);line-height:1">49€</div>
-      <div style="font-size:13px;color:var(--gray-500);margin-top:6px">par mois tout inclus</div>
+<!-- ════════════════ STATS STRIP ════════════════ -->
+<section style="background:white;padding:52px 24px;border-bottom:1px solid var(--gray-100)">
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center">
+    <div class="reveal delay-1">
+      <div class="stat-num" style="color:var(--navy)">49€</div>
+      <div style="font-size:14px;color:var(--gray-400);margin-top:6px">par mois, tout inclus</div>
     </div>
-    <div class="reveal d2">
-      <div style="font-size:2.4rem;font-weight:900;line-height:1" class="g-text">7j</div>
-      <div style="font-size:13px;color:var(--gray-500);margin-top:6px">essai sans CB</div>
+    <div class="reveal delay-2">
+      <div class="stat-num g-text">7j</div>
+      <div style="font-size:14px;color:var(--gray-400);margin-top:6px">essai sans CB</div>
     </div>
-    <div class="reveal d3">
-      <div style="font-size:2.4rem;font-weight:900;color:var(--navy);line-height:1">10+</div>
-      <div style="font-size:13px;color:var(--gray-500);margin-top:6px">modules intégrés</div>
+    <div class="reveal delay-3">
+      <div class="stat-num" style="color:var(--navy)">10+</div>
+      <div style="font-size:14px;color:var(--gray-400);margin-top:6px">modules intégrés</div>
     </div>
-    <div class="reveal d4">
-      <div style="font-size:2.4rem;font-weight:900;color:var(--navy);line-height:1">∞</div>
-      <div style="font-size:13px;color:var(--gray-500);margin-top:6px">utilisateurs inclus</div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section id="features" class="section" style="background:var(--gray-50)">
-  <div style="max-width:1160px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:64px">
-      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex">
-        <span class="eyebrow-dot"></span>
-        Fonctionnalités
-      </div>
-      <h2 class="reveal d1">Tout ce dont votre business a besoin,<br>dans une seule app</h2>
-      <p class="reveal d2" style="margin-top:16px;color:var(--gray-500);font-size:17px;max-width:540px;margin-left:auto;margin-right:auto">
-        Fini les 6 outils différents qui ne se parlent pas. NeoFlow BOS centralise tout.
-      </p>
-    </div>
-
-    <div class="bento bento-3" style="gap:16px">
-      <!-- Feature 1 -->
-      <div class="card card-hover reveal d1" style="display:flex;flex-direction:column;gap:16px">
-        <div class="icon-box icon-box-lg" style="background:rgba(49,58,223,.08)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#313ADF" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-        </div>
-        <div>
-          <h3 style="margin-bottom:8px">Commandes &amp; Vente rapide</h3>
-          <p style="font-size:14px;color:var(--gray-500);line-height:1.6">Créez des commandes en quelques secondes depuis le point de vente rapide ou le formulaire complet. Suivi de statut en temps réel.</p>
-        </div>
-        <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--gray-100)">
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
-              <svg width="12" height="12" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              Point de vente rapide mobile
-            </div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
-              <svg width="12" height="12" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              Suivi des statuts (en cours, livré, payé)
-            </div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
-              <svg width="12" height="12" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              Remises et commentaires
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 2 -->
-      <div class="card card-hover reveal d2" style="display:flex;flex-direction:column;gap:16px">
-        <div class="icon-box icon-box-lg" style="background:rgba(22,163,74,.08)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        </div>
-        <div>
-          <h3 style="margin-bottom:8px">Factures &amp; Devis PDF</h3>
-          <p style="font-size:14px;color:var(--gray-500);line-height:1.6">Générez des factures et devis professionnels en PDF en un clic. Envoi par email automatique, suivi des paiements.</p>
-        </div>
-        <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--gray-100)">
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
-              <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              PDF à votre logo généré côté serveur
-            </div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
-              <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              Conversion devis → facture en 1 clic
-            </div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
-              <svg width="12" height="12" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              Suivi des impayés
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 3 -->
-      <div class="card card-hover reveal d3" style="display:flex;flex-direction:column;gap:16px">
-        <div class="icon-box icon-box-lg" style="background:rgba(124,58,237,.08)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-        </div>
-        <div>
-          <h3 style="margin-bottom:8px">Stock &amp; Emplacements</h3>
-          <p style="font-size:14px;color:var(--gray-500);line-height:1.6">Gérez votre inventaire avec alertes de stock bas, mouvements traçables, emplacements physiques et bons de commande fournisseurs.</p>
-        </div>
-        <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--gray-100)">
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
-              <svg width="12" height="12" fill="none" stroke="#7c3aed" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              Alertes stock minimum configurables
-            </div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
-              <svg width="12" height="12" fill="none" stroke="#7c3aed" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              Gestion multi-emplacements
-            </div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
-              <svg width="12" height="12" fill="none" stroke="#7c3aed" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              Bons de commande fournisseurs
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 4 — Livraisons (wide) -->
-      <div class="card bento-span-2 reveal d1" style="display:flex;gap:32px;align-items:center;flex-wrap:wrap">
-        <div style="flex:1;min-width:200px">
-          <div class="icon-box icon-box-lg" style="background:rgba(245,158,11,.08);margin-bottom:16px">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          </div>
-          <h3 style="margin-bottom:10px">Livraisons en kanban</h3>
-          <p style="font-size:14px;color:var(--gray-500);line-height:1.6;margin-bottom:16px">Vue kanban en temps réel pour piloter vos livraisons. Chaque livreur voit ses missions sur son téléphone. Enregistrement du paiement à la livraison inclus.</p>
-          <div style="display:flex;flex-wrap:wrap;gap:6px">
-            <span class="tag tag-orange">À préparer</span>
-            <span class="tag tag-orange">En route</span>
-            <span class="tag tag-green">Livré</span>
-          </div>
-        </div>
-        <!-- Kanban mini mockup -->
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;min-width:280px">
-          <div style="background:var(--gray-50);border-radius:10px;padding:10px">
-            <div style="font-size:10px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">À préparer</div>
-            <div style="background:white;border:1px solid var(--gray-100);border-radius:8px;padding:8px;margin-bottom:6px">
-              <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0248</div>
-              <div style="font-size:9px;color:var(--gray-400)">Martin Sarah</div>
-              <div style="font-size:9px;color:var(--primary);margin-top:4px;font-weight:600">185€</div>
-            </div>
-            <div style="background:white;border:1px solid var(--gray-100);border-radius:8px;padding:8px">
-              <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0249</div>
-              <div style="font-size:9px;color:var(--gray-400)">Bernard Luc</div>
-              <div style="font-size:9px;color:var(--primary);margin-top:4px;font-weight:600">320€</div>
-            </div>
-          </div>
-          <div style="background:var(--gray-50);border-radius:10px;padding:10px">
-            <div style="font-size:10px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">En route</div>
-            <div style="background:white;border:1px solid #fed7aa;border-radius:8px;padding:8px">
-              <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0245</div>
-              <div style="font-size:9px;color:var(--gray-400)">Dupont Jean</div>
-              <div style="font-size:9px;font-weight:700;color:#d97706;margin-top:4px">En cours</div>
-            </div>
-          </div>
-          <div style="background:var(--gray-50);border-radius:10px;padding:10px">
-            <div style="font-size:10px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Livré</div>
-            <div style="background:white;border:1px solid #bbf7d0;border-radius:8px;padding:8px;margin-bottom:6px">
-              <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0244</div>
-              <div style="font-size:9px;color:var(--gray-400)">Leroy Anna</div>
-              <div style="font-size:9px;font-weight:700;color:#16a34a;margin-top:4px">Payé CB</div>
-            </div>
-            <div style="background:white;border:1px solid #bbf7d0;border-radius:8px;padding:8px">
-              <div style="font-size:10px;font-weight:600;color:var(--navy)">CMD-0243</div>
-              <div style="font-size:9px;color:var(--gray-400)">Petit Marc</div>
-              <div style="font-size:9px;font-weight:700;color:#16a34a;margin-top:4px">Payé cash</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 5 -->
-      <div class="card card-hover reveal d2" style="display:flex;flex-direction:column;gap:16px">
-        <div class="icon-box icon-box-lg" style="background:rgba(49,58,223,.08)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#313ADF" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <div>
-          <h3 style="margin-bottom:8px">CRM Clients</h3>
-          <p style="font-size:14px;color:var(--gray-500);line-height:1.6">Fiche client complète avec historique d'achats, CA total, statut (prospect/actif/prioritaire) et contacts pros (SIRET).</p>
-        </div>
-        <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--gray-100)">
-          <div style="display:flex;flex-direction:column;gap:6px">
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
-              <svg width="12" height="12" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              Statut client calculé automatiquement
-            </div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
-              <svg width="12" height="12" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              Historique de toutes les commandes
-            </div>
-            <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-500)">
-              <svg width="12" height="12" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-              Gestion B2C et B2B (SIRET)
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 6 — IA -->
-      <div class="card reveal d3" style="display:flex;flex-direction:column;gap:16px;background:linear-gradient(135deg,#040741,#0a1260);border-color:transparent">
-        <div class="icon-box icon-box-lg" style="background:rgba(255,255,255,.1)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2a7 7 0 017 7v1a3 3 0 11-6 0V9a1 1 0 00-2 0v1a3 3 0 11-6 0V9a7 7 0 017-7z"/><path d="M5 14a7 7 0 0014 0"/></svg>
-        </div>
-        <div>
-          <h3 style="color:white;margin-bottom:8px">Assistant IA Neo</h3>
-          <p style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.6">Posez vos questions en langage naturel. Neo analyse vos données en temps réel et vous répond avec précision.</p>
-        </div>
-        <!-- Chat preview -->
-        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;margin-top:auto">
-          <div style="display:flex;gap:8px;margin-bottom:8px;align-items:flex-start">
-            <div style="background:rgba(255,255,255,.1);border-radius:50%;width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center">
-              <svg width="10" height="10" fill="white" viewBox="0 0 24 24"><path d="M12 2a7 7 0 017 7v1a3 3 0 11-6 0V9a1 1 0 00-2 0v1a3 3 0 11-6 0V9a7 7 0 017-7z"/></svg>
-            </div>
-            <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:7px 10px;font-size:11px;color:rgba(255,255,255,.7);line-height:1.5">"Quel est mon produit le plus vendu ce mois ?"</div>
-          </div>
-          <div style="background:var(--primary);border-radius:10px;padding:8px 10px;font-size:11px;color:white;line-height:1.5;margin-left:30px">
-            "Le matelas 140×190 Confort+ : 47 unités vendues pour 12 690€ de CA, soit 34% de vos ventes. Stock restant : 8 unités."
-          </div>
-        </div>
-      </div>
+    <div class="reveal delay-4">
+      <div class="stat-num" style="color:var(--navy)">∞</div>
+      <div style="font-size:14px;color:var(--gray-400);margin-top:6px">utilisateurs inclus</div>
     </div>
   </div>
 </section>
 
-<!-- ROLES -->
-<section class="section" style="background:white">
-  <div style="max-width:1160px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:56px">
-      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex">
-        <span class="eyebrow-dot"></span>
-        Multi-équipe
-      </div>
-      <h2 class="reveal d1">Un outil pour toute votre équipe</h2>
-      <p class="reveal d2" style="margin-top:12px;color:var(--gray-500);font-size:16px;max-width:500px;margin-left:auto;margin-right:auto">Chaque rôle accède exactement aux fonctionnalités dont il a besoin, ni plus ni moins.</p>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
-      <div class="card card-hover reveal d1" style="text-align:center;padding:32px 20px">
-        <div style="width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,#313ADF,#040741);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:var(--shadow-glow)">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a5 5 0 100 10A5 5 0 0012 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg>
-        </div>
-        <div style="font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Propriétaire</div>
-        <h3 style="font-size:15px;margin-bottom:10px">Accès total</h3>
-        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Gère abonnement, équipe, rôles, marges, statistiques complètes et paramètres workspace.</p>
-      </div>
-      <div class="card card-hover reveal d2" style="text-align:center;padding:32px 20px">
-        <div style="width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,#6B73FF,#313ADF);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <div style="font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Manager</div>
-        <h3 style="font-size:15px;margin-bottom:10px">Gestion complète</h3>
-        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Gère l'équipe, les invitations, l'ensemble des opérations. Accès aux marges et statistiques.</p>
-      </div>
-      <div class="card card-hover reveal d3" style="text-align:center;padding:32px 20px">
-        <div style="width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        </div>
-        <div style="font-size:11px;font-weight:700;color:#16a34a;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Vendeur</div>
-        <h3 style="font-size:15px;margin-bottom:10px">Vente &amp; clients</h3>
-        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Crée commandes, factures, devis. Gère clients et produits. Sans accès aux marges ou coûts.</p>
-      </div>
-      <div class="card card-hover reveal d4" style="text-align:center;padding:32px 20px">
-        <div style="width:56px;height:56px;border-radius:18px;background:linear-gradient(135deg,#f59e0b,#d97706);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
-          <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        </div>
-        <div style="font-size:11px;font-weight:700;color:#d97706;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px">Livreur</div>
-        <h3 style="font-size:15px;margin-bottom:10px">Vue livraisons</h3>
-        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Accès simplifié sur mobile : liste des livraisons, mise à jour statut, encaissement sur place.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMPARISON TABLE -->
+<!-- ════════════════ AVANT / APRÈS ════════════════ -->
 <section class="section" style="background:var(--gray-50)">
   <div style="max-width:900px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:48px">
-      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex">
-        <span class="eyebrow-dot"></span>
-        Comparaison
+    <div style="text-align:center;margin-bottom:52px">
+      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex"><span class="eyebrow-dot"></span>Le problème qu'on résout</div>
+      <h2 class="reveal delay-1">Vous reconnaissez-vous dans cette situation ?</h2>
+    </div>
+    <div class="before-after-grid reveal delay-1">
+      <div class="ba-card ba-before">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+          <svg width="20" height="20" fill="none" stroke="#ef4444" stroke-width="2" viewBox="0 0 24 24" class="ba-icon-before"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          <div style="font-weight:700;font-size:15px;color:#b91c1c">Avant NeoFlow BOS</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#7f1d1d">
+            <span style="font-size:16px">📱</span>Commandes prises sur WhatsApp, tout se perd
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#7f1d1d">
+            <span style="font-size:16px">📊</span>Stock compté à la main dans un cahier
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#7f1d1d">
+            <span style="font-size:16px">📄</span>Factures Word/Excel envoyées en retard
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#7f1d1d">
+            <span style="font-size:16px">🚗</span>Livreurs qui appellent pour savoir où aller
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#7f1d1d">
+            <span style="font-size:16px">❓</span>Impossible de savoir d'un coup d'œil comment se porte le business
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#7f1d1d">
+            <span style="font-size:16px">💸</span>6 abonnements d'outils qui ne se parlent pas entre eux
+          </div>
+        </div>
       </div>
-      <h2 class="reveal d1">NeoFlow BOS vs les alternatives</h2>
-      <p class="reveal d2" style="margin-top:12px;color:var(--gray-500);font-size:16px">Pourquoi un outil spécialisé vaut infiniment mieux que plusieurs outils bricolés.</p>
+      <div class="ba-card ba-after">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+          <svg width="20" height="20" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24" class="ba-icon-after"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/></svg>
+          <div style="font-weight:700;font-size:15px;color:#14532d">Avec NeoFlow BOS</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#166534">
+            <svg width="14" height="14" fill="none" stroke="#16a34a" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            Commande créée en 30 secondes, client notifié automatiquement
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#166534">
+            <svg width="14" height="14" fill="none" stroke="#16a34a" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            Stock mis à jour à chaque vente, alertes automatiques
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#166534">
+            <svg width="14" height="14" fill="none" stroke="#16a34a" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            Facture PDF professionnelle en 1 clic, envoyée par email
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#166534">
+            <svg width="14" height="14" fill="none" stroke="#16a34a" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            Livreurs guidés sur leur téléphone, encaissement inclus
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#166534">
+            <svg width="14" height="14" fill="none" stroke="#16a34a" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            Tableau de bord en temps réel depuis n'importe où
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:#166534">
+            <svg width="14" height="14" fill="none" stroke="#16a34a" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            Un seul outil, 49€/mois, tout est connecté
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="card reveal" style="padding:0;overflow:hidden">
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th style="width:35%">Fonctionnalité</th>
-            <th class="highlight" style="text-align:center">NeoFlow BOS</th>
-            <th style="text-align:center">Excel / Sheets</th>
-            <th style="text-align:center">Outils séparés</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Commandes &amp; factures PDF</td>
-            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
-            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
-            <td style="text-align:center;font-size:16px;color:#f59e0b">~</td>
-          </tr>
-          <tr>
-            <td>Gestion stock en temps réel</td>
-            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
-            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
-            <td style="text-align:center;font-size:16px;color:#f59e0b">~</td>
-          </tr>
-          <tr>
-            <td>Livraisons kanban mobile</td>
-            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
-            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
-            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
-          </tr>
-          <tr>
-            <td>CRM clients intégré</td>
-            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
-            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
-            <td style="text-align:center;font-size:16px;color:#f59e0b">~</td>
-          </tr>
-          <tr>
-            <td>Assistant IA sur vos données</td>
-            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
-            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
-            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
-          </tr>
-          <tr>
-            <td>Gestion des rôles / équipe</td>
-            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
-            <td style="text-align:center;font-size:16px;color:#ef4444">✗</td>
-            <td style="text-align:center;font-size:16px;color:#f59e0b">~</td>
-          </tr>
-          <tr>
-            <td>Dashboard financier</td>
-            <td class="highlight" style="text-align:center;font-size:16px">✓</td>
-            <td style="text-align:center;font-size:16px;color:#f59e0b">~</td>
-            <td style="text-align:center;font-size:16px;color:#f59e0b">~</td>
-          </tr>
-          <tr style="background:rgba(49,58,223,.02)">
-            <td style="font-weight:700">Prix mensuel</td>
-            <td class="highlight" style="text-align:center;font-weight:800;color:var(--primary)">49€</td>
-            <td style="text-align:center;font-weight:600">15-25€</td>
-            <td style="text-align:center;font-weight:600">150-300€+</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="text-align:center;font-size:12px;color:var(--gray-400);margin-top:12px">✓ Inclus · ~ Partiel ou limité · ✗ Non disponible</p>
   </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing" class="section" style="background:white">
-  <div style="max-width:900px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:56px">
-      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex">
-        <span class="eyebrow-dot"></span>
-        Tarifs
-      </div>
-      <h2 class="reveal d1">Simple et transparent</h2>
-      <p class="reveal d2" style="margin-top:12px;color:var(--gray-500);font-size:17px">Un seul plan. Tout inclus. Aucune surprise.</p>
+<!-- ════════════════ FONCTIONNALITÉS ════════════════ -->
+<section id="fonctionnalites" class="section" style="background:white">
+  <div style="max-width:1160px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:64px">
+      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex"><span class="eyebrow-dot"></span>Fonctionnalités</div>
+      <h2 class="reveal delay-1">Tout ce que vous faites à la main,<br>automatisé en quelques secondes</h2>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
-      <!-- Mensuel -->
-      <div class="pricing-card reveal d1">
-        <div style="margin-bottom:24px">
-          <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:6px">Mensuel</div>
-          <div style="display:flex;align-items:baseline;gap:6px">
-            <span style="font-size:3rem;font-weight:900;color:var(--navy)">49€</span>
-            <span style="color:var(--gray-400);font-size:14px">/ mois</span>
+
+    <!-- Feature 1 — Commandes -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:80px">
+      <div class="reveal from-left">
+        <div class="eyebrow" style="margin-bottom:16px;display:inline-flex;background:rgba(49,58,223,.07)"><span class="eyebrow-dot"></span>01 — Commandes</div>
+        <h2 style="font-size:2rem;margin-bottom:16px">Une commande créée<br>en 30 secondes chrono</h2>
+        <p style="color:var(--gray-500);font-size:16px;line-height:1.75;margin-bottom:24px">
+          Depuis votre téléphone ou ordinateur, créez une commande, sélectionnez les produits, appliquez une remise si besoin — et c'est envoyé au client. Tout le reste se met à jour automatiquement.
+        </p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--gray-700)">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(49,58,223,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="10" height="10" fill="none" stroke="#313ADF" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Mode vente rapide pour les articles récurrents
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--gray-700)">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(49,58,223,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="10" height="10" fill="none" stroke="#313ADF" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Suivi du statut en temps réel (en prépa, livré, payé)
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--gray-700)">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(49,58,223,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="10" height="10" fill="none" stroke="#313ADF" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Historique complet de chaque client
+          </li>
+        </ul>
+      </div>
+      <div class="reveal from-right">
+        <!-- Screenshot slot commandes -->
+        <div style="border-radius:20px;overflow:hidden;box-shadow:var(--sh-lg);border:1px solid var(--gray-100)">
+          <img src="./screenshots/bos-commandes.png" alt="Gestion des commandes NeoFlow BOS"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <!-- Fallback -->
+          <div style="display:none;background:#f8f9ff;padding:20px">
+            <div style="background:white;border:1px solid var(--gray-100);border-radius:14px;padding:18px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+                <div style="font-size:15px;font-weight:800;color:var(--navy)">Commandes</div>
+                <div style="background:var(--primary);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;color:white">+ Nouvelle</div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px">
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--gray-50);border-radius:10px">
+                  <div><div style="font-size:13px;font-weight:700;color:var(--navy)">CMD-0247 — Dupont Jean</div><div style="font-size:11px;color:var(--gray-400)">Matelas 140×190 Confort+ × 2</div></div>
+                  <div style="text-align:right"><span style="background:#dcfce7;color:#16a34a;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;display:block;margin-bottom:4px">Payé</span><span style="font-size:13px;font-weight:800;color:var(--navy)">640€</span></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--gray-50);border-radius:10px">
+                  <div><div style="font-size:13px;font-weight:700;color:var(--navy)">CMD-0246 — Martin Sarah</div><div style="font-size:11px;color:var(--gray-400)">Sommier 160×200 Bois × 1</div></div>
+                  <div style="text-align:right"><span style="background:#ffedd5;color:#c2410c;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;display:block;margin-bottom:4px">En route</span><span style="font-size:13px;font-weight:800;color:var(--navy)">280€</span></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--gray-50);border-radius:10px">
+                  <div><div style="font-size:13px;font-weight:700;color:var(--navy)">CMD-0245 — Bernard Luc</div><div style="font-size:11px;color:var(--gray-400)">Lit coffre 180×200 × 1</div></div>
+                  <div style="text-align:right"><span style="background:#dbeafe;color:#1d4ed8;font-size:10px;font-weight:700;padding:3px 9px;border-radius:99px;display:block;margin-bottom:4px">En prépa</span><span style="font-size:13px;font-weight:800;color:var(--navy)">890€</span></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div style="font-size:13px;color:var(--gray-400);margin-top:4px">Sans engagement — résiliable à tout moment</div>
         </div>
+      </div>
+    </div>
+
+    <!-- Feature 2 — Livraisons -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:80px">
+      <div class="reveal from-left">
+        <!-- Screenshot livraisons -->
+        <div style="border-radius:20px;overflow:hidden;box-shadow:var(--sh-lg);border:1px solid var(--gray-100)">
+          <img src="./screenshots/bos-livraisons.png" alt="Livraisons kanban NeoFlow BOS"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <div style="display:none;background:#f8f9ff;padding:20px">
+            <div style="background:white;border:1px solid var(--gray-100);border-radius:14px;padding:18px">
+              <div style="font-size:14px;font-weight:800;color:var(--navy);margin-bottom:14px">Livraisons du jour</div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+                <div style="background:var(--gray-50);border-radius:12px;padding:12px">
+                  <div style="font-size:10px;font-weight:700;color:var(--gray-400);text-transform:uppercase;margin-bottom:10px">À préparer</div>
+                  <div style="background:white;border:1px solid var(--gray-100);border-radius:9px;padding:10px;margin-bottom:8px">
+                    <div style="font-size:11px;font-weight:700;color:var(--navy)">Martin S.</div>
+                    <div style="font-size:10px;color:var(--gray-400)">12 rue de la Paix</div>
+                    <div style="font-size:11px;font-weight:700;color:var(--primary);margin-top:5px">185€ — CB</div>
+                  </div>
+                  <div style="background:white;border:1px solid var(--gray-100);border-radius:9px;padding:10px">
+                    <div style="font-size:11px;font-weight:700;color:var(--navy)">Bernard L.</div>
+                    <div style="font-size:10px;color:var(--gray-400)">45 av. Hugo</div>
+                    <div style="font-size:11px;font-weight:700;color:var(--primary);margin-top:5px">890€ — Virement</div>
+                  </div>
+                </div>
+                <div style="background:var(--gray-50);border-radius:12px;padding:12px">
+                  <div style="font-size:10px;font-weight:700;color:var(--gray-400);text-transform:uppercase;margin-bottom:10px">En route</div>
+                  <div style="background:white;border:1px solid #fed7aa;border-radius:9px;padding:10px">
+                    <div style="font-size:11px;font-weight:700;color:var(--navy)">Dupont J.</div>
+                    <div style="font-size:10px;color:var(--gray-400)">8 bd Haussmann</div>
+                    <div style="font-size:10px;font-weight:700;color:#d97706;margin-top:5px">En cours — Luc</div>
+                  </div>
+                </div>
+                <div style="background:var(--gray-50);border-radius:12px;padding:12px">
+                  <div style="font-size:10px;font-weight:700;color:var(--gray-400);text-transform:uppercase;margin-bottom:10px">Livré</div>
+                  <div style="background:white;border:1px solid #bbf7d0;border-radius:9px;padding:10px;margin-bottom:8px">
+                    <div style="font-size:11px;font-weight:700;color:var(--navy)">Leroy A.</div>
+                    <div style="font-size:10px;color:#16a34a;font-weight:600;margin-top:5px">✓ Payé cash</div>
+                  </div>
+                  <div style="background:white;border:1px solid #bbf7d0;border-radius:9px;padding:10px">
+                    <div style="font-size:11px;font-weight:700;color:var(--navy)">Petit M.</div>
+                    <div style="font-size:10px;color:#16a34a;font-weight:600;margin-top:5px">✓ Payé CB</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal from-right">
+        <div class="eyebrow" style="margin-bottom:16px;display:inline-flex;background:rgba(245,158,11,.08);color:#d97706"><span class="eyebrow-dot" style="background:#d97706"></span>02 — Livraisons</div>
+        <h2 style="font-size:2rem;margin-bottom:16px">Vos livreurs savent exactement où aller et quoi encaisser</h2>
+        <p style="color:var(--gray-500);font-size:16px;line-height:1.75;margin-bottom:24px">
+          Tableau de suivi en temps réel des livraisons du jour. Chaque livreur voit ses missions sur son téléphone, peut marquer une livraison comme effectuée et encaisser directement sur place.
+        </p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--gray-700)">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(245,158,11,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="10" height="10" fill="none" stroke="#d97706" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Vue kanban partagée entre toute l'équipe
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--gray-700)">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(245,158,11,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="10" height="10" fill="none" stroke="#d97706" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Encaissement sur place (CB, espèces, virement)
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--gray-700)">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(245,158,11,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="10" height="10" fill="none" stroke="#d97706" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Zéro appel, zéro papier, zéro erreur
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feature 3 — Facturation -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:80px">
+      <div class="reveal from-left">
+        <div class="eyebrow" style="margin-bottom:16px;display:inline-flex;background:rgba(22,163,74,.07);color:#16a34a"><span class="eyebrow-dot" style="background:#16a34a"></span>03 — Facturation</div>
+        <h2 style="font-size:2rem;margin-bottom:16px">Vos factures générées<br>en un seul clic</h2>
+        <p style="color:var(--gray-500);font-size:16px;line-height:1.75;margin-bottom:24px">
+          Transformez une commande en facture PDF en un clic. Votre logo, vos coordonnées, le détail des produits — tout est déjà là. Envoi par email inclus, suivi des impayés automatique.
+        </p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--gray-700)">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(22,163,74,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="10" height="10" fill="none" stroke="#16a34a" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Factures et devis PDF à votre image
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--gray-700)">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(22,163,74,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="10" height="10" fill="none" stroke="#16a34a" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Conversion devis → facture en un clic
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:15px;color:var(--gray-700)">
+            <div style="width:22px;height:22px;border-radius:50%;background:rgba(22,163,74,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="10" height="10" fill="none" stroke="#16a34a" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            Relance des impayés en un clic
+          </li>
+        </ul>
+      </div>
+      <div class="reveal from-right">
+        <div style="border-radius:20px;overflow:hidden;box-shadow:var(--sh-lg);border:1px solid var(--gray-100)">
+          <img src="./screenshots/bos-factures.png" alt="Facturation NeoFlow BOS"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <div style="display:none;background:#f8f9ff;padding:20px">
+            <div style="background:white;border-radius:14px;overflow:hidden;border:1px solid var(--gray-100)">
+              <div style="background:var(--navy);padding:16px;display:flex;justify-content:space-between;align-items:center">
+                <div>
+                  <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:.06em;text-transform:uppercase">FACTURE</div>
+                  <div style="font-size:18px;font-weight:800;color:white">N° 2025-0247</div>
+                </div>
+                <div style="background:rgba(34,197,94,.2);border:1px solid rgba(34,197,94,.4);border-radius:99px;padding:5px 14px;font-size:12px;font-weight:700;color:#22c55e">Payée</div>
+              </div>
+              <div style="padding:16px">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+                  <div>
+                    <div style="font-size:10px;color:var(--gray-400);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Émetteur</div>
+                    <div style="font-size:12px;font-weight:700;color:var(--navy)">Mon Commerce SAS</div>
+                    <div style="font-size:11px;color:var(--gray-400)">12 rue du Commerce, Paris</div>
+                  </div>
+                  <div>
+                    <div style="font-size:10px;color:var(--gray-400);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Client</div>
+                    <div style="font-size:12px;font-weight:700;color:var(--navy)">Dupont Jean</div>
+                    <div style="font-size:11px;color:var(--gray-400)">8 bd Haussmann, Paris</div>
+                  </div>
+                </div>
+                <div style="border:1px solid var(--gray-100);border-radius:10px;overflow:hidden">
+                  <div style="background:var(--gray-50);padding:8px 12px;display:grid;grid-template-columns:1fr auto auto;gap:16px">
+                    <span style="font-size:10px;font-weight:700;color:var(--gray-400)">DÉSIGNATION</span>
+                    <span style="font-size:10px;font-weight:700;color:var(--gray-400)">QTÉ</span>
+                    <span style="font-size:10px;font-weight:700;color:var(--gray-400)">TOTAL</span>
+                  </div>
+                  <div style="padding:8px 12px;display:grid;grid-template-columns:1fr auto auto;gap:16px;border-top:1px solid var(--gray-100)">
+                    <span style="font-size:12px;color:var(--navy)">Matelas 140×190 Confort+</span>
+                    <span style="font-size:12px;color:var(--gray-500)">2</span>
+                    <span style="font-size:12px;font-weight:700;color:var(--navy)">640€</span>
+                  </div>
+                  <div style="padding:8px 12px;background:rgba(49,58,223,.04);display:flex;justify-content:flex-end;align-items:center;gap:16px;border-top:1px solid var(--gray-100)">
+                    <span style="font-size:12px;font-weight:700;color:var(--navy)">TOTAL TTC</span>
+                    <span style="font-size:18px;font-weight:900;color:var(--primary)">640€</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 4 — IA -->
+    <div style="background:linear-gradient(135deg,#040741,#0a1260);border-radius:var(--r-xl);padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;overflow:hidden" class="reveal">
+      <div style="position:absolute;top:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(49,58,223,.4),transparent 65%);pointer-events:none"></div>
+      <div class="grid-overlay" style="opacity:.5"></div>
+      <div style="position:relative;z-index:1">
+        <div class="eyebrow" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);margin-bottom:16px;display:inline-flex"><span class="eyebrow-dot" style="background:rgba(255,255,255,.6)"></span>04 — Assistant IA</div>
+        <h2 style="font-size:1.9rem;color:white;margin-bottom:16px">Demandez. L'IA vous répond avec vos vraies données.</h2>
+        <p style="color:rgba(255,255,255,.6);font-size:15px;line-height:1.75;margin-bottom:24px">
+          Pas besoin de créer des rapports ou de fouiller vos données. Posez vos questions en français — Neo vous répond instantanément avec les chiffres exacts de votre business.
+        </p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
+          <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.7)">
+            <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            "Quel est mon chiffre d'affaires ce mois ?"
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.7)">
+            <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            "Quels produits sont en rupture de stock ?"
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.7)">
+            <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            "Qui sont mes 5 meilleurs clients ?"
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(255,255,255,.7)">
+            <svg width="14" height="14" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            "Combien me doit Dupont Jean ?"
+          </li>
+        </ul>
+      </div>
+      <!-- Chat mockup -->
+      <div style="position:relative;z-index:1">
+        <div style="border-radius:20px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.4)">
+          <img src="./screenshots/bos-ia.png" alt="Assistant IA Neo — NeoFlow BOS"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none;flex-direction:column;background:rgba(255,255,255,.05);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden">
+            <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px">
+              <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#6B73FF,#040741);display:flex;align-items:center;justify-content:center">
+                <svg width="14" height="14" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2a7 7 0 017 7v1a3 3 0 11-6 0V9a1 1 0 00-2 0v1a3 3 0 11-6 0V9a7 7 0 017-7z"/></svg>
+              </div>
+              <div>
+                <div style="font-size:13px;font-weight:700;color:white">Neo</div>
+                <div style="font-size:10px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block;animation:pulse-green 2s infinite"></span>En ligne</div>
+              </div>
+            </div>
+            <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+              <div style="background:rgba(255,255,255,.08);border-radius:12px 12px 12px 3px;padding:12px 14px;max-width:80%;align-self:flex-start">
+                <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.6">"Quel est mon produit le plus vendu ce mois ?"</div>
+              </div>
+              <div style="background:var(--primary);border-radius:12px 12px 3px 12px;padding:12px 14px;max-width:88%;align-self:flex-end">
+                <div style="font-size:12px;color:white;line-height:1.6">"Le <strong>Matelas 140×190 Confort+</strong> : 47 unités vendues ce mois pour <strong>12 690€</strong> de CA, soit 34% de vos ventes. Il vous reste 8 unités en stock."</div>
+              </div>
+              <div style="background:rgba(255,255,255,.08);border-radius:12px 12px 12px 3px;padding:12px 14px;max-width:80%;align-self:flex-start">
+                <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.6">"Et mes clients qui n'ont pas commandé depuis 2 mois ?"</div>
+              </div>
+              <div style="background:var(--primary);border-radius:12px 12px 3px 12px;padding:12px 14px;max-width:88%;align-self:flex-end">
+                <div style="font-size:12px;color:white;line-height:1.6">"3 clients inactifs : <strong>Leroy Anna</strong> (890€ d'historique), <strong>Petit Marc</strong> (450€), <strong>Girard Julie</strong> (320€). Je vous suggère de les relancer."</div>
+              </div>
+            </div>
+            <div style="padding:12px;border-top:1px solid rgba(255,255,255,.08)">
+              <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,.3)">Posez votre question…</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ POUR QUI ════════════════ -->
+<section id="pour-qui" class="section" style="background:var(--gray-50)">
+  <div style="max-width:1160px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:56px">
+      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex"><span class="eyebrow-dot"></span>Pour qui</div>
+      <h2 class="reveal delay-1">Pensé pour les commerçants et artisans qui livrent</h2>
+      <p class="reveal delay-2" style="margin-top:12px;color:var(--gray-500);font-size:16px;max-width:520px;margin-left:auto;margin-right:auto">NeoFlow BOS est parfait si vous avez une boutique, un atelier ou un service avec livraisons et plusieurs personnes dans votre équipe.</p>
+    </div>
+    <div class="bento bento-4" style="gap:14px">
+      <div class="card card-hover reveal delay-1" style="text-align:center;padding:32px 20px">
+        <div style="font-size:3rem;margin-bottom:14px">🛋️</div>
+        <h3 style="font-size:15px;margin-bottom:8px">Mobilier &amp; Literie</h3>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Commandes sur-mesure, livraisons à domicile, suivi SAV, encaissement à la livraison.</p>
+      </div>
+      <div class="card card-hover reveal delay-2" style="text-align:center;padding:32px 20px">
+        <div style="font-size:3rem;margin-bottom:14px">🍽️</div>
+        <h3 style="font-size:15px;margin-bottom:8px">Traiteur &amp; Restauration</h3>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Gestion des commandes événementielles, équipes de service, facturation B2B rapide.</p>
+      </div>
+      <div class="card card-hover reveal delay-3" style="text-align:center;padding:32px 20px">
+        <div style="font-size:3rem;margin-bottom:14px">🔧</div>
+        <h3 style="font-size:15px;margin-bottom:8px">Artisans &amp; Techniciens</h3>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Devis envoyés depuis le terrain, suivi des interventions, facturation instantanée.</p>
+      </div>
+      <div class="card card-hover reveal delay-4" style="text-align:center;padding:32px 20px">
+        <div style="font-size:3rem;margin-bottom:14px">🛒</div>
+        <h3 style="font-size:15px;margin-bottom:8px">Commerce de détail</h3>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Vente rapide en boutique, gestion du stock, fidélisation client, tableau de bord journalier.</p>
+      </div>
+    </div>
+
+    <!-- Rôles simplifiés -->
+    <div style="margin-top:48px;background:white;border:1.5px solid var(--gray-100);border-radius:var(--r-xl);padding:40px" class="reveal">
+      <div style="text-align:center;margin-bottom:32px">
+        <h3 style="font-size:1.4rem;color:var(--navy)">Un outil pour toute votre équipe</h3>
+        <p style="color:var(--gray-500);font-size:14px;margin-top:8px">Chaque membre voit exactement ce dont il a besoin.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+        <div style="text-align:center;padding:20px;background:var(--gray-50);border-radius:var(--r-md)">
+          <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#313ADF,#040741);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;box-shadow:var(--sh-glow)">
+            <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a5 5 0 100 10A5 5 0 0012 2zm0 12c-5.33 0-8 2.67-8 4v2h16v-2c0-1.33-2.67-4-8-4z"/></svg>
+          </div>
+          <div style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:6px">Vous (propriétaire)</div>
+          <p style="font-size:12px;color:var(--gray-500);line-height:1.5">Tout : stats, marges, équipe, abonnement</p>
+        </div>
+        <div style="text-align:center;padding:20px;background:var(--gray-50);border-radius:var(--r-md)">
+          <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#6B73FF,#313ADF);display:flex;align-items:center;justify-content:center;margin:0 auto 12px">
+            <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:6px">Manager</div>
+          <p style="font-size:12px;color:var(--gray-500);line-height:1.5">Gère l'équipe, les opérations, voit les marges</p>
+        </div>
+        <div style="text-align:center;padding:20px;background:var(--gray-50);border-radius:var(--r-md)">
+          <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;margin:0 auto 12px">
+            <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <div style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:6px">Vendeur</div>
+          <p style="font-size:12px;color:var(--gray-500);line-height:1.5">Crée commandes, factures, devis et gère clients</p>
+        </div>
+        <div style="text-align:center;padding:20px;background:var(--gray-50);border-radius:var(--r-md)">
+          <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#f59e0b,#d97706);display:flex;align-items:center;justify-content:center;margin:0 auto 12px">
+            <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <div style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:6px">Livreur</div>
+          <p style="font-size:12px;color:var(--gray-500);line-height:1.5">Ses missions du jour, statuts et encaissement</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ TARIFS ════════════════ -->
+<section id="tarifs" class="section" style="background:white">
+  <div style="max-width:820px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:56px">
+      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex"><span class="eyebrow-dot"></span>Tarifs</div>
+      <h2 class="reveal delay-1">Simple et transparent</h2>
+      <p class="reveal delay-2" style="margin-top:12px;color:var(--gray-500);font-size:17px">Un seul plan. Tout inclus. Aucune surprise.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div class="pricing-card reveal delay-1">
+        <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:8px">Mensuel</div>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:6px">
+          <span style="font-size:3.2rem;font-weight:900;color:var(--navy)">49€</span>
+          <span style="color:var(--gray-400);font-size:15px">/ mois</span>
+        </div>
+        <div style="font-size:13px;color:var(--gray-400);margin-bottom:24px">Sans engagement — résiliable quand vous voulez</div>
         <a href="https://app.neoflow.io/signup" class="btn btn-ghost btn-lg" style="width:100%;justify-content:center;margin-bottom:24px">
           Commencer l'essai gratuit
         </a>
         <ul class="check-list">
-          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>7 jours d'essai offerts</li>
-          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Tous les modules inclus</li>
-          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Utilisateurs illimités</li>
-          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Support inclus</li>
-          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Mises à jour automatiques</li>
+          <li><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>7 jours d'essai offerts, sans CB</li>
+          <li><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Commandes, factures, stock, livraisons</li>
+          <li><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>CRM clients + assistant IA</li>
+          <li><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Utilisateurs illimités</li>
+          <li><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Support inclus</li>
         </ul>
       </div>
-
-      <!-- Annuel -->
-      <div class="pricing-card featured reveal d2" style="position:relative">
-        <div class="pricing-badge-wrap" style="position:absolute;top:-14px;left:50%;transform:translateX(-50%)">
-          <span class="pricing-badge">Meilleure valeur — 2 mois offerts</span>
+      <div class="pricing-card featured reveal delay-2" style="position:relative">
+        <div style="position:absolute;top:-15px;left:50%;transform:translateX(-50%)">
+          <span class="pricing-badge">2 mois offerts</span>
         </div>
-        <div style="margin-bottom:24px">
-          <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:6px">Annuel</div>
-          <div style="display:flex;align-items:baseline;gap:6px">
-            <span style="font-size:3rem;font-weight:900;color:var(--navy)">490€</span>
-            <span style="color:var(--gray-400);font-size:14px">/ an</span>
-          </div>
-          <div style="font-size:13px;color:#16a34a;margin-top:4px;font-weight:600">Économisez 98€ par rapport au mensuel</div>
+        <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:8px">Annuel</div>
+        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px">
+          <span style="font-size:3.2rem;font-weight:900;color:var(--navy)">490€</span>
+          <span style="color:var(--gray-400);font-size:15px">/ an</span>
         </div>
+        <div style="font-size:13px;color:#16a34a;font-weight:600;margin-bottom:24px">→ Économisez 98€ par an</div>
         <a href="https://app.neoflow.io/signup" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;margin-bottom:24px">
           Commencer l'essai gratuit
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <ul class="check-list">
-          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>7 jours d'essai offerts</li>
-          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Tous les modules inclus</li>
-          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Utilisateurs illimités</li>
-          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Support prioritaire</li>
-          <li><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Mises à jour automatiques</li>
+          <li><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>7 jours d'essai offerts, sans CB</li>
+          <li><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Tout inclus comme le mensuel</li>
+          <li><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Équivalent à 40,83€/mois</li>
+          <li><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Accès prioritaire aux nouvelles fonctions</li>
+          <li><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>Support prioritaire</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- ════════════════ TÉMOIGNAGES ════════════════ -->
 <section class="section" style="background:var(--gray-50)">
-  <div style="max-width:1160px;margin:0 auto">
+  <div style="max-width:1000px;margin:0 auto">
     <div style="text-align:center;margin-bottom:48px">
-      <h2 class="reveal d1">Ils utilisent NeoFlow BOS</h2>
+      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex"><span class="eyebrow-dot green"></span>Avis vérifiés</div>
+      <h2 class="reveal delay-1">Ce que disent leurs équipes</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
-      <div class="testimonial-card card-hover reveal d1">
-        <div class="stars" style="margin-bottom:12px">
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p style="font-size:13px;color:var(--gray-500);line-height:1.7;margin-bottom:16px">"Avant NeoFlow on utilisait Excel, WhatsApp et une caisse séparée. Maintenant tout est dans une seule app. Un gain de temps énorme."</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+      <div class="testimonial reveal delay-1">
+        <div class="stars" style="margin-bottom:12px"><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.72;margin-bottom:16px">"Avant on prenait les commandes sur WhatsApp et on les écrivait dans un cahier. Maintenant en 30 secondes c'est fait, la facture est envoyée et mon livreur est prévenu."</p>
         <div style="display:flex;align-items:center;gap:10px">
-          <div class="testimonial-avatar" style="width:38px;height:38px;font-size:14px">T</div>
-          <div><div style="font-weight:600;font-size:13px">Thomas R.</div><div style="font-size:11px;color:var(--gray-400)">Propriétaire — Boulangerie artisanale</div></div>
+          <div class="avatar" style="width:38px;height:38px;font-size:14px">M</div>
+          <div><div style="font-weight:700;font-size:13px;color:var(--navy)">Marie D.</div><div style="font-size:11px;color:var(--gray-400)">Literie du Centre</div></div>
         </div>
       </div>
-      <div class="testimonial-card card-hover reveal d2">
-        <div class="stars" style="margin-bottom:12px">
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p style="font-size:13px;color:var(--gray-500);line-height:1.7;margin-bottom:16px">"Mon gérant voit les stats en temps réel depuis son téléphone même quand il n'est pas sur place. Le dashboard financier est parfait."</p>
+      <div class="testimonial reveal delay-2" style="border-color:var(--primary);box-shadow:0 8px 40px rgba(49,58,223,.07)">
+        <div class="stars" style="margin-bottom:12px"><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.72;margin-bottom:16px">"Je demande à l'IA combien j'ai fait ce mois, quels articles se vendent le mieux, qui sont mes clients prioritaires — et il me répond avec les chiffres exacts. Bluffant."</p>
         <div style="display:flex;align-items:center;gap:10px">
-          <div class="testimonial-avatar" style="width:38px;height:38px;font-size:14px;background:linear-gradient(135deg,#6B73FF,#040741)">A</div>
-          <div><div style="font-weight:600;font-size:13px">Amira K.</div><div style="font-size:11px;color:var(--gray-400)">Gérante — Salon de coiffure (3 adresses)</div></div>
+          <div class="avatar" style="width:38px;height:38px;font-size:14px;background:linear-gradient(135deg,#6B73FF,#313ADF)">K</div>
+          <div><div style="font-weight:700;font-size:13px;color:var(--navy)">Karim B.</div><div style="font-size:11px;color:var(--gray-400)">Épicerie fine — Paris 11</div></div>
         </div>
       </div>
-      <div class="testimonial-card card-hover reveal d3">
-        <div class="stars" style="margin-bottom:12px">
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="13" height="13" fill="#f59e0b" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p style="font-size:13px;color:var(--gray-500);line-height:1.7;margin-bottom:16px">"Les devis en PDF avec mon logo envoyés directement par mail depuis l'app — mes clients sont impressionnés. Plus professionnel que jamais."</p>
+      <div class="testimonial reveal delay-3">
+        <div class="stars" style="margin-bottom:12px"><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="13" height="13" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.72;margin-bottom:16px">"Mes livreurs voient leurs missions sur leur téléphone. Ils encaissent sur place sans m'appeler. Le soir, je vois tout ce qui a été livré et payé en un coup d'œil."</p>
         <div style="display:flex;align-items:center;gap:10px">
-          <div class="testimonial-avatar" style="width:38px;height:38px;font-size:14px;background:linear-gradient(135deg,#040741,#313ADF)">J</div>
-          <div><div style="font-weight:600;font-size:13px">Julien M.</div><div style="font-size:11px;color:var(--gray-400)">Artisan — Menuiserie sur-mesure</div></div>
+          <div class="avatar" style="width:38px;height:38px;font-size:14px;background:linear-gradient(135deg,#040741,#313ADF)">S</div>
+          <div><div style="font-weight:700;font-size:13px;color:var(--navy)">Sophie L.</div><div style="font-size:11px;color:var(--gray-400)">Traiteur événementiel</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- ════════════════ FAQ ════════════════ -->
 <section id="faq" class="section" style="background:white">
-  <div style="max-width:700px;margin:0 auto">
+  <div style="max-width:680px;margin:0 auto">
     <div style="text-align:center;margin-bottom:48px">
-      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex">
-        <span class="eyebrow-dot"></span>
-        Questions fréquentes
-      </div>
-      <h2 class="reveal d1">FAQ</h2>
+      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex"><span class="eyebrow-dot"></span>Questions fréquentes</div>
+      <h2 class="reveal delay-1">Vos questions, nos réponses</h2>
     </div>
-    <div style="display:flex;flex-direction:column;gap:10px" class="reveal d1">
+    <div style="display:flex;flex-direction:column;gap:10px" class="reveal delay-1">
       <div class="faq-item">
-        <button class="faq-btn" onclick="toggleFaq(this)">
-          <h3>Est-ce que l'essai gratuit nécessite une carte bancaire ?</h3>
-          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">Non. L'essai gratuit de 7 jours est accessible sans CB. À la fin de l'essai, vous entrez votre carte pour continuer. Si vous ne le faites pas, votre compte est simplement désactivé sans aucun prélèvement.</div></div>
+        <button class="faq-btn" onclick="toggleFaq(this)"><h3>L'essai gratuit nécessite-t-il une carte bancaire ?</h3><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-body"><div class="faq-body-inner">Non. Vous accédez à NeoFlow BOS pendant 7 jours sans renseigner aucun moyen de paiement. Vous entrez votre carte uniquement si vous décidez de continuer à la fin de l'essai. Si vous ne faites rien, votre compte est désactivé sans aucun prélèvement.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn" onclick="toggleFaq(this)">
-          <h3>Combien d'utilisateurs puis-je inviter ?</h3>
-          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">Illimité. Vous pouvez inviter autant de collaborateurs que nécessaire — vendeurs, livreurs, managers. Chacun dispose d'un compte distinct avec les accès correspondant à son rôle.</div></div>
+        <button class="faq-btn" onclick="toggleFaq(this)"><h3>Combien de personnes peuvent accéder à l'application ?</h3><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-body"><div class="faq-body-inner">Il n'y a aucune limite. Vous pouvez inviter tous vos collaborateurs — vendeurs, livreurs, managers — sans surcoût. Chacun a un accès adapté à son rôle.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn" onclick="toggleFaq(this)">
-          <h3>Mes données sont-elles sécurisées ?</h3>
-          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">Oui. Vos données sont isolées par workspace grâce à Row Level Security (RLS) côté base de données. Chaque workspace est totalement séparé des autres. Données hébergées sur Supabase (infrastructure AWS). Conforme RGPD.</div></div>
+        <button class="faq-btn" onclick="toggleFaq(this)"><h3>Mes données sont-elles sécurisées et privées ?</h3><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-body"><div class="faq-body-inner">Oui. Vos données sont totalement isolées des autres utilisateurs. Personne d'autre ne peut voir vos commandes, vos clients ou vos chiffres. Conforme RGPD, hébergé en Europe.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn" onclick="toggleFaq(this)">
-          <h3>Puis-je résilier à tout moment ?</h3>
-          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">Absolument. Pour le plan mensuel, résiliation à tout moment depuis votre espace client, effective en fin de période. Pour le plan annuel, la résiliation est possible mais le remboursement n'est pas prévu (conformément aux CGV).</div></div>
+        <button class="faq-btn" onclick="toggleFaq(this)"><h3>Puis-je annuler à tout moment ?</h3><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-body"><div class="faq-body-inner">Oui, pour le plan mensuel. Vous résiliez depuis votre espace abonnement, effective en fin de mois en cours. Pour le plan annuel, la résiliation est possible mais sans remboursement au prorata.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn" onclick="toggleFaq(this)">
-          <h3>NeoFlow BOS est-il un logiciel de caisse certifié NF525 ?</h3>
-          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">Non. NeoFlow BOS est un logiciel de gestion de commandes et de back-office. Il n'est pas un logiciel de caisse certifié NF 525 (art. 286 bis CGI). Si votre activité est assujettie à TVA et reçoit des paiements de particuliers, vous pouvez avoir besoin d'un logiciel de caisse certifié en complément.</div></div>
+        <button class="faq-btn" onclick="toggleFaq(this)"><h3>NeoFlow BOS fonctionne-t-il sur téléphone ?</h3><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-body"><div class="faq-body-inner">Oui, et c'est pensé pour ça. L'application s'installe sur iPhone et Android directement depuis votre navigateur (sans passer par l'App Store). L'interface est optimisée pour vos livreurs et vendeurs en déplacement.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn" onclick="toggleFaq(this)">
-          <h3>Puis-je utiliser NeoFlow BOS sur mobile ?</h3>
-          <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span>
-        </button>
-        <div class="faq-body"><div class="faq-body-inner">Oui. NeoFlow BOS est une Progressive Web App (PWA) installable sur iPhone et Android directement depuis le navigateur. L'interface est entièrement responsive et optimisée pour les livreurs et vendeurs en déplacement.</div></div>
+        <button class="faq-btn" onclick="toggleFaq(this)"><h3>NeoFlow BOS remplace-t-il ma caisse enregistreuse ?</h3><span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></button>
+        <div class="faq-body"><div class="faq-body-inner">NeoFlow BOS est un outil de gestion de commandes et de back-office. Il n'est pas un logiciel de caisse certifié NF 525. Si vous encaissez des particuliers assujettis à TVA via une caisse physique, vous pouvez avoir besoin d'un logiciel certifié en complément.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA FINAL -->
-<section style="background:linear-gradient(135deg,#040741,#0a1260);padding:100px 24px" class="reveal">
-  <div style="max-width:700px;margin:0 auto;text-align:center">
-    <div class="eyebrow" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);margin-bottom:24px;display:inline-flex">
-      <span class="eyebrow-dot green"></span>
-      Prêt à démarrer ?
+<!-- ════════════════ CTA FINAL ════════════════ -->
+<section style="background:linear-gradient(155deg,#040741,#0a1260);padding:100px 24px;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-80px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(49,58,223,.3),transparent 65%);pointer-events:none"></div>
+  <div class="grid-overlay" style="opacity:.5"></div>
+  <div style="max-width:680px;margin:0 auto;text-align:center;position:relative;z-index:1" class="reveal">
+    <div class="eyebrow" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.88);margin-bottom:24px;display:inline-flex">
+      <span class="eyebrow-dot green"></span>Prêt à tester ?
     </div>
-    <h2 style="color:white;margin-bottom:16px">7 jours gratuits pour tout tester</h2>
-    <p style="color:rgba(255,255,255,.6);font-size:17px;line-height:1.7;margin-bottom:40px">Aucune CB requise. Annulation à tout moment. Démarrez en 2 minutes.</p>
-    <a href="https://app.neoflow.io/signup" class="btn btn-white btn-lg" style="font-size:16px;padding:18px 36px">
+    <h2 style="color:white;margin-bottom:16px">7 jours pour voir si NeoFlow BOS<br>change vraiment votre quotidien</h2>
+    <p style="color:rgba(255,255,255,.6);font-size:17px;line-height:1.72;margin-bottom:40px">Aucune CB. Aucun engagement. Annulation en un clic.</p>
+    <a href="https://app.neoflow.io/signup" class="btn btn-white btn-xl" style="font-size:17px;padding:18px 42px;box-shadow:0 16px 48px rgba(255,255,255,.15)">
       Commencer gratuitement
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
-    <div style="display:flex;justify-content:center;gap:24px;margin-top:24px;flex-wrap:wrap">
-      <span style="font-size:13px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:6px">
-        <svg width="13" height="13" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        Sans carte bancaire
-      </span>
-      <span style="font-size:13px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:6px">
-        <svg width="13" height="13" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        Résiliable à tout moment
-      </span>
-      <span style="font-size:13px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:6px">
-        <svg width="13" height="13" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        Support inclus
-      </span>
-    </div>
   </div>
 </section>
 
@@ -768,25 +807,24 @@
   <div class="footer-grid">
     <div>
       <div class="footer-logo">
-        <img src="./logos/NFbos_blanc.png" alt="NeoFlow BOS"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <img src="./logos/NFbos_blanc.png" alt="NeoFlow BOS" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <span style="display:none;color:white;font-weight:800;font-size:18px">NeoFlow BOS</span>
       </div>
-      <p class="footer-tagline">Business Operating System pour commerçants et PME. Tout-en-un, accessible partout, dès 49€/mois.</p>
+      <p class="footer-tagline">Commandes, factures, stock, livraisons et IA dans une seule app. Pour les commerçants et PME qui veulent aller vite.</p>
     </div>
     <div>
       <div class="footer-col-title">Produit</div>
       <ul class="footer-links">
-        <li><a href="#features">Fonctionnalités</a></li>
-        <li><a href="#pricing">Tarifs</a></li>
+        <li><a href="#fonctionnalites">Fonctionnalités</a></li>
+        <li><a href="#pour-qui">Pour qui</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="https://app.neoflow.io/signup">Inscription</a></li>
       </ul>
     </div>
     <div>
-      <div class="footer-col-title">Agence</div>
+      <div class="footer-col-title">NeoFlow Agency</div>
       <ul class="footer-links">
-        <li><a href="/">NeoFlow Agency</a></li>
+        <li><a href="/">Accueil</a></li>
         <li><a href="/services.html">Services sur-mesure</a></li>
         <li><a href="/contact.html">Contact</a></li>
       </ul>
@@ -807,26 +845,24 @@
 </footer>
 
 <script>
-  const navbarInner = document.getElementById('navbarInner');
-  window.addEventListener('scroll', () => navbarInner.classList.toggle('scrolled', window.scrollY > 20));
+  const inner = document.getElementById('navbarInner');
+  window.addEventListener('scroll', () => inner.classList.toggle('scrolled', window.scrollY > 20));
   document.getElementById('burgerBtn').addEventListener('click', () => {
     document.getElementById('mobileNav').style.display = 'flex';
   });
   document.getElementById('closeNav').addEventListener('click', () => {
     document.getElementById('mobileNav').style.display = 'none';
   });
-
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   }
-
-  const observer = new IntersectionObserver((entries) => {
+  const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>

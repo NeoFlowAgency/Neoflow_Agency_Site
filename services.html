@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services — NeoFlow Agency</title>
-  <meta name="description" content="NeoFlow Agency développe des applications SaaS, PWA, back-offices métier et intégrations API sur-mesure pour entrepreneurs et PME.">
+  <meta name="description" content="NeoFlow Agency développe des applications web et mobiles sur-mesure pour les entrepreneurs et PME : logiciels métier, apps mobiles, tableaux de bord, automatisations.">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -56,67 +56,91 @@
 
 <!-- HERO -->
 <section class="hero-mesh grid-bg" style="padding:160px 24px 100px;text-align:center;position:relative;overflow:hidden">
-  <div style="position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(49,58,223,.1),transparent 70%);pointer-events:none"></div>
-  <div style="max-width:720px;margin:0 auto;position:relative;z-index:1">
+  <div class="orb" style="width:600px;height:400px;top:-80px;left:50%;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(49,58,223,.12),transparent 70%)"></div>
+  <div style="max-width:740px;margin:0 auto;position:relative;z-index:1">
     <div class="pill-gradient-border anim-up" style="margin-bottom:24px">
       <span>Développement sur-mesure</span>
     </div>
     <h1 class="anim-up d1" style="margin-bottom:20px">
-      Nos <span class="g-text">services</span>
+      Une app qui fait<br><span class="g-text g-text-anim">exactement ce que vous voulez</span>
     </h1>
     <p class="anim-up d2" style="font-size:18px;color:var(--gray-500);line-height:1.7;max-width:560px;margin:0 auto 36px">
-      De l'idée au produit fini — nous développons des applications web et mobiles robustes, scalables et conformes RGPD, adaptées à votre secteur.
+      Pas un outil générique. Pas du no-code qui plante au mauvais moment. Une vraie application construite pour vos processus, vos équipes, votre secteur.
     </p>
-    <a href="/contact.html" class="btn btn-primary btn-lg anim-up d3">
-      Demander un devis gratuit
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap" class="anim-up d3">
+      <a href="/contact.html" class="btn btn-primary btn-lg">
+        Demander un devis gratuit
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#services" class="btn btn-ghost btn-lg">Voir les services</a>
+    </div>
   </div>
 </section>
 
+<!-- CHIFFRES -->
+<div style="background:var(--navy);padding:32px 24px">
+  <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center">
+    <div>
+      <div style="font-size:28px;font-weight:900;color:white">24h</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.4);margin-top:4px">Réponse devis</div>
+    </div>
+    <div>
+      <div style="font-size:28px;font-weight:900;color:#6B73FF">100%</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.4);margin-top:4px">Sur-mesure</div>
+    </div>
+    <div>
+      <div style="font-size:28px;font-weight:900;color:white">Prix fixe</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.4);margin-top:4px">Pas de surprise</div>
+    </div>
+    <div>
+      <div style="font-size:28px;font-weight:900;color:#6B73FF">1</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.4);margin-top:4px">Interlocuteur dédié</div>
+    </div>
+  </div>
+</div>
+
 <!-- SERVICES DÉTAILLÉS -->
-<section class="section" style="background:white">
+<section class="section" id="services" style="background:white">
   <div style="max-width:1160px;margin:0 auto;display:flex;flex-direction:column;gap:80px">
 
-    <!-- Service 1 — SaaS -->
+    <!-- Service 1 — Logiciel métier -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center" class="reveal">
       <div>
         <div class="eyebrow" style="margin-bottom:20px;display:inline-flex">
           <span class="eyebrow-dot"></span>
           Service 01
         </div>
-        <h2 style="font-size:2rem;margin-bottom:16px">Applications SaaS multi-tenant</h2>
+        <h2 style="font-size:2rem;margin-bottom:16px">Logiciel métier sur-mesure</h2>
         <p style="color:var(--gray-500);font-size:16px;line-height:1.7;margin-bottom:24px">
-          Nous développons des logiciels en abonnement complets, sécurisés et scalables. Authentification multi-workspace, rôles, paiements Stripe, webhooks, portail client, emails automatiques — tout est inclus.
+          Vous avez un processus métier complexe que les logiciels du marché ne couvrent pas bien ? On conçoit votre propre outil : gestion des commandes, suivi des équipes, reporting automatique, accès multi-utilisateurs avec des droits différents selon le rôle.
         </p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Auth multi-tenant avec isolation des données (RLS)
+            Plusieurs utilisateurs, chacun avec son espace et ses droits
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Intégration Stripe : essais, abonnements, portail facturation
+            Paiements en ligne avec essai gratuit et abonnement
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Gestion des rôles et invitations par token
+            Invitations d'équipe par email, gestion des rôles
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Emails transactionnels via Resend
+            Emails automatiques, relances, notifications
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            RGPD : suppression compte, export données, mentions légales
+            Conforme RGPD — vos clients peuvent supprimer leurs données
           </div>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px">
-          <span class="tag tag-blue">React 19</span>
-          <span class="tag tag-blue">Supabase</span>
-          <span class="tag tag-blue">Stripe</span>
-          <span class="tag tag-blue">Resend</span>
-          <span class="tag tag-blue">Vercel</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:rgba(49,58,223,.07);color:var(--primary);font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">Commandes &amp; facturation</span>
+          <span style="background:rgba(49,58,223,.07);color:var(--primary);font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">CRM clients</span>
+          <span style="background:rgba(49,58,223,.07);color:var(--primary);font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">Abonnement mensuel</span>
+          <span style="background:rgba(49,58,223,.07);color:var(--primary);font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">Gestion d'équipe</span>
         </div>
       </div>
       <div style="background:var(--gray-50);border-radius:var(--radius-lg);padding:32px;border:1.5px solid var(--gray-100)">
@@ -127,8 +151,8 @@
               <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
             </div>
             <div>
-              <div style="font-size:13px;font-weight:600;color:var(--navy)">Multi-workspace</div>
-              <div style="font-size:12px;color:var(--gray-400)">Chaque client = workspace isolé</div>
+              <div style="font-size:13px;font-weight:600;color:var(--navy)">Espaces séparés par client</div>
+              <div style="font-size:12px;color:var(--gray-400)">Chaque boutique voit uniquement ses données</div>
             </div>
           </div>
           <div style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:center">
@@ -136,8 +160,8 @@
               <svg width="16" height="16" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             <div>
-              <div style="font-size:13px;font-weight:600;color:var(--navy)">Row Level Security</div>
-              <div style="font-size:12px;color:var(--gray-400)">Isolation totale des données</div>
+              <div style="font-size:13px;font-weight:600;color:var(--navy)">Données totalement isolées</div>
+              <div style="font-size:12px;color:var(--gray-400)">Aucun risque de fuite entre clients</div>
             </div>
           </div>
           <div style="background:white;border:1px solid var(--gray-100);border-radius:12px;padding:14px;display:flex;gap:12px;align-items:center">
@@ -145,8 +169,8 @@
               <svg width="16" height="16" fill="none" stroke="#7c3aed" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
             </div>
             <div>
-              <div style="font-size:13px;font-weight:600;color:var(--navy)">Stripe intégré</div>
-              <div style="font-size:12px;color:var(--gray-400)">Essai 7j + abonnement auto</div>
+              <div style="font-size:13px;font-weight:600;color:var(--navy)">Paiement mensuel automatique</div>
+              <div style="font-size:12px;color:var(--gray-400)">7j d'essai gratuit, CB requise</div>
             </div>
           </div>
         </div>
@@ -155,27 +179,24 @@
 
     <div class="divider"></div>
 
-    <!-- Service 2 — PWA -->
+    <!-- Service 2 — Application mobile -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center" class="reveal">
       <div style="background:linear-gradient(160deg,#040741,#0a1260);border-radius:var(--radius-lg);padding:40px;display:flex;justify-content:center;order:-1">
-        <!-- Phone mockup -->
         <div class="phone-outer float">
           <div class="phone-screen" style="background:#f8f9ff">
-            <!-- Status bar -->
             <div style="background:var(--navy);height:30px;display:flex;align-items:center;justify-content:space-between;padding:0 14px">
               <span style="font-size:10px;color:white;font-weight:600">9:41</span>
               <span style="font-size:10px;color:rgba(255,255,255,.6)">●●● 100%</span>
             </div>
-            <!-- App content -->
             <div style="padding:12px;display:flex;flex-direction:column;gap:8px">
-              <div style="font-size:11px;font-weight:700;color:var(--navy)">Mes livraisons</div>
+              <div style="font-size:11px;font-weight:700;color:var(--navy)">Mes livraisons du jour</div>
               <div style="background:white;border:1px solid var(--gray-100);border-radius:10px;padding:10px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
                   <span style="font-size:10px;font-weight:700;color:var(--navy)">CMD-0247</span>
                   <span style="background:#ffedd5;color:#c2410c;font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px">En route</span>
                 </div>
                 <div style="font-size:9px;color:var(--gray-500)">12 rue de la Paix, Paris 75001</div>
-                <div style="font-size:10px;font-weight:600;color:var(--primary);margin-top:4px">185€ — à encaisser</div>
+                <div style="font-size:10px;font-weight:600;color:var(--primary);margin-top:4px">185 € — à encaisser</div>
               </div>
               <div style="background:white;border:1px solid var(--gray-100);border-radius:10px;padding:10px">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
@@ -183,7 +204,7 @@
                   <span style="background:#dbeafe;color:#1d4ed8;font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px">À préparer</span>
                 </div>
                 <div style="font-size:9px;color:var(--gray-500)">45 av. Victor Hugo, Paris 75016</div>
-                <div style="font-size:10px;font-weight:600;color:var(--primary);margin-top:4px">320€ — payé en ligne</div>
+                <div style="font-size:10px;font-weight:600;color:var(--primary);margin-top:4px">320 € — payé en ligne</div>
               </div>
               <div style="background:linear-gradient(135deg,#313ADF,#040741);border-radius:10px;padding:10px;text-align:center">
                 <span style="font-size:10px;font-weight:700;color:white">Marquer comme livré</span>
@@ -197,83 +218,82 @@
           <span class="eyebrow-dot"></span>
           Service 02
         </div>
-        <h2 style="font-size:2rem;margin-bottom:16px">Progressive Web Apps (PWA)</h2>
+        <h2 style="font-size:2rem;margin-bottom:16px">Application mobile pour vos équipes terrain</h2>
         <p style="color:var(--gray-500);font-size:16px;line-height:1.7;margin-bottom:24px">
-          Vos équipes terrain ont besoin d'une app mobile ? Une PWA s'installe directement depuis le navigateur, sans passer par l'App Store. Notifications push, mode hors-ligne, accès caméra, géolocalisation.
+          Vos livreurs, techniciens ou commerciaux ont besoin d'une app sur leur téléphone ? Pas besoin de passer par l'App Store. L'application s'installe directement depuis le navigateur sur iPhone et Android, et fonctionne même sans connexion internet.
         </p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Installation iOS et Android sans App Store
+            S'installe sur iPhone et Android sans passer par l'App Store
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Notifications push (Web Push API)
+            Notifications instantanées sur le téléphone de vos équipes
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Mode hors-ligne avec Service Worker
+            Fonctionne même sans connexion internet (mode hors-ligne)
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            UX optimisée tactile mobile-first
+            Interface pensée pour être utilisée avec les pouces, en déplacement
           </div>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px">
-          <span class="tag tag-purple">Service Worker</span>
-          <span class="tag tag-purple">Web Push</span>
-          <span class="tag tag-purple">IndexedDB</span>
-          <span class="tag tag-purple">Manifest</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:rgba(124,58,237,.07);color:#7c3aed;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">Livreurs &amp; terrain</span>
+          <span style="background:rgba(124,58,237,.07);color:#7c3aed;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">Notifications push</span>
+          <span style="background:rgba(124,58,237,.07);color:#7c3aed;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">Hors-ligne</span>
+          <span style="background:rgba(124,58,237,.07);color:#7c3aed;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">iPhone &amp; Android</span>
         </div>
       </div>
     </div>
 
     <div class="divider"></div>
 
-    <!-- Service 3 — Back-office -->
+    <!-- Service 3 — Back-office / Tableau de bord -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center" class="reveal">
       <div>
         <div class="eyebrow" style="margin-bottom:20px;display:inline-flex">
           <span class="eyebrow-dot"></span>
           Service 03
         </div>
-        <h2 style="font-size:2rem;margin-bottom:16px">Back-offices &amp; outils internes</h2>
+        <h2 style="font-size:2rem;margin-bottom:16px">Tableaux de bord &amp; espaces de gestion</h2>
         <p style="color:var(--gray-500);font-size:16px;line-height:1.7;margin-bottom:24px">
-          Tableaux de bord, CRM, ERP, outils de reporting — des interfaces métier qui correspondent exactement à vos processus. Plus rapides, plus fiables et plus adaptables que n'importe quel No-code.
+          Arrêtez de chercher vos chiffres dans 5 fichiers Excel différents. On crée un espace où vous voyez en temps réel : votre chiffre d'affaires, vos meilleures ventes, les performances de vos vendeurs, l'état de vos stocks — en un seul endroit.
         </p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Tableaux de bord avec graphiques temps réel
+            Chiffres en temps réel — plus besoin de tout recalculer à la main
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Gestion CRUD avancée avec filtres et exports
+            Filtres avancés, exports PDF et Excel en un clic
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Authentification et permissions granulaires
+            Chaque personne voit ce qu'elle doit voir — pas plus
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Connexion à vos données existantes (API, BDD)
+            Se connecte à vos outils existants (comptabilité, e-commerce…)
           </div>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px">
-          <span class="tag tag-green">Recharts</span>
-          <span class="tag tag-green">Supabase</span>
-          <span class="tag tag-green">PostgreSQL</span>
-          <span class="tag tag-green">React Query</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:rgba(22,163,74,.07);color:#16a34a;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">CA &amp; marges</span>
+          <span style="background:rgba(22,163,74,.07);color:#16a34a;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">Top produits</span>
+          <span style="background:rgba(22,163,74,.07);color:#16a34a;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">Perf vendeurs</span>
+          <span style="background:rgba(22,163,74,.07);color:#16a34a;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">Export PDF/Excel</span>
         </div>
       </div>
       <div style="background:var(--gray-50);border-radius:var(--radius-lg);padding:24px;border:1.5px solid var(--gray-100)">
-        <!-- Mini dashboard mockup -->
         <div style="font-size:12px;font-weight:700;color:var(--primary);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px">Aperçu — Dashboard financier</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
           <div class="kpi-mini">
             <div style="font-size:10px;color:var(--gray-400);margin-bottom:4px">Marge brute</div>
             <div style="font-size:18px;font-weight:900;color:var(--navy)">42.3%</div>
-            <div style="font-size:11px;color:#16a34a">▲ 3.1pt</div>
+            <div style="font-size:11px;color:#16a34a">▲ 3.1pt vs mois dernier</div>
           </div>
           <div class="kpi-mini">
             <div style="font-size:10px;color:var(--gray-400);margin-bottom:4px">Meilleur produit</div>
@@ -289,21 +309,21 @@
               <div style="flex:1;height:6px;background:var(--gray-100);border-radius:99px;overflow:hidden">
                 <div style="width:85%;height:100%;background:linear-gradient(90deg,#313ADF,#6B73FF);border-radius:99px"></div>
               </div>
-              <span style="font-size:10px;font-weight:600;color:var(--navy)">5 240€</span>
+              <span style="font-size:10px;font-weight:600;color:var(--navy)">5 240 €</span>
             </div>
             <div style="display:flex;align-items:center;gap:8px">
               <div style="font-size:10px;font-weight:600;color:var(--navy);width:60px">Camille T.</div>
               <div style="flex:1;height:6px;background:var(--gray-100);border-radius:99px;overflow:hidden">
                 <div style="width:62%;height:100%;background:linear-gradient(90deg,#313ADF,#6B73FF);border-radius:99px"></div>
               </div>
-              <span style="font-size:10px;font-weight:600;color:var(--navy)">3 810€</span>
+              <span style="font-size:10px;font-weight:600;color:var(--navy)">3 810 €</span>
             </div>
             <div style="display:flex;align-items:center;gap:8px">
               <div style="font-size:10px;font-weight:600;color:var(--navy);width:60px">Ahmed K.</div>
               <div style="flex:1;height:6px;background:var(--gray-100);border-radius:99px;overflow:hidden">
                 <div style="width:44%;height:100%;background:linear-gradient(90deg,#313ADF,#6B73FF);border-radius:99px;opacity:.6"></div>
               </div>
-              <span style="font-size:10px;font-weight:600;color:var(--navy)">2 710€</span>
+              <span style="font-size:10px;font-weight:600;color:var(--navy)">2 710 €</span>
             </div>
           </div>
         </div>
@@ -312,36 +332,40 @@
 
     <div class="divider"></div>
 
-    <!-- Service 4 — Intégrations -->
+    <!-- Service 4 — Connexions & automatisations -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center" class="reveal">
       <div style="order:-1;background:var(--navy);border-radius:var(--radius-lg);padding:32px">
-        <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px">Architecture type</div>
+        <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px">Votre app connectée à votre écosystème</div>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center">
-            <span style="font-size:13px;color:rgba(255,255,255,.8);font-weight:600">Votre App</span>
+            <span style="font-size:13px;color:rgba(255,255,255,.9);font-weight:700">Votre application</span>
             <svg width="16" height="16" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            <span style="font-size:12px;color:var(--primary);font-weight:600">REST / GraphQL</span>
+            <span style="font-size:12px;color:#6B73FF;font-weight:600">Synchronisation auto</span>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
             <div style="background:rgba(49,58,223,.15);border:1px solid rgba(49,58,223,.3);border-radius:10px;padding:10px;text-align:center">
-              <div style="font-size:11px;font-weight:700;color:#6B73FF">Supabase</div>
-              <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">Auth + DB</div>
+              <div style="font-size:20px;margin-bottom:4px">📦</div>
+              <div style="font-size:11px;font-weight:700;color:white">Votre compta</div>
+              <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">Pennylane, Sage…</div>
             </div>
             <div style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:10px;text-align:center">
-              <div style="font-size:11px;font-weight:700;color:#22c55e">Stripe</div>
-              <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">Paiements</div>
+              <div style="font-size:20px;margin-bottom:4px">🛍️</div>
+              <div style="font-size:11px;font-weight:700;color:white">Votre boutique</div>
+              <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">Shopify, WooCommerce…</div>
             </div>
             <div style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:10px;text-align:center">
-              <div style="font-size:11px;font-weight:700;color:#f59e0b">Resend</div>
-              <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">Emails</div>
+              <div style="font-size:20px;margin-bottom:4px">📧</div>
+              <div style="font-size:11px;font-weight:700;color:white">Vos emails</div>
+              <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">Envoi automatique</div>
             </div>
             <div style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:10px;padding:10px;text-align:center">
-              <div style="font-size:11px;font-weight:700;color:#a78bfa">Vercel</div>
-              <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">Hosting CDN</div>
+              <div style="font-size:20px;margin-bottom:4px">🚚</div>
+              <div style="font-size:11px;font-weight:700;color:white">Vos livreurs</div>
+              <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">Suivi en temps réel</div>
             </div>
           </div>
           <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px;text-align:center">
-            <span style="font-size:11px;color:rgba(255,255,255,.4)">+ vos APIs métier existantes</span>
+            <span style="font-size:11px;color:rgba(255,255,255,.5)">+ tout autre outil que vous utilisez déjà</span>
           </div>
         </div>
       </div>
@@ -350,78 +374,109 @@
           <span class="eyebrow-dot"></span>
           Service 04
         </div>
-        <h2 style="font-size:2rem;margin-bottom:16px">Intégrations &amp; API</h2>
+        <h2 style="font-size:2rem;margin-bottom:16px">Connexions &amp; automatisations</h2>
         <p style="color:var(--gray-500);font-size:16px;line-height:1.7;margin-bottom:24px">
-          Votre nouvelle app doit s'intégrer à votre écosystème existant ? Nous connectons votre logiciel à vos outils de comptabilité, vos plateformes e-commerce, vos APIs de livraison ou tout autre service tiers.
+          Votre nouvelle app doit parler à vos outils existants ? On connecte votre logiciel à votre comptabilité, votre boutique en ligne, vos plateformes de livraison ou tout autre outil tiers — sans ressaisie manuelle.
         </p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px">
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Webhooks entrants et sortants
+            Commande passée sur votre site → créée automatiquement dans votre logiciel
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            OAuth2 / authentification sociale
+            Facture payée → export automatique vers votre compta
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Synchronisation bidirectionnelle
+            Synchronisation dans les deux sens, en temps réel
           </div>
           <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-700)">
             <svg width="16" height="16" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Edge Functions Deno pour la logique métier
+            Compatible avec vos outils actuels sans tout changer
           </div>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px">
-          <span class="tag tag-orange">REST API</span>
-          <span class="tag tag-orange">Webhooks</span>
-          <span class="tag tag-orange">OAuth2</span>
-          <span class="tag tag-orange">Deno Edge</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:rgba(245,158,11,.08);color:#b45309;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">Zéro ressaisie</span>
+          <span style="background:rgba(245,158,11,.08);color:#b45309;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">Compta automatique</span>
+          <span style="background:rgba(245,158,11,.08);color:#b45309;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">E-commerce</span>
+          <span style="background:rgba(245,158,11,.08);color:#b45309;font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px">Livraison</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STACK TECHNIQUE -->
+<!-- NOTRE APPROCHE -->
 <section class="section" style="background:var(--gray-50)">
   <div style="max-width:1160px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:48px">
+    <div style="text-align:center;margin-bottom:56px">
       <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex">
         <span class="eyebrow-dot"></span>
-        Stack technique
+        Notre approche
       </div>
-      <h2 class="reveal d1">Les meilleurs outils du marché</h2>
-      <p class="reveal d2" style="margin-top:12px;color:var(--gray-500);font-size:16px;max-width:500px;margin-left:auto;margin-right:auto">Nous utilisons uniquement des technologies éprouvées, avec des communautés solides et un support long-terme.</p>
+      <h2 class="reveal d1">Ce qui nous différencie</h2>
+      <p class="reveal d2" style="margin-top:12px;color:var(--gray-500);font-size:16px;max-width:500px;margin-left:auto;margin-right:auto">Pas de promesses vagues. Voici concrètement comment on travaille.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
-      <div class="card card-hover reveal d1" style="text-align:center;padding:28px 20px">
-        <div style="width:48px;height:48px;background:rgba(49,58,223,.08);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="#313ADF"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
-        </div>
-        <h3 style="font-size:14px;margin-bottom:6px">React 19 + Vite 7</h3>
-        <p style="font-size:12px;color:var(--gray-400);line-height:1.5">SPA ultra-rapide, code splitting, lazy loading, Suspense.</p>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+
+      <div class="card card-hover reveal d1" style="padding:36px">
+        <div style="width:52px;height:52px;background:rgba(49,58,223,.08);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:22px">✅</div>
+        <h3 style="font-size:18px;margin-bottom:10px">Livré, pas "presque prêt"</h3>
+        <p style="color:var(--gray-500);font-size:14px;line-height:1.7">On fixe une date de livraison au départ et on la respecte. Pas de "encore 2 semaines" qui s'étirent sur 3 mois. Vous recevez un produit qui fonctionne, point.</p>
       </div>
-      <div class="card card-hover reveal d2" style="text-align:center;padding:28px 20px">
-        <div style="width:48px;height:48px;background:rgba(34,197,94,.08);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
-          <svg width="24" height="24" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3 style="font-size:14px;margin-bottom:6px">Supabase</h3>
-        <p style="font-size:12px;color:var(--gray-400);line-height:1.5">PostgreSQL + Auth + RLS + Realtime + Edge Functions Deno.</p>
+
+      <div class="card card-hover reveal d2" style="padding:36px">
+        <div style="width:52px;height:52px;background:rgba(49,58,223,.08);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:22px">🔐</div>
+        <h3 style="font-size:18px;margin-bottom:10px">Vos données vous appartiennent</h3>
+        <p style="color:var(--gray-500);font-size:14px;line-height:1.7">Votre base de données, votre code, votre hébergement — tout vous appartient. Pas de dépendance à un fournisseur qui peut décider demain de doubler ses tarifs.</p>
       </div>
-      <div class="card card-hover reveal d3" style="text-align:center;padding:28px 20px">
-        <div style="width:48px;height:48px;background:rgba(124,58,237,.08);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
-          <svg width="24" height="24" fill="none" stroke="#7c3aed" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        </div>
-        <h3 style="font-size:14px;margin-bottom:6px">Stripe</h3>
-        <p style="font-size:12px;color:var(--gray-400);line-height:1.5">Checkout, abonnements, webhooks, Customer Portal, essais.</p>
+
+      <div class="card card-hover reveal d3" style="padding:36px">
+        <div style="width:52px;height:52px;background:rgba(49,58,223,.08);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:22px">💬</div>
+        <h3 style="font-size:18px;margin-bottom:10px">Un seul interlocuteur du début à la fin</h3>
+        <p style="color:var(--gray-500);font-size:14px;line-height:1.7">Pas de ticket support, pas de délégation à une équipe offshore. Vous avez un contact direct qui connaît votre projet sur le bout des doigts.</p>
       </div>
-      <div class="card card-hover reveal d4" style="text-align:center;padding:28px 20px">
-        <div style="width:48px;height:48px;background:rgba(4,7,65,.05);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
-          <svg width="24" height="24" fill="none" stroke="var(--navy)" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="22" x2="12" y2="15.5"/><polyline points="22 8.5 12 15.5 2 8.5"/></svg>
-        </div>
-        <h3 style="font-size:14px;margin-bottom:6px">Vercel + CDN</h3>
-        <p style="font-size:12px;color:var(--gray-400);line-height:1.5">Déploiement en 30 secondes, CDN mondial, HTTPS automatique.</p>
+
+      <div class="card card-hover reveal d4" style="padding:36px">
+        <div style="width:52px;height:52px;background:rgba(49,58,223,.08);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:22px">💰</div>
+        <h3 style="font-size:18px;margin-bottom:10px">Prix fixe, pas de surprise</h3>
+        <p style="color:var(--gray-500);font-size:14px;line-height:1.7">On établit un devis clair avec un périmètre précis. Vous savez exactement ce que vous payez avant de commencer. Aucune facturation au temps passé qui explose le budget.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSUS -->
+<section class="section" style="background:white">
+  <div style="max-width:900px;margin:0 auto;text-align:center">
+    <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex">
+      <span class="eyebrow-dot"></span>
+      Comment ça se passe
+    </div>
+    <h2 class="reveal d1" style="margin-bottom:16px">De votre idée à votre app en 4 étapes</h2>
+    <p class="reveal d2" style="color:var(--gray-500);font-size:16px;margin-bottom:56px">Simple, transparent, sans mauvaise surprise.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left">
+      <div class="reveal d1">
+        <div style="width:40px;height:40px;background:rgba(49,58,223,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px;font-weight:900;color:var(--primary)">1</div>
+        <h4 style="font-size:15px;margin-bottom:8px">On vous écoute</h4>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Appel de 30 minutes pour comprendre votre besoin, vos contraintes, et ce que vous voulez éviter.</p>
+      </div>
+      <div class="reveal d2">
+        <div style="width:40px;height:40px;background:rgba(49,58,223,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px;font-weight:900;color:var(--primary)">2</div>
+        <h4 style="font-size:15px;margin-bottom:8px">On vous montre</h4>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Maquettes et parcours utilisateur avant de coder quoi que ce soit. Vous validez, on corrige.</p>
+      </div>
+      <div class="reveal d3">
+        <div style="width:40px;height:40px;background:rgba(49,58,223,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px;font-weight:900;color:var(--primary)">3</div>
+        <h4 style="font-size:15px;margin-bottom:8px">On construit</h4>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Développement avec accès à une version de test. Vous suivez l'avancement en temps réel.</p>
+      </div>
+      <div class="reveal d4">
+        <div style="width:40px;height:40px;background:rgba(49,58,223,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px;font-weight:900;color:var(--primary)">4</div>
+        <h4 style="font-size:15px;margin-bottom:8px">On livre &amp; on forme</h4>
+        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Mise en production, formation de votre équipe, et support les premières semaines.</p>
       </div>
     </div>
   </div>
@@ -432,9 +487,10 @@
   <div style="max-width:900px;margin:0 auto">
     <div style="background:linear-gradient(135deg,#040741 0%,#0a1260 55%,#040741 100%);border-radius:var(--radius-xl);padding:80px 60px;text-align:center;position:relative;overflow:hidden">
       <div style="position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(49,58,223,.3),transparent 70%);pointer-events:none"></div>
+      <div style="position:absolute;bottom:-40px;left:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(107,115,255,.2),transparent 70%);pointer-events:none"></div>
       <h2 style="color:white;margin-bottom:16px;position:relative;z-index:1">Un projet en tête ?</h2>
-      <p style="color:rgba(255,255,255,.6);font-size:17px;line-height:1.7;margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;position:relative;z-index:1">Décrivez-nous votre idée. On vous répond sous 24h avec une estimation gratuite.</p>
-      <a href="/contact.html" class="btn btn-white btn-lg" style="position:relative;z-index:1">
+      <p style="color:rgba(255,255,255,.6);font-size:17px;line-height:1.7;margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;position:relative;z-index:1">Décrivez-nous votre idée. On vous répond sous 24h avec une estimation gratuite, sans engagement.</p>
+      <a href="/contact.html" class="btn btn-white btn-lg glow-cta" style="position:relative;z-index:1">
         Démarrer la conversation
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>

@@ -11,7 +11,7 @@
   <style>
     /* ── Page-specific ── */
     .bos-spotlight {
-      background: var(--bg-soft);
+      background: #fff;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       padding: 96px 0;
@@ -35,9 +35,10 @@
     .bos-list li .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); flex-shrink: 0; }
 
     .engmt-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 52px; }
-    .engmt-card { padding: 32px; border-radius: var(--r-lg); background: #fff; border: 1px solid var(--border); }
+    .engmt-card { padding: 32px; border-radius: var(--r-lg); background: #fff; border: 1.5px solid var(--border); box-shadow: var(--s-sm); transition: all var(--t-base); }
+    .engmt-card:hover { box-shadow: var(--s-md); transform: translateY(-3px); border-color: var(--border-2); }
     .engmt-card h3 { font-size: 1rem; font-weight: 800; color: var(--text); margin: 16px 0 10px; letter-spacing: -.02em; }
-    .engmt-card p { font-size: 14px; color: var(--text-3); line-height: 1.65; }
+    .engmt-card p { font-size: 14px; color: var(--text-2); line-height: 1.65; }
 
     @media (max-width: 768px) {
       .bos-spotlight-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -192,12 +193,12 @@
 <!-- ══════════════════════════════════════════
      SERVICES
 ═══════════════════════════════════════════ -->
-<section id="services" style="background:#fff">
+<section id="services" style="background:var(--bg-soft)">
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">Ce qu'on fait</span>
-      <h2>Des outils qui correspondent<br><em class="grad-text">exactement à votre réalité.</em></h2>
-      <p class="intro">Chaque secteur a ses contraintes. On les comprend d'abord, on code ensuite.</p>
+      <h2>Pas de template,<br><em class="grad-text">que du sur mesure.</em></h2>
+      <p class="intro">On part de zéro à chaque fois. Parce que votre métier ne ressemble à aucun autre.</p>
     </div>
     <div class="services-grid reveal" style="--delay:.05s">
 
@@ -282,7 +283,7 @@
 <!-- ══════════════════════════════════════════
      PROCESSUS
 ═══════════════════════════════════════════ -->
-<section id="processus" style="background:#fff">
+<section id="processus" style="background:var(--bg-soft)">
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">Notre démarche</span>
@@ -317,7 +318,7 @@
 <!-- ══════════════════════════════════════════
      ENGAGEMENT / QUI ON EST
 ═══════════════════════════════════════════ -->
-<section style="background:var(--bg-soft);border-top:1px solid var(--border)">
+<section style="background:#fff;border-top:1px solid var(--border)">
   <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">Qui on est</span>

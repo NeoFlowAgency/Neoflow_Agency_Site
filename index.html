@@ -3,733 +3,561 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeoFlow Agency — Votre idée devient une application</title>
-  <meta name="description" content="NeoFlow Agency transforme vos idées en applications web et mobiles sur-mesure. Devis gratuit, livraison rapide, code source inclus.">
+  <title>NeoFlow Agency — Applications sur mesure pour votre métier</title>
+  <meta name="description" content="NeoFlow Agency développe des applications web sur mesure, des outils internes et des automatisations pour les entreprises qui veulent aller plus vite.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="./styles.css">
+  <style>
+    /* ── Page-specific ── */
+    .bos-spotlight {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 96px 0;
+    }
+    .bos-spotlight-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .bos-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(49,58,223,.08); border: 1px solid var(--border-2);
+      border-radius: var(--r-full); padding: 5px 14px 5px 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--primary); margin-bottom: 20px;
+    }
+    .bos-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+    .bos-list { display: flex; flex-direction: column; gap: 10px; margin: 24px 0 32px; }
+    .bos-list li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-2); font-weight: 500; }
+    .bos-list li .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); flex-shrink: 0; }
+
+    .engmt-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 52px; }
+    .engmt-card { padding: 32px; border-radius: var(--r-lg); background: #fff; border: 1px solid var(--border); }
+    .engmt-card h3 { font-size: 1rem; font-weight: 800; color: var(--text); margin: 16px 0 10px; letter-spacing: -.02em; }
+    .engmt-card p { font-size: 14px; color: var(--text-3); line-height: 1.65; }
+
+    @media (max-width: 768px) {
+      .bos-spotlight-inner { grid-template-columns: 1fr; gap: 40px; }
+      .engmt-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ════════════════ NAVBAR ════════════════ -->
-<nav class="navbar" id="navbar">
-  <div class="navbar-inner" id="navbarInner">
+<!-- ── NAVBAR ── -->
+<nav class="navbar navbar--light" id="navbar">
+  <div class="navbar__inner">
     <a href="/" class="nav-logo">
       <img src="./logos/NFagency_bleu.png" alt="NeoFlow Agency"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <span class="nav-logo-fallback" style="display:none">N</span>
-      <span class="nav-wordmark">Neo<span>Flow</span></span>
+      <span class="nav-logo-fallback" style="display:none;width:30px;height:30px;background:var(--primary);border-radius:8px;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff">N</span>
+      <span class="nav-logo-text">Neo<span>Flow</span> Agency</span>
     </a>
     <div class="nav-links">
-      <a href="/" class="nav-link active">Accueil</a>
-      <a href="/services.html" class="nav-link">Nos services</a>
+      <a href="/services.html" class="nav-link">Services</a>
+      <a href="#processus" class="nav-link">Notre approche</a>
       <a href="/neoflow-bos.html" class="nav-link">NeoFlow BOS</a>
-      <a href="/contact.html" class="nav-link">Contact</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </div>
     <div class="nav-actions">
-      <a href="/neoflow-bos.html" class="btn btn-ghost" style="font-size:13px;padding:9px 18px">NeoFlow BOS</a>
-      <a href="/contact.html" class="btn btn-primary" style="font-size:13px;padding:9px 18px">
-        Démarrer un projet
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <a href="/neoflow-bos.html" class="btn btn-ghost btn--sm">NeoFlow BOS</a>
+      <a href="mailto:contact@neoflow.io" class="btn btn-primary btn--sm">
+        Nous contacter
+        <svg class="arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
-    <button class="nav-burger" id="burgerBtn" aria-label="Menu">
+    <button class="nav-burger nav-burger--light" id="burgerBtn" aria-label="Menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 12h18M3 6h18M3 18h12"/></svg>
     </button>
   </div>
 </nav>
 
 <!-- Mobile nav -->
-<div id="mobileNav" style="position:fixed;inset:0;z-index:200;background:rgba(4,7,65,.98);backdrop-filter:blur(20px);padding:28px;display:none;flex-direction:column">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:52px">
-    <span class="nav-wordmark" style="color:white;font-size:20px">Neo<span style="color:#6B73FF">Flow</span></span>
-    <button id="closeNav" style="color:white;background:rgba(255,255,255,.1);border-radius:10px;padding:10px;cursor:pointer">
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav__head">
+    <span class="footer__logo-text">Neo<span>Flow</span></span>
+    <button id="closeNav" class="mobile-nav__close">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
   </div>
-  <nav style="display:flex;flex-direction:column;gap:4px;flex:1">
-    <a href="/" style="color:white;font-size:22px;font-weight:800;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)">Accueil</a>
-    <a href="/services.html" style="color:rgba(255,255,255,.55);font-size:22px;font-weight:800;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)">Nos services</a>
-    <a href="/neoflow-bos.html" style="color:rgba(255,255,255,.55);font-size:22px;font-weight:800;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07)">NeoFlow BOS</a>
-    <a href="/contact.html" style="color:rgba(255,255,255,.55);font-size:22px;font-weight:800;padding:14px 0">Contact</a>
-  </nav>
-  <a href="/contact.html" class="btn btn-primary btn-lg" style="justify-content:center;margin-top:28px;font-size:16px">Démarrer un projet</a>
+  <a href="/services.html" onclick="closeMenu()">Services</a>
+  <a href="#processus" onclick="closeMenu()">Notre approche</a>
+  <a href="/neoflow-bos.html" onclick="closeMenu()">NeoFlow BOS</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <div class="mobile-nav__cta" style="padding-top:32px">
+    <a href="mailto:contact@neoflow.io" class="btn btn-primary btn--lg" style="width:100%;justify-content:center">
+      Nous contacter
+    </a>
+  </div>
 </div>
 
-<!-- ════════════════ HERO ════════════════ -->
-<section class="orb-bg" style="padding:160px 24px 100px;overflow:hidden;background:#fff">
-  <!-- Orbs décoratifs -->
-  <div class="orb orb-blue"  style="width:600px;height:600px;top:-150px;right:-100px"></div>
-  <div class="orb orb-indigo" style="width:400px;height:400px;bottom:-80px;left:-80px"></div>
-  <div class="grid-overlay"></div>
+<!-- ══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="canvas-wrap"><canvas id="heroCanvas"></canvas></div>
+  <div class="blob blob--1"></div>
+  <div class="blob blob--2"></div>
+  <div class="blob blob--3"></div>
+  <div class="container">
+    <div class="hero-grid">
 
-  <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;z-index:1">
-    <!-- Texte -->
-    <div>
-      <div class="pill-grd anim-up" style="margin-bottom:28px"><span>Agence de création d'applications sur-mesure</span></div>
-
-      <h1 class="anim-up d1" style="margin-bottom:24px">
-        Votre idée de business mérite une vraie <span class="g-text-anim">application</span>
-      </h1>
-
-      <p class="anim-up d2" style="font-size:18px;color:var(--gray-500);line-height:1.75;margin-bottom:40px;max-width:480px">
-        On transforme vos processus en outils digitaux puissants — livrés prêts à l'emploi, clés en main, exactement comme vous les imaginez.
-      </p>
-
-      <div class="anim-up d3" style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px">
-        <a href="/contact.html" class="btn btn-primary btn-lg">
-          Démarrer mon projet
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="/services.html" class="btn btn-ghost btn-lg">Voir nos services</a>
-      </div>
-
-      <!-- Proof points -->
-      <div class="anim-up d4" style="display:flex;gap:32px;flex-wrap:wrap">
-        <div>
-          <div style="font-size:2rem;font-weight:900;color:var(--navy);line-height:1">7j</div>
-          <div style="font-size:12px;color:var(--gray-400);margin-top:4px">d'essai sur BOS</div>
-        </div>
-        <div style="width:1px;background:var(--gray-200)"></div>
-        <div>
-          <div style="font-size:2rem;font-weight:900;color:var(--navy);line-height:1">100%</div>
-          <div style="font-size:12px;color:var(--gray-400);margin-top:4px">sur-mesure</div>
-        </div>
-        <div style="width:1px;background:var(--gray-200)"></div>
-        <div>
-          <div style="font-size:2rem;font-weight:900;color:var(--navy);line-height:1">&lt;24h</div>
-          <div style="font-size:12px;color:var(--gray-400);margin-top:4px">on vous répond</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mockup dashboard -->
-    <div class="anim-up d2 float" style="position:relative">
-      <div class="mockup-outer">
-        <div class="mockup-window">
-          <div class="mockup-bar">
-            <span class="mdot" style="background:#ff5f57"></span>
-            <span class="mdot" style="background:#ffbd2e"></span>
-            <span class="mdot" style="background:#28c940"></span>
-            <span style="flex:1;text-align:center;font-size:11px;color:rgba(255,255,255,.28)">app.neoflow.io</span>
-          </div>
-          <div style="display:flex;height:300px">
-            <div class="mock-sidebar">
-              <div class="mock-icon active"></div>
-              <div class="mock-icon"></div>
-              <div class="mock-icon"></div>
-              <div class="mock-icon"></div>
-              <div class="mock-icon"></div>
-              <div style="margin-top:auto"></div>
-              <div class="mock-icon" style="border-radius:50%"></div>
-            </div>
-            <div style="flex:1;padding:16px;background:#f8f9ff;display:flex;flex-direction:column;gap:12px;overflow:hidden">
-              <!-- KPI row -->
-              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
-                <div class="kpi-mini">
-                  <div style="font-size:9px;color:var(--gray-400);margin-bottom:3px">Revenus</div>
-                  <div style="font-size:14px;font-weight:800;color:var(--navy)">12 490€</div>
-                  <div style="font-size:10px;color:#16a34a;font-weight:600">▲ 18%</div>
-                </div>
-                <div class="kpi-mini">
-                  <div style="font-size:9px;color:var(--gray-400);margin-bottom:3px">Commandes</div>
-                  <div style="font-size:14px;font-weight:800;color:var(--navy)">247</div>
-                  <div style="font-size:10px;color:#16a34a;font-weight:600">▲ 12%</div>
-                </div>
-                <div class="kpi-mini">
-                  <div style="font-size:9px;color:var(--gray-400);margin-bottom:3px">Clients</div>
-                  <div style="font-size:14px;font-weight:800;color:var(--navy)">84</div>
-                  <div style="font-size:10px;color:#16a34a;font-weight:600">▲ 5%</div>
-                </div>
-              </div>
-              <!-- Graphique -->
-              <div style="background:white;border:1px solid var(--gray-100);border-radius:10px;padding:12px;flex:1">
-                <div style="font-size:10px;font-weight:700;color:var(--navy);margin-bottom:10px">Chiffre d'affaires</div>
-                <div style="display:flex;align-items:flex-end;gap:5px;height:80px">
-                  <div class="bar-chart-bar" style="flex:1;height:38%"></div>
-                  <div class="bar-chart-bar" style="flex:1;height:56%"></div>
-                  <div class="bar-chart-bar" style="flex:1;height:44%"></div>
-                  <div class="bar-chart-bar" style="flex:1;height:78%"></div>
-                  <div class="bar-chart-bar" style="flex:1;height:64%"></div>
-                  <div class="bar-chart-bar" style="flex:1;height:100%"></div>
-                  <div class="bar-chart-bar" style="flex:1;height:82%;opacity:.35"></div>
-                </div>
-              </div>
-              <!-- Dernières commandes -->
-              <div style="background:white;border:1px solid var(--gray-100);border-radius:10px;padding:11px">
-                <div style="font-size:10px;font-weight:700;color:var(--navy);margin-bottom:8px">Dernières commandes</div>
-                <div style="display:flex;flex-direction:column;gap:6px">
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px">
-                    <span style="color:var(--gray-500)">CMD-0247 — Dupont J.</span>
-                    <span class="status-badge" style="background:#dcfce7;color:#16a34a">Payé</span>
-                    <span style="font-weight:700;color:var(--navy)">320€</span>
-                  </div>
-                  <div style="display:flex;justify-content:space-between;align-items:center;font-size:10px">
-                    <span style="color:var(--gray-500)">CMD-0246 — Martin S.</span>
-                    <span class="status-badge" style="background:#ffedd5;color:#c2410c">Livraison</span>
-                    <span style="font-weight:700;color:var(--navy)">185€</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Badge flottant -->
-      <div style="position:absolute;bottom:-16px;left:-20px;z-index:3;background:white;border-radius:16px;padding:12px 18px;box-shadow:0 16px 48px rgba(4,7,65,.15);display:flex;align-items:center;gap:10px;animation:floatY 6s ease-in-out infinite">
-        <div style="width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center">
-          <svg width="14" height="14" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-        </div>
-        <div>
-          <div style="font-size:12px;font-weight:700;color:var(--navy)">Livré en production</div>
-          <div style="font-size:10px;color:var(--gray-400)">NeoFlow BOS — actif</div>
-        </div>
-      </div>
-      <!-- Badge top droite -->
-      <div style="position:absolute;top:-14px;right:-16px;z-index:3;background:var(--navy);border-radius:12px;padding:10px 16px;animation:floatY 5s ease-in-out infinite .8s">
-        <div style="display:flex;align-items:center;gap:6px">
-          <div style="width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pulse-green 2s infinite"></div>
-          <span style="font-size:12px;font-weight:600;color:white">Application en ligne</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════ MARQUEE clients/domaines ════════════════ -->
-<section style="padding:28px 0;border-top:1px solid var(--gray-100);border-bottom:1px solid var(--gray-100);background:var(--gray-50);overflow:hidden">
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Commerce de détail</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Artisans &amp; PME</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Restauration &amp; Traiteur</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">E-commerce</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Startups SaaS</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Bâtiment &amp; Services</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Santé &amp; Bien-être</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Logistique &amp; Livraison</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Commerce de détail</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Artisans &amp; PME</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Restauration &amp; Traiteur</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">E-commerce</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Startups SaaS</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Bâtiment &amp; Services</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Santé &amp; Bien-être</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-      <span style="font-size:13px;font-weight:600;color:var(--gray-400)">Logistique &amp; Livraison</span>
-      <span style="color:var(--gray-200);font-size:22px;line-height:1">◆</span>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════ CE QUE NOUS CRÉONS ════════════════ -->
-<section class="section" style="background:white">
-  <div style="max-width:1160px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:64px">
-      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex"><span class="eyebrow-dot"></span>Nos créations</div>
-      <h2 class="reveal delay-1">Nous construisons ce que vous n'arrivez pas à trouver sur le marché</h2>
-      <p class="reveal delay-2" style="margin-top:16px;color:var(--gray-500);font-size:17px;max-width:560px;margin-left:auto;margin-right:auto">
-        Pas de logiciel générique qui convient "à peu près". Une application pensée exactement pour votre façon de travailler.
-      </p>
-    </div>
-
-    <div class="bento bento-3">
-      <!-- Carte 1 -->
-      <div class="card card-hover card-glow reveal delay-1" style="display:flex;flex-direction:column;gap:18px">
-        <div class="icon-box icon-box-lg" style="background:rgba(49,58,223,.08)">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#313ADF" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
-        <div>
-          <h3 style="margin-bottom:10px">Logiciels de gestion métier</h3>
-          <p style="font-size:14px;color:var(--gray-500);line-height:1.65">Commandes, factures, stock, livraisons, équipe — tout centralisé dans un outil que vous contrôlez entièrement.</p>
-        </div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:auto">
-          <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600)">
-            <svg width="13" height="13" fill="none" stroke="#313ADF" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Adapté à votre secteur et vos processus
-          </li>
-          <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600)">
-            <svg width="13" height="13" fill="none" stroke="#313ADF" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Accessible sur ordinateur et téléphone
-          </li>
-          <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600)">
-            <svg width="13" height="13" fill="none" stroke="#313ADF" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Plusieurs utilisateurs avec rôles différents
-          </li>
-        </ul>
-      </div>
-
-      <!-- Carte 2 -->
-      <div class="card card-hover card-glow reveal delay-2" style="display:flex;flex-direction:column;gap:18px">
-        <div class="icon-box icon-box-lg" style="background:rgba(124,58,237,.08)">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
-        </div>
-        <div>
-          <h3 style="margin-bottom:10px">Applications mobiles installables</h3>
-          <p style="font-size:14px;color:var(--gray-500);line-height:1.65">Vos équipes terrain ont besoin d'une app sur leur téléphone ? Elle s'installe en quelques secondes, sans passer par un store.</p>
-        </div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:auto">
-          <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600)">
-            <svg width="13" height="13" fill="none" stroke="#7c3aed" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Compatible iPhone et Android
-          </li>
-          <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600)">
-            <svg width="13" height="13" fill="none" stroke="#7c3aed" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Notifications push en temps réel
-          </li>
-          <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600)">
-            <svg width="13" height="13" fill="none" stroke="#7c3aed" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Fonctionne même sans connexion
-          </li>
-        </ul>
-      </div>
-
-      <!-- Carte 3 -->
-      <div class="card card-hover card-glow reveal delay-3" style="display:flex;flex-direction:column;gap:18px">
-        <div class="icon-box icon-box-lg" style="background:rgba(245,158,11,.08)">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-        </div>
-        <div>
-          <h3 style="margin-bottom:10px">Logiciels SaaS en abonnement</h3>
-          <p style="font-size:14px;color:var(--gray-500);line-height:1.65">Vous avez une idée de service à commercialiser ? Nous créons le logiciel complet avec paiements, gestion des clients et tableau de bord admin.</p>
-        </div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:auto">
-          <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600)">
-            <svg width="13" height="13" fill="none" stroke="#d97706" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Paiements et abonnements intégrés
-          </li>
-          <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600)">
-            <svg width="13" height="13" fill="none" stroke="#d97706" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Gestion des utilisateurs et accès
-          </li>
-          <li style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600)">
-            <svg width="13" height="13" fill="none" stroke="#d97706" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-            Démarrer avec un essai gratuit
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:40px">
-      <a href="/services.html" class="btn btn-ghost btn-lg reveal">Voir tous nos services →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════ NEOFLOW BOS — SPOTLIGHT ════════════════ -->
-<section style="background:var(--navy);padding:100px 24px;position:relative;overflow:hidden">
-  <!-- Effets décoratifs -->
-  <div style="position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(49,58,223,.3),transparent 65%);pointer-events:none"></div>
-  <div style="position:absolute;bottom:-80px;left:5%;width:400px;height:400px;background:radial-gradient(circle,rgba(107,115,255,.15),transparent 65%);pointer-events:none"></div>
-  <div class="grid-overlay" style="opacity:.5"></div>
-
-  <div style="max-width:1160px;margin:0 auto;position:relative;z-index:1">
-    <!-- Label séparateur clair -->
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:48px">
-      <div style="height:1px;flex:1;background:rgba(255,255,255,.08)"></div>
-      <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">Notre produit — NeoFlow BOS</div>
-      <div style="height:1px;flex:1;background:rgba(255,255,255,.08)"></div>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
-      <div class="reveal from-left">
-        <div class="eyebrow" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);margin-bottom:20px;display:inline-flex">
-          <span class="eyebrow-dot green"></span>Disponible dès maintenant
-        </div>
-        <h2 style="color:white;margin-bottom:20px">Gérez tout votre commerce depuis une seule app</h2>
-        <p style="color:rgba(255,255,255,.6);font-size:17px;line-height:1.75;margin-bottom:32px">
-          NeoFlow BOS est notre application clé en main pour les commerçants et PME qui veulent centraliser leurs opérations sans se ruiner.
+      <!-- Content -->
+      <div class="hero-content reveal">
+        <div class="hero-tag"><span class="dot"></span> Développement sur mesure</div>
+        <h1 class="hero-h1">Votre vision.<br><span class="grad-text">Nos lignes de code.</span></h1>
+        <p class="hero-sub">
+          On construit des applications qui collent exactement à votre métier —
+          pas des solutions génériques, pas des compromis.
         </p>
-        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px">
-          <div style="display:flex;align-items:center;gap:12px">
-            <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0"></div>
-            <span style="color:rgba(255,255,255,.75);font-size:15px">Commandes, factures et devis en quelques secondes</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px">
-            <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0"></div>
-            <span style="color:rgba(255,255,255,.75);font-size:15px">Votre stock géré automatiquement</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px">
-            <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0"></div>
-            <span style="color:rgba(255,255,255,.75);font-size:15px">Vos livreurs guidés sur leur téléphone</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px">
-            <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0"></div>
-            <span style="color:rgba(255,255,255,.75);font-size:15px">Un assistant IA qui répond à vos questions business</span>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:14px;margin-bottom:28px">
-          <div style="text-align:center">
-            <div style="font-size:2.2rem;font-weight:900;color:white">49€</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.4)">/mois tout inclus</div>
-          </div>
-          <div style="width:1px;height:44px;background:rgba(255,255,255,.1)"></div>
-          <div style="text-align:center">
-            <div style="font-size:2.2rem;font-weight:900;color:white">7j</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.4)">d'essai gratuit</div>
-          </div>
-          <div style="width:1px;height:44px;background:rgba(255,255,255,.1)"></div>
-          <div style="text-align:center">
-            <div style="font-size:2.2rem;font-weight:900;color:white">∞</div>
-            <div style="font-size:12px;color:rgba(255,255,255,.4)">utilisateurs</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a href="/neoflow-bos.html" class="btn btn-white btn-lg">
-            Découvrir NeoFlow BOS
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <div class="hero-actions">
+          <a href="mailto:contact@neoflow.io" class="btn btn-primary btn--lg">
+            Parler de votre projet
+            <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="https://app.neoflow.io/signup" class="btn btn-outline-white btn-lg">Essai gratuit 7j</a>
+          <a href="/services.html" class="btn btn-outline-dark btn--lg">Voir les services</a>
+        </div>
+        <div class="hero-trust">
+          <span class="hero-trust-sep"></span>
+          Devis gratuit · Réponse &lt;24h · 100% sur mesure
         </div>
       </div>
 
-      <!-- Visual BOS -->
-      <div class="reveal from-right" style="position:relative">
-        <!-- Screenshot with browser frame -->
-        <div style="border-radius:14px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 0 1px rgba(99,108,255,.2);position:relative;z-index:2">
-          <div style="background:#f1f3f5;height:38px;display:flex;align-items:center;padding:0 14px;gap:10px;border-bottom:1px solid #e5e7eb">
-            <div style="display:flex;gap:6px">
-              <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57;display:inline-block"></span>
-              <span style="width:11px;height:11px;border-radius:50%;background:#ffbd2e;display:inline-block"></span>
-              <span style="width:11px;height:11px;border-radius:50%;background:#28c940;display:inline-block"></span>
+      <!-- Floating app visual -->
+      <div class="hero-visual reveal" style="--delay:.12s">
+        <div class="hero-visual-inner">
+          <div class="app-mockup float-1" style="border-radius:20px">
+            <div class="app-topbar">
+              <div class="app-dots"><div class="app-dot app-dot--r"></div><div class="app-dot app-dot--y"></div><div class="app-dot app-dot--g"></div></div>
+              <div class="app-addr">votre-app.io/dashboard</div>
             </div>
-            <div style="flex:1;background:rgba(0,0,0,.06);border-radius:6px;height:22px;display:flex;align-items:center;padding:0 10px;font-size:11px;color:#9ca3af">app.neoflow.io/dashboard</div>
-          </div>
-          <img src="./screenshots/bos-dashboard.png" alt="NeoFlow BOS Dashboard"
-               style="display:block;width:100%"
-               onerror="this.style.display='none';document.getElementById('bos-mockup-fallback').style.display='flex'">
-          <!-- Fallback mockup si pas de screenshot -->
-          <div id="bos-mockup-fallback" style="display:flex">
-            <div class="mockup-outer" style="margin:0;border-radius:20px;box-shadow:none">
-              <div class="mockup-window">
-                <div class="mockup-bar">
-                  <span class="mdot" style="background:#ff5f57"></span>
-                  <span class="mdot" style="background:#ffbd2e"></span>
-                  <span class="mdot" style="background:#28c940"></span>
-                  <span style="flex:1;text-align:center;font-size:11px;color:rgba(255,255,255,.28)">NeoFlow BOS</span>
-                </div>
-                <div style="display:flex;height:260px">
-                  <div class="mock-sidebar">
-                    <div class="mock-icon active"></div>
-                    <div class="mock-icon"></div>
-                    <div class="mock-icon"></div>
-                    <div class="mock-icon"></div>
+            <div class="app-body">
+              <div class="app-sidebar">
+                <div class="app-sidebar-icon active"></div>
+                <div class="app-sidebar-icon"></div>
+                <div class="app-sidebar-icon"></div>
+                <div class="app-sidebar-icon"></div>
+                <div class="app-sidebar-icon"></div>
+              </div>
+              <div class="app-main">
+                <div class="kpi-row">
+                  <div class="kpi-card">
+                    <div class="kpi-label">Revenus</div>
+                    <div class="kpi-value">48 290€</div>
+                    <div class="kpi-trend kpi-trend--up">+24%</div>
                   </div>
-                  <div style="flex:1;padding:14px;background:#f8f9ff;display:flex;flex-direction:column;gap:10px">
-                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
-                      <div class="kpi-mini">
-                        <div style="font-size:9px;color:var(--gray-400)">CA du mois</div>
-                        <div style="font-size:15px;font-weight:800;color:var(--navy)">12 490€</div>
-                        <div style="font-size:9px;color:#16a34a;font-weight:600">▲ 18%</div>
-                      </div>
-                      <div class="kpi-mini">
-                        <div style="font-size:9px;color:var(--gray-400)">Commandes</div>
-                        <div style="font-size:15px;font-weight:800;color:var(--navy)">247</div>
-                        <div style="font-size:9px;color:#16a34a;font-weight:600">▲ 12%</div>
-                      </div>
-                    </div>
-                    <div style="background:white;border:1px solid var(--gray-100);border-radius:10px;padding:10px;flex:1">
-                      <div style="font-size:10px;font-weight:700;color:var(--navy);margin-bottom:8px">Évolution CA</div>
-                      <div style="display:flex;align-items:flex-end;gap:5px;height:70px">
-                        <div class="bar-chart-bar" style="flex:1;height:40%"></div>
-                        <div class="bar-chart-bar" style="flex:1;height:65%"></div>
-                        <div class="bar-chart-bar" style="flex:1;height:50%"></div>
-                        <div class="bar-chart-bar" style="flex:1;height:85%"></div>
-                        <div class="bar-chart-bar" style="flex:1;height:100%"></div>
-                        <div class="bar-chart-bar" style="flex:1;height:78%;opacity:.35"></div>
-                      </div>
-                    </div>
+                  <div class="kpi-card">
+                    <div class="kpi-label">Clients</div>
+                    <div class="kpi-value">1 247</div>
+                    <div class="kpi-trend kpi-trend--up">+8%</div>
+                  </div>
+                  <div class="kpi-card">
+                    <div class="kpi-label">Tâches</div>
+                    <div class="kpi-value">12</div>
+                    <div class="kpi-trend kpi-trend--neutral">En cours</div>
+                  </div>
+                </div>
+                <div class="mini-chart">
+                  <div class="chart-title">Activité — 6 derniers mois</div>
+                  <div class="chart-bars">
+                    <div class="chart-bar" style="height:42%"></div>
+                    <div class="chart-bar" style="height:60%"></div>
+                    <div class="chart-bar" style="height:48%"></div>
+                    <div class="chart-bar" style="height:80%"></div>
+                    <div class="chart-bar" style="height:93%"></div>
+                    <div class="chart-bar chart-bar--active" style="height:100%"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- Badges flottants -->
-        <div style="position:absolute;bottom:-14px;right:-16px;z-index:3;background:white;border-radius:14px;padding:12px 16px;box-shadow:0 12px 40px rgba(0,0,0,.18);display:flex;align-items:center;gap:10px;animation:floatY 6s ease-in-out infinite .5s">
-          <div style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,#313ADF,#040741);display:flex;align-items:center;justify-content:center">
-            <svg width="14" height="14" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a7 7 0 017 7v1a3 3 0 11-6 0V9a1 1 0 00-2 0v1a3 3 0 11-6 0V9a7 7 0 017-7z"/></svg>
+          <!-- Floating chips -->
+          <div class="floating-chip float-2" style="top:-18px;right:-14px">
+            <div class="floating-chip__label">Délai moyen</div>
+            <div class="floating-chip__val">15 jours</div>
           </div>
-          <div>
-            <div style="font-size:11px;font-weight:700;color:var(--navy)">Assistant IA actif</div>
-            <div style="font-size:10px;color:var(--gray-400)">Répond en 2 sec</div>
+          <div class="floating-chip float-3" style="bottom:-14px;left:-14px">
+            <div class="floating-chip__label">Sur mesure</div>
+            <div class="floating-chip__val">100%</div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ════════════════ PROCESS ════════════════ -->
-<section class="section" style="background:white">
-  <div style="max-width:1160px;margin:0 auto">
-    <div style="text-align:center;margin-bottom:64px">
-      <div class="eyebrow reveal" style="margin-bottom:16px;display:inline-flex"><span class="eyebrow-dot"></span>Comment ça se passe</div>
-      <h2 class="reveal delay-1">De votre idée à votre app en 4 étapes</h2>
-      <p class="reveal delay-2" style="margin-top:14px;color:var(--gray-500);font-size:17px;max-width:480px;margin-left:auto;margin-right:auto">Simple, transparent, sans mauvaises surprises.</p>
+<!-- ══════════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════════ -->
+<section id="services" style="background:#fff">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Ce qu'on fait</span>
+      <h2>Des outils qui correspondent<br><em class="grad-text">exactement à votre réalité.</em></h2>
+      <p class="intro">Chaque secteur a ses contraintes. On les comprend d'abord, on code ensuite.</p>
     </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px" class="reveal" style="--delay:.05s">
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:28px;position:relative">
-      <!-- Ligne de connexion -->
-      <div style="position:absolute;top:32px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--gray-200) 15%,var(--gray-200) 85%,transparent);z-index:0"></div>
-
-      <div class="reveal delay-1" style="text-align:center;position:relative;z-index:1">
-        <div style="width:64px;height:64px;border-radius:20px;background:white;border:2px solid var(--gray-200);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:var(--sh-sm);transition:all .3s" onmouseover="this.style.borderColor='var(--primary)';this.style.boxShadow='var(--sh-glow)'" onmouseout="this.style.borderColor='var(--gray-200)';this.style.boxShadow='var(--sh-sm)'">
-          <svg width="26" height="26" fill="none" stroke="#313ADF" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <div class="service-card">
+        <div class="icon-box icon-box--lg">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
         </div>
-        <div style="font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px">01</div>
-        <h3 style="font-size:15px;margin-bottom:8px">On vous écoute</h3>
-        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Réunion de 30 min pour comprendre votre métier et ce que vous voulez vraiment.</p>
+        <h3>Applications métier</h3>
+        <p>Gestion des commandes, suivi clients, planification livraisons, tableaux de bord — construits autour de vos processus existants, pas l'inverse.</p>
       </div>
 
-      <div class="reveal delay-2" style="text-align:center;position:relative;z-index:1">
-        <div style="width:64px;height:64px;border-radius:20px;background:white;border:2px solid var(--gray-200);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:var(--sh-sm);transition:all .3s" onmouseover="this.style.borderColor='var(--primary)';this.style.boxShadow='var(--sh-glow)'" onmouseout="this.style.borderColor='var(--gray-200)';this.style.boxShadow='var(--sh-sm)'">
-          <svg width="26" height="26" fill="none" stroke="#313ADF" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+      <div class="service-card">
+        <div class="icon-box icon-box--lg">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
         </div>
-        <div style="font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px">02</div>
-        <h3 style="font-size:15px;margin-bottom:8px">On conçoit</h3>
-        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Maquettes de l'interface, plan de l'app, devis précis — avant d'écrire la moindre ligne de code.</p>
+        <h3>Outils internes sur mesure</h3>
+        <p>Des interfaces pour vos équipes — tableau de bord admin, gestion de plannings, formulaires intelligents. Ce que vos salariés utilisent chaque jour, pensé pour eux.</p>
       </div>
 
-      <div class="reveal delay-3" style="text-align:center;position:relative;z-index:1">
-        <div style="width:64px;height:64px;border-radius:20px;background:white;border:2px solid var(--gray-200);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:var(--sh-sm);transition:all .3s" onmouseover="this.style.borderColor='var(--primary)';this.style.boxShadow='var(--sh-glow)'" onmouseout="this.style.borderColor='var(--gray-200)';this.style.boxShadow='var(--sh-sm)'">
-          <svg width="26" height="26" fill="none" stroke="#313ADF" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <div class="service-card">
+        <div class="icon-box icon-box--lg">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
-        <div style="font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px">03</div>
-        <h3 style="font-size:15px;margin-bottom:8px">On construit</h3>
-        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Développement par étapes avec démos régulières. Vous suivez l'avancement et validez chaque fonctionnalité.</p>
+        <h3>Automatisations & connecteurs</h3>
+        <p>Relier vos outils, éliminer les ressaisies, automatiser les tâches répétitives. On construit les ponts que les logiciels du marché ne font pas.</p>
       </div>
 
-      <div class="reveal delay-4" style="text-align:center;position:relative;z-index:1">
-        <div style="width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#313ADF,#040741);border:2px solid transparent;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:var(--sh-glow);animation:glow-pulse 3s ease-in-out infinite">
-          <svg width="26" height="26" fill="none" stroke="white" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <div class="service-card">
+        <div class="icon-box icon-box--lg">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
         </div>
-        <div style="font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.07em;text-transform:uppercase;margin-bottom:8px">04</div>
-        <h3 style="font-size:15px;margin-bottom:8px">On livre</h3>
-        <p style="font-size:13px;color:var(--gray-500);line-height:1.6">Mise en ligne, formation de votre équipe, et on reste disponibles après le lancement.</p>
+        <h3>Sites web & espaces clients</h3>
+        <p>Landing pages, espaces clients sécurisés, portails de suivi de commandes. Tout ce qui a besoin d'une interface web propre et rapide.</p>
       </div>
+
     </div>
-  </div>
-</section>
-
-<!-- ════════════════ POURQUOI NOUS ════════════════ -->
-<section class="section" style="background:var(--gray-50)">
-  <div style="max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
-    <div>
-      <div class="eyebrow reveal" style="margin-bottom:20px;display:inline-flex"><span class="eyebrow-dot"></span>Pourquoi NeoFlow</div>
-      <h2 class="reveal delay-1" style="margin-bottom:20px">Ce que vous obtenez, pas ce qu'on code</h2>
-      <p class="reveal delay-2" style="color:var(--gray-500);font-size:16px;line-height:1.75;margin-bottom:32px">
-        On ne vous vend pas des heures de développement. On vous livre un outil qui fait exactement ce que votre business attend de lui — et qui reste vôtre.
-      </p>
-      <div class="reveal delay-3" style="display:flex;flex-direction:column;gap:20px">
-        <div style="display:flex;gap:16px;align-items:flex-start">
-          <div style="width:40px;height:40px;border-radius:12px;background:rgba(49,58,223,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="18" height="18" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div>
-            <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:4px">Vos données vous appartiennent</div>
-            <div style="font-size:14px;color:var(--gray-500);line-height:1.6">Aucun intermédiaire, aucun lock-in. Vous avez le code source et vos données dans votre propre espace.</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:16px;align-items:flex-start">
-          <div style="width:40px;height:40px;border-radius:12px;background:rgba(34,197,94,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="18" height="18" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <div>
-            <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:4px">Livré, pas juste "presque prêt"</div>
-            <div style="font-size:14px;color:var(--gray-500);line-height:1.6">On met en production, on forme votre équipe, et on reste là pour corriger ce qui ne va pas.</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:16px;align-items:flex-start">
-          <div style="width:40px;height:40px;border-radius:12px;background:rgba(245,158,11,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="18" height="18" fill="none" stroke="#d97706" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div>
-            <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:4px">Pas de surprise sur le prix</div>
-            <div style="font-size:14px;color:var(--gray-500);line-height:1.6">Devis précis et fixe avant de démarrer. Ce qui est prévu est livré, dans le budget annoncé.</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:16px;align-items:flex-start">
-          <div style="width:40px;height:40px;border-radius:12px;background:rgba(124,58,237,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="18" height="18" fill="none" stroke="#7c3aed" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
-          <div>
-            <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:4px">Évolutif à l'infini</div>
-            <div style="font-size:14px;color:var(--gray-500);line-height:1.6">Votre app grandit avec votre business. Nouveaux modules, nouvelles fonctionnalités — on revient quand vous en avez besoin.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Stats visuelles -->
-    <div class="reveal delay-2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-      <div class="card" style="text-align:center;padding:36px 20px;border-radius:var(--r-lg)">
-        <div style="font-size:3rem;font-weight:900;line-height:1" class="g-text">49€</div>
-        <div style="font-size:13px;color:var(--gray-500);margin-top:10px;line-height:1.4">par mois<br>NeoFlow BOS</div>
-      </div>
-      <div class="card" style="text-align:center;padding:36px 20px;background:var(--navy);border-color:transparent;border-radius:var(--r-lg)">
-        <div style="font-size:3rem;font-weight:900;color:white;line-height:1">7j</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.45);margin-top:10px;line-height:1.4">essai gratuit<br>sans CB</div>
-      </div>
-      <div class="card" style="text-align:center;padding:36px 20px;background:linear-gradient(135deg,#313ADF,#040741);border-color:transparent;border-radius:var(--r-lg)">
-        <div style="font-size:3rem;font-weight:900;color:white;line-height:1">100%</div>
-        <div style="font-size:13px;color:rgba(255,255,255,.55);margin-top:10px;line-height:1.4">code source<br>vous appartient</div>
-      </div>
-      <div class="card" style="text-align:center;padding:36px 20px;border-radius:var(--r-lg)">
-        <div style="font-size:3rem;font-weight:900;line-height:1" class="g-text">&lt;24h</div>
-        <div style="font-size:13px;color:var(--gray-500);margin-top:10px;line-height:1.4">délai de réponse,<br>souvent le jour même</div>
-      </div>
+    <div style="text-align:center;margin-top:36px" class="reveal">
+      <a href="/services.html" class="btn btn-ghost btn--lg">
+        Voir le détail des services
+        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ════════════════ ENGAGEMENT ════════════════ -->
-<section class="section" style="background:white">
-  <div style="max-width:1160px;margin:0 auto">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+<!-- ══════════════════════════════════════════
+     BOS SPOTLIGHT
+═══════════════════════════════════════════ -->
+<div class="bos-spotlight">
+  <div class="container">
+    <div class="bos-spotlight-inner">
       <div class="reveal">
-        <div class="eyebrow" style="margin-bottom:20px;display:inline-flex"><span class="eyebrow-dot"></span>Notre engagement</div>
-        <h2 style="margin-bottom:20px;line-height:1.1">Ce qu'on vous promet,<br>et pourquoi on peut le tenir</h2>
-        <p style="color:var(--gray-500);font-size:16px;line-height:1.75">
-          NeoFlow Agency c'est deux personnes — un développeur et un commercial — qui travaillent directement avec vous, de la première réunion à la mise en production. Pas d'intermédiaire, pas de grand groupe derrière.
+        <div class="bos-tag"><span class="dot"></span> Notre produit SaaS</div>
+        <h2>NeoFlow <span class="grad-text">BOS</span></h2>
+        <p style="font-size:1.05rem;margin-top:14px;max-width:480px">
+          On a aussi construit notre propre produit — une application de gestion complète pour les commerces physiques avec livraisons.
         </p>
-        <p style="color:var(--gray-500);font-size:16px;line-height:1.75;margin-top:14px">
-          C'est ce qui nous permet de répondre vite, de comprendre vraiment votre métier, et de livrer quelque chose qui fonctionne.
-        </p>
+        <ul class="bos-list">
+          <li><span class="dot"></span>Commandes, factures, devis en une seule app</li>
+          <li><span class="dot"></span>Kanban livraisons pour vos équipes terrain</li>
+          <li><span class="dot"></span>CRM clients et suivi financier en temps réel</li>
+          <li><span class="dot"></span>49€/mois · Essai 7 jours gratuit</li>
+        </ul>
+        <a href="/neoflow-bos.html" class="btn btn-primary btn--lg">
+          Découvrir NeoFlow BOS
+          <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
-      <div class="reveal delay-2" style="display:flex;flex-direction:column;gap:20px">
-        <div style="display:flex;gap:18px;align-items:flex-start;padding:20px;background:var(--gray-50);border-radius:var(--r-md)">
-          <div style="width:38px;height:38px;border-radius:11px;background:rgba(49,58,223,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="17" height="17" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.11 19.79 19.79 0 01.22 .44 2 2 0 012.22 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <div class="reveal" style="--delay:.1s">
+        <div class="app-mockup float-2" style="border-radius:18px">
+          <div class="app-topbar">
+            <div class="app-dots"><div class="app-dot app-dot--r"></div><div class="app-dot app-dot--y"></div><div class="app-dot app-dot--g"></div></div>
+            <div class="app-addr">app.neoflow.io/dashboard</div>
           </div>
-          <div>
-            <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:4px">Réponse dès la journée</div>
-            <div style="font-size:14px;color:var(--gray-500);line-height:1.6">Vous écrivez, vous avez une réponse rapide — pas de ticket, pas de délai d'une semaine.</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:18px;align-items:flex-start;padding:20px;background:var(--gray-50);border-radius:var(--r-md)">
-          <div style="width:38px;height:38px;border-radius:11px;background:rgba(49,58,223,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="17" height="17" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div>
-            <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:4px">Vos données vous appartiennent</div>
-            <div style="font-size:14px;color:var(--gray-500);line-height:1.6">Code source inclus. Pas de dépendance à notre bonne volonté pour récupérer ce que vous avez payé.</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:18px;align-items:flex-start;padding:20px;background:var(--gray-50);border-radius:var(--r-md)">
-          <div style="width:38px;height:38px;border-radius:11px;background:rgba(49,58,223,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-            <svg width="17" height="17" fill="none" stroke="#313ADF" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <div>
-            <div style="font-weight:700;font-size:15px;color:var(--navy);margin-bottom:4px">Livré prêt à l'emploi</div>
-            <div style="font-size:14px;color:var(--gray-500);line-height:1.6">On reste disponibles après la mise en ligne pour corriger, ajuster et former votre équipe.</div>
+          <div class="app-body">
+            <div class="app-sidebar">
+              <div class="app-sidebar-icon active"></div>
+              <div class="app-sidebar-icon"></div>
+              <div class="app-sidebar-icon"></div>
+              <div class="app-sidebar-icon"></div>
+            </div>
+            <div class="app-main">
+              <div class="kpi-row">
+                <div class="kpi-card">
+                  <div class="kpi-label">CA mois</div>
+                  <div class="kpi-value">12 490€</div>
+                  <div class="kpi-trend kpi-trend--up">+18%</div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-label">Commandes</div>
+                  <div class="kpi-value">47</div>
+                  <div class="kpi-trend kpi-trend--up">+12%</div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-label">Livraisons</div>
+                  <div class="kpi-value">8</div>
+                  <div class="kpi-trend kpi-trend--neutral">En cours</div>
+                </div>
+              </div>
+              <div class="mini-chart">
+                <div class="chart-title">Chiffre d'affaires — NeoFlow BOS</div>
+                <div class="chart-bars">
+                  <div class="chart-bar" style="height:38%"></div>
+                  <div class="chart-bar" style="height:55%"></div>
+                  <div class="chart-bar" style="height:45%"></div>
+                  <div class="chart-bar" style="height:72%"></div>
+                  <div class="chart-bar" style="height:88%"></div>
+                  <div class="chart-bar chart-bar--active" style="height:100%"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ════════════════ CTA ════════════════ -->
-<section style="padding:100px 24px">
-  <div style="max-width:860px;margin:0 auto" class="reveal">
-    <div style="background:linear-gradient(135deg,#040741 0%,#0a1260 50%,#040741 100%);border-radius:var(--r-xl);padding:80px;text-align:center;position:relative;overflow:hidden">
-      <div style="position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(49,58,223,.35),transparent 70%);pointer-events:none"></div>
-      <div style="position:absolute;bottom:-60px;left:-40px;width:250px;height:250px;background:radial-gradient(circle,rgba(107,115,255,.2),transparent 70%);pointer-events:none"></div>
-      <div class="grid-overlay" style="opacity:.6"></div>
-      <div style="position:relative;z-index:1">
-        <div class="eyebrow" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.85);margin-bottom:24px;display:inline-flex">
-          <span class="eyebrow-dot" style="background:rgba(255,255,255,.5)"></span>Prêt à démarrer ?
-        </div>
-        <h2 style="color:white;margin-bottom:16px">Parlez-nous de votre projet</h2>
-        <p style="color:rgba(255,255,255,.6);font-size:17px;line-height:1.72;margin-bottom:40px;max-width:440px;margin-left:auto;margin-right:auto">Premier échange gratuit. On vous répond dès la journée. Sans engagement.</p>
-        <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-          <a href="/contact.html" class="btn btn-white btn-lg">
-            Demander un devis gratuit
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="/neoflow-bos.html" class="btn btn-outline-white btn-lg">Découvrir NeoFlow BOS</a>
-        </div>
+<!-- ══════════════════════════════════════════
+     PROCESSUS
+═══════════════════════════════════════════ -->
+<section id="processus" style="background:#fff">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Notre démarche</span>
+      <h2>Simple. <span class="grad-text">Structuré.</span></h2>
+      <p class="intro">On travaille en petit comité, avec une communication directe à chaque étape.</p>
+    </div>
+    <div class="process-grid reveal" style="--delay:.05s">
+      <div class="process-step">
+        <div class="process-step__num">01</div>
+        <div class="process-step__title">Écoute</div>
+        <div class="process-step__desc">On prend le temps de comprendre votre métier, vos contraintes et ce que vous voulez vraiment obtenir.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">02</div>
+        <div class="process-step__title">Conception</div>
+        <div class="process-step__desc">On vous propose une architecture claire, des maquettes et un plan de développement avant d'écrire une seule ligne.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">03</div>
+        <div class="process-step__title">Développement</div>
+        <div class="process-step__desc">On code, on vous montre l'avancement régulièrement. Vous êtes dans la boucle à chaque étape, pas seulement à la fin.</div>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">04</div>
+        <div class="process-step__title">Livraison & suivi</div>
+        <div class="process-step__desc">On livre, on forme si besoin, et on reste disponibles. Une relation longue durée plutôt qu'une livraison et au revoir.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══════════════════════════════════════════
+     ENGAGEMENT / QUI ON EST
+═══════════════════════════════════════════ -->
+<section style="background:var(--bg-soft);border-top:1px solid var(--border)">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Qui on est</span>
+      <h2>Une équipe de 2,<br><span class="grad-text">avec une vraie conviction.</span></h2>
+      <p class="intro">
+        NeoFlow Agency, c'est un développeur et un commercial. On est petits volontairement — pour rester proches de chaque client, réactifs et honnêtes sur ce qu'on peut faire.
+      </p>
+    </div>
+    <div class="engmt-grid reveal" style="--delay:.05s">
+      <div class="engmt-card">
+        <div class="icon-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Honnêteté d'abord</h3>
+        <p>Si votre projet n'est pas pour nous, on vous le dit. Pas de promesses qu'on ne peut pas tenir, pas de devis gonflés.</p>
+      </div>
+      <div class="engmt-card">
+        <div class="icon-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        </div>
+        <h3>Contact direct</h3>
+        <p>Vous parlez directement avec la personne qui code ou qui gère votre projet. Réponse en moins de 24h, souvent le jour même.</p>
+      </div>
+      <div class="engmt-card">
+        <div class="icon-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3>Du concret, pas du jargon</h3>
+        <p>On ne parle pas technologie pour impressionner. On parle résultats, délais, et ce que ça va changer dans votre quotidien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FINAL CTA
+═══════════════════════════════════════════ -->
+<section class="cta-break" id="contact">
+  <div class="container">
+    <h2 class="reveal">Votre projet mérite<br>mieux qu'un Excel.</h2>
+    <p class="reveal" style="--delay:.05s">Parlez-nous de ce que vous voulez construire — le devis est gratuit.</p>
+    <div class="cta-actions reveal" style="--delay:.1s">
+      <a href="mailto:contact@neoflow.io" class="btn btn-white btn--lg">
+        Envoyer un message
+        <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="/services.html" class="btn btn-outline-white btn--lg">Voir les services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
 <footer class="footer">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-logo">
-        <img src="./logos/NFagency_blanc.png" alt="NeoFlow Agency" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <span style="display:none;color:white;font-weight:800;font-size:18px">NeoFlow Agency</span>
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <span class="footer__logo-text">Neo<span>Flow</span> Agency</span>
+        <p>Applications sur mesure pour des problèmes réels. Une équipe de 2, une approche directe.</p>
       </div>
-      <p class="footer-tagline">Nous créons les applications sur-mesure que votre business mérite. Rapides, fiables, livrées clés en main.</p>
-      <div style="display:flex;gap:10px;margin-top:20px">
-        <a href="#" aria-label="Instagram" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);transition:all .2s" onmouseover="this.style.background='rgba(255,255,255,.12)';this.style.color='white'" onmouseout="this.style.background='rgba(255,255,255,.07)';this.style.color='rgba(255,255,255,.4)'">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-        <a href="#" aria-label="TikTok" style="width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);transition:all .2s" onmouseover="this.style.background='rgba(255,255,255,.12)';this.style.color='white'" onmouseout="this.style.background='rgba(255,255,255,.07)';this.style.color='rgba(255,255,255,.4)'">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.53V6.78a4.85 4.85 0 01-1.02-.09z"/></svg>
-        </a>
+      <div class="footer__col">
+        <h4>Services</h4>
+        <a href="/services.html">Applications métier</a>
+        <a href="/services.html">Outils internes</a>
+        <a href="/services.html">Automatisations</a>
+        <a href="/services.html">Sites & portails</a>
+      </div>
+      <div class="footer__col">
+        <h4>Produit</h4>
+        <a href="/neoflow-bos.html">NeoFlow BOS</a>
+        <a href="/neoflow-bos.html#fonctionnalites">Fonctionnalités</a>
+        <a href="/neoflow-bos.html#tarifs">Tarifs</a>
+        <a href="/neoflow-bos.html#faq">FAQ</a>
+      </div>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@neoflow.io">contact@neoflow.io</a>
+        <a href="/mentions-legales.html">Mentions légales</a>
       </div>
     </div>
-    <div>
-      <div class="footer-col-title">Produit</div>
-      <ul class="footer-links">
-        <li><a href="/neoflow-bos.html">NeoFlow BOS</a></li>
-        <li><a href="/neoflow-bos.html#fonctionnalites">Fonctionnalités</a></li>
-        <li><a href="/neoflow-bos.html#tarifs">Tarifs</a></li>
-        <li><a href="/neoflow-bos.html#faq">FAQ</a></li>
-      </ul>
+    <div class="footer__bottom">
+      <span class="footer__copy">© 2025 NeoFlow Agency. Tous droits réservés.</span>
+      <span class="footer__copy">Fait avec soin, en France.</span>
     </div>
-    <div>
-      <div class="footer-col-title">Agence</div>
-      <ul class="footer-links">
-        <li><a href="/services.html">Nos services</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-        <li><a href="/contact.html">Devis gratuit</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Légal</div>
-      <ul class="footer-links">
-        <li><a href="/mentions-legales.html">Mentions légales</a></li>
-        <li><a href="/cgu.html">CGU / CGV</a></li>
-        <li><a href="/cgu.html">Confidentialité</a></li>
-        <li><a href="/cgu.html">Cookies</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 NeoFlow Agency. Tous droits réservés.</p>
-    <p>neoflow-agency.cloud</p>
   </div>
 </footer>
 
+<!-- ══ SCRIPTS ══ -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
 <script>
-  const inner = document.getElementById('navbarInner');
-  window.addEventListener('scroll', () => inner.classList.toggle('scrolled', window.scrollY > 20));
-  document.getElementById('burgerBtn').addEventListener('click', () => {
-    document.getElementById('mobileNav').style.display = 'flex';
+function closeMenu() { document.getElementById('mobileNav').classList.remove('open'); }
+
+// Mobile nav
+document.getElementById('burgerBtn').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+document.getElementById('closeNav').addEventListener('click', closeMenu);
+
+// Navbar scroll
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// Three.js hero
+(function() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas || !window.THREE) return;
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setClearColor(0x000000, 0);
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+  camera.position.z = 8;
+
+  // Wireframe icosahedron
+  const icoMesh = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(2.4, 1),
+    new THREE.MeshBasicMaterial({ color: 0x313ADF, wireframe: true, transparent: true, opacity: 0.07 })
+  );
+  scene.add(icoMesh);
+
+  // Small accent torus
+  const torMesh = new THREE.Mesh(
+    new THREE.TorusGeometry(1.3, 0.22, 8, 24),
+    new THREE.MeshBasicMaterial({ color: 0x6B21E8, wireframe: true, transparent: true, opacity: 0.05 })
+  );
+  torMesh.position.set(3.5, -1.5, -2);
+  scene.add(torMesh);
+
+  // Particles
+  const pGeo = new THREE.BufferGeometry();
+  const n = 100, pos = new Float32Array(n * 3);
+  for (let i = 0; i < n; i++) { pos[i*3]=(Math.random()-.5)*18; pos[i*3+1]=(Math.random()-.5)*18; pos[i*3+2]=(Math.random()-.5)*8; }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0x313ADF, size: 0.04, transparent: true, opacity: 0.22 })));
+
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX/innerWidth - .5; my = e.clientY/innerHeight - .5; });
+
+  function resize() {
+    const p = canvas.parentElement;
+    renderer.setSize(p.offsetWidth, p.offsetHeight);
+    camera.aspect = p.offsetWidth / p.offsetHeight;
+    camera.updateProjectionMatrix();
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  const clock = new THREE.Clock();
+  (function tick() {
+    requestAnimationFrame(tick);
+    const t = clock.getElapsedTime();
+    icoMesh.rotation.x = t * .06 + my * .2;
+    icoMesh.rotation.y = t * .09 + mx * .2;
+    torMesh.rotation.x = -t * .12;
+    torMesh.rotation.z = t * .07;
+    renderer.render(scene, camera);
+  })();
+})();
+
+// GSAP ScrollTrigger
+if (window.gsap && window.ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray('.reveal').forEach(el => {
+    const delay = parseFloat(getComputedStyle(el).getPropertyValue('--delay') || '0') || 0;
+    gsap.fromTo(el,
+      { opacity: 0, y: el.classList.contains('from-left') ? 0 : el.classList.contains('from-right') ? 0 : 28,
+        x: el.classList.contains('from-left') ? -28 : el.classList.contains('from-right') ? 28 : 0 },
+      { opacity: 1, y: 0, x: 0, duration: 0.8, delay, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%' } }
+    );
   });
-  document.getElementById('closeNav').addEventListener('click', () => {
-    document.getElementById('mobileNav').style.display = 'none';
+
+  // Stagger service cards
+  gsap.utils.toArray('.service-card, .engmt-card, .process-step').forEach((el, i) => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6, delay: (i % 4) * 0.1, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 90%' } }
+    );
   });
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.07 });
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+
+// FAQ accordion
+document.querySelectorAll('.faq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.faq-btn.open').forEach(b => { b.classList.remove('open'); b.nextElementSibling.classList.remove('open'); });
+    if (!isOpen) { btn.classList.add('open'); btn.nextElementSibling.classList.add('open'); }
+  });
+});
+
+// Smooth anchor scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
 </script>
 </body>
 </html>

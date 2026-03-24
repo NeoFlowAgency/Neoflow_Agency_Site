@@ -200,7 +200,7 @@
       <h2>Des outils qui correspondent<br><em class="grad-text">exactement à votre réalité.</em></h2>
       <p class="intro">Chaque secteur a ses contraintes. On les comprend d'abord, on code ensuite.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px" class="reveal" style="--delay:.05s">
+    <div class="services-grid reveal" style="--delay:.05s">
 
       <div class="service-card">
         <div class="icon-box icon-box--lg">
@@ -465,6 +465,7 @@ window.addEventListener('scroll', () => {
 (function() {
   const canvas = document.getElementById('heroCanvas');
   if (!canvas || !window.THREE) return;
+  if (window.matchMedia('(max-width: 768px)').matches) return;
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setClearColor(0x000000, 0);
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));

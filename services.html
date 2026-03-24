@@ -488,6 +488,7 @@ window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', windo
 (function() {
   const canvas = document.getElementById('heroCanvas');
   if (!canvas || !window.THREE) return;
+  if (window.matchMedia('(max-width: 768px)').matches) return;
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setClearColor(0x000000, 0);
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));

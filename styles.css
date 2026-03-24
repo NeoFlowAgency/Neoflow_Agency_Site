@@ -147,7 +147,7 @@ section { padding:96px 0; }
 
 /* Logo */
 .nav-logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:17px; letter-spacing:-.025em; }
-.nav-logo img { height:30px; width:auto; }
+.nav-logo img { height:36px; width:auto; }
 .nav-logo-text { color:var(--text); }
 .nav-logo-text span { color:var(--primary); }
 .nav-logo-text--white { color:#fff; }
@@ -313,6 +313,29 @@ section { padding:96px 0; }
 .invoice-line span { color:var(--text-2); }
 .invoice-line strong { color:var(--text); font-weight:700; }
 .invoice-total-row { display:flex; justify-content:space-between; padding:8px 0 0; font-size:12px; font-weight:800; color:var(--text); }
+
+/* ─── Screenshot frame ───────────────────────────────────────── */
+.screen-frame {
+  border-radius:var(--r-lg); overflow:hidden;
+  border:1px solid var(--border); box-shadow:var(--s-xl); background:#fff;
+}
+.screen-frame__bar {
+  background:#f0f1f5; padding:9px 14px;
+  display:flex; align-items:center; gap:10px;
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+.screen-frame__dots { display:flex; gap:5px; flex-shrink:0; }
+.screen-frame__dots span { width:10px; height:10px; border-radius:50%; }
+.screen-frame__dots span:nth-child(1) { background:#fe5f57; }
+.screen-frame__dots span:nth-child(2) { background:#febc2e; }
+.screen-frame__dots span:nth-child(3) { background:#28c840; }
+.screen-frame__url {
+  flex:1; font-size:11px; color:#888; background:#fff;
+  border:1px solid rgba(0,0,0,.08); border-radius:5px;
+  padding:3px 10px; text-align:center;
+  max-width:280px; margin:0 auto; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.screen-frame img { width:100%; display:block; }
 
 /* Chat */
 .chat-wrap { padding:12px; background:#fff; display:flex; flex-direction:column; gap:8px; min-height:200px; }
@@ -568,10 +591,10 @@ section { padding:96px 0; }
   .chart-bars { height:42px; }
 }
 
-/* Feature visuals: ensure app mockup fits on mobile */
+/* Feature visuals: ensure mockup/screenshot fits on mobile */
 @media (max-width:768px) {
   .feature-visual { overflow:hidden; }
-  .app-mockup { max-width:100%; }
+  .app-mockup, .screen-frame { max-width:100%; }
   .kanban-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; }
   .kanban-col { min-width:90px; }
 }

@@ -446,7 +446,7 @@ if (window.gsap && window.ScrollTrigger) {
     const delay = parseFloat(getComputedStyle(el).getPropertyValue('--delay') || '0') || 0;
     gsap.fromTo(el, { opacity: 0, y: 20 }, {
       opacity: 1, y: 0, duration: 0.45, delay, ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 92%' }
+      scrollTrigger: { trigger: el, start: 'top bottom', once: true }
     });
   });
 }

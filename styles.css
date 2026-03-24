@@ -445,10 +445,6 @@ section { padding:96px 0; }
   background:#fff; padding:36px 24px; border-radius:var(--r-lg);
   border:1.5px solid var(--border); position:relative; z-index:1;
   transition:box-shadow var(--t-base),transform var(--t-base),border-color var(--t-base);
-  opacity:0; transform:translateY(20px);
-}
-.process-step.visible {
-  opacity:1; transform:none; transition:opacity .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1),box-shadow var(--t-base),border-color var(--t-base);
 }
 .process-step:hover { border-color:var(--border-2); box-shadow:var(--s-md); transform:translateY(-3px); }
 .process-step__num {

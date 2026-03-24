@@ -778,13 +778,13 @@ if (window.gsap && window.ScrollTrigger) {
     gsap.fromTo(el,
       { opacity: 0, y: 20 },
       { opacity: 1, y: 0, duration: 0.45, delay, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 92%' } }
+        scrollTrigger: { trigger: el, start: 'top bottom', once: true } }
     );
   });
   gsap.utils.toArray('.situ-card, .pq-card, .compare-col').forEach((el, i) => {
     gsap.fromTo(el, { opacity: 0, y: 16 }, {
       opacity: 1, y: 0, duration: 0.38, delay: (i % 4) * 0.07, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 92%' }
+      scrollTrigger: { trigger: el, start: 'top bottom', once: true }
     });
   });
 }

@@ -18,14 +18,14 @@
       position: relative; z-index: 1;
     }
     .bos-hero-tag {
-      position: absolute; top: -18px; right: -10px;
+      position: absolute; top: 8%; right: 2%;
       background: #fff; border: 1px solid var(--border); border-radius: var(--r-md);
       box-shadow: var(--s-md); padding: 10px 14px; white-space: nowrap;
     }
     .bos-hero-tag-label { font-size: 9px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 2px; }
     .bos-hero-tag-val { font-size: 13px; font-weight: 800; color: #16A34A; }
     .bos-hero-tag-2 {
-      position: absolute; bottom: -14px; left: -10px;
+      position: absolute; bottom: 22%; left: 3%;
       background: var(--primary); border-radius: var(--r-md);
       box-shadow: var(--s-md); padding: 10px 14px; white-space: nowrap;
     }
@@ -42,209 +42,20 @@
     @media (max-width: 768px) {
       .bos-hero-tag { display: none; }
       .bos-hero-tag-2 { display: none; }
-      .mbk-scene { transform: scale(.72); transform-origin: top center; }
     }
 
-    /* ── MacBook 3D ── */
-    .mbk-scene {
-      perspective: 1800px;
-      perspective-origin: 50% 30%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px 0 55px;
-    }
-    .mbk-tilt {
-      transform-style: preserve-3d;
-      transform: rotateX(-7deg);
-    }
-    .mbk {
-      transform-style: preserve-3d;
+    /* ── MacBook video ── */
+    .bos-video-wrap {
       position: relative;
-      width: 420px;
-      height: 300px;
-    }
-    .mbk__lid {
-      position: absolute;
-      bottom: 20px;
-      left: 0;
-      width: 420px;
-      height: 270px;
-      transform-origin: bottom center;
-      transform-style: preserve-3d;
-    }
-    .mbk__screen {
-      position: absolute;
-      inset: 0;
-      background: #1A1A2E;
-      border-radius: 14px 14px 3px 3px;
-      padding: 10px 10px 8px;
-      overflow: hidden;
-      backface-visibility: hidden;
-      box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset, 0 2px 8px rgba(0,0,0,.5);
-    }
-    .mbk__lid-back {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(160deg, #D4D4D4 0%, #B8B8B8 45%, #A4A4A4 100%);
-      border-radius: 14px 14px 3px 3px;
-      transform: rotateY(180deg);
-      backface-visibility: hidden;
-      box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .mbk__lid-logo {
-      width: 24px; height: 24px;
-      border-radius: 50%;
-      background: rgba(160,160,160,.35);
-    }
-    .mbk__display {
       width: 100%;
-      height: 100%;
-      background: #080818;
-      border-radius: 7px;
-      overflow: hidden;
-      opacity: 0;
     }
-    .mbk__base {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 420px;
-      height: 22px;
-      background: linear-gradient(180deg, #D2D2D2 0%, #B8B8B8 55%, #A2A2A2 100%);
-      border-radius: 3px 3px 16px 16px;
-      box-shadow: 0 8px 28px rgba(0,0,0,.24), 0 2px 6px rgba(0,0,0,.1);
-      overflow: hidden;
+    .bos-video {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      filter: drop-shadow(0 24px 48px rgba(4,7,65,.18));
     }
-    .mbk__base::before {
-      content: '';
-      position: absolute;
-      top: 4px; left: 32px; right: 32px; height: 9px;
-      background: repeating-linear-gradient(
-        90deg,
-        rgba(0,0,0,.05) 0px, rgba(0,0,0,.05) 4px,
-        transparent 4px, transparent 7px
-      );
-      border-radius: 2px;
-    }
-    .mbk__base::after {
-      content: '';
-      position: absolute;
-      bottom: 3px; left: 50%; transform: translateX(-50%);
-      width: 66px; height: 7px;
-      background: rgba(0,0,0,.1);
-      border-radius: 4px;
-    }
-
-    /* ── Screen content: mini dashboard ── */
-    .mbk-dash {
-      height: 100%;
-      background: #0C0C1C;
-      display: flex;
-      flex-direction: column;
-    }
-    .mbk-dash__bar {
-      background: #12122A;
-      border-bottom: 1px solid rgba(49,58,223,.18);
-      padding: 5px 9px;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      flex-shrink: 0;
-    }
-    .mbk-dash__bar::before {
-      content: '';
-      width: 5px; height: 5px;
-      background: #313ADF;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .mbk-dash__bar-url {
-      font-size: 7px;
-      color: rgba(255,255,255,.3);
-      font-family: -apple-system, sans-serif;
-      font-weight: 500;
-    }
-    .mbk-dash__bar-badge {
-      margin-left: auto;
-      font-size: 6px;
-      background: rgba(49,58,223,.22);
-      color: #818CF8;
-      border-radius: 3px;
-      padding: 1px 5px;
-      font-weight: 600;
-      font-family: -apple-system, sans-serif;
-    }
-    .mbk-dash__body {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 40px 1fr;
-      overflow: hidden;
-    }
-    .mbk-dash__nav {
-      background: #0F0F20;
-      border-right: 1px solid rgba(255,255,255,.04);
-      padding: 9px 6px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      align-items: center;
-    }
-    .mbk-dash__nav-i {
-      width: 20px; height: 20px;
-      border-radius: 5px;
-      background: rgba(255,255,255,.06);
-    }
-    .mbk-dash__nav-i.on { background: rgba(49,58,223,.45); }
-    .mbk-dash__main {
-      padding: 9px 9px 6px;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      overflow: hidden;
-    }
-    .mbk-kpis {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 5px;
-    }
-    .mbk-kpi {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: 6px;
-      padding: 6px 5px;
-    }
-    .mbk-kpi__l { font-size: 6px; color: rgba(255,255,255,.33); margin-bottom: 3px; font-family: -apple-system,sans-serif; }
-    .mbk-kpi__v { font-size: 11px; font-weight: 800; color: #fff; line-height: 1; font-family: -apple-system,sans-serif; }
-    .mbk-kpi__t { font-size: 6px; color: #4ADE80; margin-top: 3px; font-weight: 600; font-family: -apple-system,sans-serif; }
-    .mbk-chart {
-      flex: 1;
-      background: rgba(255,255,255,.02);
-      border: 1px solid rgba(255,255,255,.04);
-      border-radius: 6px;
-      padding: 7px 7px 5px;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      min-height: 0;
-    }
-    .mbk-chart__lbl { font-size: 6px; color: rgba(255,255,255,.25); font-family: -apple-system,sans-serif; }
-    .mbk-chart__bars {
-      flex: 1;
-      display: flex;
-      align-items: flex-end;
-      gap: 4px;
-    }
-    .mbk-bar {
-      flex: 1;
-      background: rgba(49,58,223,.28);
-      border-radius: 2px 2px 0 0;
-      min-height: 3px;
-    }
-    .mbk-bar--hi { background: #313ADF; }
   </style>
 </head>
 <body>
@@ -337,75 +148,13 @@
         </div>
       </div>
 
-      <!-- 3D MacBook animation -->
+      <!-- MacBook animation video -->
       <div class="bos-hero-visual reveal" style="--delay:.12s">
-        <div style="position:relative">
-          <div class="mbk-scene">
-            <div class="mbk-tilt">
-              <div class="mbk" id="bosBook">
-
-                <!-- Lid (screen side) -->
-                <div class="mbk__lid" id="bosLid">
-                  <div class="mbk__screen">
-                    <div class="mbk__display" id="bosDisplay">
-                      <div class="mbk-dash">
-                        <div class="mbk-dash__bar">
-                          <span class="mbk-dash__bar-url">bos.neoflow.io/dashboard</span>
-                          <span class="mbk-dash__bar-badge">NeoFlow BOS</span>
-                        </div>
-                        <div class="mbk-dash__body">
-                          <div class="mbk-dash__nav">
-                            <div class="mbk-dash__nav-i on"></div>
-                            <div class="mbk-dash__nav-i"></div>
-                            <div class="mbk-dash__nav-i"></div>
-                            <div class="mbk-dash__nav-i"></div>
-                            <div class="mbk-dash__nav-i"></div>
-                          </div>
-                          <div class="mbk-dash__main">
-                            <div class="mbk-kpis">
-                              <div class="mbk-kpi">
-                                <div class="mbk-kpi__l">CA du mois</div>
-                                <div class="mbk-kpi__v">12 840€</div>
-                                <div class="mbk-kpi__t">+18%</div>
-                              </div>
-                              <div class="mbk-kpi">
-                                <div class="mbk-kpi__l">Commandes</div>
-                                <div class="mbk-kpi__v">34</div>
-                                <div class="mbk-kpi__t">+5 ce jour</div>
-                              </div>
-                              <div class="mbk-kpi">
-                                <div class="mbk-kpi__l">Livraisons</div>
-                                <div class="mbk-kpi__v">8</div>
-                                <div class="mbk-kpi__t">Aujourd'hui</div>
-                              </div>
-                            </div>
-                            <div class="mbk-chart">
-                              <div class="mbk-chart__lbl">Chiffre d'affaires — 6 mois</div>
-                              <div class="mbk-chart__bars">
-                                <div class="mbk-bar" style="height:38%"></div>
-                                <div class="mbk-bar" style="height:52%"></div>
-                                <div class="mbk-bar" style="height:63%"></div>
-                                <div class="mbk-bar" style="height:76%"></div>
-                                <div class="mbk-bar" style="height:88%"></div>
-                                <div class="mbk-bar mbk-bar--hi" style="height:100%"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mbk__lid-back">
-                    <div class="mbk__lid-logo"></div>
-                  </div>
-                </div>
-
-                <!-- Base -->
-                <div class="mbk__base"></div>
-
-              </div>
-            </div>
-          </div>
+        <div class="bos-video-wrap">
+          <video class="bos-video" autoplay muted loop playsinline poster="./macbook-open.jpg">
+            <source src="./macbook-animation.mp4" type="video/mp4">
+            <img src="./macbook-open.jpg" alt="NeoFlow BOS sur MacBook">
+          </video>
           <div class="bos-hero-tag float-2">
             <div class="bos-hero-tag-label">Ce mois</div>
             <div class="bos-hero-tag-val">+18% de CA</div>
@@ -1140,39 +889,6 @@ window.addEventListener('scroll', () => {
   })();
 })();
 
-// ── MacBook 3D animation ──
-(function() {
-  if (!window.gsap) return;
-  const book = document.getElementById('bosBook');
-  const lid  = document.getElementById('bosLid');
-  const disp = document.getElementById('bosDisplay');
-  if (!book || !lid || !disp) return;
-
-  // Initial state: nearly closed, slight angle
-  gsap.set(book, { rotateY: -20 });
-  gsap.set(lid,  { rotateX: -82 }); // 8° open from flat
-
-  const tl = gsap.timeline({ delay: 1.0 });
-
-  // 1) Full Y-axis spin
-  tl.to(book, {
-    rotateY: 340,          // -20 + 360
-    duration: 1.5,
-    ease: 'power2.inOut'
-  })
-  // 2) Lid opens as spin finishes
-  .to(lid, {
-    rotateX: -20,          // ~110° open from base
-    duration: 1.3,
-    ease: 'power2.out'
-  }, '-=0.65')
-  // 3) Screen lights up
-  .to(disp, {
-    opacity: 1,
-    duration: 0.55,
-    ease: 'power2.in'
-  }, '-=0.45');
-})();
 
 // GSAP
 if (window.gsap && window.ScrollTrigger) {

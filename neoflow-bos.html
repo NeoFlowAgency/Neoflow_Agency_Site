@@ -44,21 +44,27 @@
       .bos-hero-tag-2 { display: none; }
     }
 
-    /* ── MacBook video ── */
-    .bos-video-wrap {
-      position: relative;
-      width: 100%;
+    /* ── BOS hero mockup ── */
+    .bos-mockup-wrap { position: relative; width: 100%; }
+    .bos-hero-mockup {
+      border-radius: 14px;
+      box-shadow: 0 32px 80px rgba(49,58,223,.18), 0 8px 24px rgba(0,0,0,.1);
+      overflow: hidden;
+      background: #fff;
     }
-    .bos-video {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      display: block;
-      filter: drop-shadow(0 24px 48px rgba(4,7,65,.18));
+    .bos-hero-mockup .app-body { height: 280px; }
+
+    @keyframes float-y {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
+    .float-2 { animation: float-y 3.4s ease-in-out infinite; }
+    .float-3 { animation: float-y 4.1s ease-in-out infinite .7s; }
   </style>
 </head>
 <body>
+<div id="page-transition" style="position:fixed;inset:0;z-index:9999;background:#040741;pointer-events:none;opacity:0;transform:scaleY(0);transform-origin:bottom"></div>
+<div id="cursorGlow" style="position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(49,58,223,.06) 0%,transparent 70%);pointer-events:none;z-index:9998;top:0;left:0"></div>
 
 <!-- STICKY CTA BAR -->
 <div id="stickyCta">
@@ -148,13 +154,42 @@
         </div>
       </div>
 
-      <!-- MacBook animation video -->
+      <!-- BOS dashboard mockup -->
       <div class="bos-hero-visual reveal" style="--delay:.12s">
-        <div class="bos-video-wrap">
-          <video class="bos-video" autoplay muted loop playsinline poster="./macbook-open.jpg">
-            <source src="./macbook-animation.mp4" type="video/mp4">
-            <img src="./macbook-open.jpg" alt="NeoFlow BOS sur MacBook">
-          </video>
+        <div class="bos-mockup-wrap">
+          <div class="app-mockup bos-hero-mockup">
+            <div class="app-topbar">
+              <div class="app-dots"><div class="app-dot app-dot--r"></div><div class="app-dot app-dot--y"></div><div class="app-dot app-dot--g"></div></div>
+              <div class="app-addr">bos.neoflow.io/dashboard</div>
+            </div>
+            <div class="app-body">
+              <div class="app-sidebar">
+                <div class="app-sidebar-icon active"></div>
+                <div class="app-sidebar-icon"></div>
+                <div class="app-sidebar-icon"></div>
+                <div class="app-sidebar-icon"></div>
+                <div class="app-sidebar-icon"></div>
+              </div>
+              <div class="app-main">
+                <div class="kpi-row">
+                  <div class="kpi-card"><div class="kpi-label">CA du jour</div><div class="kpi-value">2 380€</div><div class="kpi-trend kpi-trend--up">+12%</div></div>
+                  <div class="kpi-card"><div class="kpi-label">En attente</div><div class="kpi-value">7</div><div class="kpi-trend kpi-trend--neutral">Cmdes</div></div>
+                  <div class="kpi-card"><div class="kpi-label">Ce mois</div><div class="kpi-value">12 840€</div><div class="kpi-trend kpi-trend--up">+18%</div></div>
+                </div>
+                <div class="mini-chart">
+                  <div class="chart-title">Évolution CA — 6 mois</div>
+                  <div class="chart-bars">
+                    <div class="chart-bar" style="height:35%"></div>
+                    <div class="chart-bar" style="height:52%"></div>
+                    <div class="chart-bar" style="height:68%"></div>
+                    <div class="chart-bar" style="height:74%"></div>
+                    <div class="chart-bar" style="height:88%"></div>
+                    <div class="chart-bar chart-bar--active" style="height:100%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="bos-hero-tag float-2">
             <div class="bos-hero-tag-label">Ce mois</div>
             <div class="bos-hero-tag-val">+18% de CA</div>
@@ -890,21 +925,78 @@ window.addEventListener('scroll', () => {
 })();
 
 
+// Page transitions
+const overlay = document.getElementById('page-transition');
+if (overlay && window.gsap) {
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('http') || a.target === '_blank') return;
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      gsap.to(overlay, { opacity: 1, scaleY: 1, duration: 0.38, ease: 'power3.inOut', onComplete: () => { window.location.href = href; } });
+    });
+  });
+  window.addEventListener('pageshow', () => { gsap.set(overlay, { opacity: 0, scaleY: 0 }); });
+}
+
+// Cursor glow
+(function() {
+  const el = document.getElementById('cursorGlow');
+  if (!el) return;
+  let mx = window.innerWidth/2, my = window.innerHeight/2, cx = mx, cy = my;
+  window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function loop() {
+    cx += (mx - cx) * 0.08; cy += (my - cy) * 0.08;
+    el.style.transform = `translate(${cx - 200}px, ${cy - 200}px)`;
+    requestAnimationFrame(loop);
+  })();
+})();
+
+// Magnetic buttons
+document.querySelectorAll('.btn-primary, .btn-white').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const dx = e.clientX - (r.left + r.width/2);
+    const dy = e.clientY - (r.top + r.height/2);
+    btn.style.transform = `translate(${dx * 0.15}px, ${dy * 0.15}px)`;
+  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
 // GSAP
 if (window.gsap && window.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
+
+  // Hero entrance
+  gsap.timeline({ delay: 0.1 })
+    .from('.bos-hero .hero-tag', { opacity: 0, y: 15, duration: 0.5, ease: 'power3.out' })
+    .from('.bos-hero .hero-h1', { opacity: 0, y: 30, duration: 0.65, ease: 'power3.out' }, '-=0.3')
+    .from('.bos-hero .hero-sub', { opacity: 0, y: 20, duration: 0.55, ease: 'power3.out' }, '-=0.4')
+    .from('.bos-hero .hero-actions', { opacity: 0, y: 18, duration: 0.5, ease: 'power3.out' }, '-=0.35')
+    .from('.bos-hero .bos-hero-visual', { opacity: 0, x: 40, duration: 0.7, ease: 'power3.out' }, '-=0.5');
+
+  // Scroll reveals
   gsap.utils.toArray('.reveal').forEach(el => {
     const delay = parseFloat(getComputedStyle(el).getPropertyValue('--delay') || '0') || 0;
     gsap.fromTo(el,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.45, delay, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top bottom', once: true } }
+      { opacity: 0, y: 22 },
+      { opacity: 1, y: 0, duration: 0.55, delay, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 90%', once: true } }
     );
   });
-  gsap.utils.toArray('.situ-card, .pq-card, .compare-col').forEach((el, i) => {
-    gsap.fromTo(el, { opacity: 0, y: 16 }, {
-      opacity: 1, y: 0, duration: 0.38, delay: (i % 4) * 0.07, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top bottom', once: true }
+
+  // Cards stagger
+  gsap.utils.toArray('.situ-card, .pq-card').forEach((el, i) => {
+    gsap.fromTo(el, { opacity: 0, y: 20 }, {
+      opacity: 1, y: 0, duration: 0.45, delay: (i % 4) * 0.09, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+    });
+  });
+
+  gsap.utils.toArray('.compare-col').forEach((el, i) => {
+    gsap.fromTo(el, { opacity: 0, x: i === 0 ? -20 : 20 }, {
+      opacity: 1, x: 0, duration: 0.55, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true }
     });
   });
 }

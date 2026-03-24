@@ -9,13 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="./styles.css">
   <style>
-    /* ── BOS hero override ── */
+    /* ── BOS hero override — match vibrant gradient ── */
     .bos-hero {
-      background:
-        radial-gradient(ellipse 60% 55% at 10% 30%, rgba(49,58,223,.08) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 60% at 90% 10%, rgba(107,33,232,.06) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 50% at 50% 95%, rgba(49,58,223,.04) 0%, transparent 60%),
-        #FAFBFF;
+      background: linear-gradient(145deg, #E0E6FF 0%, #E8E2FF 38%, #F2EEFF 68%, #FAFBFF 100%);
     }
     /* Hero BOS visual */
     .bos-hero-visual {
@@ -671,50 +667,76 @@
      TARIFS
 ═══════════════════════════════════════════ -->
 <section style="background:var(--bg-soft)" id="tarifs">
-  <div class="container container--sm">
+  <div class="container">
     <div class="sec-head reveal">
       <span class="eyebrow">Tarifs</span>
       <h2>Simple. <span class="grad-text">Transparent.</span></h2>
-      <p class="intro">Un seul plan, tout inclus. Pas de module payant en plus, pas de surprise.</p>
+      <p class="intro">Tout est inclus. Pas de module en option, pas de surprise sur la facture.</p>
     </div>
-    <div class="launch-banner reveal" style="--delay:.05s">
+    <div class="launch-banner reveal" style="--delay:.05s;max-width:860px;margin:0 auto 40px">
       <div class="launch-badge">Tarif de lancement</div>
-      <div class="launch-text">Ce tarif est valable pendant notre phase de lancement. <span>Il sera réévalué à mesure que le produit évolue.</span></div>
+      <div class="launch-text">Ces tarifs sont valables pendant notre phase de lancement. <span>Les premiers inscrits les gardent à vie.</span></div>
     </div>
 
-    <div class="urgency-note reveal" style="--delay:.07s">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-      <p><strong>Les premiers inscrits gardent ce tarif à vie.</strong> Quand le prix augmentera lors de la sortie officielle, votre abonnement reste à 49€/mois — garanti.</p>
+    <div class="price-grid reveal" style="--delay:.08s">
+
+      <!-- Plan mensuel -->
+      <div class="price-card">
+        <span class="price-card-label">Mensuel</span>
+        <div class="price-amount">
+          <span class="price-cur">€</span>
+          <span class="price-val">49</span>
+          <span class="price-per">/ mois</span>
+        </div>
+        <div class="price-sub">Sans engagement · Résiliable à tout moment</div>
+        <ul class="price-features">
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Commandes, devis, factures illimitées</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Kanban livraisons (accès livreurs mobile)</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>CRM clients + tableau de bord financier</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Gestion stock et fournisseurs</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Assistant IA Neo intégré</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Génération PDF automatique</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Rôles équipe · Utilisateurs illimités</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Support humain &lt;24h inclus</li>
+        </ul>
+        <a href="https://bos.neoflow-agency.cloud" class="btn btn-ghost btn--lg" style="width:100%;justify-content:center;border-radius:var(--r-lg)">
+          Commencer — 7 jours d'essai
+          <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Plan annuel -->
+      <div class="price-card price-card--highlight">
+        <span class="price-badge">2 mois offerts</span>
+        <span class="price-card-label" style="display:block;margin-top:6px">Annuel</span>
+        <div class="price-amount">
+          <span class="price-cur">€</span>
+          <span class="price-val">41</span>
+          <span class="price-per">/ mois</span>
+        </div>
+        <div class="price-sub">490€ facturé annuellement · Économie de 98€/an</div>
+        <ul class="price-features">
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Commandes, devis, factures illimitées</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Kanban livraisons (accès livreurs mobile)</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>CRM clients + tableau de bord financier</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Gestion stock et fournisseurs</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Assistant IA Neo intégré</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Génération PDF automatique</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Rôles équipe · Utilisateurs illimités</li>
+          <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Support humain &lt;24h inclus</li>
+        </ul>
+        <a href="https://bos.neoflow-agency.cloud" class="btn btn-primary btn--lg" style="width:100%;justify-content:center;border-radius:var(--r-lg)">
+          Commencer — 7 jours d'essai
+          <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
     </div>
 
-    <div class="price-card reveal" style="--delay:.1s">
-      <div style="font-size:12px;font-weight:700;color:var(--text-3);letter-spacing:.1em;text-transform:uppercase">NeoFlow BOS</div>
-      <div class="price-amount">
-        <span class="price-cur">€</span>
-        <span class="price-val">49</span>
-        <span class="price-per">/ mois</span>
-      </div>
-      <div class="price-sub">Par workspace · Utilisateurs illimités · Sans engagement</div>
-      <ul class="price-features">
-        <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Commandes, devis, factures illimitées</li>
-        <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Kanban livraisons (accès livreurs mobile)</li>
-        <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>CRM clients + tableau de bord financier</li>
-        <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Gestion stock et fournisseurs</li>
-        <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Assistant IA Neo intégré</li>
-        <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Génération PDF automatique</li>
-        <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Rôles équipe (vendeur, livreur, manager)</li>
-        <li class="price-feat"><span class="price-chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Support humain &lt;24h inclus</li>
-      </ul>
-      <a href="https://bos.neoflow-agency.cloud" class="btn btn-primary btn--lg" style="width:100%;justify-content:center;border-radius:var(--r-lg)">
-        Commencer — 7 jours gratuits
-        <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <div class="trust-strip" style="margin-top:20px;padding-top:20px">
-        <div class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Données en Europe</div>
-        <div class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>Annulation libre</div>
-        <div class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Données en Europe</div>
-        <div class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>Support &lt;24h</div>
-      </div>
+    <div class="trust-strip reveal" style="--delay:.15s;justify-content:center;margin-top:32px">
+      <div class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Données en Europe</div>
+      <div class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>Annulation libre</div>
+      <div class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>Support &lt;24h</div>
+      <div class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Tarif garanti à vie</div>
     </div>
   </div>
 </section>

@@ -59,11 +59,11 @@
       <a href="/services.html" class="nav-link">Services</a>
       <a href="#processus" class="nav-link">Notre approche</a>
       <a href="/neoflow-bos.html" class="nav-link">NeoFlow BOS</a>
-      <a href="#contact" class="nav-link">Contact</a>
+      <a href="/contact.html" class="nav-link">Contact</a>
     </div>
     <div class="nav-actions">
       <a href="/neoflow-bos.html" class="btn btn-ghost btn--sm">NeoFlow BOS</a>
-      <a href="mailto:contact@neoflow.io" class="btn btn-primary btn--sm">
+      <a href="mailto:contacts.neoflowagency@gmail.com" class="btn btn-primary btn--sm">
         Nous contacter
         <svg class="arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -85,9 +85,9 @@
   <a href="/services.html" onclick="closeMenu()">Services</a>
   <a href="#processus" onclick="closeMenu()">Notre approche</a>
   <a href="/neoflow-bos.html" onclick="closeMenu()">NeoFlow BOS</a>
-  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="/contact.html" onclick="closeMenu()">Contact</a>
   <div class="mobile-nav__cta" style="padding-top:32px">
-    <a href="mailto:contact@neoflow.io" class="btn btn-primary btn--lg" style="width:100%;justify-content:center">
+    <a href="mailto:contacts.neoflowagency@gmail.com" class="btn btn-primary btn--lg" style="width:100%;justify-content:center">
       Nous contacter
     </a>
   </div>
@@ -113,7 +113,7 @@
           pas des solutions génériques, pas des compromis.
         </p>
         <div class="hero-actions">
-          <a href="mailto:contact@neoflow.io" class="btn btn-primary btn--lg">
+          <a href="mailto:contacts.neoflowagency@gmail.com" class="btn btn-primary btn--lg">
             Parler de votre projet
             <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
@@ -289,7 +289,7 @@
       <h2>Simple. <span class="grad-text">Structuré.</span></h2>
       <p class="intro">On travaille en petit comité, avec une communication directe à chaque étape.</p>
     </div>
-    <div class="process-grid reveal" style="--delay:.05s">
+    <div class="process-grid" id="processGrid">
       <div class="process-step">
         <div class="process-step__num">01</div>
         <div class="process-step__title">Écoute</div>
@@ -360,7 +360,7 @@
     <h2 class="reveal">Votre projet mérite<br>mieux qu'un Excel.</h2>
     <p class="reveal" style="--delay:.05s">Parlez-nous de ce que vous voulez construire — le devis est gratuit.</p>
     <div class="cta-actions reveal" style="--delay:.1s">
-      <a href="mailto:contact@neoflow.io" class="btn btn-white btn--lg">
+      <a href="mailto:contacts.neoflowagency@gmail.com" class="btn btn-white btn--lg">
         Envoyer un message
         <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -395,7 +395,8 @@
       </div>
       <div class="footer__col">
         <h4>Contact</h4>
-        <a href="mailto:contact@neoflow.io">contact@neoflow.io</a>
+        <a href="/contact.html">Formulaire de contact</a>
+        <a href="mailto:contacts.neoflowagency@gmail.com">contacts.neoflowagency@gmail.com</a>
         <a href="/mentions-legales.html">Mentions légales</a>
       </div>
     </div>
@@ -488,19 +489,28 @@ if (window.gsap && window.ScrollTrigger) {
   gsap.utils.toArray('.reveal').forEach(el => {
     const delay = parseFloat(getComputedStyle(el).getPropertyValue('--delay') || '0') || 0;
     gsap.fromTo(el,
-      { opacity: 0, y: el.classList.contains('from-left') ? 0 : el.classList.contains('from-right') ? 0 : 28,
-        x: el.classList.contains('from-left') ? -28 : el.classList.contains('from-right') ? 28 : 0 },
-      { opacity: 1, y: 0, x: 0, duration: 0.8, delay, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 88%' } }
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.45, delay, ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 92%' } }
     );
   });
 
-  // Stagger service cards
-  gsap.utils.toArray('.service-card, .engmt-card, .process-step').forEach((el, i) => {
+  // Stagger service & engagement cards
+  gsap.utils.toArray('.service-card, .engmt-card').forEach((el, i) => {
     gsap.fromTo(el,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.6, delay: (i % 4) * 0.1, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 90%' } }
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.38, delay: (i % 4) * 0.08, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 92%' } }
+    );
+  });
+
+  // Process steps — staggered entrance + badge pulse
+  gsap.utils.toArray('.process-step').forEach((el, i) => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 28, scale: 0.96 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.5, delay: i * 0.1, ease: 'power3.out',
+        onComplete: () => el.classList.add('visible'),
+        scrollTrigger: { trigger: '#processGrid', start: 'top 88%' } }
     );
   });
 }

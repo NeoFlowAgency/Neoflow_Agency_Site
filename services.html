@@ -102,6 +102,13 @@
     .float-2 { animation: float-y 3.4s ease-in-out infinite; }
     .float-3 { animation: float-y 4.1s ease-in-out infinite .7s; }
 
+    /* ── icon-box dark override ── */
+    .agency .icon-box {
+      background: rgba(124,92,252,.12);
+      border: 1.5px solid rgba(124,92,252,.25);
+      color: var(--ag-accent-2);
+    }
+
     @media (max-width: 768px) {
       .service-detail-grid, .service-detail-grid.flip { grid-template-columns: 1fr; gap: 36px; }
       .service-detail-grid.flip .service-detail-visual { order: 0; }
@@ -151,7 +158,7 @@
   <a href="/services.html">Services</a>
   <a href="/#processus">Notre approche</a>
   <a href="/neoflow-bos.html">NeoFlow BOS</a>
-  <a href="/#contact">Contact</a>
+  <a href="/contact.html">Contact</a>
   <div class="mobile-nav__cta" style="padding-top:32px">
     <a href="mailto:contacts.neoflowagency@gmail.com" class="btn btn-primary btn--lg" style="width:100%;justify-content:center">
       Demander un devis
@@ -189,6 +196,32 @@
     </div>
   </div>
 </section>
+
+<!-- ══════════════════════════════════════════
+     STATS
+═══════════════════════════════════════════ -->
+<div class="ag-stats">
+  <div class="container">
+    <div class="ag-stats__grid">
+      <div class="ag-stat-item reveal">
+        <div class="ag-stat-num"><span class="count-up" data-target="42">0</span>+</div>
+        <div class="ag-stat-lbl">Projets livrés</div>
+      </div>
+      <div class="ag-stat-item reveal" style="--delay:.07s">
+        <div class="ag-stat-num"><span class="count-up" data-target="15">0</span>j</div>
+        <div class="ag-stat-lbl">Délai moyen de livraison</div>
+      </div>
+      <div class="ag-stat-item reveal" style="--delay:.14s">
+        <div class="ag-stat-num"><span class="count-up" data-target="98">0</span>%</div>
+        <div class="ag-stat-lbl">Clients satisfaits</div>
+      </div>
+      <div class="ag-stat-item reveal" style="--delay:.21s">
+        <div class="ag-stat-num"><span class="count-up" data-target="15">0</span>h</div>
+        <div class="ag-stat-lbl">Économisées/semaine en moy.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════
      CE QUI NOUS DIFFÉRENCIE
@@ -454,44 +487,140 @@
       <span class="eyebrow">Comment ça se passe</span>
       <h2>De l'idée à la <span class="grad-text">mise en production</span></h2>
     </div>
-    <div class="process-grid reveal" style="--delay:.05s">
-      <div class="process-step">
-        <div class="process-step__num">01</div>
-        <div class="process-step__title">Écoute & cadrage</div>
-        <div class="process-step__desc">On échange sur votre problème, votre contexte, vos contraintes. On pose les questions que vous n'avez pas encore eu à formuler.</div>
+    <div class="ag-process-grid" id="processGrid">
+      <div class="ag-process-step reveal">
+        <div class="ag-process-num">01</div>
+        <div class="ag-process-tag">Découverte · 48h</div>
+        <h3>On comprend votre métier</h3>
+        <p>Un appel de 30 minutes suffit. On analyse votre besoin, vos contraintes, vos objectifs. Pas de formulaire de 40 pages.</p>
       </div>
-      <div class="process-step">
-        <div class="process-step__num">02</div>
-        <div class="process-step__title">Proposition & devis</div>
-        <div class="process-step__desc">On vous soumet une proposition claire : périmètre, fonctionnalités, planning indicatif, tarif. Le devis est gratuit et sans engagement.</div>
+      <div class="ag-process-step reveal" style="--delay:.08s">
+        <div class="ag-process-num">02</div>
+        <div class="ag-process-tag">Cadrage · 1 semaine</div>
+        <h3>On dessine avant de coder</h3>
+        <p>Architecture technique, maquettes, plan de dev — vous validez tout avant qu'on écrive une seule ligne de code.</p>
       </div>
-      <div class="process-step">
-        <div class="process-step__num">03</div>
-        <div class="process-step__title">Développement itératif</div>
-        <div class="process-step__desc">On vous montre les avancées régulièrement, on intègre vos retours au fil de l'eau. Pas de grosse surprise en fin de projet.</div>
+      <div class="ag-process-step active reveal" style="--delay:.16s">
+        <div class="ag-process-num">03</div>
+        <div class="ag-process-tag">Build · 2–4 semaines</div>
+        <h3>Vous voyez l'avancement</h3>
+        <p>On développe en sprints courts. Vous avez accès à une démo à chaque étape. Zéro surprise à la livraison.</p>
       </div>
-      <div class="process-step">
-        <div class="process-step__num">04</div>
-        <div class="process-step__title">Livraison & suivi</div>
-        <div class="process-step__desc">On livre, on accompagne la prise en main, et on reste disponibles pour les ajustements post-lancement.</div>
+      <div class="ag-process-step reveal" style="--delay:.24s">
+        <div class="ag-process-num">04</div>
+        <div class="ag-process-tag">Livraison &amp; suivi</div>
+        <h3>On reste disponibles</h3>
+        <p>On forme vos équipes, on documente, et on reste disponibles. Une relation longue durée, pas une livraison et au revoir.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════
+     TÉMOIGNAGES
+═══════════════════════════════════════════ -->
+<section class="ag-section">
+  <div class="container">
+    <div class="ag-section-head reveal">
+      <span class="eyebrow">Ce que disent nos clients</span>
+      <h2>Des résultats, <span class="grad-text">pas des promesses.</span></h2>
+    </div>
+    <div class="ag-testimonials-grid">
+
+      <div class="ag-testimonial reveal">
+        <div class="ag-testimonial__stars">
+          <span class="ag-testimonial__star">★</span>
+          <span class="ag-testimonial__star">★</span>
+          <span class="ag-testimonial__star">★</span>
+          <span class="ag-testimonial__star">★</span>
+          <span class="ag-testimonial__star">★</span>
+        </div>
+        <p class="ag-testimonial__quote">"En 3 semaines, NeoFlow a livré notre outil de gestion de commandes. Exactement ce qu'on voulait, sans fonctionnalités inutiles. Nos livreurs l'ont adopté le premier jour."</p>
+        <div class="ag-testimonial__author">
+          <div class="ag-testimonial__avatar">K</div>
+          <div>
+            <div class="ag-testimonial__name">Karim B.</div>
+            <div class="ag-testimonial__role">Gérant — BakePro Paris</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ag-testimonial reveal" style="--delay:.08s">
+        <div class="ag-testimonial__stars">
+          <span class="ag-testimonial__star">★</span>
+          <span class="ag-testimonial__star">★</span>
+          <span class="ag-testimonial__star">★</span>
+          <span class="ag-testimonial__star">★</span>
+          <span class="ag-testimonial__star">★</span>
+        </div>
+        <p class="ag-testimonial__quote">"Notre nouveau site a doublé nos prises de contact en 2 mois. L'équipe est réactive, honnête sur ce qui est possible, et vraiment à l'écoute de nos besoins."</p>
+        <div class="ag-testimonial__author">
+          <div class="ag-testimonial__avatar" style="background:linear-gradient(135deg,#EC4899,#F97316)">S</div>
+          <div>
+            <div class="ag-testimonial__name">Sophie L.</div>
+            <div class="ag-testimonial__role">Directrice — Beauté &amp; Co</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ag-testimonial reveal" style="--delay:.16s">
+        <div class="ag-testimonial__stars">
+          <span class="ag-testimonial__star">★</span>
+          <span class="ag-testimonial__star">★</span>
+          <span class="ag-testimonial__star">★</span>
+          <span class="ag-testimonial__star">★</span>
+          <span class="ag-testimonial__star">★</span>
+        </div>
+        <p class="ag-testimonial__quote">"L'automatisation qu'ils ont mise en place nous économise facilement 15h par semaine. Le ROI a été immédiat. Je recommande sans hésiter à toute PME qui veut gagner du temps."</p>
+        <div class="ag-testimonial__author">
+          <div class="ag-testimonial__avatar" style="background:linear-gradient(135deg,#10B981,#059669)">M</div>
+          <div>
+            <div class="ag-testimonial__name">Marc D.</div>
+            <div class="ag-testimonial__role">PDG — FreshMarket</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BOS CROSS-SELL
+═══════════════════════════════════════════ -->
+<div class="ag-bos-band reveal">
+  <div class="container">
+    <div class="ag-bos-band__inner">
+      <div>
+        <div class="ag-bos-band__badge"><span class="dot"></span> Notre produit SaaS</div>
+        <h2>Vous gérez un commerce ?<br><span style="background:linear-gradient(135deg,#313ADF,#818CF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Découvrez NeoFlow BOS.</span></h2>
+        <p style="margin-top:14px">Commandes, livraisons, factures, clients, stock — tout dans une seule app pensée pour les commerces physiques. 49€/mois, essai 7 jours.</p>
+      </div>
+      <div class="ag-bos-band__actions">
+        <a href="/neoflow-bos.html" class="btn btn-primary btn--lg">
+          Découvrir NeoFlow BOS
+          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="/neoflow-bos.html#tarifs" class="btn btn-outline-dark btn--lg">Voir les tarifs</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
      CTA FINAL
 ═══════════════════════════════════════════ -->
-<section class="cta-break">
+<section class="ag-cta-final">
   <div class="container">
-    <h2 class="reveal">Discutons de<br>votre projet.</h2>
-    <p class="reveal" style="--delay:.05s">Le premier échange est gratuit. On vous dit honnêtement si on peut vous aider — et comment.</p>
-    <div class="cta-actions reveal" style="--delay:.1s">
-      <a href="mailto:contacts.neoflowagency@gmail.com" class="btn btn-white btn--lg" style="color:var(--navy)">
+    <span class="eyebrow reveal">Prêt à démarrer ?</span>
+    <h2 class="reveal" style="--delay:.05s">Votre projet mérite<br><span class="grad-text">mieux qu'un Excel.</span></h2>
+    <p class="reveal" style="--delay:.1s">Parlez-nous de ce que vous voulez construire. Le devis est gratuit, la réponse arrive en moins de 24h.</p>
+    <div class="ag-cta-actions reveal" style="--delay:.15s">
+      <a href="/contact.html" class="btn btn-primary btn--lg mag-btn">
         Envoyer un message
         <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
-      <a href="/" class="btn btn-outline-white btn--lg">Retour à l'accueil</a>
+      <a href="/" class="btn btn-outline-dark btn--lg">Retour à l'accueil</a>
     </div>
   </div>
 </section>
@@ -519,7 +648,7 @@
       </div>
       <div class="footer__col">
         <h4>Contact</h4>
-        <a href="mailto:contacts.neoflowagency@gmail.com">contact@neoflow.io</a>
+        <a href="mailto:contacts.neoflowagency@gmail.com">contacts.neoflowagency@gmail.com</a>
         <a href="/mentions-legales.html">Mentions légales</a>
       </div>
     </div>
@@ -624,10 +753,41 @@ if (window.gsap && window.ScrollTrigger) {
       scrollTrigger: { trigger: el, start: 'top 90%', once: true }
     });
   });
+
   gsap.utils.toArray('.diff-card, .use-case-item').forEach((el, i) => {
     gsap.fromTo(el, { opacity: 0, y: 14 }, {
       opacity: 1, y: 0, duration: 0.4, delay: (i % 4) * 0.07, ease: 'power2.out',
       scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+    });
+  });
+
+  // Count-up
+  document.querySelectorAll('.count-up').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    ScrollTrigger.create({
+      trigger: el, start: 'top 85%', once: true,
+      onEnter: () => {
+        gsap.to({ val: 0 }, {
+          val: target, duration: 1.6, ease: 'power2.out',
+          onUpdate: function() { el.textContent = Math.round(this.targets()[0].val); }
+        });
+      }
+    });
+  });
+
+  // Process steps stagger
+  gsap.utils.toArray('.ag-process-step').forEach((el, i) => {
+    gsap.fromTo(el, { opacity: 0, y: 20 }, {
+      opacity: 1, y: 0, duration: 0.5, delay: i * 0.08, ease: 'power3.out',
+      scrollTrigger: { trigger: '#processGrid', start: 'top 80%', once: true }
+    });
+  });
+
+  // Testimonials stagger
+  gsap.utils.toArray('.ag-testimonial').forEach((el, i) => {
+    gsap.fromTo(el, { opacity: 0, y: 20 }, {
+      opacity: 1, y: 0, duration: 0.5, delay: i * 0.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.ag-testimonials-grid', start: 'top 82%', once: true }
     });
   });
 }

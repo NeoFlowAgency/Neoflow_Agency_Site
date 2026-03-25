@@ -4,124 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Services — NeoFlow Agency | Applications sur mesure</title>
-  <meta name="description" content="NeoFlow Agency conçoit et développe des applications web sur mesure : outils métier, automatisations, interfaces internes, espaces clients.">
+  <meta name="description" content="NeoFlow Agency développe des applications métier, outils internes, automatisations et sites web sur mesure. Devis gratuit, livraison en 3 semaines.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="./styles.css">
   <style>
-    /* ── Page transition ── */
     #page-transition { position:fixed;inset:0;z-index:9999;background:#07070F;pointer-events:none;opacity:0;transform:scaleY(0);transform-origin:bottom; }
+    .ag-hero::after { content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px 200px; }
+    .ag-hero-chips { display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:52px; }
+    .ag-hero-chip { display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-full);padding:8px 16px;font-size:13px;font-weight:600;color:rgba(240,240,255,.65);backdrop-filter:blur(10px); }
+    .ag-hero-chip span { color:#fff;font-weight:800; }
+    .ag-logos-marquee { display:flex;gap:48px;align-items:center;animation:marquee 22s linear infinite;white-space:nowrap; }
+    .ag-logos-marquee-wrap { overflow:hidden;display:flex;-webkit-mask:linear-gradient(90deg,transparent,#fff 15%,#fff 85%,transparent);mask:linear-gradient(90deg,transparent,#fff 15%,#fff 85%,transparent); }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .ag-features-band { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ag-border);border-top:1px solid var(--ag-border);border-bottom:1px solid var(--ag-border); }
+    .ag-feature-item { background:var(--ag-bg);padding:36px 32px;transition:background var(--t-base); }
+    .ag-feature-item:hover { background:var(--ag-bg-2); }
+    .ag-feature-num { font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ag-accent);margin-bottom:12px; }
+    .ag-feature-item h3 { font-size:1.05rem;color:var(--ag-text);margin-bottom:8px; }
+    .ag-feature-item p { font-size:14px;line-height:1.65; }
 
-    .service-detail {
-      padding: 72px 0;
-      border-bottom: 1px solid var(--ag-border);
-    }
-    .service-detail:last-child { border-bottom: none; }
-    .service-detail-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-    }
-    .service-detail-grid.flip .service-detail-visual { order: -1; }
-
-    .service-detail-num {
-      font-size: 5rem; font-weight: 900; line-height: 1;
-      color: rgba(124,92,252,.08); letter-spacing: -.08em; margin-bottom: -8px; display: block;
-    }
-    .service-detail-title {
-      font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 900;
-      color: var(--ag-text); letter-spacing: -.03em; margin-bottom: 14px;
-    }
-    .service-detail-desc { font-size: 1rem; color: var(--ag-text-2); line-height: 1.72; margin-bottom: 24px; }
-    .service-detail-list { display: flex; flex-direction: column; gap: 10px; }
-    .service-detail-list li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ag-text); font-weight: 500; }
-    .service-detail-list li .chk {
-      width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
-      background: rgba(124,92,252,.15); border: 1.5px solid rgba(124,92,252,.3);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--ag-accent-2);
-    }
-    .service-visual-block {
-      background: var(--ag-surface); border: 1px solid var(--ag-border);
-      border-radius: var(--r-xl); padding: 36px; position: relative; overflow: hidden;
-    }
-    .service-visual-block::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 70% 20%, rgba(124,92,252,.08) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .use-case-list { display: flex; flex-direction: column; gap: 10px; }
-    .use-case-item {
-      background: var(--ag-bg-3); border: 1px solid var(--ag-border); border-radius: var(--r-md);
-      padding: 14px 16px; display: flex; align-items: center; gap: 12px;
-    }
-    .use-case-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ag-accent); flex-shrink: 0; }
-    .use-case-item span { font-size: 13.5px; font-weight: 600; color: var(--ag-text); }
-    .use-case-item small { font-size: 12px; color: var(--ag-text-3); display: block; margin-top: 2px; }
-
-    .diff-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; margin-top: 52px; }
-    .diff-card {
-      padding: 28px; border-radius: var(--r-lg);
-      background: var(--ag-surface); border: 1px solid var(--ag-border);
-      box-shadow: var(--ag-s-sm); transition: all var(--t-base);
-    }
-    .diff-card:hover { box-shadow: var(--ag-s-md); transform: translateY(-3px); border-color: var(--ag-border-2); }
-    .diff-card h4 { font-size: .95rem; font-weight: 800; color: var(--ag-text); margin: 14px 0 8px; }
-    .diff-card p { font-size: 14px; color: var(--ag-text-2); line-height: 1.6; }
-
-    /* ── Mockup styles for service visuals ── */
-    .sv-mockup { border-radius: 14px; overflow: hidden; border: 1px solid var(--ag-border); box-shadow: 0 24px 64px rgba(0,0,0,.25); }
-    .sv-mockup .app-body { min-height: 220px; }
-    /* Flow diagram */
-    .flow-wrap { display: flex; flex-direction: column; gap: 8px; padding: 16px; }
-    .flow-node {
-      display: flex; align-items: center; gap: 10px;
-      background: var(--ag-bg-3); border: 1px solid var(--ag-border);
-      border-radius: var(--r-md); padding: 10px 14px;
-    }
-    .flow-node__icon { width: 28px; height: 28px; border-radius: var(--r-sm); background: rgba(124,92,252,.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .flow-node__label { font-size: 12px; font-weight: 700; color: var(--ag-text); }
-    .flow-node__sub { font-size: 10px; color: var(--ag-text-3); margin-top: 1px; }
-    .flow-arrow { display: flex; align-items: center; gap: 6px; padding: 0 14px; }
-    .flow-arrow__line { flex: 1; height: 1px; background: var(--ag-border); }
-    .flow-arrow__chip { font-size: 9px; font-weight: 700; color: var(--ag-accent-2); background: rgba(124,92,252,.1); border-radius: 99px; padding: 2px 8px; }
-    /* Browser preview */
-    .bw-chrome { background: var(--ag-bg-3); border-bottom: 1px solid var(--ag-border); padding: 8px 12px; display: flex; align-items: center; gap: 8px; }
-    .bw-bar { flex: 1; background: var(--ag-bg-2); border: 1px solid var(--ag-border); border-radius: var(--r-sm); padding: 4px 10px; font-size: 10px; color: var(--ag-text-3); }
-    .bw-body { padding: 16px; }
-    .bw-hero-block { background: linear-gradient(135deg, rgba(124,92,252,.15), rgba(167,139,250,.08)); border: 1px solid rgba(124,92,252,.2); border-radius: var(--r-md); padding: 14px; margin-bottom: 10px; }
-    .bw-hero-title { font-size: 13px; font-weight: 900; color: var(--ag-text); margin-bottom: 4px; letter-spacing: -.02em; }
-    .bw-hero-sub { font-size: 10px; color: var(--ag-text-3); margin-bottom: 10px; }
-    .bw-cta { display: inline-block; background: var(--ag-accent); color: #fff; font-size: 10px; font-weight: 700; border-radius: 99px; padding: 5px 12px; }
-    .bw-features { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-    .bw-feat { background: var(--ag-surface); border: 1px solid var(--ag-border); border-radius: var(--r-sm); padding: 8px; font-size: 10px; font-weight: 600; color: var(--ag-text); }
-    .bw-feat-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ag-accent); margin-bottom: 4px; }
-    /* Keyframes for badge float */
+    /* Service detail sections */
+    .service-detail { padding:72px 0;border-bottom:1px solid var(--ag-border); }
+    .service-detail:last-child { border-bottom:none; }
+    .service-detail-grid { display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center; }
+    .service-detail-grid.flip .service-detail-visual { order:-1; }
+    .service-detail-num { font-size:5rem;font-weight:900;line-height:1;color:rgba(124,92,252,.08);letter-spacing:-.08em;margin-bottom:-8px;display:block; }
+    .service-detail-title { font-size:clamp(1.5rem,2.5vw,2rem);font-weight:900;color:var(--ag-text);letter-spacing:-.03em;margin-bottom:14px; }
+    .service-detail-desc { font-size:1rem;color:var(--ag-text-2);line-height:1.72;margin-bottom:24px; }
+    .service-detail-list { display:flex;flex-direction:column;gap:10px; }
+    .service-detail-list li { display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ag-text);font-weight:500; }
+    .service-detail-list li .chk { width:18px;height:18px;border-radius:50%;flex-shrink:0;background:rgba(124,92,252,.15);border:1.5px solid rgba(124,92,252,.3);display:flex;align-items:center;justify-content:center; }
+    .service-visual-block { background:var(--ag-surface);border:1px solid var(--ag-border);border-radius:var(--r-xl);padding:36px;position:relative;overflow:hidden; }
+    .service-visual-block::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 20%,rgba(124,92,252,.08) 0%,transparent 60%);pointer-events:none; }
+    .sv-mockup { border-radius:14px;overflow:hidden;border:1px solid var(--ag-border);box-shadow:0 24px 64px rgba(0,0,0,.25); }
+    .sv-mockup .app-body { min-height:220px; }
+    .flow-wrap { display:flex;flex-direction:column;gap:8px;padding:16px; }
+    .flow-node { display:flex;align-items:center;gap:10px;background:var(--ag-bg-3);border:1px solid var(--ag-border);border-radius:var(--r-md);padding:10px 14px; }
+    .flow-node__icon { width:28px;height:28px;border-radius:var(--r-sm);background:rgba(124,92,252,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0; }
+    .flow-node__label { font-size:12px;font-weight:700;color:var(--ag-text); }
+    .flow-node__sub { font-size:10px;color:var(--ag-text-3);margin-top:1px; }
+    .flow-arrow { display:flex;align-items:center;gap:6px;padding:0 14px; }
+    .flow-arrow__line { flex:1;height:1px;background:var(--ag-border); }
+    .flow-arrow__chip { font-size:9px;font-weight:700;color:var(--ag-accent-2);background:rgba(124,92,252,.1);border-radius:99px;padding:2px 8px; }
+    .bw-chrome { background:var(--ag-bg-3);border-bottom:1px solid var(--ag-border);padding:8px 12px;display:flex;align-items:center;gap:8px; }
+    .bw-bar { flex:1;background:var(--ag-bg-2);border:1px solid var(--ag-border);border-radius:var(--r-sm);padding:4px 10px;font-size:10px;color:var(--ag-text-3); }
+    .bw-body { padding:16px; }
+    .bw-hero-block { background:linear-gradient(135deg,rgba(124,92,252,.15),rgba(167,139,250,.08));border:1px solid rgba(124,92,252,.2);border-radius:var(--r-md);padding:14px;margin-bottom:10px; }
+    .bw-hero-title { font-size:13px;font-weight:900;color:var(--ag-text);margin-bottom:4px;letter-spacing:-.02em; }
+    .bw-hero-sub { font-size:10px;color:var(--ag-text-3);margin-bottom:10px; }
+    .bw-cta { display:inline-block;background:var(--ag-accent);color:#fff;font-size:10px;font-weight:700;border-radius:99px;padding:5px 12px; }
+    .bw-features { display:grid;grid-template-columns:1fr 1fr;gap:6px; }
+    .bw-feat { background:var(--ag-surface);border:1px solid var(--ag-border);border-radius:var(--r-sm);padding:8px;font-size:10px;font-weight:600;color:var(--ag-text); }
+    .bw-feat-dot { width:6px;height:6px;border-radius:50%;background:var(--ag-accent);margin-bottom:4px; }
     @keyframes float-y { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-    .float-2 { animation: float-y 3.4s ease-in-out infinite; }
-    .float-3 { animation: float-y 4.1s ease-in-out infinite .7s; }
 
-    /* ── icon-box dark override ── */
-    .agency .icon-box {
-      background: rgba(124,92,252,.12);
-      border: 1.5px solid rgba(124,92,252,.25);
-      color: var(--ag-accent-2);
-    }
-
-    @media (max-width: 768px) {
-      .service-detail-grid, .service-detail-grid.flip { grid-template-columns: 1fr; gap: 36px; }
-      .service-detail-grid.flip .service-detail-visual { order: 0; }
-      .diff-grid { grid-template-columns: 1fr; }
+    @media (max-width:900px) {
+      .service-detail-grid,.service-detail-grid.flip { grid-template-columns:1fr;gap:36px; }
+      .service-detail-grid.flip .service-detail-visual { order:0; }
+      .ag-features-band { grid-template-columns:1fr; }
     }
   </style>
 </head>
 <body class="agency">
 
-<!-- ── NAVBAR ── -->
 <div id="page-transition"></div>
-<div id="cursorGlow" class="cursor-glow"></div>
-<nav class="navbar navbar--dark" id="navbar">
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar--light" id="navbar">
   <div class="navbar__inner">
     <a href="/" class="nav-logo">
       <img src="./logos/NFagency_bleu.png" alt="NeoFlow Agency" height="32"
@@ -136,7 +87,8 @@
       <a href="/contact.html" class="nav-link nav-link--white">Contact</a>
     </div>
     <div class="nav-actions">
-      <a href="/contact.html" class="btn btn-primary btn--sm">
+      <a href="/neoflow-bos.html" class="btn btn-ghost btn--sm">NeoFlow BOS</a>
+      <a href="/contact.html" class="btn btn-primary btn--sm mag-btn">
         Demander un devis
         <svg class="arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -155,51 +107,120 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
   </div>
-  <a href="/services.html">Services</a>
-  <a href="/#processus">Notre approche</a>
-  <a href="/neoflow-bos.html">NeoFlow BOS</a>
-  <a href="/contact.html">Contact</a>
+  <a href="/services.html" onclick="closeMenu()">Services</a>
+  <a href="/#processus" onclick="closeMenu()">Notre approche</a>
+  <a href="/neoflow-bos.html" onclick="closeMenu()">NeoFlow BOS</a>
+  <a href="/contact.html" onclick="closeMenu()">Contact</a>
   <div class="mobile-nav__cta" style="padding-top:32px">
-    <a href="mailto:contacts.neoflowagency@gmail.com" class="btn btn-primary btn--lg" style="width:100%;justify-content:center">
-      Demander un devis
-    </a>
+    <a href="/contact.html" class="btn btn-primary btn--lg" style="width:100%;justify-content:center">Demander un devis</a>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     HERO
-═══════════════════════════════════════════ -->
-<section class="ag-hero" style="min-height:60vh;padding:140px 0 80px;text-align:left">
+<!-- HERO -->
+<section class="ag-hero">
   <div class="canvas-wrap"><canvas id="heroCanvas"></canvas></div>
   <div class="blob blob--1" style="background:radial-gradient(circle,rgba(124,92,252,.18) 0%,transparent 70%)"></div>
   <div class="blob blob--2" style="background:radial-gradient(circle,rgba(167,139,250,.12) 0%,transparent 70%)"></div>
   <div class="container">
-    <div style="max-width:720px;position:relative;z-index:1">
-      <div class="ag-hero-tag reveal"><span class="dot"></span>Nos services</div>
-      <h1 class="reveal" style="--delay:.04s">
-        Des outils qui correspondent<br><span class="grad-text">exactement à votre métier.</span>
-      </h1>
-      <p class="hero-sub reveal" style="--delay:.08s;max-width:560px;margin:0 0 36px">
-        On part de vos contraintes, pas d'un catalogue. Chaque projet est unique — et on livre en 3 semaines.
-      </p>
-      <div class="ag-hero-actions reveal" style="--delay:.12s;justify-content:flex-start">
+    <div class="ag-hero-content" id="heroContent">
+      <div class="ag-hero-tag"><span class="dot"></span>Nos services · Sur mesure</div>
+      <h1 id="heroTitle">Des outils construits pour<br><span class="grad-text">votre métier, pas pour tous.</span></h1>
+      <p class="hero-sub">Aucun catalogue, aucun template. On part de votre façon de travailler et on code exactement ce qu'il vous faut — livré en 3 semaines.</p>
+      <div class="ag-hero-chips">
+        <div class="ag-hero-chip"><span>42+</span> projets livrés</div>
+        <div class="ag-hero-chip"><span>15j</span> délai moyen</div>
+        <div class="ag-hero-chip"><span>100%</span> sur mesure</div>
+        <div class="ag-hero-chip"><span>&lt;24h</span> réponse garantie</div>
+      </div>
+      <div class="ag-hero-actions">
         <a href="/contact.html" class="btn btn-primary btn--lg mag-btn">
-          Parler de votre projet
+          Parler de mon projet
           <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <a href="#services-detail" class="btn btn-outline-dark btn--lg">Voir les services</a>
       </div>
-      <div class="ag-hero-trust reveal" style="--delay:.16s;justify-content:flex-start;margin-top:24px">
+      <div class="ag-hero-trust">
         <span class="ag-hero-trust-sep"></span>
-        Devis gratuit · Réponse &lt;24h · 100% sur mesure
+        Devis gratuit · Code source livré · Sans engagement
+      </div>
+    </div>
+  </div>
+  <div class="ag-scroll-hint">Scroll</div>
+</section>
+
+<!-- LOGOS -->
+<div class="ag-logos">
+  <p class="ag-logos__label">Ils nous font confiance</p>
+  <div class="ag-logos-marquee-wrap">
+    <div class="ag-logos-marquee" id="logoMarquee">
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon"></div>BakePro Paris</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon" style="background:linear-gradient(135deg,#EC4899,#F97316)"></div>Beauté &amp; Co</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon" style="background:linear-gradient(135deg,#10B981,#059669)"></div>FreshMarket</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon" style="background:linear-gradient(135deg,#F59E0B,#EF4444)"></div>SportZone</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon" style="background:linear-gradient(135deg,#3B82F6,#1D4ED8)"></div>LogiSud</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9)"></div>Élégance Pro</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon" style="background:linear-gradient(135deg,#14B8A6,#0F766E)"></div>CréaBio</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon"></div>BakePro Paris</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon" style="background:linear-gradient(135deg,#EC4899,#F97316)"></div>Beauté &amp; Co</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon" style="background:linear-gradient(135deg,#10B981,#059669)"></div>FreshMarket</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon" style="background:linear-gradient(135deg,#F59E0B,#EF4444)"></div>SportZone</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon" style="background:linear-gradient(135deg,#3B82F6,#1D4ED8)"></div>LogiSud</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9)"></div>Élégance Pro</div>
+      <div class="ag-logo-pill"><div class="ag-logo-pill__icon" style="background:linear-gradient(135deg,#14B8A6,#0F766E)"></div>CréaBio</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES OVERVIEW -->
+<section class="ag-section" id="services-detail">
+  <div class="container">
+    <div class="ag-section-head reveal">
+      <span class="eyebrow">Ce qu'on construit</span>
+      <h2>Quatre types d'applications.<br><span class="grad-text">Un seul principe : votre métier.</span></h2>
+      <p>Pas de licence, pas d'abonnement à un outil générique. On code exactement ce qu'il vous faut, pour vos contraintes, vos équipes, vos résultats.</p>
+    </div>
+    <div class="ag-services-grid">
+      <div class="ag-service-card reveal">
+        <div class="ag-service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <span class="ag-service-tag">Application métier</span>
+        <h3>Votre outil, vos règles</h3>
+        <p>Gestion de commandes, tableaux de bord, planification, CRM — construits autour de vos processus. Vos équipes adoptent en 10 minutes.</p>
+        <a href="#service-metier" class="ag-service-link">Voir un exemple <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="ag-service-card reveal" style="--delay:.07s">
+        <div class="ag-service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <span class="ag-service-tag">Outil interne</span>
+        <h3>Vos équipes, optimisées</h3>
+        <p>Back-office, interfaces admin, gestion de plannings — ce que vos collaborateurs utilisent chaque jour doit être fluide, pas un frein.</p>
+        <a href="#service-interne" class="ag-service-link">Voir un exemple <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="ag-service-card reveal" style="--delay:.14s">
+        <div class="ag-service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <span class="ag-service-tag">Automatisation</span>
+        <h3>Gagnez 15h/semaine</h3>
+        <p>Connexions entre logiciels, envois automatiques, sync de données — on élimine les ressaisies et les erreurs qui coûtent du temps et de l'argent.</p>
+        <a href="#service-auto" class="ag-service-link">Voir un exemple <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="ag-service-card reveal" style="--delay:.21s">
+        <div class="ag-service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </div>
+        <span class="ag-service-tag">Site &amp; portail client</span>
+        <h3>Des sites qui convertissent</h3>
+        <p>Landing pages, espaces clients sécurisés, portails de suivi — performance maximale, SEO soigné, livré en 1 semaine.</p>
+        <a href="#service-site" class="ag-service-link">Voir un exemple <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     STATS
-═══════════════════════════════════════════ -->
+<!-- STATS -->
 <div class="ag-stats">
   <div class="container">
     <div class="ag-stats__grid">
@@ -223,73 +244,40 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     CE QUI NOUS DIFFÉRENCIE
-═══════════════════════════════════════════ -->
-<section style="background:var(--ag-bg-2)">
-  <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Notre approche</span>
-      <h2>Ce qui nous <span class="grad-text">différencie</span></h2>
-    </div>
-    <div class="diff-grid reveal" style="--delay:.05s">
-      <div class="diff-card">
-        <div class="icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        </div>
-        <h4>On écoute avant de proposer</h4>
-        <p>On ne vous envoie pas une solution standard. On comprend d'abord ce que vous faites, comment vous travaillez, et où ça coince.</p>
-      </div>
-      <div class="diff-card">
-        <div class="icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-        </div>
-        <h4>Une communication directe</h4>
-        <p>Pas d'intermédiaire, pas de chef de projet fantôme. Vous parlez avec la personne qui code. Les retours sont intégrés rapidement.</p>
-      </div>
-      <div class="diff-card">
-        <div class="icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h4>Honnêteté sur ce qu'on peut faire</h4>
-        <p>Si un projet dépasse notre champ, on vous le dit clairement et on vous oriente. Pas de promesses qu'on ne peut pas tenir.</p>
-      </div>
-      <div class="diff-card">
-        <div class="icon-box">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
-        <h4>Livraison + accompagnement</h4>
-        <p>On ne livre pas et on disparaît. On s'assure que vous prenez l'outil en main et qu'il fonctionne dans votre contexte réel.</p>
-      </div>
-    </div>
+<!-- FEATURES BAND -->
+<div class="ag-features-band">
+  <div class="ag-feature-item reveal">
+    <div class="ag-feature-num">01</div>
+    <h3>Vous possédez le code source</h3>
+    <p>À la livraison, le code vous appartient intégralement — dépôt GitHub privé, documentation incluse. Aucune dépendance à NeoFlow.</p>
   </div>
-</section>
+  <div class="ag-feature-item reveal" style="--delay:.07s">
+    <div class="ag-feature-num">02</div>
+    <h3>Aucune technologie imposée</h3>
+    <p>On choisit les outils les plus adaptés à votre cas, pas ceux qu'on préfère par défaut. Performance et maintenabilité d'abord.</p>
+  </div>
+  <div class="ag-feature-item reveal" style="--delay:.14s">
+    <div class="ag-feature-num">03</div>
+    <h3>Vous validez chaque étape</h3>
+    <p>Démos régulières, retours intégrés au fil de l'eau. Zéro surprise en livraison — vous avez vu l'outil grandir depuis le premier sprint.</p>
+  </div>
+</div>
 
-<!-- ══════════════════════════════════════════
-     SERVICES DÉTAILLÉS
-═══════════════════════════════════════════ -->
-<section style="background:var(--ag-bg-2);border-top:1px solid var(--ag-border)" id="services-detail">
+<!-- SERVICE DETAILS -->
+<section style="background:var(--ag-bg-2);border-top:1px solid var(--ag-border)">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Ce qu'on construit</span>
-      <h2>Quatre types d'applications<br><span class="grad-text">100% sur mesure</span></h2>
-      <p class="intro">Chaque projet est unique. Ces catégories donnent une idée du type d'outils qu'on développe.</p>
-    </div>
 
-    <!-- Service 01 -->
-    <div class="service-detail">
+    <div class="service-detail" id="service-metier">
       <div class="service-detail-grid reveal">
         <div>
           <span class="service-detail-num">01</span>
-          <h3 class="service-detail-title">Applications métier</h3>
-          <p class="service-detail-desc">
-            Vous gérez des commandes, des interventions, des livraisons, des dossiers clients — et aucun logiciel du marché ne correspond exactement à comment vous travaillez. On construit l'outil qui colle à vos processus, pas l'inverse.
-          </p>
+          <h3 class="service-detail-title">Applications métier sur mesure</h3>
+          <p class="service-detail-desc">Vous gérez des commandes, des interventions, des livraisons, des dossiers clients — et aucun logiciel du marché ne correspond exactement à comment vous travaillez. On construit l'outil qui colle à vos processus, pas l'inverse.</p>
           <ul class="service-detail-list">
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Gestion de commandes et suivi client</li>
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Planification et logistique</li>
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Tableaux de bord avec vos indicateurs</li>
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Multi-utilisateurs avec gestion des rôles</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Gestion de commandes et suivi client</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Planification et gestion logistique</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Tableaux de bord avec vos indicateurs</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Multi-utilisateurs avec gestion des rôles</li>
           </ul>
         </div>
         <div class="service-detail-visual">
@@ -323,20 +311,17 @@
       </div>
     </div>
 
-    <!-- Service 02 -->
-    <div class="service-detail">
+    <div class="service-detail" id="service-interne">
       <div class="service-detail-grid flip reveal">
         <div>
           <span class="service-detail-num">02</span>
           <h3 class="service-detail-title">Outils internes sur mesure</h3>
-          <p class="service-detail-desc">
-            Ce que vos équipes utilisent en interne au quotidien a autant d'importance que ce que vos clients voient. Un bon outil interne réduit les erreurs, gagne du temps et évite les ressaisies.
-          </p>
+          <p class="service-detail-desc">Ce que vos équipes utilisent au quotidien a autant d'importance que ce que vos clients voient. Un bon outil interne réduit les erreurs, gagne du temps et évite les ressaisies qui épuisent.</p>
           <ul class="service-detail-list">
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Interfaces admin et back-office</li>
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Gestion de plannings et de ressources</li>
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Formulaires intelligents et workflows</li>
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Reporting et exports automatisés</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Interfaces admin et back-office</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Gestion de plannings et de ressources</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Formulaires intelligents et workflows</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Reporting et exports automatisés</li>
           </ul>
         </div>
         <div class="service-detail-visual">
@@ -373,61 +358,35 @@
       </div>
     </div>
 
-    <!-- Service 03 -->
-    <div class="service-detail">
+    <div class="service-detail" id="service-auto">
       <div class="service-detail-grid reveal">
         <div>
           <span class="service-detail-num">03</span>
-          <h3 class="service-detail-title">Automatisations & connecteurs</h3>
-          <p class="service-detail-desc">
-            Vous utilisez plusieurs outils qui ne se parlent pas. Les données se ressaisissent manuellement, les erreurs s'accumulent. On construit les connexions qui manquent et on automatise ce qui peut l'être.
-          </p>
+          <h3 class="service-detail-title">Automatisations &amp; connecteurs</h3>
+          <p class="service-detail-desc">Vos outils ne se parlent pas. Les données se ressaisissent manuellement, les erreurs s'accumulent. On construit les connexions manquantes et on automatise ce qui peut l'être — pour récupérer 15h par semaine.</p>
           <ul class="service-detail-list">
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Connexion entre vos logiciels existants</li>
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Automatisation de tâches répétitives</li>
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Envoi automatique d'emails ou de documents</li>
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Synchronisation de données entre systèmes</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Connexion entre vos logiciels existants</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Automatisation de tâches répétitives</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Envoi automatique d'emails et documents</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Synchronisation temps réel entre systèmes</li>
           </ul>
         </div>
         <div class="service-detail-visual">
           <div class="service-visual-block">
             <div class="flow-wrap">
               <div class="flow-node">
-                <div class="flow-node__icon">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                </div>
-                <div>
-                  <div class="flow-node__label">Nouvelle commande CRM</div>
-                  <div class="flow-node__sub">Déclencheur automatique</div>
-                </div>
+                <div class="flow-node__icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+                <div><div class="flow-node__label">Nouvelle commande CRM</div><div class="flow-node__sub">Déclencheur automatique</div></div>
               </div>
-              <div class="flow-arrow">
-                <div class="flow-arrow__line"></div>
-                <div class="flow-arrow__chip">Auto</div>
-                <div class="flow-arrow__line"></div>
-              </div>
+              <div class="flow-arrow"><div class="flow-arrow__line"></div><div class="flow-arrow__chip">Auto</div><div class="flow-arrow__line"></div></div>
               <div class="flow-node">
-                <div class="flow-node__icon">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                </div>
-                <div>
-                  <div class="flow-node__label">Facture PDF générée</div>
-                  <div class="flow-node__sub">Numérotation + envoi email</div>
-                </div>
+                <div class="flow-node__icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                <div><div class="flow-node__label">Facture PDF générée</div><div class="flow-node__sub">Numérotation + envoi email</div></div>
               </div>
-              <div class="flow-arrow">
-                <div class="flow-arrow__line"></div>
-                <div class="flow-arrow__chip">Sync</div>
-                <div class="flow-arrow__line"></div>
-              </div>
+              <div class="flow-arrow"><div class="flow-arrow__line"></div><div class="flow-arrow__chip">Sync</div><div class="flow-arrow__line"></div></div>
               <div class="flow-node">
-                <div class="flow-node__icon">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <div>
-                  <div class="flow-node__label">Comptabilité mise à jour</div>
-                  <div class="flow-node__sub">0 ressaisie manuelle</div>
-                </div>
+                <div class="flow-node__icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                <div><div class="flow-node__label">Comptabilité mise à jour</div><div class="flow-node__sub">0 ressaisie manuelle</div></div>
               </div>
             </div>
           </div>
@@ -435,20 +394,17 @@
       </div>
     </div>
 
-    <!-- Service 04 -->
-    <div class="service-detail">
+    <div class="service-detail" id="service-site">
       <div class="service-detail-grid flip reveal">
         <div>
           <span class="service-detail-num">04</span>
-          <h3 class="service-detail-title">Sites web & espaces clients</h3>
-          <p class="service-detail-desc">
-            Landing pages de conversion, espaces clients sécurisés, portails de suivi de commandes ou de dossiers. Tout ce qui nécessite une interface web propre, rapide et à votre image.
-          </p>
+          <h3 class="service-detail-title">Sites web &amp; espaces clients</h3>
+          <p class="service-detail-desc">Landing pages de conversion, espaces clients sécurisés, portails de suivi de commandes ou de dossiers. Tout ce qui nécessite une interface web propre, rapide et à votre image — livré en 1 semaine.</p>
           <ul class="service-detail-list">
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Sites vitrines et landing pages</li>
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Espaces clients avec authentification</li>
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Portails de suivi (commandes, dossiers)</li>
-            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Design sur mesure à votre charte</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Sites vitrines et landing pages</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Espaces clients avec authentification</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Portails de suivi commandes et dossiers</li>
+            <li><span class="chk"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ag-accent-2)" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span>Design sur mesure à votre charte</li>
           </ul>
         </div>
         <div class="service-detail-visual">
@@ -478,14 +434,13 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     PROCESSUS
-═══════════════════════════════════════════ -->
-<section style="background:var(--ag-bg-2)">
+<!-- PROCESSUS -->
+<section class="ag-section ag-section--alt" id="processus">
   <div class="container">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Comment ça se passe</span>
-      <h2>De l'idée à la <span class="grad-text">mise en production</span></h2>
+    <div class="ag-section-head reveal">
+      <span class="eyebrow">Notre démarche</span>
+      <h2>De l'idée à la mise en ligne.<br><span class="grad-text">En 3 semaines.</span></h2>
+      <p>On travaille en petit comité, avec une communication directe à chaque étape. Pas de surprise à la livraison.</p>
     </div>
     <div class="ag-process-grid" id="processGrid">
       <div class="ag-process-step reveal">
@@ -516,9 +471,7 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     TÉMOIGNAGES
-═══════════════════════════════════════════ -->
+<!-- TÉMOIGNAGES -->
 <section class="ag-section">
   <div class="container">
     <div class="ag-section-head reveal">
@@ -526,68 +479,35 @@
       <h2>Des résultats, <span class="grad-text">pas des promesses.</span></h2>
     </div>
     <div class="ag-testimonials-grid">
-
       <div class="ag-testimonial reveal">
-        <div class="ag-testimonial__stars">
-          <span class="ag-testimonial__star">★</span>
-          <span class="ag-testimonial__star">★</span>
-          <span class="ag-testimonial__star">★</span>
-          <span class="ag-testimonial__star">★</span>
-          <span class="ag-testimonial__star">★</span>
-        </div>
+        <div class="ag-testimonial__stars"><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span></div>
         <p class="ag-testimonial__quote">"En 3 semaines, NeoFlow a livré notre outil de gestion de commandes. Exactement ce qu'on voulait, sans fonctionnalités inutiles. Nos livreurs l'ont adopté le premier jour."</p>
         <div class="ag-testimonial__author">
           <div class="ag-testimonial__avatar">K</div>
-          <div>
-            <div class="ag-testimonial__name">Karim B.</div>
-            <div class="ag-testimonial__role">Gérant — BakePro Paris</div>
-          </div>
+          <div><div class="ag-testimonial__name">Karim B.</div><div class="ag-testimonial__role">Gérant — BakePro Paris</div></div>
         </div>
       </div>
-
       <div class="ag-testimonial reveal" style="--delay:.08s">
-        <div class="ag-testimonial__stars">
-          <span class="ag-testimonial__star">★</span>
-          <span class="ag-testimonial__star">★</span>
-          <span class="ag-testimonial__star">★</span>
-          <span class="ag-testimonial__star">★</span>
-          <span class="ag-testimonial__star">★</span>
-        </div>
+        <div class="ag-testimonial__stars"><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span></div>
         <p class="ag-testimonial__quote">"Notre nouveau site a doublé nos prises de contact en 2 mois. L'équipe est réactive, honnête sur ce qui est possible, et vraiment à l'écoute de nos besoins."</p>
         <div class="ag-testimonial__author">
           <div class="ag-testimonial__avatar" style="background:linear-gradient(135deg,#EC4899,#F97316)">S</div>
-          <div>
-            <div class="ag-testimonial__name">Sophie L.</div>
-            <div class="ag-testimonial__role">Directrice — Beauté &amp; Co</div>
-          </div>
+          <div><div class="ag-testimonial__name">Sophie L.</div><div class="ag-testimonial__role">Directrice — Beauté &amp; Co</div></div>
         </div>
       </div>
-
       <div class="ag-testimonial reveal" style="--delay:.16s">
-        <div class="ag-testimonial__stars">
-          <span class="ag-testimonial__star">★</span>
-          <span class="ag-testimonial__star">★</span>
-          <span class="ag-testimonial__star">★</span>
-          <span class="ag-testimonial__star">★</span>
-          <span class="ag-testimonial__star">★</span>
-        </div>
+        <div class="ag-testimonial__stars"><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span></div>
         <p class="ag-testimonial__quote">"L'automatisation qu'ils ont mise en place nous économise facilement 15h par semaine. Le ROI a été immédiat. Je recommande sans hésiter à toute PME qui veut gagner du temps."</p>
         <div class="ag-testimonial__author">
           <div class="ag-testimonial__avatar" style="background:linear-gradient(135deg,#10B981,#059669)">M</div>
-          <div>
-            <div class="ag-testimonial__name">Marc D.</div>
-            <div class="ag-testimonial__role">PDG — FreshMarket</div>
-          </div>
+          <div><div class="ag-testimonial__name">Marc D.</div><div class="ag-testimonial__role">PDG — FreshMarket</div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     BOS CROSS-SELL
-═══════════════════════════════════════════ -->
+<!-- BOS CROSS-SELL -->
 <div class="ag-bos-band reveal">
   <div class="container">
     <div class="ag-bos-band__inner">
@@ -607,17 +527,15 @@
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     CTA FINAL
-═══════════════════════════════════════════ -->
+<!-- CTA FINAL -->
 <section class="ag-cta-final">
   <div class="container">
     <span class="eyebrow reveal">Prêt à démarrer ?</span>
-    <h2 class="reveal" style="--delay:.05s">Votre projet mérite<br><span class="grad-text">mieux qu'un Excel.</span></h2>
+    <h2 class="reveal" style="--delay:.05s">Votre projet mérite<br><span class="grad-text">mieux qu'un bricolage.</span></h2>
     <p class="reveal" style="--delay:.1s">Parlez-nous de ce que vous voulez construire. Le devis est gratuit, la réponse arrive en moins de 24h.</p>
     <div class="ag-cta-actions reveal" style="--delay:.15s">
       <a href="/contact.html" class="btn btn-primary btn--lg mag-btn">
-        Envoyer un message
+        Parler de mon projet
         <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="/" class="btn btn-outline-dark btn--lg">Retour à l'accueil</a>
@@ -635,10 +553,10 @@
       </div>
       <div class="footer__col">
         <h4>Services</h4>
-        <a href="/services.html">Applications métier</a>
-        <a href="/services.html">Outils internes</a>
-        <a href="/services.html">Automatisations</a>
-        <a href="/services.html">Sites & portails</a>
+        <a href="#service-metier">Applications métier</a>
+        <a href="#service-interne">Outils internes</a>
+        <a href="#service-auto">Automatisations</a>
+        <a href="#service-site">Sites &amp; portails</a>
       </div>
       <div class="footer__col">
         <h4>Produit</h4>
@@ -648,173 +566,124 @@
       </div>
       <div class="footer__col">
         <h4>Contact</h4>
+        <a href="/contact.html">Formulaire de contact</a>
         <a href="mailto:contacts.neoflowagency@gmail.com">contacts.neoflowagency@gmail.com</a>
         <a href="/mentions-legales.html">Mentions légales</a>
       </div>
     </div>
     <div class="footer__bottom">
       <span class="footer__copy">© 2025 NeoFlow Agency. Tous droits réservés.</span>
+      <span class="footer__copy">Fait avec soin, en France.</span>
     </div>
   </div>
 </footer>
 
-<!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
 <script>
+function closeMenu() { document.getElementById('mobileNav').classList.remove('open'); }
 document.getElementById('burgerBtn').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
-document.getElementById('closeNav').addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
-
+document.getElementById('closeNav').addEventListener('click', closeMenu);
 const nav = document.getElementById('navbar');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
 
-// Cursor glow
-(function() {
-  const el = document.getElementById('cursorGlow');
-  if (!el || window.matchMedia('(max-width:768px)').matches) return;
-  let mx = innerWidth/2, my = innerHeight/2, cx = mx, cy = my;
-  window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  (function loop() {
-    cx += (mx - cx) * 0.1; cy += (my - cy) * 0.1;
-    el.style.left = cx + 'px'; el.style.top = cy + 'px';
-    requestAnimationFrame(loop);
-  })();
-})();
+const glow = document.getElementById('cursorGlow');
+if (glow && !window.matchMedia('(max-width:768px)').matches) {
+  let cx = innerWidth/2, cy = innerHeight/2, tx = cx, ty = cy;
+  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+  (function loop() { cx += (tx-cx)*.1; cy += (ty-cy)*.1; glow.style.left = cx+'px'; glow.style.top = cy+'px'; requestAnimationFrame(loop); })();
+}
 
-// Three.js
 (function() {
   const canvas = document.getElementById('heroCanvas');
-  if (!canvas || !window.THREE) return;
-  if (window.matchMedia('(max-width: 768px)').matches) return;
+  if (!canvas || !window.THREE || window.matchMedia('(max-width:768px)').matches) return;
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setClearColor(0x000000, 0);
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
   camera.position.z = 8;
-
-  scene.add(new THREE.Mesh(
-    new THREE.IcosahedronGeometry(2.4, 1),
-    new THREE.MeshBasicMaterial({ color: 0x7C5CFC, wireframe: true, transparent: true, opacity: 0.06 })
-  ));
-
-  const tor = new THREE.Mesh(
-    new THREE.TorusGeometry(1.2, 0.2, 8, 24),
-    new THREE.MeshBasicMaterial({ color: 0xA78BFA, wireframe: true, transparent: true, opacity: 0.05 })
-  );
-  tor.position.set(-3, 1.5, -2); scene.add(tor);
-
+  const ico = new THREE.Mesh(new THREE.IcosahedronGeometry(2.6, 1), new THREE.MeshBasicMaterial({ color: 0x7C5CFC, wireframe: true, transparent: true, opacity: 0.06 }));
+  scene.add(ico);
+  const tor1 = new THREE.Mesh(new THREE.TorusGeometry(1.4, 0.25, 8, 28), new THREE.MeshBasicMaterial({ color: 0xA78BFA, wireframe: true, transparent: true, opacity: 0.04 }));
+  tor1.position.set(3.5, -1.5, -2); scene.add(tor1);
+  const tor2 = new THREE.Mesh(new THREE.TorusGeometry(1.0, 0.18, 7, 20), new THREE.MeshBasicMaterial({ color: 0x7C5CFC, wireframe: true, transparent: true, opacity: 0.05 }));
+  tor2.position.set(-3, 1.5, -1.5); scene.add(tor2);
   const pGeo = new THREE.BufferGeometry();
-  const pos = new Float32Array(120 * 3);
-  for (let i = 0; i < 120; i++) { pos[i*3]=(Math.random()-.5)*18; pos[i*3+1]=(Math.random()-.5)*18; pos[i*3+2]=(Math.random()-.5)*8; }
+  const pos = new Float32Array(140 * 3);
+  for (let i = 0; i < 140; i++) { pos[i*3]=(Math.random()-.5)*18; pos[i*3+1]=(Math.random()-.5)*18; pos[i*3+2]=(Math.random()-.5)*8; }
   pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
   scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xA78BFA, size: 0.05, transparent: true, opacity: 0.28 })));
-
   let mx = 0, my = 0;
   document.addEventListener('mousemove', e => { mx = e.clientX/innerWidth-.5; my = e.clientY/innerHeight-.5; });
-
   const meshes = scene.children.filter(c => c.isMesh);
-  function resize() {
-    const p = canvas.parentElement;
-    renderer.setSize(p.offsetWidth, p.offsetHeight);
-    camera.aspect = p.offsetWidth / p.offsetHeight;
-    camera.updateProjectionMatrix();
-  }
-  resize();
-  window.addEventListener('resize', resize, { passive: true });
-
+  function resize() { const p = canvas.parentElement; renderer.setSize(p.offsetWidth, p.offsetHeight); camera.aspect = p.offsetWidth/p.offsetHeight; camera.updateProjectionMatrix(); }
+  resize(); window.addEventListener('resize', resize, { passive: true });
   const clock = new THREE.Clock();
   (function tick() {
-    requestAnimationFrame(tick);
-    const t = clock.getElapsedTime();
+    requestAnimationFrame(tick); const t = clock.getElapsedTime();
     if (meshes[0]) { meshes[0].rotation.x = t*.06+my*.2; meshes[0].rotation.y = t*.09+mx*.2; }
     if (meshes[1]) { meshes[1].rotation.x = -t*.12; meshes[1].rotation.z = t*.07; }
+    if (meshes[2]) { meshes[2].rotation.y = t*.1; meshes[2].rotation.z = -t*.06; }
     renderer.render(scene, camera);
   })();
 })();
 
-// GSAP
 if (window.gsap && window.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
-
-  // Hero entrance
   gsap.timeline({ delay: 0.1 })
     .from('.ag-hero .ag-hero-tag', { opacity: 0, y: 15, duration: 0.5, ease: 'power3.out' })
     .from('.ag-hero h1', { opacity: 0, y: 28, duration: 0.65, ease: 'power3.out' }, '-=0.3')
     .from('.ag-hero .hero-sub', { opacity: 0, y: 18, duration: 0.55, ease: 'power3.out' }, '-=0.4')
-    .from('.ag-hero .ag-hero-actions', { opacity: 0, y: 15, duration: 0.45, ease: 'power3.out' }, '-=0.35')
+    .from('.ag-hero .ag-hero-chips', { opacity: 0, y: 14, duration: 0.45, ease: 'power3.out' }, '-=0.35')
+    .from('.ag-hero .ag-hero-actions', { opacity: 0, y: 15, duration: 0.45, ease: 'power3.out' }, '-=0.3')
     .from('.ag-hero .ag-hero-trust', { opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.25');
 
   gsap.utils.toArray('.reveal').forEach(el => {
     const delay = parseFloat(getComputedStyle(el).getPropertyValue('--delay') || '0') || 0;
-    gsap.fromTo(el, { opacity: 0, y: 24 }, {
-      opacity: 1, y: 0, duration: 0.55, delay, ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 90%', once: true }
-    });
+    gsap.fromTo(el, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.55, delay, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
   });
 
-  gsap.utils.toArray('.diff-card, .use-case-item').forEach((el, i) => {
-    gsap.fromTo(el, { opacity: 0, y: 14 }, {
-      opacity: 1, y: 0, duration: 0.4, delay: (i % 4) * 0.07, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 90%', once: true }
-    });
+  gsap.utils.toArray('.ag-service-card').forEach((el, i) => {
+    gsap.fromTo(el, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, delay: i * 0.08, ease: 'power2.out', scrollTrigger: { trigger: '.ag-services-grid', start: 'top 82%', once: true } });
   });
 
-  // Count-up
   document.querySelectorAll('.count-up').forEach(el => {
     const target = parseInt(el.dataset.target);
-    ScrollTrigger.create({
-      trigger: el, start: 'top 85%', once: true,
-      onEnter: () => {
-        gsap.to({ val: 0 }, {
-          val: target, duration: 1.6, ease: 'power2.out',
-          onUpdate: function() { el.textContent = Math.round(this.targets()[0].val); }
-        });
-      }
+    ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true,
+      onEnter: () => gsap.to({ val: 0 }, { val: target, duration: 1.6, ease: 'power2.out', onUpdate: function() { el.textContent = Math.round(this.targets()[0].val); } })
     });
   });
 
-  // Process steps stagger
   gsap.utils.toArray('.ag-process-step').forEach((el, i) => {
-    gsap.fromTo(el, { opacity: 0, y: 20 }, {
-      opacity: 1, y: 0, duration: 0.5, delay: i * 0.08, ease: 'power3.out',
-      scrollTrigger: { trigger: '#processGrid', start: 'top 80%', once: true }
-    });
+    gsap.fromTo(el, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, delay: i * 0.08, ease: 'power3.out', scrollTrigger: { trigger: '#processGrid', start: 'top 80%', once: true } });
   });
 
-  // Testimonials stagger
   gsap.utils.toArray('.ag-testimonial').forEach((el, i) => {
-    gsap.fromTo(el, { opacity: 0, y: 20 }, {
-      opacity: 1, y: 0, duration: 0.5, delay: i * 0.1, ease: 'power3.out',
-      scrollTrigger: { trigger: '.ag-testimonials-grid', start: 'top 82%', once: true }
-    });
+    gsap.fromTo(el, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, delay: i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: '.ag-testimonials-grid', start: 'top 82%', once: true } });
   });
 }
 
-// Magnetic buttons
 document.querySelectorAll('.mag-btn').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r = btn.getBoundingClientRect();
-    btn.style.transform = `translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.18}px)`;
-  });
+  btn.addEventListener('mousemove', e => { const r = btn.getBoundingClientRect(); btn.style.transform = `translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.18}px)`; });
   btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
 });
 
-// Page transitions
 document.querySelectorAll('a[href]').forEach(a => {
   const href = a.getAttribute('href');
   if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('http')) return;
   a.addEventListener('click', e => {
     e.preventDefault();
-    const overlay = document.getElementById('page-transition');
-    if (!overlay || !window.gsap) { window.location = href; return; }
-    gsap.to(overlay, { opacity:1, scaleY:1, transformOrigin:'bottom', duration:0.35, ease:'power3.in', onComplete: () => { window.location = href; } });
+    const ov = document.getElementById('page-transition');
+    if (ov && window.gsap) gsap.to(ov, { opacity: 1, scaleY: 1, duration: 0.38, ease: 'power3.inOut', onComplete: () => { window.location.href = href; } });
+    else window.location.href = href;
   });
 });
-window.addEventListener('pageshow', () => {
-  const o = document.getElementById('page-transition');
-  if (o && window.gsap) gsap.set(o, { opacity:0, scaleY:0 });
+window.addEventListener('pageshow', () => { const ov = document.getElementById('page-transition'); if (ov && window.gsap) gsap.set(ov, { opacity: 0, scaleY: 0 }); });
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => { const t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } });
 });
 </script>
 </body>

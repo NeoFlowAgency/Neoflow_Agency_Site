@@ -3,135 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact — NeoFlow Agency</title>
+  <title>Contact — NeoFlow Agency | Devis gratuit en 24h</title>
   <meta name="description" content="Contactez NeoFlow Agency pour démarrer votre projet. Réponse sous 24h, premier échange gratuit et sans engagement.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="./styles.css">
   <style>
     #page-transition { position:fixed;inset:0;z-index:9999;background:#07070F;pointer-events:none;opacity:0;transform:scaleY(0);transform-origin:bottom; }
-    .contact-hero {
-      padding: 160px 0 80px;
-      background: var(--ag-bg);
-      background-image:
-        radial-gradient(ellipse 60% 55% at 15% 30%, rgba(124,92,252,.12) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 50% at 85% 10%, rgba(167,139,250,.08) 0%, transparent 60%);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .contact-hero__tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(124,92,252,.12); border: 1px solid rgba(124,92,252,.25);
-      border-radius: var(--r-full); padding: 5px 14px 5px 8px;
-      font-size: 11px; font-weight: 700; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--ag-accent-2); margin-bottom: 22px;
-    }
-    .contact-hero__tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ag-accent); }
+    .ag-hero::after { content:'';position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px 200px; }
+    .ag-hero-chips { display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:52px; }
+    .ag-hero-chip { display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-full);padding:8px 16px;font-size:13px;font-weight:600;color:rgba(240,240,255,.65);backdrop-filter:blur(10px); }
+    .ag-hero-chip span { color:#fff;font-weight:800; }
+    .ag-features-band { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ag-border);border-top:1px solid var(--ag-border);border-bottom:1px solid var(--ag-border); }
+    .ag-feature-item { background:var(--ag-bg);padding:36px 32px;transition:background var(--t-base); }
+    .ag-feature-item:hover { background:var(--ag-bg-2); }
+    .ag-feature-num { font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ag-accent);margin-bottom:12px; }
+    .ag-feature-item h3 { font-size:1.05rem;color:var(--ag-text);margin-bottom:8px; }
+    .ag-feature-item p { font-size:14px;line-height:1.65; }
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 56px;
-      align-items: start;
-    }
+    /* Contact grid */
+    .contact-grid { display:grid;grid-template-columns:1fr 1.6fr;gap:56px;align-items:start; }
 
     /* Info cards */
-    .info-card {
-      background: var(--ag-surface); border: 1px solid var(--ag-border);
-      border-radius: var(--r-lg); padding: 22px 24px;
-      display: flex; gap: 16px; align-items: flex-start;
-      transition: border-color var(--t-base), box-shadow var(--t-base);
-    }
-    .info-card:hover { border-color: var(--ag-border-2); box-shadow: var(--ag-s-sm); }
-    .info-card__icon { width: 42px; height: 42px; border-radius: var(--r-md); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-    .info-card__label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--ag-text-3); margin-bottom: 4px; }
-    .info-card__val { font-size: 14px; font-weight: 600; color: var(--ag-text); }
-    .info-card__val a { color: var(--ag-accent-2); }
-    .info-card__sub { font-size: 12px; color: var(--ag-text-3); margin-top: 2px; }
+    .info-card { background:var(--ag-surface);border:1px solid var(--ag-border);border-radius:var(--r-lg);padding:22px 24px;display:flex;gap:16px;align-items:flex-start;transition:border-color var(--t-base),box-shadow var(--t-base); }
+    .info-card:hover { border-color:var(--ag-border-2);box-shadow:var(--ag-s-sm); }
+    .info-card__icon { width:42px;height:42px;border-radius:var(--r-md);flex-shrink:0;display:flex;align-items:center;justify-content:center; }
+    .info-card__label { font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ag-text-3);margin-bottom:4px; }
+    .info-card__val { font-size:14px;font-weight:600;color:var(--ag-text); }
+    .info-card__val a { color:var(--ag-accent-2); }
+    .info-card__sub { font-size:12px;color:var(--ag-text-3);margin-top:2px; }
 
-    /* What happens next */
-    .next-card {
-      background: var(--ag-surface); border: 1px solid var(--ag-border);
-      border-radius: var(--r-lg); padding: 28px;
-    }
-    .next-card h3 { font-size: .95rem; font-weight: 800; color: var(--ag-text); margin-bottom: 20px; letter-spacing: -.02em; }
-    .next-step { display: flex; gap: 14px; align-items: flex-start; padding: 10px 0; }
-    .next-step:not(:last-child) { border-bottom: 1px solid var(--ag-border); }
-    .next-step__badge {
-      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-      background: var(--ag-grad);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 900; color: #fff;
-    }
-    .next-step__title { font-size: 13px; font-weight: 700; color: var(--ag-text); margin-bottom: 2px; }
-    .next-step__desc { font-size: 12px; color: var(--ag-text-3); line-height: 1.55; }
-
-    /* BOS teaser */
-    .bos-teaser {
-      background: linear-gradient(145deg, var(--navy) 0%, #0d1260 100%);
-      border-radius: var(--r-lg); padding: 24px; display: flex; gap: 16px; align-items: flex-start;
-    }
-    .bos-teaser__icon { width: 42px; height: 42px; border-radius: var(--r-md); background: rgba(255,255,255,.1); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-    .bos-teaser__title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-    .bos-teaser__sub { font-size: 13px; color: rgba(255,255,255,.52); line-height: 1.55; margin-bottom: 14px; }
+    /* Next steps card */
+    .next-card { background:var(--ag-surface);border:1px solid var(--ag-border);border-radius:var(--r-lg);padding:28px; }
+    .next-card h3 { font-size:.95rem;font-weight:800;color:var(--ag-text);margin-bottom:20px;letter-spacing:-.02em; }
+    .next-step { display:flex;gap:14px;align-items:flex-start;padding:10px 0; }
+    .next-step:not(:last-child) { border-bottom:1px solid var(--ag-border); }
+    .next-step__badge { width:28px;height:28px;border-radius:50%;flex-shrink:0;background:var(--ag-grad);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff; }
+    .next-step__title { font-size:13px;font-weight:700;color:var(--ag-text);margin-bottom:2px; }
+    .next-step__desc { font-size:12px;color:var(--ag-text-3);line-height:1.55; }
 
     /* Form card */
-    .form-card {
-      background: var(--ag-surface); border: 1px solid var(--ag-border);
-      border-radius: var(--r-xl); padding: 44px;
-      box-shadow: 0 24px 80px rgba(0,0,0,.35);
-    }
-    .form-card h2 { font-size: clamp(1.4rem,2vw,1.7rem); margin-bottom: 6px; color: var(--ag-text); }
-    .form-card__sub { font-size: 14px; color: var(--ag-text-3); margin-bottom: 32px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-card { background:var(--ag-surface);border:1px solid var(--ag-border);border-radius:var(--r-xl);padding:44px;box-shadow:0 24px 80px rgba(0,0,0,.35); }
+    .form-card h2 { font-size:clamp(1.4rem,2vw,1.7rem);margin-bottom:6px;color:var(--ag-text); }
+    .form-card__sub { font-size:14px;color:var(--ag-text-3);margin-bottom:32px; }
+    .form-row { display:grid;grid-template-columns:1fr 1fr;gap:16px; }
+    .form-card .form-label { color:var(--ag-text-2); }
+    .form-card .form-input { background:var(--ag-bg-2);border-color:var(--ag-border);color:var(--ag-text); }
+    .form-card .form-input:focus { border-color:var(--ag-accent);box-shadow:0 0 0 3px rgba(124,92,252,.15); }
+    .form-card .form-input::placeholder { color:var(--ag-text-3); }
+    .form-card .form-select { color:var(--ag-text); }
+    .form-card .form-select option { background:var(--ag-bg-2);color:var(--ag-text); }
+    .success-state { display:none;text-align:center;padding:52px 20px; }
+    .success-state__check { width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 12px 32px rgba(22,163,74,.25); }
+    .success-state h3 { font-size:1.3rem;margin-bottom:10px;color:var(--ag-text); }
+    .success-state p { font-size:14px;color:var(--ag-text-3);line-height:1.7;max-width:320px;margin:0 auto; }
 
-    /* Inputs dark theme overrides */
-    .form-card .form-label { color: var(--ag-text-2); }
-    .form-card .form-input {
-      background: var(--ag-bg-2); border-color: var(--ag-border);
-      color: var(--ag-text);
-    }
-    .form-card .form-input:focus { border-color: var(--ag-accent); box-shadow: 0 0 0 3px rgba(124,92,252,.15); }
-    .form-card .form-input::placeholder { color: var(--ag-text-3); }
-    .form-card .form-select { color: var(--ag-text); }
-    .form-card .form-select option { background: var(--ag-bg-2); color: var(--ag-text); }
+    /* FAQ */
+    .contact-faq { background:var(--ag-bg-2);border-top:1px solid var(--ag-border); }
+    .contact-faq .faq-item { border-color:var(--ag-border); }
+    .contact-faq .faq-btn { color:var(--ag-text);background:transparent; }
+    .contact-faq .faq-btn:hover { color:var(--ag-accent-2); }
+    .contact-faq .faq-panel { color:var(--ag-text-2); }
 
-    /* Success state */
-    .success-state { display: none; text-align: center; padding: 52px 20px; }
-    .success-state__check {
-      width: 72px; height: 72px; border-radius: 50%;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 24px; box-shadow: 0 12px 32px rgba(22,163,74,.25);
-    }
-    .success-state h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--ag-text); }
-    .success-state p { font-size: 14px; color: var(--ag-text-3); line-height: 1.7; max-width: 320px; margin: 0 auto; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { animation: spin .8s linear infinite; }
 
-    /* FAQ section */
-    .contact-faq { background: var(--ag-bg-2); border-top: 1px solid var(--ag-border); padding: 80px 0; }
-    .contact-faq .faq-item { border-color: var(--ag-border); }
-    .contact-faq .faq-btn { color: var(--ag-text); background: transparent; }
-    .contact-faq .faq-btn:hover { color: var(--ag-accent-2); }
-    .contact-faq .faq-panel { color: var(--ag-text-2); }
-
-    @media (max-width: 900px) {
-      .contact-grid { grid-template-columns: 1fr; gap: 36px; }
-      .form-card { padding: 28px 24px; }
-      .form-row { grid-template-columns: 1fr; }
+    @media (max-width:900px) {
+      .contact-grid { grid-template-columns:1fr;gap:36px; }
+      .form-card { padding:28px 24px; }
+      .form-row { grid-template-columns:1fr; }
+      .ag-features-band { grid-template-columns:1fr; }
     }
   </style>
 </head>
 <body class="agency">
 
 <div id="page-transition"></div>
-<div id="cursorGlow" style="position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,252,.07) 0%,transparent 70%);pointer-events:none;z-index:9998;top:0;left:0;transition:opacity .3s"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
 
-<!-- ── NAVBAR ── -->
-<nav class="navbar navbar--dark" id="navbar">
+<!-- NAVBAR -->
+<nav class="navbar navbar--light" id="navbar">
   <div class="navbar__inner">
     <a href="/" class="nav-logo">
-      <img src="./logos/NFagency_bleu.png" alt="NeoFlow Agency"
+      <img src="./logos/NFagency_bleu.png" alt="NeoFlow Agency" height="32"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <span class="nav-logo-fallback" style="display:none;width:30px;height:30px;background:var(--ag-accent);border-radius:8px;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff">N</span>
       <span class="nav-logo-text">Neo<span>Flow</span></span>
@@ -140,12 +94,12 @@
       <a href="/services.html" class="nav-link nav-link--white">Services</a>
       <a href="/#processus" class="nav-link nav-link--white">Notre approche</a>
       <a href="/neoflow-bos.html" class="nav-link nav-link--white">NeoFlow BOS</a>
-      <a href="/contact.html" class="nav-link nav-link--white" style="color:var(--ag-accent-2);font-weight:600">Contact</a>
+      <a href="/contact.html" class="nav-link nav-link--white" style="color:var(--ag-accent-2)">Contact</a>
     </div>
     <div class="nav-actions">
-      <a href="/neoflow-bos.html" class="btn btn-ghost btn--sm" style="color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.15)">NeoFlow BOS</a>
+      <a href="/neoflow-bos.html" class="btn btn-ghost btn--sm">NeoFlow BOS</a>
       <a href="mailto:contacts.neoflowagency@gmail.com" class="btn btn-primary btn--sm">
-        Nous contacter
+        Nous écrire
         <svg class="arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -163,41 +117,76 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
   </div>
-  <a href="/services.html" onclick="document.getElementById('mobileNav').classList.remove('open')">Services</a>
-  <a href="/#processus" onclick="document.getElementById('mobileNav').classList.remove('open')">Notre approche</a>
-  <a href="/neoflow-bos.html" onclick="document.getElementById('mobileNav').classList.remove('open')">NeoFlow BOS</a>
-  <a href="/contact.html" onclick="document.getElementById('mobileNav').classList.remove('open')">Contact</a>
+  <a href="/services.html" onclick="closeMenu()">Services</a>
+  <a href="/#processus" onclick="closeMenu()">Notre approche</a>
+  <a href="/neoflow-bos.html" onclick="closeMenu()">NeoFlow BOS</a>
+  <a href="/contact.html" onclick="closeMenu()">Contact</a>
   <div class="mobile-nav__cta" style="padding-top:32px">
-    <a href="mailto:contacts.neoflowagency@gmail.com" class="btn btn-primary btn--lg" style="width:100%;justify-content:center">
-      Nous écrire
-    </a>
+    <a href="mailto:contacts.neoflowagency@gmail.com" class="btn btn-primary btn--lg" style="width:100%;justify-content:center">Nous écrire</a>
   </div>
 </div>
 
-<!-- ══ HERO ══ -->
-<section class="contact-hero">
+<!-- HERO -->
+<section class="ag-hero" style="min-height:55vh">
+  <div class="canvas-wrap"><canvas id="heroCanvas"></canvas></div>
+  <div class="blob blob--1" style="background:radial-gradient(circle,rgba(124,92,252,.18) 0%,transparent 70%)"></div>
+  <div class="blob blob--2" style="background:radial-gradient(circle,rgba(167,139,250,.12) 0%,transparent 70%)"></div>
   <div class="container">
-    <div class="contact-hero__tag reveal">
-      <span class="dot"></span> Premier échange gratuit
+    <div class="ag-hero-content" id="heroContent">
+      <div class="ag-hero-tag"><span class="dot"></span>Premier échange gratuit</div>
+      <h1 id="heroTitle">Parlons de votre<br><span class="grad-text">projet.</span></h1>
+      <p class="hero-sub">Décrivez votre idée. On vous répond sous 24h avec une première estimation — sans engagement, sans démarchage.</p>
+      <div class="ag-hero-chips">
+        <div class="ag-hero-chip"><span>&lt;24h</span> réponse garantie</div>
+        <div class="ag-hero-chip"><span>0€</span> devis gratuit</div>
+        <div class="ag-hero-chip"><span>100%</span> sans engagement</div>
+        <div class="ag-hero-chip"><span>Code</span> source livré</div>
+      </div>
+      <div class="ag-hero-actions">
+        <a href="#contactForm" class="btn btn-primary btn--lg mag-btn">
+          Remplir le formulaire
+          <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="mailto:contacts.neoflowagency@gmail.com" class="btn btn-outline-dark btn--lg">Écrire directement</a>
+      </div>
+      <div class="ag-hero-trust">
+        <span class="ag-hero-trust-sep"></span>
+        Aucun démarchage · Réponse humaine · Vraie conversation
+      </div>
     </div>
-    <h1 class="reveal" style="--delay:.04s">Parlons de votre <span class="grad-text">projet</span></h1>
-    <p class="reveal" style="--delay:.08s;font-size:1.05rem;color:var(--ag-text-2);max-width:500px;margin:16px auto 0;line-height:1.72">
-      Décrivez-nous votre idée. On vous répond sous 24h avec une première estimation, sans engagement.
-    </p>
   </div>
 </section>
 
-<!-- ══ MAIN ══ -->
-<section style="background:var(--ag-bg);padding:72px 0 96px">
+<!-- FEATURES BAND — ce qui se passe après -->
+<div class="ag-features-band">
+  <div class="ag-feature-item reveal">
+    <div class="ag-feature-num">01</div>
+    <h3>On lit votre message</h3>
+    <p>Vous recevez une confirmation immédiate. On analyse votre demande en détail — pas un bot, une vraie personne.</p>
+  </div>
+  <div class="ag-feature-item reveal" style="--delay:.07s">
+    <div class="ag-feature-num">02</div>
+    <h3>Retour sous 24h</h3>
+    <p>On vous répond avec quelques questions pour cadrer le projet, et une première fourchette de prix honnête.</p>
+  </div>
+  <div class="ag-feature-item reveal" style="--delay:.14s">
+    <div class="ag-feature-num">03</div>
+    <h3>Devis gratuit et précis</h3>
+    <p>Si le projet colle, on vous envoie un devis détaillé — périmètre, délais, tarif. Zéro surprise ensuite.</p>
+  </div>
+</div>
+
+<!-- CONTACT GRID -->
+<section style="background:var(--ag-bg);padding:80px 0 96px" id="contactForm">
   <div class="container">
     <div class="contact-grid">
 
-      <!-- LEFT — Info -->
+      <!-- LEFT — info + next steps -->
       <div style="display:flex;flex-direction:column;gap:14px" class="reveal">
 
         <div class="info-card">
-          <div class="info-card__icon" style="background:rgba(49,58,223,.08)">
-            <svg width="18" height="18" fill="none" stroke="var(--primary)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div class="info-card__icon" style="background:rgba(124,92,252,.1)">
+            <svg width="18" height="18" fill="none" stroke="var(--ag-accent-2)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div>
             <div class="info-card__label">Email</div>
@@ -207,8 +196,8 @@
         </div>
 
         <div class="info-card">
-          <div class="info-card__icon" style="background:rgba(107,33,232,.08)">
-            <svg width="18" height="18" fill="none" stroke="#6B21E8" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div class="info-card__icon" style="background:rgba(124,92,252,.1)">
+            <svg width="18" height="18" fill="none" stroke="var(--ag-accent-2)" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <div>
             <div class="info-card__label">Délai de réponse</div>
@@ -218,12 +207,12 @@
         </div>
 
         <div class="info-card">
-          <div class="info-card__icon" style="background:rgba(22,163,74,.08)">
+          <div class="info-card__icon" style="background:rgba(34,197,94,.08)">
             <svg width="18" height="18" fill="none" stroke="#16a34a" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
           <div>
             <div class="info-card__label">Engagement</div>
-            <div class="info-card__val">Devis gratuit & sans obligation</div>
+            <div class="info-card__val">Devis gratuit &amp; sans obligation</div>
             <div class="info-card__sub">Aucun démarchage après échange</div>
           </div>
         </div>
@@ -234,34 +223,34 @@
             <div class="next-step__badge">1</div>
             <div>
               <div class="next-step__title">On lit votre message</div>
-              <div class="next-step__desc">Vous recevez une confirmation immédiate, on analyse votre demande en détail.</div>
+              <div class="next-step__desc">Confirmation immédiate. On analyse votre demande en détail, pas en diagonale.</div>
             </div>
           </div>
           <div class="next-step">
             <div class="next-step__badge">2</div>
             <div>
               <div class="next-step__title">Premier retour sous 24h</div>
-              <div class="next-step__desc">On vous répond avec quelques questions pour mieux cadrer le projet.</div>
+              <div class="next-step__desc">Questions de cadrage + première estimation honnête du périmètre et du budget.</div>
             </div>
           </div>
           <div class="next-step">
             <div class="next-step__badge">3</div>
             <div>
-              <div class="next-step__title">Estimation gratuite</div>
-              <div class="next-step__desc">Fourchette de prix, délais estimés, et un appel découverte si utile.</div>
+              <div class="next-step__title">Devis détaillé gratuit</div>
+              <div class="next-step__desc">Périmètre précis, planning, tarif fixe. Vous décidez sans pression.</div>
             </div>
           </div>
         </div>
 
-        <div class="bos-teaser">
-          <div class="bos-teaser__icon">
+        <div style="background:linear-gradient(145deg,#040741 0%,#0d1260 100%);border-radius:var(--r-lg);padding:24px;display:flex;gap:16px;align-items:flex-start">
+          <div style="width:42px;height:42px;border-radius:var(--r-md);background:rgba(255,255,255,.1);flex-shrink:0;display:flex;align-items:center;justify-content:center">
             <svg width="18" height="18" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
           </div>
           <div>
-            <div class="bos-teaser__title">Vous cherchez NeoFlow BOS ?</div>
-            <div class="bos-teaser__sub">L'essai gratuit de 7 jours est disponible directement en ligne — pas besoin de nous contacter d'abord.</div>
-            <a href="https://bos.neoflow-agency.cloud" class="btn btn-outline-white btn--sm">
-              Essayer NeoFlow BOS
+            <div style="font-size:14px;font-weight:700;color:#fff;margin-bottom:6px">Vous cherchez NeoFlow BOS ?</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.52);line-height:1.55;margin-bottom:14px">L'essai gratuit de 7 jours est disponible directement en ligne — pas besoin de nous contacter d'abord.</div>
+            <a href="/neoflow-bos.html" class="btn btn-outline-white btn--sm">
+              Découvrir NeoFlow BOS
               <svg class="arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
           </div>
@@ -274,8 +263,7 @@
         <h2>Décrivez votre projet</h2>
         <p class="form-card__sub">Tous les champs sont obligatoires. Réponse garantie sous 24h.</p>
 
-        <form id="contactForm" style="display:flex;flex-direction:column;gap:20px">
-
+        <form id="contactFormEl" style="display:flex;flex-direction:column;gap:20px">
           <div class="form-row">
             <div class="form-group">
               <label class="form-label" for="firstName">Prénom</label>
@@ -286,29 +274,25 @@
               <input class="form-input" type="text" id="lastName" name="lastName" placeholder="Martin" required>
             </div>
           </div>
-
           <div class="form-group">
             <label class="form-label" for="email">Email</label>
             <input class="form-input" type="email" id="email" name="email" placeholder="vous@votre-entreprise.fr" required>
           </div>
-
           <div class="form-group">
             <label class="form-label" for="company">Entreprise / Projet</label>
             <input class="form-input" type="text" id="company" name="company" placeholder="Nom de votre entreprise ou projet" required>
           </div>
-
           <div class="form-group">
             <label class="form-label" for="projectType">Type de projet</label>
             <select class="form-input form-select" id="projectType" name="projectType" required>
               <option value="" disabled selected>Sélectionnez un type</option>
               <option value="Application métier">Application métier sur mesure</option>
               <option value="Outil interne">Outil interne / back-office</option>
-              <option value="Automatisation">Automatisation & connecteurs</option>
-              <option value="Site & portail">Site web & espace client</option>
+              <option value="Automatisation">Automatisation &amp; connecteurs</option>
+              <option value="Site & portail">Site web &amp; espace client</option>
               <option value="Autre">Autre</option>
             </select>
           </div>
-
           <div class="form-group">
             <label class="form-label" for="budget">Budget estimé</label>
             <select class="form-input form-select" id="budget" name="budget" required>
@@ -320,14 +304,12 @@
               <option value="Plus de 50 000€">Plus de 50 000€</option>
             </select>
           </div>
-
           <div class="form-group">
             <label class="form-label" for="message">Décrivez votre projet</label>
             <textarea class="form-input form-textarea" id="message" name="message"
               placeholder="Décrivez votre idée, vos besoins principaux, votre secteur d'activité, et ce que vous souhaitez accomplir..."
               required></textarea>
           </div>
-
           <div style="display:flex;align-items:flex-start;gap:10px">
             <input type="checkbox" id="rgpd" name="rgpd" required
               style="margin-top:3px;width:15px;height:15px;accent-color:var(--ag-accent);flex-shrink:0;cursor:pointer">
@@ -336,21 +318,14 @@
               <a href="/mentions-legales.html" style="color:var(--ag-accent-2)">mentions légales</a>.
             </label>
           </div>
-
           <div id="formError" style="display:none;background:rgba(239,68,68,.06);border:1.5px solid rgba(239,68,68,.2);border-radius:var(--r-md);padding:12px 16px;font-size:13px;color:#b91c1c"></div>
-
-          <button type="submit" class="btn btn-primary btn--lg" id="submitBtn"
-            style="width:100%;justify-content:center">
+          <button type="submit" class="btn btn-primary btn--lg" id="submitBtn" style="width:100%;justify-content:center">
             Envoyer ma demande
             <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
-
-          <p style="font-size:12px;color:var(--ag-text-3);text-align:center">
-            Réponse sous 24h · Aucun démarchage · Devis 100% gratuit
-          </p>
+          <p style="font-size:12px;color:var(--ag-text-3);text-align:center">Réponse sous 24h · Aucun démarchage · Devis 100% gratuit</p>
         </form>
 
-        <!-- Success -->
         <div class="success-state" id="successMsg">
           <div class="success-state__check">
             <svg width="30" height="30" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
@@ -365,8 +340,68 @@
   </div>
 </section>
 
-<!-- ══ FAQ ══ -->
-<div class="contact-faq">
+<!-- STATS -->
+<div class="ag-stats">
+  <div class="container">
+    <div class="ag-stats__grid">
+      <div class="ag-stat-item reveal">
+        <div class="ag-stat-num"><span class="count-up" data-target="42">0</span>+</div>
+        <div class="ag-stat-lbl">Projets livrés</div>
+      </div>
+      <div class="ag-stat-item reveal" style="--delay:.07s">
+        <div class="ag-stat-num"><span class="count-up" data-target="15">0</span>j</div>
+        <div class="ag-stat-lbl">Délai moyen de livraison</div>
+      </div>
+      <div class="ag-stat-item reveal" style="--delay:.14s">
+        <div class="ag-stat-num"><span class="count-up" data-target="98">0</span>%</div>
+        <div class="ag-stat-lbl">Clients satisfaits</div>
+      </div>
+      <div class="ag-stat-item reveal" style="--delay:.21s">
+        <div class="ag-stat-num"><span class="count-up" data-target="100">0</span>%</div>
+        <div class="ag-stat-lbl">Projets livrés dans les délais</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TÉMOIGNAGES -->
+<section class="ag-section ag-section--alt">
+  <div class="container">
+    <div class="ag-section-head reveal">
+      <span class="eyebrow">Ce que disent nos clients</span>
+      <h2>Ils ont fait le premier pas.<br><span class="grad-text">Voici ce qu'ils en pensent.</span></h2>
+    </div>
+    <div class="ag-testimonials-grid">
+      <div class="ag-testimonial reveal">
+        <div class="ag-testimonial__stars"><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span></div>
+        <p class="ag-testimonial__quote">"En 3 semaines, NeoFlow a livré notre outil de gestion de commandes. Exactement ce qu'on voulait, sans fonctionnalités inutiles. Nos livreurs l'ont adopté le premier jour."</p>
+        <div class="ag-testimonial__author">
+          <div class="ag-testimonial__avatar">K</div>
+          <div><div class="ag-testimonial__name">Karim B.</div><div class="ag-testimonial__role">Gérant — BakePro Paris</div></div>
+        </div>
+      </div>
+      <div class="ag-testimonial reveal" style="--delay:.08s">
+        <div class="ag-testimonial__stars"><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span></div>
+        <p class="ag-testimonial__quote">"Notre nouveau site a doublé nos prises de contact en 2 mois. L'équipe est réactive, honnête sur ce qui est possible, et vraiment à l'écoute de nos besoins."</p>
+        <div class="ag-testimonial__author">
+          <div class="ag-testimonial__avatar" style="background:linear-gradient(135deg,#EC4899,#F97316)">S</div>
+          <div><div class="ag-testimonial__name">Sophie L.</div><div class="ag-testimonial__role">Directrice — Beauté &amp; Co</div></div>
+        </div>
+      </div>
+      <div class="ag-testimonial reveal" style="--delay:.16s">
+        <div class="ag-testimonial__stars"><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span><span class="ag-testimonial__star">★</span></div>
+        <p class="ag-testimonial__quote">"L'automatisation qu'ils ont mise en place nous économise facilement 15h par semaine. Le ROI a été immédiat. Je recommande sans hésiter à toute PME qui veut gagner du temps."</p>
+        <div class="ag-testimonial__author">
+          <div class="ag-testimonial__avatar" style="background:linear-gradient(135deg,#10B981,#059669)">M</div>
+          <div><div class="ag-testimonial__name">Marc D.</div><div class="ag-testimonial__role">PDG — FreshMarket</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<div class="contact-faq" style="padding:80px 0">
   <div class="container container--sm">
     <div class="sec-head reveal" style="color:var(--ag-text)">
       <span class="eyebrow" style="color:var(--ag-accent-2);border-color:rgba(124,92,252,.2);background:rgba(124,92,252,.08)">Questions fréquentes</span>
@@ -374,38 +409,30 @@
     </div>
     <div class="faq-list reveal" style="--delay:.05s">
       <div class="faq-item">
-        <button class="faq-btn">
-          <span>Vous travaillez avec de petites structures ?</span>
-          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="faq-panel">Absolument. Nous travaillons aussi bien avec des entrepreneurs solo qu'avec des PME. L'important est d'avoir un projet clair et la volonté de le réaliser.</div>
+        <button class="faq-btn"><span>Vous travaillez avec de petites structures ?</span><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="faq-panel">Absolument. On travaille aussi bien avec des entrepreneurs solo qu'avec des PME. L'important est d'avoir un projet clair et la volonté de le réaliser.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn">
-          <span>Quel est le délai pour livrer une application ?</span>
-          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="faq-panel">Un MVP fonctionnel peut être livré en 3 à 6 semaines selon la complexité. Une application complète peut représenter plusieurs mois. Nous établissons un planning précis lors du cadrage.</div>
+        <button class="faq-btn"><span>Quel est le délai pour livrer une application ?</span><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="faq-panel">Un MVP fonctionnel peut être livré en 3 à 6 semaines selon la complexité. On établit un planning précis lors du cadrage, et on le tient.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn">
-          <span>Est-ce que je reçois le code source ?</span>
-          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="faq-panel">Oui, toujours. Le code source complet vous appartient à la livraison, transmis via un repository GitHub privé avec documentation technique incluse.</div>
+        <button class="faq-btn"><span>Est-ce que je reçois le code source ?</span><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="faq-panel">Oui, toujours. Le code source complet vous appartient à la livraison, transmis via un dépôt GitHub privé avec documentation technique incluse.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-btn">
-          <span>Proposez-vous de la maintenance après livraison ?</span>
-          <svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="faq-panel">Oui. Nous proposons des contrats de maintenance optionnels pour les mises à jour de sécurité, corrections de bugs et évolutions selon vos besoins.</div>
+        <button class="faq-btn"><span>Proposez-vous de la maintenance après livraison ?</span><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="faq-panel">Oui. On propose des contrats de maintenance optionnels pour les mises à jour, corrections de bugs et évolutions — ou simplement une relation au cas par cas.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn"><span>Mon projet est complexe, est-ce un problème ?</span><svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="faq-panel">Non. Les projets complexes et atypiques sont exactement ceux qu'on préfère. Si après échange on pense ne pas être les mieux placés, on vous le dit clairement et on vous oriente.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══ FOOTER ══ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="footer__inner">
@@ -418,7 +445,7 @@
         <a href="/services.html">Applications métier</a>
         <a href="/services.html">Outils internes</a>
         <a href="/services.html">Automatisations</a>
-        <a href="/services.html">Sites & portails</a>
+        <a href="/services.html">Sites &amp; portails</a>
       </div>
       <div class="footer__col">
         <h4>Produit</h4>
@@ -429,8 +456,8 @@
       </div>
       <div class="footer__col">
         <h4>Contact</h4>
-        <a href="mailto:contacts.neoflowagency@gmail.com">contacts.neoflowagency@gmail.com</a>
         <a href="/contact.html">Formulaire de contact</a>
+        <a href="mailto:contacts.neoflowagency@gmail.com">contacts.neoflowagency@gmail.com</a>
         <a href="/mentions-legales.html">Mentions légales</a>
       </div>
     </div>
@@ -441,136 +468,86 @@
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.134.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/ScrollTrigger.min.js"></script>
-<style>
-@keyframes spin { to { transform: rotate(360deg); } }
-.spin { animation: spin .8s linear infinite; }
-#hero-canvas { position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0; }
-.contact-hero .container { position:relative;z-index:1; }
-</style>
 <script>
-// ── Page transition overlay ──
-const overlay = document.getElementById('page-transition');
-document.querySelectorAll('a[href]').forEach(a => {
-  const href = a.getAttribute('href');
-  if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('http') || a.target === '_blank') return;
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    gsap.to(overlay, { opacity: 1, scaleY: 1, duration: 0.38, ease: 'power3.inOut', onComplete: () => { window.location.href = href; } });
-  });
-});
-window.addEventListener('pageshow', () => { gsap.set(overlay, { opacity: 0, scaleY: 0 }); });
-
-// ── Navbar ──
+function closeMenu() { document.getElementById('mobileNav').classList.remove('open'); }
+document.getElementById('burgerBtn').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+document.getElementById('closeNav').addEventListener('click', closeMenu);
 const nav = document.getElementById('navbar');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); }, { passive: true });
-document.getElementById('burgerBtn').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
-document.getElementById('closeNav').addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
 
-// ── Three.js hero particles ──
+const glow = document.getElementById('cursorGlow');
+if (glow && !window.matchMedia('(max-width:768px)').matches) {
+  let cx = innerWidth/2, cy = innerHeight/2, tx = cx, ty = cy;
+  document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+  (function loop() { cx += (tx-cx)*.1; cy += (ty-cy)*.1; glow.style.left = cx+'px'; glow.style.top = cy+'px'; requestAnimationFrame(loop); })();
+}
+
 (function() {
-  const hero = document.querySelector('.contact-hero');
-  if (!hero || !window.THREE) return;
-  const canvas = document.createElement('canvas');
-  canvas.id = 'hero-canvas';
-  hero.insertBefore(canvas, hero.firstChild);
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas || !window.THREE || window.matchMedia('(max-width:768px)').matches) return;
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
-  camera.position.z = 5;
-  function resize() {
-    const w = hero.offsetWidth, h = hero.offsetHeight;
-    renderer.setSize(w, h);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  // Particles
-  const count = 100;
-  const pos = new Float32Array(count * 3);
-  for (let i = 0; i < count * 3; i++) pos[i] = (Math.random() - .5) * 12;
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  const mat = new THREE.PointsMaterial({ size: 0.045, color: 0x7C5CFC, transparent: true, opacity: 0.6 });
-  scene.add(new THREE.Points(geo, mat));
-
-  // Torus
-  const tGeo = new THREE.TorusGeometry(2.2, 0.012, 8, 100);
-  const tMat = new THREE.MeshBasicMaterial({ color: 0x7C5CFC, transparent: true, opacity: 0.12, wireframe: true });
-  const torus = new THREE.Mesh(tGeo, tMat);
-  scene.add(torus);
-
-  let t = 0;
-  (function animate() {
-    requestAnimationFrame(animate);
-    t += 0.005;
-    torus.rotation.x = t * 0.3;
-    torus.rotation.y = t * 0.5;
+  renderer.setClearColor(0x000000, 0); renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+  camera.position.z = 8;
+  const ico = new THREE.Mesh(new THREE.IcosahedronGeometry(2.6, 1), new THREE.MeshBasicMaterial({ color: 0x7C5CFC, wireframe: true, transparent: true, opacity: 0.06 }));
+  scene.add(ico);
+  const tor = new THREE.Mesh(new THREE.TorusGeometry(1.4, 0.25, 8, 28), new THREE.MeshBasicMaterial({ color: 0xA78BFA, wireframe: true, transparent: true, opacity: 0.04 }));
+  tor.position.set(3.5, -1.5, -2); scene.add(tor);
+  const pGeo = new THREE.BufferGeometry();
+  const pos = new Float32Array(120 * 3);
+  for (let i = 0; i < 120; i++) { pos[i*3]=(Math.random()-.5)*18; pos[i*3+1]=(Math.random()-.5)*18; pos[i*3+2]=(Math.random()-.5)*8; }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xA78BFA, size: 0.05, transparent: true, opacity: 0.28 })));
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX/innerWidth-.5; my = e.clientY/innerHeight-.5; });
+  const meshes = scene.children.filter(c => c.isMesh);
+  function resize() { const p = canvas.parentElement; renderer.setSize(p.offsetWidth, p.offsetHeight); camera.aspect = p.offsetWidth/p.offsetHeight; camera.updateProjectionMatrix(); }
+  resize(); window.addEventListener('resize', resize, { passive: true });
+  const clock = new THREE.Clock();
+  (function tick() {
+    requestAnimationFrame(tick); const t = clock.getElapsedTime();
+    if (meshes[0]) { meshes[0].rotation.x = t*.06+my*.2; meshes[0].rotation.y = t*.09+mx*.2; }
+    if (meshes[1]) { meshes[1].rotation.x = -t*.12; meshes[1].rotation.z = t*.07; }
     renderer.render(scene, camera);
   })();
 })();
 
-// ── Cursor glow ──
-(function() {
-  const el = document.getElementById('cursorGlow');
-  if (!el) return;
-  let mx = window.innerWidth/2, my = window.innerHeight/2, cx = mx, cy = my;
-  window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  (function loop() {
-    cx += (mx - cx) * 0.08; cy += (my - cy) * 0.08;
-    el.style.transform = `translate(${cx - 200}px, ${cy - 200}px)`;
-    requestAnimationFrame(loop);
-  })();
-})();
-
-// ── GSAP ──
 if (window.gsap && window.ScrollTrigger) {
   gsap.registerPlugin(ScrollTrigger);
+  gsap.timeline({ delay: 0.1 })
+    .from('.ag-hero .ag-hero-tag', { opacity: 0, y: 15, duration: 0.5, ease: 'power3.out' })
+    .from('.ag-hero h1', { opacity: 0, y: 28, duration: 0.65, ease: 'power3.out' }, '-=0.3')
+    .from('.ag-hero .hero-sub', { opacity: 0, y: 18, duration: 0.55, ease: 'power3.out' }, '-=0.4')
+    .from('.ag-hero .ag-hero-chips', { opacity: 0, y: 14, duration: 0.45, ease: 'power3.out' }, '-=0.35')
+    .from('.ag-hero .ag-hero-actions', { opacity: 0, y: 15, duration: 0.45, ease: 'power3.out' }, '-=0.3')
+    .from('.ag-hero .ag-hero-trust', { opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.25');
 
-  // Hero entrance
-  gsap.from('.contact-hero h1', { opacity: 0, y: 30, duration: 0.7, ease: 'power3.out', delay: 0.1 });
-  gsap.from('.contact-hero p', { opacity: 0, y: 20, duration: 0.6, ease: 'power3.out', delay: 0.25 });
-  gsap.from('.contact-hero__tag', { opacity: 0, y: 15, duration: 0.5, ease: 'power3.out', delay: 0.05 });
-
-  // Scroll reveals
   gsap.utils.toArray('.reveal').forEach(el => {
     const delay = parseFloat(getComputedStyle(el).getPropertyValue('--delay') || '0') || 0;
-    gsap.fromTo(el, { opacity: 0, y: 28 }, {
-      opacity: 1, y: 0, duration: 0.55, delay, ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+    gsap.fromTo(el, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.55, delay, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+  });
+
+  document.querySelectorAll('.count-up').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true,
+      onEnter: () => gsap.to({ val: 0 }, { val: target, duration: 1.6, ease: 'power2.out', onUpdate: function() { el.textContent = Math.round(this.targets()[0].val); } })
     });
   });
 
-  // Info cards stagger
-  gsap.from('.info-card', {
-    opacity: 0, y: 22, stagger: 0.1, duration: 0.5, ease: 'power3.out',
-    scrollTrigger: { trigger: '.info-card', start: 'top 90%', once: true }
-  });
-
-  // FAQ items stagger
-  gsap.from('.faq-item', {
-    opacity: 0, y: 18, stagger: 0.08, duration: 0.45, ease: 'power3.out',
-    scrollTrigger: { trigger: '.faq-list', start: 'top 90%', once: true }
+  gsap.utils.toArray('.ag-testimonial').forEach((el, i) => {
+    gsap.fromTo(el, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, delay: i * 0.1, ease: 'power3.out', scrollTrigger: { trigger: '.ag-testimonials-grid', start: 'top 82%', once: true } });
   });
 }
 
-// ── Magnetic buttons ──
-document.querySelectorAll('.mag-btn, .btn-primary').forEach(btn => {
-  btn.addEventListener('mousemove', e => {
-    const r = btn.getBoundingClientRect();
-    const dx = e.clientX - (r.left + r.width/2);
-    const dy = e.clientY - (r.top + r.height/2);
-    btn.style.transform = `translate(${dx * 0.18}px, ${dy * 0.18}px)`;
-  });
+document.querySelectorAll('.mag-btn').forEach(btn => {
+  btn.addEventListener('mousemove', e => { const r = btn.getBoundingClientRect(); btn.style.transform = `translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.18}px)`; });
   btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
 });
 
-// ── FAQ accordion ──
+// FAQ
 document.querySelectorAll('.faq-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const isOpen = btn.classList.contains('open');
@@ -579,53 +556,45 @@ document.querySelectorAll('.faq-btn').forEach(btn => {
   });
 });
 
-// ── Telegram Bot integration ──
-const TG_TOKEN = '8463471156:AAFG0d2SOBOi4Uc4bZN8Qqb-8ZCGveSa3QU';
-const TG_CHAT_ID = '7866882300';
+// Form submit
+const form = document.getElementById('contactFormEl');
+if (form) {
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const errEl = document.getElementById('formError');
+    btn.disabled = true;
+    btn.innerHTML = '<svg class="spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg> Envoi…';
+    errEl.style.display = 'none';
+    try {
+      const data = Object.fromEntries(new FormData(form));
+      const resp = await fetch('https://formspree.io/f/xwkgvnjp', { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify(data) });
+      if (resp.ok) { form.style.display='none'; document.getElementById('successMsg').style.display='block'; }
+      else throw new Error();
+    } catch {
+      errEl.textContent = 'Une erreur est survenue. Envoyez-nous un email directement : contacts.neoflowagency@gmail.com';
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.innerHTML = 'Envoyer ma demande <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    }
+  });
+}
 
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const btn = document.getElementById('submitBtn');
-  const errBox = document.getElementById('formError');
-  errBox.style.display = 'none';
+// Page transitions
+document.querySelectorAll('a[href]').forEach(a => {
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('mailto') || href.startsWith('http')) return;
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const ov = document.getElementById('page-transition');
+    if (ov && window.gsap) gsap.to(ov, { opacity: 1, scaleY: 1, duration: 0.38, ease: 'power3.inOut', onComplete: () => { window.location.href = href; } });
+    else window.location.href = href;
+  });
+});
+window.addEventListener('pageshow', () => { const ov = document.getElementById('page-transition'); if (ov && window.gsap) gsap.set(ov, { opacity: 0, scaleY: 0 }); });
 
-  const data = {
-    firstName: document.getElementById('firstName').value.trim(),
-    lastName:  document.getElementById('lastName').value.trim(),
-    email:     document.getElementById('email').value.trim(),
-    company:   document.getElementById('company').value.trim(),
-    type:      document.getElementById('projectType').value,
-    budget:    document.getElementById('budget').value,
-    message:   document.getElementById('message').value.trim()
-  };
-
-  btn.disabled = true;
-  btn.innerHTML = '<svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 11-6.219-8.56"/></svg> Envoi en cours...';
-
-  const text =
-    `🚀 <b>Nouveau message — NeoFlow Agency</b>\n\n` +
-    `<b>Nom :</b> ${data.firstName} ${data.lastName}\n` +
-    `<b>Email :</b> ${data.email}\n` +
-    `<b>Entreprise :</b> ${data.company}\n` +
-    `<b>Type :</b> ${data.type}\n` +
-    `<b>Budget :</b> ${data.budget}\n\n` +
-    `<b>Message :</b>\n${data.message}`;
-
-  try {
-    const res = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: TG_CHAT_ID, text, parse_mode: 'HTML' })
-    });
-    if (!res.ok) throw new Error('API error');
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
-  } catch(err) {
-    btn.disabled = false;
-    btn.innerHTML = 'Envoyer ma demande <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-    errBox.style.display = 'block';
-    errBox.textContent = 'Une erreur est survenue. Envoyez-nous un email directement : contacts.neoflowagency@gmail.com';
-  }
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => { const t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } });
 });
 </script>
 </body>

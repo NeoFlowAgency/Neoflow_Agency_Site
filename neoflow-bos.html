@@ -39,9 +39,36 @@
     /* Pour qui on light bg */
     .pq-section { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
+    /* Hero chips BOS */
+    .bos-hero-chips { display:flex;align-items:center;justify-content:flex-start;gap:10px;flex-wrap:wrap;margin:20px 0 28px; }
+    .bos-hero-chip { display:flex;align-items:center;gap:7px;background:rgba(49,58,223,.07);border:1px solid rgba(49,58,223,.15);border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:var(--navy); }
+    .bos-hero-chip span { color:var(--primary);font-weight:800; }
+
+    /* Features band BOS */
+    .bos-feat-band { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
+    .bos-feat-item { background:#fff;padding:36px 32px;transition:background .2s; }
+    .bos-feat-item:hover { background:var(--bg-soft); }
+    .bos-feat-num { font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);margin-bottom:12px; }
+    .bos-feat-item h3 { font-size:1.05rem;color:var(--navy);font-weight:800;margin-bottom:8px; }
+    .bos-feat-item p { font-size:14px;line-height:1.65;color:var(--text-2); }
+
+    /* Testimonials BOS */
+    .bos-testi-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px; }
+    .bos-testi { background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:0 4px 24px rgba(49,58,223,.06);transition:box-shadow .2s,transform .2s; }
+    .bos-testi:hover { box-shadow:0 8px 40px rgba(49,58,223,.12);transform:translateY(-3px); }
+    .bos-testi__stars { display:flex;gap:3px;margin-bottom:14px; }
+    .bos-testi__star { color:#F59E0B;font-size:14px; }
+    .bos-testi__quote { font-size:14px;line-height:1.72;color:var(--text);margin-bottom:20px;font-style:italic; }
+    .bos-testi__author { display:flex;align-items:center;gap:12px; }
+    .bos-testi__avatar { width:38px;height:38px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;flex-shrink:0; }
+    .bos-testi__name { font-size:13px;font-weight:800;color:var(--navy); }
+    .bos-testi__role { font-size:12px;color:var(--text-3); }
+
     @media (max-width: 768px) {
       .bos-hero-tag { display: none; }
       .bos-hero-tag-2 { display: none; }
+      .bos-feat-band { grid-template-columns:1fr; }
+      .bos-testi-grid { grid-template-columns:1fr; }
     }
 
     /* ── BOS hero mockup ── */
@@ -141,6 +168,12 @@
         <p class="hero-sub">
           Commandes, livraisons, factures, clients, stock — tout dans une seule application pensée pour le commerce physique.
         </p>
+        <div class="bos-hero-chips">
+          <div class="bos-hero-chip"><span>49€</span>/mois tout inclus</div>
+          <div class="bos-hero-chip"><span>7j</span> essai gratuit</div>
+          <div class="bos-hero-chip"><span>6 modules</span> intégrés</div>
+          <div class="bos-hero-chip"><span>&lt;24h</span> support direct</div>
+        </div>
         <div class="hero-actions">
           <a href="https://bos.neoflow-agency.cloud" class="btn btn-primary btn--lg">
             Démarrer gratuitement
@@ -252,6 +285,27 @@
         <div class="stats-strip__lbl">support humain direct</div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FEATURES BAND
+═══════════════════════════════════════════ -->
+<div class="bos-feat-band">
+  <div class="bos-feat-item reveal">
+    <div class="bos-feat-num">01</div>
+    <h3>Opérationnel en 10 minutes</h3>
+    <p>Pas d'installation, pas de formation longue. Vous créez votre compte, importez vos données et commencez à travailler le jour même.</p>
+  </div>
+  <div class="bos-feat-item reveal" style="--delay:.08s">
+    <div class="bos-feat-num">02</div>
+    <h3>Conçu pour le terrain</h3>
+    <p>Interface pensée pour les commerçants, pas pour les informaticiens. Chaque action est à portée de main, même sur mobile depuis le magasin.</p>
+  </div>
+  <div class="bos-feat-item reveal" style="--delay:.16s">
+    <div class="bos-feat-num">03</div>
+    <h3>Support humain inclus</h3>
+    <p>Une vraie personne vous répond sous 24h. Pas de chatbot, pas de ticket numéro 43712. Votre succès est notre priorité.</p>
   </div>
 </div>
 
@@ -677,6 +731,60 @@
           <h3>Bilan de fin de mois</h3>
         </div>
         <p>Le tableau de bord financier donne le CA, les produits les plus vendus et la performance de chaque vendeur — sans formule Excel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     TÉMOIGNAGES
+═══════════════════════════════════════════ -->
+<section style="background:#fff">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Témoignages</span>
+      <h2>Ils ont fait confiance à <span class="grad-text">NeoFlow BOS.</span></h2>
+      <p class="sec-sub">Des commerçants comme vous qui ont repris le contrôle de leur gestion.</p>
+    </div>
+    <div class="bos-testi-grid">
+      <div class="bos-testi reveal">
+        <div class="bos-testi__stars">
+          <span class="bos-testi__star">★</span><span class="bos-testi__star">★</span><span class="bos-testi__star">★</span><span class="bos-testi__star">★</span><span class="bos-testi__star">★</span>
+        </div>
+        <p class="bos-testi__quote">"Avant BOS, je jonglais entre Excel, des carnets et WhatsApp pour gérer mes commandes. Maintenant tout est au même endroit et je gagne au moins 2h par jour."</p>
+        <div class="bos-testi__author">
+          <div class="bos-testi__avatar">KA</div>
+          <div>
+            <div class="bos-testi__name">Karim A.</div>
+            <div class="bos-testi__role">Grossiste alimentaire, Lyon</div>
+          </div>
+        </div>
+      </div>
+      <div class="bos-testi reveal" style="--delay:.08s">
+        <div class="bos-testi__stars">
+          <span class="bos-testi__star">★</span><span class="bos-testi__star">★</span><span class="bos-testi__star">★</span><span class="bos-testi__star">★</span><span class="bos-testi__star">★</span>
+        </div>
+        <p class="bos-testi__quote">"La mise en place a pris moins d'une journée. L'interface est claire, mon équipe a compris sans formation. Et le support répond vraiment vite."</p>
+        <div class="bos-testi__author">
+          <div class="bos-testi__avatar">SB</div>
+          <div>
+            <div class="bos-testi__name">Sophie B.</div>
+            <div class="bos-testi__role">Gérante multi-boutiques, Bordeaux</div>
+          </div>
+        </div>
+      </div>
+      <div class="bos-testi reveal" style="--delay:.16s">
+        <div class="bos-testi__stars">
+          <span class="bos-testi__star">★</span><span class="bos-testi__star">★</span><span class="bos-testi__star">★</span><span class="bos-testi__star">★</span><span class="bos-testi__star">★</span>
+        </div>
+        <p class="bos-testi__quote">"49€ par mois pour remplacer 3 outils différents et économiser du temps chaque semaine. Le retour sur investissement est immédiat. Je regrette juste de ne pas l'avoir adopté plus tôt."</p>
+        <div class="bos-testi__author">
+          <div class="bos-testi__avatar">MR</div>
+          <div>
+            <div class="bos-testi__name">Marc R.</div>
+            <div class="bos-testi__role">Commerce de détail, Nantes</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

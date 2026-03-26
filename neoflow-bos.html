@@ -78,46 +78,43 @@
       .bos-hero-chip { font-size: 12px; padding: 5px 12px; }
     }
 
-    /* ── Pricing redesign ── */
-    .pr-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:20px; max-width:800px; margin:0 auto; align-items:stretch; }
-    .pr-card { background:#fff; border:1.5px solid var(--border-2); border-radius:var(--r-2xl); padding:40px 36px; box-shadow:var(--s-md); display:flex; flex-direction:column; gap:20px; position:relative; overflow:hidden; transition:box-shadow .2s, transform .2s; }
-    .pr-card:hover { box-shadow:var(--s-xl); transform:translateY(-2px); }
-    .pr-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--grad-primary); opacity:.4; }
-    .pr-card--hero { background:linear-gradient(145deg,#313ADF 0%,#4338CA 45%,#7C3AED 100%); border-color:transparent; box-shadow:0 20px 60px rgba(49,58,223,.35); }
-    .pr-card--hero::before { display:none; }
-    .pr-card--hero:hover { box-shadow:0 28px 80px rgba(49,58,223,.45); transform:translateY(-3px); }
-    .pr-badges { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-    .pr-badge-rec { background:rgba(255,255,255,.18); color:#fff; border:1px solid rgba(255,255,255,.28); font-size:10px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; border-radius:6px; padding:3px 10px; }
-    .pr-badge-launch { font-size:11px; font-weight:600; color:rgba(255,255,255,.55); }
-    .pr-card-lbl { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--text-3); }
-    .pr-card--hero .pr-card-lbl { color:rgba(255,255,255,.55); }
-    .pr-amount { display:flex; align-items:flex-start; gap:3px; margin:4px 0 2px; }
-    .pr-cur { font-size:1.4rem; font-weight:800; color:var(--primary); padding-top:10px; }
-    .pr-card--hero .pr-cur { color:rgba(255,255,255,.7); }
-    .pr-val { font-size:5.2rem; font-weight:900; color:var(--text); line-height:1; letter-spacing:-.06em; }
-    .pr-card--hero .pr-val { color:#fff; }
-    .pr-per { font-size:14px; color:var(--text-3); align-self:flex-end; padding-bottom:12px; }
-    .pr-card--hero .pr-per { color:rgba(255,255,255,.55); }
-    .pr-info { font-size:13px; color:var(--text-3); line-height:1.5; }
-    .pr-card--hero .pr-info { color:rgba(255,255,255,.65); }
-    .pr-info strong { color:var(--text); font-weight:700; }
-    .pr-card--hero .pr-info strong { color:#fff; }
-    .pr-cta { width:100%; justify-content:center; border-radius:var(--r-lg); margin-top:auto; }
-    .pr-card--hero .pr-cta { background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.32); color:#fff; }
-    .pr-card--hero .pr-cta:hover { background:rgba(255,255,255,.22); }
-    .pr-save { font-size:12px; color:rgba(255,255,255,.5); text-align:center; }
-    .pr-save strong { color:rgba(255,255,255,.8); }
+    /* ── Pricing redesign — single card with toggle ── */
+    .pr-wrap { max-width:480px; margin:0 auto; }
+    /* Pills toggle */
+    .pr-pills { display:flex; background:rgba(49,58,223,.07); border:1px solid rgba(49,58,223,.14); border-radius:99px; padding:4px; gap:4px; width:fit-content; margin:0 auto 28px; }
+    .pr-pill { background:transparent; border:none; border-radius:99px; padding:8px 24px; font-size:14px; font-weight:600; color:var(--text-2); cursor:pointer; transition:background .2s, color .2s; display:flex; align-items:center; gap:8px; }
+    .pr-pill.active { background:var(--primary); color:#fff; box-shadow:0 2px 12px rgba(49,58,223,.35); }
+    .pr-pill-save { background:rgba(255,255,255,.22); border-radius:99px; padding:1px 7px; font-size:11px; font-weight:700; }
+    /* Solo card */
+    .pr-solo { background:linear-gradient(145deg,#313ADF 0%,#4338CA 50%,#7C3AED 100%); border-radius:var(--r-2xl); padding:48px 44px; box-shadow:0 24px 64px rgba(49,58,223,.38); text-align:center; position:relative; overflow:hidden; }
+    .pr-solo::after { content:''; position:absolute; top:-30%; right:-15%; width:280px; height:280px; border-radius:50%; background:rgba(255,255,255,.05); pointer-events:none; }
+    .pr-solo::before { content:''; position:absolute; bottom:-20%; left:-10%; width:220px; height:220px; border-radius:50%; background:rgba(255,255,255,.03); pointer-events:none; }
+    .pr-solo-badge { display:inline-block; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25); color:#fff; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; border-radius:6px; padding:3px 12px; margin-bottom:24px; }
+    .pr-amount { display:flex; align-items:flex-start; justify-content:center; gap:3px; margin-bottom:10px; }
+    .pr-cur { font-size:1.5rem; font-weight:800; color:rgba(255,255,255,.65); padding-top:14px; }
+    .pr-val { font-size:6.5rem; font-weight:900; color:#fff; line-height:1; letter-spacing:-.06em; }
+    .pr-val.flip { animation:prFlip .22s ease; }
+    @keyframes prFlip { from { opacity:0; transform:translateY(-10px); } to { opacity:1; transform:translateY(0); } }
+    .pr-per { font-size:15px; color:rgba(255,255,255,.5); align-self:flex-end; padding-bottom:16px; }
+    .pr-info { font-size:14px; color:rgba(255,255,255,.65); line-height:1.55; }
+    .pr-info strong { color:#fff; font-weight:700; }
+    .pr-save { font-size:13px; color:rgba(255,255,255,.45); margin-top:6px; margin-bottom:0; }
+    .pr-save strong { color:rgba(255,255,255,.75); }
+    .pr-divider { height:1px; background:rgba(255,255,255,.1); margin:28px 0; }
+    .pr-cta-solo { width:100%; justify-content:center; border-radius:var(--r-lg); background:rgba(255,255,255,.13); border-color:rgba(255,255,255,.28); color:#fff; margin-bottom:14px; }
+    .pr-cta-solo:hover { background:rgba(255,255,255,.22); }
+    .pr-trial-note { font-size:12px; color:rgba(255,255,255,.42); }
     /* Included features grid */
-    .pr-incl { max-width:800px; margin:44px auto 0; }
+    .pr-incl { max-width:800px; margin:48px auto 0; }
     .pr-incl-title { font-size:11px; font-weight:700; color:var(--text-3); text-align:center; text-transform:uppercase; letter-spacing:.1em; margin-bottom:18px; }
     .pr-feat-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
     .pr-feat-chip { display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:11px 16px; font-size:13px; font-weight:500; color:var(--text-2); transition:border-color .15s, box-shadow .15s; }
     .pr-feat-chip:hover { border-color:var(--border-2); box-shadow:0 2px 10px rgba(49,58,223,.06); }
     .pr-feat-icon { width:28px; height:28px; border-radius:8px; background:var(--primary-light); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
     .pr-feat-icon svg { color:var(--primary); }
-    @media (max-width:680px) {
-      .pr-grid { grid-template-columns:1fr; }
-      .pr-card { padding:32px 24px; }
+    @media (max-width:540px) {
+      .pr-solo { padding:36px 28px; }
+      .pr-val { font-size:5rem; }
       .pr-feat-grid { grid-template-columns:1fr; }
     }
 
@@ -828,41 +825,32 @@
       <div class="launch-text">Ces tarifs sont garantis à vie pour tous les premiers inscrits. <span>On ne reviendra pas dessus.</span></div>
     </div>
 
-    <div class="pr-grid reveal" style="--delay:.08s">
+    <div class="pr-wrap reveal" style="--delay:.08s">
 
-      <!-- Mensuel -->
-      <div class="pr-card">
-        <div class="pr-card-lbl">Mensuel</div>
-        <div class="pr-amount">
-          <span class="pr-cur">€</span>
-          <span class="pr-val">49</span>
-          <span class="pr-per">/&nbsp;mois</span>
-        </div>
-        <div class="pr-info">Sans engagement · Résiliable à tout moment</div>
-        <a href="https://bos.neoflow-agency.cloud" class="btn btn-ghost btn--lg pr-cta">
-          Commencer — 7 jours d'essai
-          <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+      <!-- Toggle mensuel / annuel -->
+      <div class="pr-pills">
+        <button class="pr-pill active" id="prBtnA">
+          Annuel <span class="pr-pill-save">−16%</span>
+        </button>
+        <button class="pr-pill" id="prBtnM">Mensuel</button>
       </div>
 
-      <!-- Annuel — hero -->
-      <div class="pr-card pr-card--hero">
-        <div class="pr-badges">
-          <span class="pr-badge-rec">Recommandé</span>
-          <span class="pr-badge-launch">2 mois offerts</span>
-        </div>
-        <div class="pr-card-lbl">Annuel</div>
+      <!-- Carte unique -->
+      <div class="pr-solo">
+        <div class="pr-solo-badge" id="prBadge">2 mois offerts</div>
         <div class="pr-amount">
           <span class="pr-cur">€</span>
-          <span class="pr-val">41</span>
+          <span class="pr-val" id="prVal">41</span>
           <span class="pr-per">/&nbsp;mois</span>
         </div>
-        <div class="pr-info">490€ facturé annuellement · <strong>Économie de 98€/an</strong></div>
-        <a href="https://bos.neoflow-agency.cloud" class="btn btn-outline-white btn--lg pr-cta">
-          Commencer — 7 jours d'essai
+        <div class="pr-info" id="prInfo">490€ facturé annuellement · <strong>Économie de 98€/an</strong></div>
+        <div class="pr-save" id="prSave">vs mensuel : <strong>−98€ par an, soit 2 mois gratuits</strong></div>
+        <div class="pr-divider"></div>
+        <a href="https://bos.neoflow-agency.cloud" class="btn btn-outline-white btn--lg pr-cta-solo">
+          Commencer — 7 jours d'essai gratuit
           <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <div class="pr-save">vs mensuel : <strong>−98€ par an</strong></div>
+        <div class="pr-trial-note">Aucune carte requise pendant l'essai · Annulation libre</div>
       </div>
 
     </div>
@@ -1011,6 +999,42 @@
 function closeMenu() { document.getElementById('mobileNav').classList.remove('open'); }
 document.getElementById('burgerBtn').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
 document.getElementById('closeNav').addEventListener('click', closeMenu);
+
+// Pricing toggle
+(function() {
+  var btnA  = document.getElementById('prBtnA');
+  var btnM  = document.getElementById('prBtnM');
+  var val   = document.getElementById('prVal');
+  var info  = document.getElementById('prInfo');
+  var save  = document.getElementById('prSave');
+  var badge = document.getElementById('prBadge');
+  if (!btnA) return;
+
+  function flip(newText) {
+    val.classList.remove('flip');
+    void val.offsetWidth; // reflow
+    val.textContent = newText;
+    val.classList.add('flip');
+  }
+
+  btnA.addEventListener('click', function() {
+    btnA.classList.add('active');
+    btnM.classList.remove('active');
+    flip('41');
+    info.innerHTML = '490€ facturé annuellement · <strong>Économie de 98€/an</strong>';
+    save.style.display = '';
+    badge.style.display = '';
+  });
+
+  btnM.addEventListener('click', function() {
+    btnM.classList.add('active');
+    btnA.classList.remove('active');
+    flip('49');
+    info.textContent = 'Sans engagement · Résiliable à tout moment';
+    save.style.display = 'none';
+    badge.style.display = 'none';
+  });
+})();
 
 // Navbar scroll
 const nav = document.getElementById('navbar');

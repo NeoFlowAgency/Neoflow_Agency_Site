@@ -73,6 +73,17 @@
       .ag-hero-chip { font-size:12px; padding:6px 12px; }
       .service-detail-title { font-size:1.4rem; }
     }
+    /* ── Process section ── */
+    #processus .ag-process-grid::before { display:none; }
+    .process-card { display:flex;gap:18px;align-items:flex-start;background:var(--ag-surface);border:1px solid var(--ag-border);border-radius:16px;padding:22px 24px;transition:border-color var(--t-base); }
+    .process-card:hover { border-color:var(--ag-border-2); }
+    .process-card.active { background:linear-gradient(135deg,rgba(124,92,252,.07),rgba(91,142,247,.04));border-color:rgba(124,92,252,.28); }
+    .process-card__num { width:40px;height:40px;border-radius:50%;flex-shrink:0;background:var(--ag-bg-2);border:1px solid var(--ag-border-2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:var(--ag-text-muted); }
+    .process-card.active .process-card__num { background:var(--ag-accent);border-color:var(--ag-accent);color:#fff;box-shadow:0 0 0 6px rgba(124,92,252,.15); }
+    .process-card__tag { font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ag-accent);margin-bottom:5px; }
+    .process-card h3 { font-size:.95rem;color:var(--ag-text);margin-bottom:6px; }
+    .process-card p { font-size:13px;line-height:1.65;color:var(--ag-text-muted);margin:0; }
+    @media (max-width:768px) { #processus .ag-process-grid { grid-template-columns:1fr !important;gap:10px !important; } }
   </style>
 </head>
 <body class="agency">
@@ -428,45 +439,57 @@
   <div class="container">
     <div class="ag-section-head reveal">
       <span class="eyebrow">Notre démarche</span>
-      <h2>De l'idée à la mise en ligne.<br><span class="grad-text">Étape par étape.</span></h2>
-      <p>On travaille en petit comité, avec une communication directe à chaque étape. Pas de surprise à la livraison.</p>
+      <h2>De votre idée<br><span class="grad-text">à la mise en ligne.</span></h2>
+      <p>Six étapes claires. On travaille en direct avec vous à chaque moment. Pas de flou, pas de surprise.</p>
     </div>
-    <div class="ag-process-grid" id="processGrid" style="grid-template-columns:repeat(3,1fr)">
-      <div class="ag-process-step reveal">
-        <div class="ag-process-num">01</div>
-        <div class="ag-process-tag">Contact</div>
-        <h3>Vous nous contactez</h3>
-        <p>Via le formulaire ou directement par téléphone. On prend connaissance de votre demande et on l'analyse.</p>
+    <div class="ag-process-grid" id="processGrid" style="grid-template-columns:repeat(2,1fr);gap:12px">
+      <div class="process-card reveal">
+        <div class="process-card__num">01</div>
+        <div>
+          <div class="process-card__tag">Contact</div>
+          <h3>Vous nous contactez</h3>
+          <p>Via le formulaire ou directement par téléphone. On prend connaissance de votre demande et on l'analyse.</p>
+        </div>
       </div>
-      <div class="ag-process-step reveal" style="--delay:.06s">
-        <div class="ag-process-num">02</div>
-        <div class="ag-process-tag">Échange</div>
-        <h3>Appel, visio ou rendez-vous</h3>
-        <p>On organise un échange (téléphone, visio ou présentiel) pour comprendre votre projet en profondeur.</p>
+      <div class="process-card reveal" style="--delay:.06s">
+        <div class="process-card__num">02</div>
+        <div>
+          <div class="process-card__tag">Échange</div>
+          <h3>Appel, visio ou rendez-vous</h3>
+          <p>On organise un échange (téléphone, visio ou présentiel) pour comprendre votre projet en profondeur.</p>
+        </div>
       </div>
-      <div class="ag-process-step reveal" style="--delay:.12s">
-        <div class="ag-process-num">03</div>
-        <div class="ag-process-tag">Cahier des charges</div>
-        <h3>On formalise ensemble</h3>
-        <p>On rédige le cahier des charges complet et vous l'envoyons. On ajuste selon vos retours jusqu'à validation.</p>
+      <div class="process-card reveal" style="--delay:.12s">
+        <div class="process-card__num">03</div>
+        <div>
+          <div class="process-card__tag">Cahier des charges</div>
+          <h3>On formalise ensemble</h3>
+          <p>On rédige le cahier des charges complet et vous l'envoyons. On ajuste selon vos retours jusqu'à validation.</p>
+        </div>
       </div>
-      <div class="ag-process-step active reveal" style="--delay:.18s">
-        <div class="ag-process-num">04</div>
-        <div class="ag-process-tag">Développement</div>
-        <h3>On construit votre solution</h3>
-        <p>Une fois le cahier des charges validé, on développe. Vous suivez l'avancement avec des démos régulières.</p>
+      <div class="process-card active reveal" style="--delay:.18s">
+        <div class="process-card__num">04</div>
+        <div>
+          <div class="process-card__tag">Développement</div>
+          <h3>On construit votre solution</h3>
+          <p>Une fois le cahier des charges validé, on développe. Vous suivez l'avancement avec des démos régulières.</p>
+        </div>
       </div>
-      <div class="ag-process-step reveal" style="--delay:.24s">
-        <div class="ag-process-num">05</div>
-        <div class="ag-process-tag">Tests &amp; retours</div>
-        <h3>Vous testez, on ajuste</h3>
-        <p>Période de tests avec vos équipes. On intègre vos retours et on corrige jusqu'à ce que tout soit parfait.</p>
+      <div class="process-card reveal" style="--delay:.24s">
+        <div class="process-card__num">05</div>
+        <div>
+          <div class="process-card__tag">Tests &amp; retours</div>
+          <h3>Vous testez, on ajuste</h3>
+          <p>Période de tests avec vos équipes. On intègre vos retours et on corrige jusqu'à ce que tout soit parfait.</p>
+        </div>
       </div>
-      <div class="ag-process-step reveal" style="--delay:.30s">
-        <div class="ag-process-num">06</div>
-        <div class="ag-process-tag">Mise en production</div>
-        <h3>Opérationnel. Et on reste là.</h3>
-        <p>Mise en production, hébergement sécurisé, maintenance et petites évolutions. On gère tout sur la durée.</p>
+      <div class="process-card reveal" style="--delay:.30s">
+        <div class="process-card__num">06</div>
+        <div>
+          <div class="process-card__tag">Mise en production</div>
+          <h3>Opérationnel. Et on reste là.</h3>
+          <p>Mise en production, hébergement sécurisé, maintenance et petites évolutions. On gère tout sur la durée.</p>
+        </div>
       </div>
     </div>
   </div>

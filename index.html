@@ -82,14 +82,14 @@
       .ag-features-band { grid-template-columns: 1fr; }
       .ag-inline-cta { flex-direction: column; align-items: flex-start; }
     }
-    /* ── Timeline process ── */
-    .tl-wrap { position:relative; padding-left:72px; margin-top:56px; }
+    /* ── Timeline process (zigzag centré) ── */
+    .tl-wrap { position:relative; margin-top:56px; }
     .tl-svg { position:absolute; left:0; top:0; pointer-events:none; overflow:visible; }
-    .tl-step { position:relative; padding-bottom:56px; }
+    .tl-step { display:grid; grid-template-columns:1fr 48px 1fr; column-gap:24px; padding-bottom:64px; }
     .tl-step:last-child { padding-bottom:0; }
     .tl-dot {
-      position:absolute; left:-52px; top:4px;
-      width:36px; height:36px; border-radius:50%;
+      grid-column:2; grid-row:1; justify-self:center; align-self:start;
+      width:36px; height:36px; border-radius:50%; position:relative;
       background:var(--ag-bg-2); border:1.5px solid var(--ag-border-2);
       display:flex; align-items:center; justify-content:center;
       font-size:11px; font-weight:800; color:var(--ag-text-muted);
@@ -101,16 +101,21 @@
       transform:scale(1.12);
     }
     .tl-body {
-      background:var(--ag-surface); border:1px solid rgba(255,255,255,.06);
+      grid-row:1; background:var(--ag-surface); border:1px solid rgba(255,255,255,.06);
       border-radius:14px; padding:20px 24px; will-change:transform,opacity;
+      opacity:0; transition:opacity .45s ease, transform .45s ease;
     }
+    .tl-l .tl-body { grid-column:1; text-align:right; transform:translateX(-24px); }
+    .tl-r .tl-body { grid-column:3; transform:translateX(24px); }
+    .tl-body.tl-visible { opacity:1; transform:translateX(0) !important; }
     .tl-body:hover { border-color:rgba(255,255,255,.12); }
     .tl-tag { font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ag-accent); margin-bottom:6px; }
     .tl-body h3 { font-size:.95rem; color:var(--ag-text); margin-bottom:6px; }
     .tl-body p { font-size:13px; line-height:1.65; color:var(--ag-text-muted); margin:0; }
-    @media (max-width:480px) {
-      .tl-wrap { padding-left:50px; }
-      .tl-dot { left:-38px; width:28px; height:28px; font-size:10px; }
+    @media (max-width:640px) {
+      .tl-step { grid-template-columns:36px 1fr; column-gap:16px; }
+      .tl-dot { grid-column:1; }
+      .tl-l .tl-body, .tl-r .tl-body { grid-column:2; text-align:left; transform:translateX(20px); }
     }
   </style>
 </head>
@@ -350,7 +355,7 @@
         <path id="tlPath"     stroke="url(#tlGrad)" stroke-width="2.5" fill="none" stroke-linecap="round" filter="url(#tlGlow)"/>
         <circle id="tlTip" r="5" fill="#7C5CFC" filter="url(#tlGlow)" opacity="0"/>
       </svg>
-      <div class="tl-step">
+      <div class="tl-step tl-l">
         <div class="tl-dot">01</div>
         <div class="tl-body">
           <div class="tl-tag">Contact</div>
@@ -358,7 +363,7 @@
           <p>Via le formulaire ou directement par téléphone. On prend connaissance de votre demande et on l'analyse.</p>
         </div>
       </div>
-      <div class="tl-step">
+      <div class="tl-step tl-r">
         <div class="tl-dot">02</div>
         <div class="tl-body">
           <div class="tl-tag">Échange</div>
@@ -366,7 +371,7 @@
           <p>On organise un échange (téléphone, visio ou présentiel) pour comprendre votre projet en profondeur.</p>
         </div>
       </div>
-      <div class="tl-step">
+      <div class="tl-step tl-l">
         <div class="tl-dot">03</div>
         <div class="tl-body">
           <div class="tl-tag">Cahier des charges</div>
@@ -374,7 +379,7 @@
           <p>On rédige le cahier des charges complet et vous l'envoyons. On ajuste selon vos retours jusqu'à validation.</p>
         </div>
       </div>
-      <div class="tl-step">
+      <div class="tl-step tl-r">
         <div class="tl-dot">04</div>
         <div class="tl-body">
           <div class="tl-tag">Développement</div>
@@ -382,7 +387,7 @@
           <p>Une fois le cahier des charges validé, on développe. Vous suivez l'avancement avec des démos régulières.</p>
         </div>
       </div>
-      <div class="tl-step">
+      <div class="tl-step tl-l">
         <div class="tl-dot">05</div>
         <div class="tl-body">
           <div class="tl-tag">Tests &amp; retours</div>
@@ -390,7 +395,7 @@
           <p>Période de tests avec vos équipes. On intègre vos retours et on corrige jusqu'à ce que tout soit parfait.</p>
         </div>
       </div>
-      <div class="tl-step">
+      <div class="tl-step tl-r">
         <div class="tl-dot">06</div>
         <div class="tl-body">
           <div class="tl-tag">Mise en production</div>
@@ -757,7 +762,7 @@ if (window.gsap && window.ScrollTrigger) {
         return { x: r.left - wR.left + r.width / 2, y: r.top - wR.top + r.height / 2 };
       });
       cachedPts = pts;
-      var amp    = 26;
+      var amp    = Math.min(wR.width / 7, 72); /* zigzag dans le tiers central */
       var startY = pts[0].y - 36;
       var cx     = pts[0].x;
       var d      = 'M ' + cx + ' ' + startY;
@@ -776,6 +781,8 @@ if (window.gsap && window.ScrollTrigger) {
       pathGlow.setAttribute('d', d);
       svg.setAttribute('width',  wR.width);
       svg.setAttribute('height', wR.height);
+      svg.style.width  = wR.width  + 'px';
+      svg.style.height = wR.height + 'px';
       var len = pathEl.getTotalLength();
       cachedLen = len;
       pathEl.style.strokeDasharray    = len;
@@ -787,14 +794,6 @@ if (window.gsap && window.ScrollTrigger) {
 
     setTimeout(buildPath, 120);
     window.addEventListener('resize', buildPath);
-
-    bodies.forEach(function(body) {
-      gsap.fromTo(body,
-        { opacity: 0, x: 28 },
-        { opacity: 1, x: 0, duration: 0.55, ease: 'power3.out',
-          scrollTrigger: { trigger: body, start: 'top 88%', once: true } }
-      );
-    });
 
     gsap.to({}, {
       scrollTrigger: {
@@ -815,11 +814,14 @@ if (window.gsap && window.ScrollTrigger) {
             tip.setAttribute('cy', pt.y);
             tip.setAttribute('opacity', 1);
             cachedPts.forEach(function(p, i) {
-              dots[i].classList.toggle('lit', pt.y >= p.y - 4);
+              var reached = pt.y >= p.y - 4;
+              dots[i].classList.toggle('lit', reached);
+              bodies[i].classList.toggle('tl-visible', reached);
             });
           } else {
             tip.setAttribute('opacity', 0);
-            dots.forEach(function(d) { d.classList.remove('lit'); });
+            dots.forEach(function(d)   { d.classList.remove('lit'); });
+            bodies.forEach(function(b) { b.classList.remove('tl-visible'); });
           }
         }
       }
